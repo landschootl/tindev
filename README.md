@@ -1,8 +1,13 @@
 # tindev
 Projet de PAI en M1MIAGEFA - Application de rencontre entre recruteurs et freelances
 
+## Liens utiles
+* [Wiki - Documents](https://gitlab.com/squirtles/tindev/wikis/home)
+* [Suivi - Scrum Board](https://gitlab.com/squirtles/tindev/boards)
+* [Intégration continue](https://gitlab.com/squirtles/tindev/pipelines)
+
 ## Contributeurs
-* <a href="http://github.com/MawsFr" target="_blank">Mustapha NEZZARI</a>
-* <a href="http://github.com/ExSoldat" target="_blank">Mathieu SAAB</a>
-* <a href="http://github.com/lauthieb" target="_blank">Laurent THIEBAULT</a>
-* <a href="http://github.com/landschoot" target="_blank">Ludovic LANDSCHOOT</a>
+* [Mustapha NEZZARI](http://github.com/MawsFr)
+* [Mathieu SAAB](http://github.com/ExSoldat)
+* [Laurent THIEBAULT](http://github.com/lauthieb)
+* [Ludovic LANDSCHOOT](http://github.com/landschoot)
