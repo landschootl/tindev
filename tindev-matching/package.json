@@ -1,5 +1,5 @@
 {
-  "name": "ionic2-tinder-cards",
+  "name": "tindev-matching",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -46,6 +46,5 @@
       "version": "",
       "locator": "ios"
     }
-  ],
-  "description": "ionic2-tinder-cards: An Ionic project"
+  ]
 }

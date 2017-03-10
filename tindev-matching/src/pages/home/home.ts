@@ -46,9 +46,9 @@ export class HomePage {
     this.addNewCards(1);
 
     if (like) {
-      message = 'You just like ' + this.capitalizePipe.transform(removedCard.name.first) + ' :)';
+      message = 'YES : ' + this.capitalizePipe.transform(removedCard.name.first) + ' :)';
     } else {
-      message = 'You just dislike ' + this.capitalizePipe.transform(removedCard.name.first) + ' :(';
+      message = 'NO : ' + this.capitalizePipe.transform(removedCard.name.first) + ' :(';
     }
 
     let toast = this.toastCtrl.create({
