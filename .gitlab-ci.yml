@@ -37,7 +37,7 @@ maven-front-test:
             - tindev-api/target/test-results/karma/*
 maven-deploy:
     stage: deploy
-     script:
+    script:
         - ./tindev-api/mvnw com.heroku.sdk:heroku-maven-plugin:1.1.1:deploy -DskipTests -Pprod -Dheroku.appName=tindev-board
     artifacts:
         paths:
