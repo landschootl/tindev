@@ -1,0 +1,27 @@
+{
+  "fluentMethods": true,
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "startYear",
+      "comment": "<p>Ann&eacute;e de d&eacute;but de l&#39;exp&eacute;rience</p>",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endYear",
+      "comment": "<p>Ann&eacute;e de fin de l&#39;exp&eacute;rience</p>",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "location",
+      "comment": "<p>Lieu de l&#39;exp&eacute;rience</p>",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20170424183733",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "javadoc": "<p>Cette classe repr&eacute;sente une exp&eacute;rience d&#39;un freelance.</p><p>Exemple : D&eacute;veloppeur front du 01/01/2016 au 01/01/2017.</p>",
+  "entityTableName": "experience"
+}

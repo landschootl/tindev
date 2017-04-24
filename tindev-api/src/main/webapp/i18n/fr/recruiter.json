@@ -1,0 +1,21 @@
+{
+    "tindevApp": {
+        "recruiter" : {
+            "home": {
+                "title": "Recruiters",
+                "createLabel": "Créer un nouveau Recruiter",
+                "createOrEditLabel": "Créer ou éditer un Recruiter"
+            },
+            "created": "Un nouveau Recruiter a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Recruiter avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Recruiter avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Recruiter {{ id }} ?"
+            },
+            "detail": {
+                "title": "Recruiter"
+            },
+            "company": "Company"
+        }
+    }
+}

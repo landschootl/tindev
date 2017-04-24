@@ -1,0 +1,21 @@
+{
+  "fluentMethods": true,
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "dailyPrice",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "birthdate",
+      "comment": "<p>Date de naissance du freelance</p>",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "changelogDate": "20170424183727",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "javadoc": "<p>Cette classe repr&eacute;sente un freelance.</p>",
+  "entityTableName": "freelance"
+}
