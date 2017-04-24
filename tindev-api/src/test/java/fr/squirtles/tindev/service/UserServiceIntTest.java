@@ -1,6 +1,6 @@
 package fr.squirtles.tindev.service;
 
-import fr.squirtles.tindev.TindevApp;
+import fr.squirtles.tindev.JhipsterApp;
 import fr.squirtles.tindev.domain.User;
 import fr.squirtles.tindev.config.Constants;
 import fr.squirtles.tindev.repository.UserRepository;
@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.*;
  * @see UserService
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = TindevApp.class)
+@SpringBootTest(classes = JhipsterApp.class)
 @Transactional
 public class UserServiceIntTest {
 

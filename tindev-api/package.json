@@ -1,7 +1,7 @@
 {
-  "name": "tindev",
+  "name": "jhipster",
   "version": "0.0.0",
-  "description": "Description for tindev",
+  "description": "Description for jhipster",
   "private": true,
   "cacheDirectories": [
     "node_modules"

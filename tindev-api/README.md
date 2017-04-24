@@ -1,4 +1,4 @@
-# tindev
+# jhipster
 This application was generated using JHipster 4.3.0, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.3.0](https://jhipster.github.io/documentation-archive/v4.3.0).
 
 ## Development
@@ -72,7 +72,7 @@ will generate few files:
 
 ## Building for production
 
-To optimize the tindev application for production, run:
+To optimize the jhipster application for production, run:
 
     ./mvnw -Pprod clean package
 

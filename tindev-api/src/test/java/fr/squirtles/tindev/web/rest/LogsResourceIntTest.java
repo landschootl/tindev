@@ -1,6 +1,6 @@
 package fr.squirtles.tindev.web.rest;
 
-import fr.squirtles.tindev.TindevApp;
+import fr.squirtles.tindev.JhipsterApp;
 import fr.squirtles.tindev.web.rest.vm.LoggerVM;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see LogsResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = TindevApp.class)
+@SpringBootTest(classes = JhipsterApp.class)
 public class LogsResourceIntTest {
 
     private MockMvc restLogsMockMvc;

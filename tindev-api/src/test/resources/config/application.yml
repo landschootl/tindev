@@ -16,14 +16,14 @@
 
 spring:
     application:
-        name: tindev
+        name: jhipster
     jackson:
         serialization.write_dates_as_timestamps: false
     cache:
         type: none
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:tindev;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
         name:
         username:
         password:
@@ -78,7 +78,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: ce4924e3aad3d188d8aaf0e1e95fcefbe00a3ad5
+                secret: a5ac1f78831a7ee3e8dd5b14490e804d41563bd3
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ng2-webstorage';
 
-import { TindevSharedModule, UserRouteAccessService } from './shared';
-import { TindevHomeModule } from './home/home.module';
-import { TindevAdminModule } from './admin/admin.module';
-import { TindevAccountModule } from './account/account.module';
-import { TindevEntityModule } from './entities/entity.module';
+import { JhipsterSharedModule, UserRouteAccessService } from './shared';
+import { JhipsterHomeModule } from './home/home.module';
+import { JhipsterAdminModule } from './admin/admin.module';
+import { JhipsterAccountModule } from './account/account.module';
+import { JhipsterEntityModule } from './entities/entity.module';
 
 import { LayoutRoutingModule } from './layouts';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
@@ -29,11 +29,11 @@ import {
         BrowserModule,
         LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
-        TindevSharedModule,
-        TindevHomeModule,
-        TindevAdminModule,
-        TindevAccountModule,
-        TindevEntityModule
+        JhipsterSharedModule,
+        JhipsterHomeModule,
+        JhipsterAdminModule,
+        JhipsterAccountModule,
+        JhipsterEntityModule
     ],
     declarations: [
         JhiMainComponent,
@@ -51,4 +51,4 @@ import {
     ],
     bootstrap: [ JhiMainComponent ]
 })
-export class TindevAppModule {}
+export class JhipsterAppModule {}

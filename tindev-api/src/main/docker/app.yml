@@ -1,14 +1,14 @@
 version: '2'
 services:
-    tindev-app:
-        image: tindev
+    jhipster-app:
+        image: jhipster
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
-            - SPRING_DATASOURCE_URL=jdbc:mysql://tindev-mysql:3306/tindev?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - SPRING_DATASOURCE_URL=jdbc:mysql://jhipster-mysql:3306/jhipster?useUnicode=true&characterEncoding=utf8&useSSL=false
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
         ports:
             - 8080:8080
-    tindev-mysql:
+    jhipster-mysql:
         extends:
             file: mysql.yml
-            service: tindev-mysql
+            service: jhipster-mysql

@@ -5,7 +5,7 @@
       "nativeLanguage": "fr"
     },
     "jhipsterVersion": "4.3.0",
-    "baseName": "tindev",
+    "baseName": "jhipster",
     "packageName": "fr.squirtles.tindev",
     "packageFolder": "fr/squirtles/tindev",
     "serverPort": "8080",
@@ -21,7 +21,7 @@
     "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
-    "jwtSecretKey": "ce4924e3aad3d188d8aaf0e1e95fcefbe00a3ad5",
+    "jwtSecretKey": "a5ac1f78831a7ee3e8dd5b14490e804d41563bd3",
     "clientFramework": "angular2",
     "useSass": true,
     "clientPackageManager": "yarn",
