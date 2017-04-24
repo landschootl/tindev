@@ -1,0 +1,21 @@
+{
+  "fluentMethods": true,
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "name",
+      "comment": "<p>Nom du poste</p>",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "Integer"
+    }
+  ],
+  "changelogDate": "20170424183730",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "javadoc": "<p>Cette classe repr&eacute;sente le domaine d&#39;activit&eacute; d&#39;un freelance.</p><p>Exemple : D&eacute;veloppeur.</p>",
+  "entityTableName": "domain"
+}

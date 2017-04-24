@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_96tH8CkcEeeXP8OcDD7aZg" name="Modélisation du SI - v1.1">
+  <eAnnotations xmi:id="_96tH8SkcEeeXP8OcDD7aZg" source="genmymodel">
+    <details xmi:id="_96tH8ikcEeeXP8OcDD7aZg" key="uuid" value="_8mjIQOotEeaowdqlt8Dqsg"/>
+    <details xmi:id="_96tH8ykcEeeXP8OcDD7aZg" key="author" value="Ludovic Landschoot - Mustapha Nezzari - Laurent Thiebault - Mathieu Saab"/>
+    <details xmi:id="_96tH9CkcEeeXP8OcDD7aZg" key="company" value="TINDEV"/>
+    <details xmi:id="_96tH9SkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Mod&amp;eacute;lisation du Syst&amp;egrave;me d&amp;#39;Information de l&amp;#39;application TINDEV.&lt;/p>&#xA;"/>
+  </eAnnotations>
+  <packageImport xmi:id="_96tH9ikcEeeXP8OcDD7aZg">
+    <eAnnotations xmi:id="_96tH9ykcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tH-CkcEeeXP8OcDD7aZg" key="uuid" value="_8mjIQeotEeaowdqlt8Dqsg"/>
+    </eAnnotations>
+    <importedPackage href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#/"/>
+  </packageImport>
+  <packageImport xmi:id="_96tH-SkcEeeXP8OcDD7aZg">
+    <eAnnotations xmi:id="_96tH-ikcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tH-ykcEeeXP8OcDD7aZg" key="uuid" value="_8mjvUOotEeaowdqlt8Dqsg"/>
+    </eAnnotations>
+    <importedPackage href="pathmap://GENMYMODEL_LIBRARIES/GenMyModelPrimitiveTypes.library.uml#/"/>
+  </packageImport>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tH_CkcEeeXP8OcDD7aZg" name="UserProfile">
+    <eAnnotations xmi:id="_96tH_SkcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tH_ikcEeeXP8OcDD7aZg" key="uuid" value="_UjDAgdE2EDSk2PtRzu0Ing"/>
+      <details xmi:id="_96tH_ykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente un utilisateur.&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_96tIACkcEeeXP8OcDD7aZg" name="id" visibility="protected">
+      <eAnnotations xmi:id="_96tIASkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIAikcEeeXP8OcDD7aZg" key="uuid" value="_IMdMYNE4EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIAykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Id de l&amp;#39;utilisateur&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIBCkcEeeXP8OcDD7aZg" name="firstname" visibility="protected">
+      <eAnnotations xmi:id="_96tIBSkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIBikcEeeXP8OcDD7aZg" key="uuid" value="_R0oAgNE4EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIBykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Pr&amp;eacute;nom de l&amp;#39;utilisateur&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tICCkcEeeXP8OcDD7aZg" name="lastname" visibility="protected">
+      <eAnnotations xmi:id="_96tICSkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tICikcEeeXP8OcDD7aZg" key="uuid" value="_PGY4oNE4EDS5l52VZClLXg"/>
+        <details xmi:id="_96tICykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Nom de l&amp;#39;utilisateur&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIDCkcEeeXP8OcDD7aZg" name="description" visibility="protected">
+      <eAnnotations xmi:id="_96tIDSkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIDikcEeeXP8OcDD7aZg" key="uuid" value="_VIK04NE4EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIDykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Description de l&amp;#39;utilisateur&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIECkcEeeXP8OcDD7aZg" name="photoUrl" visibility="protected">
+      <eAnnotations xmi:id="_96tIESkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIEikcEeeXP8OcDD7aZg" key="uuid" value="_8OE5YNE4EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIEykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>URL de la photo de l&amp;#39;utilisateur&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIFCkcEeeXP8OcDD7aZg" name="city" visibility="protected">
+      <eAnnotations xmi:id="_96tIFSkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIFikcEeeXP8OcDD7aZg" key="uuid" value="_P1TXoNE5EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIFykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Ville du freelance&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIGCkcEeeXP8OcDD7aZg" name="Recruiter">
+    <eAnnotations xmi:id="_96tIGSkcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIGikcEeeXP8OcDD7aZg" key="uuid" value="_U5ubIdE2EDSx1pfsSk1Z7w"/>
+      <details xmi:id="_96tIGykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente un recruteur.&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <generalization xmi:id="_96tIHCkcEeeXP8OcDD7aZg" general="_96tH_CkcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tIHSkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIHikcEeeXP8OcDD7aZg" key="uuid" value="_izwbINE4EDSER-w5B7jmfQ"/>
+      </eAnnotations>
+    </generalization>
+    <ownedAttribute xmi:id="_96tIHykcEeeXP8OcDD7aZg" name="company" visibility="protected">
+      <eAnnotations xmi:id="_96tIICkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIISkcEeeXP8OcDD7aZg" key="uuid" value="_rQJNENFCEDSER-w5B7jmfQ"/>
+        <details xmi:id="_96tIIikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Entreprise du recruteur&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIIykcEeeXP8OcDD7aZg" name="Freelance">
+    <eAnnotations xmi:id="_96tIJCkcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIJSkcEeeXP8OcDD7aZg" key="uuid" value="_VQsJoNE2EDSx1pfsSk1Z7w"/>
+      <details xmi:id="_96tIJikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente un freelance.&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <generalization xmi:id="_96tIJykcEeeXP8OcDD7aZg" general="_96tH_CkcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tIKCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIKSkcEeeXP8OcDD7aZg" key="uuid" value="_jrAMMNE4EDSER-w5B7jmfQ"/>
+      </eAnnotations>
+    </generalization>
+    <ownedAttribute xmi:id="_96tIKikcEeeXP8OcDD7aZg" name="dailyPrice" visibility="protected">
+      <eAnnotations xmi:id="_96tIKykcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tILCkcEeeXP8OcDD7aZg" key="uuid" value="_QNdjgNE6EDS5l52VZClLXg"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tILSkcEeeXP8OcDD7aZg" name="birthdate" visibility="protected" type="_96tIvykcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tILikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tILykcEeeXP8OcDD7aZg" key="uuid" value="_Yq9UQNE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIMCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Date de naissance du freelance&lt;/p>&#xA;"/>
+      </eAnnotations>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIMSkcEeeXP8OcDD7aZg" name="Mission">
+    <eAnnotations xmi:id="_96tIMikcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIMykcEeeXP8OcDD7aZg" key="uuid" value="_55XhQNE3EDSER-w5B7jmfQ"/>
+      <details xmi:id="_96tINCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente une mission cr&amp;eacute;&amp;eacute;e par un recruteur.&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_96tINSkcEeeXP8OcDD7aZg" name="id" visibility="protected">
+      <eAnnotations xmi:id="_96tINikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tINykcEeeXP8OcDD7aZg" key="uuid" value="_xtGGkNE7EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIOCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Id de la mission&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIOSkcEeeXP8OcDD7aZg" name="title" visibility="protected">
+      <eAnnotations xmi:id="_96tIOikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIOykcEeeXP8OcDD7aZg" key="uuid" value="_4IJecNE7EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIPCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Titre de la mission&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIPSkcEeeXP8OcDD7aZg" name="description" visibility="protected">
+      <eAnnotations xmi:id="_96tIPikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIPykcEeeXP8OcDD7aZg" key="uuid" value="_5Hie4NE7EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIQCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Description de la mission&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIQSkcEeeXP8OcDD7aZg" name="minSalary" visibility="protected">
+      <eAnnotations xmi:id="_96tIQikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIQykcEeeXP8OcDD7aZg" key="uuid" value="_9AHS8NE7EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIRCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Salaire minimum recherch&amp;eacute; de la mission&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIRSkcEeeXP8OcDD7aZg" name="maxSalary" visibility="protected">
+      <eAnnotations xmi:id="_96tIRikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIRykcEeeXP8OcDD7aZg" key="uuid" value="_PnihENE8EDS5l52VZClLXg"/>
+        <details xmi:id="_96tISCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Salaire maximum recherch&amp;eacute; de la mission&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tISSkcEeeXP8OcDD7aZg" name="startDate" visibility="private" type="_96tIvykcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tISikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tISykcEeeXP8OcDD7aZg" key="uuid" value="_8-vT4PH-EDSCipu89LWdvg"/>
+        <details xmi:id="_96tITCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Date de d&amp;eacute;but de la mission&lt;/p>&#xA;"/>
+      </eAnnotations>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tITSkcEeeXP8OcDD7aZg" name="endDate" visibility="protected" type="_96tIvykcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tITikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tITykcEeeXP8OcDD7aZg" key="uuid" value="_BjhtsPH_EDSCipu89LWdvg"/>
+        <details xmi:id="_96tIUCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Date de fin de la mission&lt;/p>&#xA;"/>
+      </eAnnotations>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIUSkcEeeXP8OcDD7aZg" name="Skill">
+    <eAnnotations xmi:id="_96tIUikcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIUykcEeeXP8OcDD7aZg" key="uuid" value="_Dabn0NE4EDSER-w5B7jmfQ"/>
+      <details xmi:id="_96tIVCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente une comp&amp;eacute;tence d&amp;#39;un freelance.&lt;/p>&#xA;&#xA;&lt;p>Exemple : Java&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_96tIVSkcEeeXP8OcDD7aZg" name="id" visibility="protected">
+      <eAnnotations xmi:id="_96tIVikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIVykcEeeXP8OcDD7aZg" key="uuid" value="_wkoNMNE8EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIWCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Id de la comp&amp;eacute;tence&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIWSkcEeeXP8OcDD7aZg" name="name" visibility="protected">
+      <eAnnotations xmi:id="_96tIWikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIWykcEeeXP8OcDD7aZg" key="uuid" value="_xUb5gNE8EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIXCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Libell&amp;eacute; de la comp&amp;eacute;tence&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIXSkcEeeXP8OcDD7aZg" name="Domain">
+    <eAnnotations xmi:id="_96tIXikcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIXykcEeeXP8OcDD7aZg" key="uuid" value="_VkSJINE4EDSER-w5B7jmfQ"/>
+      <details xmi:id="_96tIYCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente le domaine d&amp;#39;activit&amp;eacute; d&amp;#39;un freelance.&lt;/p>&#xA;&#xA;&lt;p>Exemple : D&amp;eacute;veloppeur.&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_96tIYSkcEeeXP8OcDD7aZg" name="id" visibility="protected">
+      <eAnnotations xmi:id="_96tIYikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIYykcEeeXP8OcDD7aZg" key="uuid" value="_Roq14NE9EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIZCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Id du poste&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIZSkcEeeXP8OcDD7aZg" name="name" visibility="protected">
+      <eAnnotations xmi:id="_96tIZikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIZykcEeeXP8OcDD7aZg" key="uuid" value="_STDPoNE9EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIaCkcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Nom du poste&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIaSkcEeeXP8OcDD7aZg" name="code">
+      <eAnnotations xmi:id="_96tIaikcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIaykcEeeXP8OcDD7aZg" key="uuid" value="_vhJXsNayEDSmSMjLgXdfpg"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIbCkcEeeXP8OcDD7aZg" name="Specialty">
+    <eAnnotations xmi:id="_96tIbSkcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIbikcEeeXP8OcDD7aZg" key="uuid" value="_dH7gwNE4EDSER-w5B7jmfQ"/>
+      <details xmi:id="_96tIbykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente une sp&amp;eacute;cialit&amp;eacute; d&amp;#39;un freelance.&lt;/p>&#xA;&#xA;&lt;p>Exemple&amp;nbsp;: front (d&amp;eacute;veloppeur front)&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_96tIcCkcEeeXP8OcDD7aZg" name="id" visibility="protected">
+      <eAnnotations xmi:id="_96tIcSkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIcikcEeeXP8OcDD7aZg" key="uuid" value="_Fq-C4NE_EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIcykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Id de la sp&amp;eacute;cialit&amp;eacute;&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIdCkcEeeXP8OcDD7aZg" name="name" visibility="protected">
+      <eAnnotations xmi:id="_96tIdSkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIdikcEeeXP8OcDD7aZg" key="uuid" value="_O7DuMNE_EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIdykcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Nom de la sp&amp;eacute;cialit&amp;eacute;&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIeCkcEeeXP8OcDD7aZg" name="code">
+      <eAnnotations xmi:id="_96tIeSkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIeikcEeeXP8OcDD7aZg" key="uuid" value="_uRZAANayEDSmSMjLgXdfpg"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIeykcEeeXP8OcDD7aZg" name="Discussion">
+    <eAnnotations xmi:id="_96tIfCkcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIfSkcEeeXP8OcDD7aZg" key="uuid" value="_-8bWANE4EDSER-w5B7jmfQ"/>
+      <details xmi:id="_96tIfikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente une discussion entre un recruteur et un freelance.&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_96tIfykcEeeXP8OcDD7aZg" name="id" visibility="protected">
+      <eAnnotations xmi:id="_96tIgCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIgSkcEeeXP8OcDD7aZg" key="uuid" value="_gBRTINE9EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIgikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Id de la discussion&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIgykcEeeXP8OcDD7aZg" name="Experience">
+    <eAnnotations xmi:id="_96tIhCkcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIhSkcEeeXP8OcDD7aZg" key="uuid" value="_WeQooNE5EDSER-w5B7jmfQ"/>
+      <details xmi:id="_96tIhikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente une exp&amp;eacute;rience d&amp;#39;un freelance.&lt;/p>&#xA;&#xA;&lt;p>Exemple : D&amp;eacute;veloppeur front du 01/01/2016 au 01/01/2017.&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_96tIhykcEeeXP8OcDD7aZg" name="id" visibility="protected">
+      <eAnnotations xmi:id="_96tIiCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIiSkcEeeXP8OcDD7aZg" key="uuid" value="_cjCZENE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIiikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Id de l&amp;#39;exp&amp;eacute;rience&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIiykcEeeXP8OcDD7aZg" name="startYear" visibility="protected" type="_96tIvykcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tIjCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIjSkcEeeXP8OcDD7aZg" key="uuid" value="_dpFbINE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIjikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Ann&amp;eacute;e de d&amp;eacute;but de l&amp;#39;exp&amp;eacute;rience&lt;/p>&#xA;"/>
+      </eAnnotations>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIjykcEeeXP8OcDD7aZg" name="endYear" visibility="protected" type="_96tIvykcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tIkCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIkSkcEeeXP8OcDD7aZg" key="uuid" value="_fu8UYNE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIkikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Ann&amp;eacute;e de fin de l&amp;#39;exp&amp;eacute;rience&lt;/p>&#xA;"/>
+      </eAnnotations>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIkykcEeeXP8OcDD7aZg" name="location" visibility="protected">
+      <eAnnotations xmi:id="_96tIlCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIlSkcEeeXP8OcDD7aZg" key="uuid" value="_g4XakNE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIlikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Lieu de l&amp;#39;exp&amp;eacute;rience&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIlykcEeeXP8OcDD7aZg" name="Training">
+    <eAnnotations xmi:id="_96tImCkcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tImSkcEeeXP8OcDD7aZg" key="uuid" value="_Uc4KQNE6EDSER-w5B7jmfQ"/>
+      <details xmi:id="_96tImikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente une formation d&amp;#39;un freelance.&lt;/p>&#xA;&#xA;&lt;p>Exemple : DUT Informatique&amp;nbsp;du 01/01/2015&amp;nbsp;au 01/01/2017.&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_96tImykcEeeXP8OcDD7aZg" name="id" visibility="protected">
+      <eAnnotations xmi:id="_96tInCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tInSkcEeeXP8OcDD7aZg" key="uuid" value="_sRtRYNE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tInikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Id de la formation&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tInykcEeeXP8OcDD7aZg" name="startDate" visibility="protected" type="_96tIvykcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tIoCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIoSkcEeeXP8OcDD7aZg" key="uuid" value="_vhIawNE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIoikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Ann&amp;eacute;e de d&amp;eacute;but de la formation&lt;/p>&#xA;"/>
+      </eAnnotations>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIoykcEeeXP8OcDD7aZg" name="endDate" visibility="protected" type="_96tIvykcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tIpCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIpSkcEeeXP8OcDD7aZg" key="uuid" value="_wtbOwNE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIpikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Ann&amp;eacute;e de fin de la formation&lt;/p>&#xA;"/>
+      </eAnnotations>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIpykcEeeXP8OcDD7aZg" name="name" visibility="protected">
+      <eAnnotations xmi:id="_96tIqCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIqSkcEeeXP8OcDD7aZg" key="uuid" value="_xo5YgNE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIqikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Intitutl&amp;eacute; de la formation&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIqykcEeeXP8OcDD7aZg" name="location" visibility="protected">
+      <eAnnotations xmi:id="_96tIrCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIrSkcEeeXP8OcDD7aZg" key="uuid" value="_y7ZiMNE6EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIrikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Lieu de la formation&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_96tIrykcEeeXP8OcDD7aZg" name="Message">
+    <eAnnotations xmi:id="_96tIsCkcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIsSkcEeeXP8OcDD7aZg" key="uuid" value="_L5u9INE9EDS5l52VZClLXg"/>
+      <details xmi:id="_96tIsikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Cette classe repr&amp;eacute;sente un message post&amp;eacute; par un utilisateur.&lt;/p>&#xA;"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_96tIsykcEeeXP8OcDD7aZg" name="id" visibility="protected">
+      <eAnnotations xmi:id="_96tItCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tItSkcEeeXP8OcDD7aZg" key="uuid" value="_STH2MNE_EDS5l52VZClLXg"/>
+        <details xmi:id="_96tItikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Id du message&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tItykcEeeXP8OcDD7aZg" name="textMessage" visibility="protected">
+      <eAnnotations xmi:id="_96tIuCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIuSkcEeeXP8OcDD7aZg" key="uuid" value="_TN1yANE_EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIuikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Contenu du message&lt;/p>&#xA;"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_96tIuykcEeeXP8OcDD7aZg" name="postingDate" visibility="protected" type="_96tIvykcEeeXP8OcDD7aZg">
+      <eAnnotations xmi:id="_96tIvCkcEeeXP8OcDD7aZg" source="genmymodel">
+        <details xmi:id="_96tIvSkcEeeXP8OcDD7aZg" key="uuid" value="_ad3DANE_EDS5l52VZClLXg"/>
+        <details xmi:id="_96tIvikcEeeXP8OcDD7aZg" key="gmm-documentation" value="&lt;p>Date d&amp;#39;envoi du message&lt;/p>&#xA;"/>
+      </eAnnotations>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:DataType" xmi:id="_96tIvykcEeeXP8OcDD7aZg" name="LocalDate">
+    <eAnnotations xmi:id="_96tIwCkcEeeXP8OcDD7aZg" source="genmymodel">
+      <details xmi:id="_96tIwSkcEeeXP8OcDD7aZg" key="uuid" value="_8Ra8AAtGEDWs7OAqMw7vKg"/>
+    </eAnnotations>
+  </packagedElement>
+</uml:Model>

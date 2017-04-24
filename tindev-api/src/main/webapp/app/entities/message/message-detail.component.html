@@ -1,0 +1,29 @@
+
+<div *ngIf="message">
+    <h2><span jhiTranslate="tindevApp.message.detail.title">Message</span> {{message.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tindevApp.message.textMessage">Text Message</span></dt>
+        <dd>
+            <span>{{message.textMessage}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.message.postingDate">Posting Date</span></dt>
+        <dd>
+            <span>{{message.postingDate | date:'mediumDate'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'message/'+ message.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

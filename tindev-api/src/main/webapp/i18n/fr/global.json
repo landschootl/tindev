@@ -7,6 +7,17 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
+                "userProfile": "User Profile",
+                "recruiter": "Recruiter",
+                "freelance": "Freelance",
+                "mission": "Mission",
+                "skill": "Skill",
+                "domain": "Domain",
+                "specialty": "Specialty",
+                "discussion": "Discussion",
+                "experience": "Experience",
+                "training": "Training",
+                "message": "Message",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

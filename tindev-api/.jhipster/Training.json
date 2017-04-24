@@ -1,0 +1,32 @@
+{
+  "fluentMethods": true,
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "startDate",
+      "comment": "<p>Ann&eacute;e de d&eacute;but de la formation</p>",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endDate",
+      "comment": "<p>Ann&eacute;e de fin de la formation</p>",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "name",
+      "comment": "<p>Intitutl&eacute; de la formation</p>",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "location",
+      "comment": "<p>Lieu de la formation</p>",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20170424183734",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "javadoc": "<p>Cette classe repr&eacute;sente une formation d&#39;un freelance.</p><p>Exemple : DUT Informatique&nbsp;du 01/01/2015&nbsp;au 01/01/2017.</p>",
+  "entityTableName": "training"
+}
