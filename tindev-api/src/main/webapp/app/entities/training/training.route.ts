@@ -1,15 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { Routes } from '@angular/router';
 
 import { TrainingComponent } from './training.component';
 import { TrainingDetailComponent } from './training-detail.component';
 import { TrainingPopupComponent } from './training-dialog.component';
 import { TrainingDeletePopupComponent } from './training-delete-dialog.component';
-
-import { Principal } from '../../shared';
 
 
 export const trainingRoute: Routes = [

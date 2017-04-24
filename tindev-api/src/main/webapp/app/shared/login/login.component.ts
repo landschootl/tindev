@@ -1,7 +1,7 @@
-import { Component, OnInit, AfterViewInit, Renderer, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { JhiLanguageService, EventManager } from 'ng-jhipster';
+import { EventManager, JhiLanguageService } from 'ng-jhipster';
 
 import { LoginService } from './login.service';
 import { StateStorageService } from '../auth/state-storage.service';

@@ -1,22 +1,22 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
 
 import {
-    SkillService,
-    SkillPopupService,
     SkillComponent,
+    SkillDeleteDialogComponent,
+    SkillDeletePopupComponent,
     SkillDetailComponent,
     SkillDialogComponent,
     SkillPopupComponent,
-    SkillDeletePopupComponent,
-    SkillDeleteDialogComponent,
-    skillRoute,
     skillPopupRoute,
+    SkillPopupService,
+    skillRoute,
+    SkillService
 } from './';
 
-let ENTITY_STATES = [
+const ENTITY_STATES = [
     ...skillRoute,
     ...skillPopupRoute,
 ];

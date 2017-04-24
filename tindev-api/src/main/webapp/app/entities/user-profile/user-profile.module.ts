@@ -1,22 +1,22 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
 
 import {
-    UserProfileService,
-    UserProfilePopupService,
     UserProfileComponent,
+    UserProfileDeleteDialogComponent,
+    UserProfileDeletePopupComponent,
     UserProfileDetailComponent,
     UserProfileDialogComponent,
     UserProfilePopupComponent,
-    UserProfileDeletePopupComponent,
-    UserProfileDeleteDialogComponent,
-    userProfileRoute,
     userProfilePopupRoute,
+    UserProfilePopupService,
+    userProfileRoute,
+    UserProfileService
 } from './';
 
-let ENTITY_STATES = [
+const ENTITY_STATES = [
     ...userProfileRoute,
     ...userProfilePopupRoute,
 ];

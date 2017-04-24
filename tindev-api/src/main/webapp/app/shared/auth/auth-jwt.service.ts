@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
+import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 
@@ -52,7 +52,7 @@ export class AuthServerProvider {
     }
 
     logout(): Observable<any> {
-        return new Observable(observer => {
+        return new Observable((observer) => {
             this.$localStorage.clear('authenticationToken');
             this.$sessionStorage.clear('authenticationToken');
             observer.complete();

@@ -1,4 +1,4 @@
-import { HttpInterceptor, EventManager } from 'ng-jhipster';
+import { EventManager, HttpInterceptor } from 'ng-jhipster';
 import { RequestOptionsArgs, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 

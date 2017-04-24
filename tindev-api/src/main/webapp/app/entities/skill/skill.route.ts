@@ -1,15 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { Routes } from '@angular/router';
 
 import { SkillComponent } from './skill.component';
 import { SkillDetailComponent } from './skill-detail.component';
 import { SkillPopupComponent } from './skill-dialog.component';
 import { SkillDeletePopupComponent } from './skill-delete-dialog.component';
-
-import { Principal } from '../../shared';
 
 
 export const skillRoute: Routes = [

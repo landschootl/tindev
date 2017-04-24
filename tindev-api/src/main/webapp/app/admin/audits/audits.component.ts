@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { ParseLinks, JhiLanguageService} from 'ng-jhipster';
+import { JhiLanguageService, ParseLinks } from 'ng-jhipster';
 
 import { Audit } from './audit.model';
 import { AuditsService } from './audits.service';

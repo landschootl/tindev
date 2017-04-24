@@ -1,15 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { Routes } from '@angular/router';
 
 import { UserProfileComponent } from './user-profile.component';
 import { UserProfileDetailComponent } from './user-profile-detail.component';
 import { UserProfilePopupComponent } from './user-profile-dialog.component';
 import { UserProfileDeletePopupComponent } from './user-profile-delete-dialog.component';
-
-import { Principal } from '../../shared';
 
 
 export const userProfileRoute: Routes = [

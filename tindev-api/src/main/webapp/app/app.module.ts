@@ -10,19 +10,18 @@ import { TindevAdminModule } from './admin/admin.module';
 import { TindevAccountModule } from './account/account.module';
 import { TindevEntityModule } from './entities/entity.module';
 
-import { LayoutRoutingModule } from './layouts';
+import {
+    ActiveMenuDirective,
+    ErrorComponent,
+    FooterComponent,
+    JhiMainComponent,
+    LayoutRoutingModule,
+    NavbarComponent,
+    PageRibbonComponent,
+    ProfileService
+} from './layouts';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
-
-import {
-    JhiMainComponent,
-    NavbarComponent,
-    FooterComponent,
-    ProfileService,
-    PageRibbonComponent,
-    ActiveMenuDirective,
-    ErrorComponent
-} from './layouts';
 
 @NgModule({
     imports: [

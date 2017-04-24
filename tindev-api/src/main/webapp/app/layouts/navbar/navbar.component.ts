@@ -4,9 +4,9 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
 
 import { ProfileService } from '../profiles/profile.service'; // FIXME barrel doesn't work here
-import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from '../../shared';
+import { JhiLanguageHelper, LoginModalService, LoginService, Principal } from '../../shared';
 
-import { VERSION, DEBUG_INFO_ENABLED } from '../../app.constants';
+import { VERSION } from '../../app.constants';
 
 @Component({
     selector: 'jhi-navbar',

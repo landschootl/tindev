@@ -1,21 +1,21 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import {
-    TindevSharedLibsModule,
-    TindevSharedCommonModule,
-    CSRFService,
-    AuthService,
-    AuthServerProvider,
     AccountService,
-    UserService,
-    StateStorageService,
-    LoginService,
-    LoginModalService,
-    Principal,
+    AuthServerProvider,
+    AuthService,
+    CSRFService,
     HasAnyAuthorityDirective,
-    JhiLoginModalComponent
+    JhiLoginModalComponent,
+    LoginModalService,
+    LoginService,
+    Principal,
+    StateStorageService,
+    TindevSharedCommonModule,
+    TindevSharedLibsModule,
+    UserService
 } from './';
 
 @NgModule({

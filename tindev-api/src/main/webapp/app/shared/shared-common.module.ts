@@ -3,11 +3,11 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from 'ng2-translate';
 import { AlertService } from 'ng-jhipster';
 import {
-    TindevSharedLibsModule,
-    JhiLanguageHelper,
     FindLanguageFromKeyPipe,
     JhiAlertComponent,
-    JhiAlertErrorComponent
+    JhiAlertErrorComponent,
+    JhiLanguageHelper,
+    TindevSharedLibsModule
 } from './';
 
 export function alertServiceProvider(sanitizer: Sanitizer, translateService: TranslateService) {

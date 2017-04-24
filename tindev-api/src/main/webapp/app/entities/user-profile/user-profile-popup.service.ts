@@ -1,4 +1,4 @@
-import { Injectable, Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfile } from './user-profile.model';
@@ -20,7 +20,7 @@ export class UserProfilePopupService {
         this.isOpen = true;
 
         if (id) {
-            this.userProfileService.find(id).subscribe(userProfile => {
+            this.userProfileService.find(id).subscribe((userProfile) => {
                 this.userProfileModalRef(component, userProfile);
             });
         } else {
@@ -29,9 +29,9 @@ export class UserProfilePopupService {
     }
 
     userProfileModalRef(component: Component, userProfile: UserProfile): NgbModalRef {
-        let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.userProfile = userProfile;
-        modalRef.result.then(result => {
+        modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {

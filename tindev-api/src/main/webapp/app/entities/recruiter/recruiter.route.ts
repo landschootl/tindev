@@ -1,15 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { Routes } from '@angular/router';
 
 import { RecruiterComponent } from './recruiter.component';
 import { RecruiterDetailComponent } from './recruiter-detail.component';
 import { RecruiterPopupComponent } from './recruiter-dialog.component';
 import { RecruiterDeletePopupComponent } from './recruiter-delete-dialog.component';
-
-import { Principal } from '../../shared';
 
 
 export const recruiterRoute: Routes = [

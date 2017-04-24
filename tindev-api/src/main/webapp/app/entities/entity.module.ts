@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { TindevUserProfileModule } from './user-profile/user-profile.module';
 import { TindevRecruiterModule } from './recruiter/recruiter.module';
