@@ -5,7 +5,6 @@ import { TindevSharedModule } from '../shared';
 
 import { HOME_ROUTE, HomeComponent } from './';
 
-
 @NgModule({
     imports: [
         TindevSharedModule,
