@@ -1,6 +1,6 @@
 package fr.squirtles.tindev.web.rest;
 
-import fr.squirtles.tindev.JhipsterApp;
+import fr.squirtles.tindev.TindevApp;
 import fr.squirtles.tindev.config.audit.AuditEventConverter;
 import fr.squirtles.tindev.domain.PersistentAuditEvent;
 import fr.squirtles.tindev.repository.PersistenceAuditEventRepository;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AuditResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = JhipsterApp.class)
+@SpringBootTest(classes = TindevApp.class)
 @Transactional
 public class AuditResourceIntTest {
 

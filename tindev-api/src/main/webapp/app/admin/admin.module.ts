@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { JhipsterSharedModule } from '../shared';
+import { TindevSharedModule } from '../shared';
 
 import {
     adminState,
@@ -31,7 +31,7 @@ import {
 
 @NgModule({
     imports: [
-        JhipsterSharedModule,
+        TindevSharedModule,
         RouterModule.forRoot(adminState, { useHash: true })
     ],
     declarations: [
@@ -68,4 +68,4 @@ import {
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class JhipsterAdminModule {}
+export class TindevAdminModule {}

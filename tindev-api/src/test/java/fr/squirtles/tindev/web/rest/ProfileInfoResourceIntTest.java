@@ -1,7 +1,7 @@
 package fr.squirtles.tindev.web.rest;
 
 import io.github.jhipster.config.JHipsterProperties;
-import fr.squirtles.tindev.JhipsterApp;
+import fr.squirtles.tindev.TindevApp;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ProfileInfoResource
  **/
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = JhipsterApp.class)
+@SpringBootTest(classes = TindevApp.class)
 public class ProfileInfoResourceIntTest {
 
     @Mock

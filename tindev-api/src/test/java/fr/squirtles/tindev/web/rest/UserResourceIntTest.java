@@ -1,6 +1,6 @@
 package fr.squirtles.tindev.web.rest;
 
-import fr.squirtles.tindev.JhipsterApp;
+import fr.squirtles.tindev.TindevApp;
 import fr.squirtles.tindev.domain.User;
 import fr.squirtles.tindev.repository.UserRepository;
 import fr.squirtles.tindev.service.MailService;
@@ -38,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see UserResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = JhipsterApp.class)
+@SpringBootTest(classes = TindevApp.class)
 public class UserResourceIntTest {
 
     private static final String DEFAULT_LOGIN = "johndoe";

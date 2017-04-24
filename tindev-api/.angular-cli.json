@@ -1,7 +1,7 @@
 {
     "project": {
         "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-        "name": "jhipster"
+        "name": "tindev"
     },
     "apps": [{
         "root": "src/main/webapp/",

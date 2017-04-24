@@ -1,6 +1,6 @@
 package fr.squirtles.tindev.web.rest;
 
-import fr.squirtles.tindev.JhipsterApp;
+import fr.squirtles.tindev.TindevApp;
 import fr.squirtles.tindev.domain.Authority;
 import fr.squirtles.tindev.domain.User;
 import fr.squirtles.tindev.repository.AuthorityRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AccountResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = JhipsterApp.class)
+@SpringBootTest(classes = TindevApp.class)
 public class AccountResourceIntTest {
 
     @Autowired
