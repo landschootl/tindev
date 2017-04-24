@@ -88,14 +88,13 @@
             "check-separator",
             "check-type"
         ],
-        "prefer-const": true,
-        "arrow-parens": [true],
+        "prefer-const": false,
+        "arrow-parens": [false],
         "arrow-return-shorthand": [true],
         "import-spacing": true,
         "no-consecutive-blank-lines": [true],
         "object-literal-shorthand": true,
-        "space-before-function-paren": [true, "never"],
-
+        "space-before-function-paren": false,
         "directive-selector": [true, "attribute", "jhi", "camelCase"],
         "component-selector": [true, "element", "jhi", "kebab-case"],
         "use-input-property-decorator": true,
@@ -107,7 +106,7 @@
         "use-pipe-transform-interface": false,
         "component-class-suffix": true,
         "directive-class-suffix": true,
-        "no-access-missing-member": true,
+        "no-access-missing-member": false,
         "templates-use-public": true,
         "invoke-injectable": true
     }

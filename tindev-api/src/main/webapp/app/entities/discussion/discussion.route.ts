@@ -5,7 +5,6 @@ import { DiscussionDetailComponent } from './discussion-detail.component';
 import { DiscussionPopupComponent } from './discussion-dialog.component';
 import { DiscussionDeletePopupComponent } from './discussion-delete-dialog.component';
 
-
 export const discussionRoute: Routes = [
   {
     path: 'discussion',

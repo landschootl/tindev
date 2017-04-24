@@ -50,12 +50,9 @@ userProfiles: UserProfile[];
         return item.id;
     }
 
-
-
     registerChangeInUserProfiles() {
         this.eventSubscriber = this.eventManager.subscribe('userProfileListModification', (response) => this.loadAll());
     }
-
 
     private onError (error) {
         this.alertService.error(error.message, null, null);

@@ -29,8 +29,8 @@ export class MessageDeleteDialogComponent {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
-        this.messageService.delete(id).subscribe(response => {
+    confirmDelete(id: number) {
+        this.messageService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'messageListModification',
                 content: 'Deleted an message'
@@ -49,13 +49,13 @@ export class MessageDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private messagePopupService: MessagePopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.messagePopupService
                 .open(MessageDeleteDialogComponent, params['id']);
         });

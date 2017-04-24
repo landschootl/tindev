@@ -5,7 +5,6 @@ import { SkillDetailComponent } from './skill-detail.component';
 import { SkillPopupComponent } from './skill-dialog.component';
 import { SkillDeletePopupComponent } from './skill-delete-dialog.component';
 
-
 export const skillRoute: Routes = [
   {
     path: 'skill',

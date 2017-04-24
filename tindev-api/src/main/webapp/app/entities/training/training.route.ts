@@ -5,7 +5,6 @@ import { TrainingDetailComponent } from './training-detail.component';
 import { TrainingPopupComponent } from './training-dialog.component';
 import { TrainingDeletePopupComponent } from './training-delete-dialog.component';
 
-
 export const trainingRoute: Routes = [
   {
     path: 'training',

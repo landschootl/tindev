@@ -50,12 +50,9 @@ discussions: Discussion[];
         return item.id;
     }
 
-
-
     registerChangeInDiscussions() {
         this.eventSubscriber = this.eventManager.subscribe('discussionListModification', (response) => this.loadAll());
     }
-
 
     private onError (error) {
         this.alertService.error(error.message, null, null);

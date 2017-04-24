@@ -5,7 +5,6 @@ import { RecruiterDetailComponent } from './recruiter-detail.component';
 import { RecruiterPopupComponent } from './recruiter-dialog.component';
 import { RecruiterDeletePopupComponent } from './recruiter-delete-dialog.component';
 
-
 export const recruiterRoute: Routes = [
   {
     path: 'recruiter',

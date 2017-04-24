@@ -5,7 +5,6 @@ import { MissionDetailComponent } from './mission-detail.component';
 import { MissionPopupComponent } from './mission-dialog.component';
 import { MissionDeletePopupComponent } from './mission-delete-dialog.component';
 
-
 export const missionRoute: Routes = [
   {
     path: 'mission',

@@ -26,7 +26,7 @@ messages: Message[];
         this.jhiLanguageService.setLocations(['message']);
     }
 
-    loadAll() {
+    loadAll () {
         this.messageService.query().subscribe(
             (res: Response) => {
                 this.messages = res.json();
@@ -50,14 +50,11 @@ messages: Message[];
         return item.id;
     }
 
-
-
     registerChangeInMessages() {
         this.eventSubscriber = this.eventManager.subscribe('messageListModification', (response) => this.loadAll());
     }
 
-
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 }

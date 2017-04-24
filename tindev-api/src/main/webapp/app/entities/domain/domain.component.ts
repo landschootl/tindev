@@ -50,12 +50,9 @@ domains: Domain[];
         return item.id;
     }
 
-
-
     registerChangeInDomains() {
         this.eventSubscriber = this.eventManager.subscribe('domainListModification', (response) => this.loadAll());
     }
-
 
     private onError (error) {
         this.alertService.error(error.message, null, null);

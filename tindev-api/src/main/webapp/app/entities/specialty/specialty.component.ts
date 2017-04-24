@@ -50,12 +50,9 @@ specialties: Specialty[];
         return item.id;
     }
 
-
-
     registerChangeInSpecialties() {
         this.eventSubscriber = this.eventManager.subscribe('specialtyListModification', (response) => this.loadAll());
     }
-
 
     private onError (error) {
         this.alertService.error(error.message, null, null);

@@ -50,12 +50,9 @@ trainings: Training[];
         return item.id;
     }
 
-
-
     registerChangeInTrainings() {
         this.eventSubscriber = this.eventManager.subscribe('trainingListModification', (response) => this.loadAll());
     }
-
 
     private onError (error) {
         this.alertService.error(error.message, null, null);

@@ -5,7 +5,6 @@ import { DomainDetailComponent } from './domain-detail.component';
 import { DomainPopupComponent } from './domain-dialog.component';
 import { DomainDeletePopupComponent } from './domain-delete-dialog.component';
 
-
 export const domainRoute: Routes = [
   {
     path: 'domain',

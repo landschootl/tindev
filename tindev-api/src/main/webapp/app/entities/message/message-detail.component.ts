@@ -22,13 +22,13 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
     }
 
-    load (id) {
-        this.messageService.find(id).subscribe(message => {
+    load(id) {
+        this.messageService.find(id).subscribe((message) => {
             this.message = message;
         });
     }

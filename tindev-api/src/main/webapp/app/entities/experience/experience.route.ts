@@ -5,7 +5,6 @@ import { ExperienceDetailComponent } from './experience-detail.component';
 import { ExperiencePopupComponent } from './experience-dialog.component';
 import { ExperienceDeletePopupComponent } from './experience-delete-dialog.component';
 
-
 export const experienceRoute: Routes = [
   {
     path: 'experience',

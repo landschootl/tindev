@@ -5,7 +5,6 @@ import { SpecialtyDetailComponent } from './specialty-detail.component';
 import { SpecialtyPopupComponent } from './specialty-dialog.component';
 import { SpecialtyDeletePopupComponent } from './specialty-delete-dialog.component';
 
-
 export const specialtyRoute: Routes = [
   {
     path: 'specialty',

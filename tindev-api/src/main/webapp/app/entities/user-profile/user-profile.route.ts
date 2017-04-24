@@ -5,7 +5,6 @@ import { UserProfileDetailComponent } from './user-profile-detail.component';
 import { UserProfilePopupComponent } from './user-profile-dialog.component';
 import { UserProfileDeletePopupComponent } from './user-profile-delete-dialog.component';
 
-
 export const userProfileRoute: Routes = [
   {
     path: 'user-profile',

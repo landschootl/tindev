@@ -50,12 +50,9 @@ experiences: Experience[];
         return item.id;
     }
 
-
-
     registerChangeInExperiences() {
         this.eventSubscriber = this.eventManager.subscribe('experienceListModification', (response) => this.loadAll());
     }
-
 
     private onError (error) {
         this.alertService.error(error.message, null, null);

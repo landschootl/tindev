@@ -50,12 +50,9 @@ recruiters: Recruiter[];
         return item.id;
     }
 
-
-
     registerChangeInRecruiters() {
         this.eventSubscriber = this.eventManager.subscribe('recruiterListModification', (response) => this.loadAll());
     }
-
 
     private onError (error) {
         this.alertService.error(error.message, null, null);

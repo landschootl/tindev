@@ -50,12 +50,9 @@ missions: Mission[];
         return item.id;
     }
 
-
-
     registerChangeInMissions() {
         this.eventSubscriber = this.eventManager.subscribe('missionListModification', (response) => this.loadAll());
     }
-
 
     private onError (error) {
         this.alertService.error(error.message, null, null);

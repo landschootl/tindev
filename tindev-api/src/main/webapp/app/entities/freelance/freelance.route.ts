@@ -5,7 +5,6 @@ import { FreelanceDetailComponent } from './freelance-detail.component';
 import { FreelancePopupComponent } from './freelance-dialog.component';
 import { FreelanceDeletePopupComponent } from './freelance-delete-dialog.component';
 
-
 export const freelanceRoute: Routes = [
   {
     path: 'freelance',
