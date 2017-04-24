@@ -37,25 +37,10 @@
 }
 
 #timelineButtons {
-    position: absolute;
-    margin-left: 681px;
-    margin-top: 5px;
     text-align: right;
-    width: 168px;
 }
 
-#timelineNav ul {
-    list-style: none;
-    margin-left: 210px;
-}
-
-
-#timelineNav li {
-    float: left;
-    height: 19px;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 14px;
-    min-width: 82px;
-    text-align: center;
+.edit-button{
+    border-color: #cccccc;
+    background-color: #ffffff;
 }

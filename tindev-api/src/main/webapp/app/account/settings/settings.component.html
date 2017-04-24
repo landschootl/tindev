@@ -2,47 +2,43 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <div class="cover-picture">
-                <img align="left" class="cover-image-lg" src="http://fbuzz.net/wp-content/uploads/2012/avril-04/couverture-facebook-citation-38.jpg" alt="Profile image example"/>
-                <img align="left" class="cover-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+                <img align="left" class="cover-image-lg" src="{{coverUrl}}" alt="Profile image example"/>
+                <img align="left" class="cover-image-profile thumbnail" src="{{profileUrl}}" alt="Profile image example"/>
                 <div class="cover-profile-text">
-                    <h1 jhiTranslate="settings.title" translateValues="{username: '{{settingsAccount.login}}'}" *ngIf="settingsAccount">User settings for [<b>{{settingsAccount.login}}</b>]</h1>
-                    <p>Girls just wanna go fun.</p>
+                    <h1 *ngIf="settingsAccount"><b>{{settingsAccount.firstName}} {{settingsAccount.lastName}} - {{settingsAccount.login}}</b></h1>
+                    <p>Description de l'utilisateur.</p>
                 </div>
                 <div id="timelineNav">
                     <div id="timelineButtons">
-                <span class="follow">
-                    <button type="button" class="UserActions-editButton edit-button btn" data-scribe-element="profile_edit_button" style="border-color:#cccccc;background-color:#ffffff;margin-left:365px;">
-                        <span class="button-text">Edit profile</span>
-                    </button>
-                </span>
+                        <span class="follow">
+                            <button (click)="save()" type="button" class="userActions-editButton edit-button btn" data-scribe-element="profile_edit_button">
+                                <span class="button-text">Sauvegarder profile</span>
+                            </button>
+                        </span>
                     </div>
                 </div>
             </div>
-            <h2 jhiTranslate="settings.title" translateValues="{username: '{{settingsAccount.login}}'}" *ngIf="settingsAccount">User settings for [<b>{{settingsAccount.login}}</b>]</h2>
-
+            <br>
             <div class="alert alert-success" *ngIf="success" jhiTranslate="settings.messages.success">
                 <strong>Settings saved!</strong>
             </div>
-
             <jhi-alert-error></jhi-alert-error>
-
-            <form name="form" role="form" (ngSubmit)="save()" #settingsForm="ngForm" *ngIf="settingsAccount" novalidate>
-
+            <form name="form" role="form" #settingsForm="ngForm" *ngIf="settingsAccount" novalidate>
                 <div class="form-group">
                     <label class="form-control-label" for="firstName" jhiTranslate="settings.form.firstname">First Name</label>
                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{'settings.form.firstname.placeholder' | translate}}"
                            [(ngModel)]="settingsAccount.firstName" minlength=1 maxlength=50 #firstNameInput="ngModel" required>
                     <div *ngIf="firstNameInput.dirty && firstNameInput.invalid">
                         <small class="form-text text-danger"
-                           *ngIf="firstNameInput.errors.required" jhiTranslate="settings.messages.validate.firstname.required">
+                               *ngIf="firstNameInput.errors.required" jhiTranslate="settings.messages.validate.firstname.required">
                             Your first name is required.
                         </small>
                         <small class="form-text text-danger"
-                           *ngIf="firstNameInput.errors.minlength" jhiTranslate="settings.messages.validate.firstname.minlength">
+                               *ngIf="firstNameInput.errors.minlength" jhiTranslate="settings.messages.validate.firstname.minlength">
                             Your first name is required to be at least 1 character.
                         </small>
                         <small class="form-text text-danger"
-                           *ngIf="firstNameInput.errors.maxlength" jhiTranslate="settings.messages.validate.firstname.maxlength">
+                               *ngIf="firstNameInput.errors.maxlength" jhiTranslate="settings.messages.validate.firstname.maxlength">
                             Your first name cannot be longer than 50 characters.
                         </small>
                     </div>
@@ -53,15 +49,15 @@
                            [(ngModel)]="settingsAccount.lastName" minlength=1 maxlength=50 #lastNameInput="ngModel" required>
                     <div *ngIf="lastNameInput.dirty && lastNameInput.invalid">
                         <small class="form-text text-danger"
-                           *ngIf="lastNameInput.errors.required" jhiTranslate="settings.messages.validate.lastname.required">
+                               *ngIf="lastNameInput.errors.required" jhiTranslate="settings.messages.validate.lastname.required">
                             Your last name is required.
                         </small>
                         <small class="form-text text-danger"
-                           *ngIf="lastNameInput.errors.minlength" jhiTranslate="settings.messages.validate.lastname.minlength">
+                               *ngIf="lastNameInput.errors.minlength" jhiTranslate="settings.messages.validate.lastname.minlength">
                             Your last name is required to be at least 1 character.
                         </small>
                         <small class="form-text text-danger"
-                           *ngIf="lastNameInput.errors.maxlength" jhiTranslate="settings.messages.validate.lastname.maxlength">
+                               *ngIf="lastNameInput.errors.maxlength" jhiTranslate="settings.messages.validate.lastname.maxlength">
                             Your last name cannot be longer than 50 characters.
                         </small>
                     </div>
@@ -72,19 +68,19 @@
                            [(ngModel)]="settingsAccount.email" minlength=5 maxlength=100 #emailInput="ngModel" required>
                     <div *ngIf="emailInput.dirty && emailInput.invalid">
                         <small class="form-text text-danger"
-                           *ngIf="emailInput.errors.required" jhiTranslate="global.messages.validate.email.required">
+                               *ngIf="emailInput.errors.required" jhiTranslate="global.messages.validate.email.required">
                             Your email is required.
                         </small>
                         <small class="form-text text-danger"
-                           *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">
+                               *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">
                             Your email is invalid.
                         </small>
                         <small class="form-text text-danger"
-                           *ngIf="emailInput.errors.minlength" jhiTranslate="global.messages.validate.email.minlength">
+                               *ngIf="emailInput.errors.minlength" jhiTranslate="global.messages.validate.email.minlength">
                             Your email is required to be at least 5 characters.
                         </small>
                         <small class="form-text text-danger"
-                           *ngIf="emailInput.errors.maxlength" jhiTranslate="global.messages.validate.email.maxlength">
+                               *ngIf="emailInput.errors.maxlength" jhiTranslate="global.messages.validate.email.maxlength">
                             Your email cannot be longer than 100 characters.
                         </small>
                     </div>
@@ -95,7 +91,6 @@
                         <option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</option>
                     </select>
                 </div>
-                <button type="submit" [disabled]="settingsForm.form.invalid" class="btn btn-primary" jhiTranslate="settings.form.button">Save</button>
             </form>
         </div>
     </div>
