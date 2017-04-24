@@ -13,7 +13,7 @@ stages:
 
 before_script:
     - export MAVEN_USER_HOME=`pwd`/.maven
-    - chmod +x mvnw
+    - chmod +x ./tindev-api/mvnw
     - ./tindev-api/mvnw com.github.eirslett:frontend-maven-plugin:install-node-and-yarn -DnodeVersion=v6.10.0 -DyarnVersion=v0.21.3
     - ./tindev-api/mvnw com.github.eirslett:frontend-maven-plugin:yarn
 
