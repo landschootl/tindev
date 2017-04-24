@@ -9,8 +9,8 @@
         <relativePath />
     </parent>
 
-    <groupId>fr.squirtles.tindev</groupId>
-    <artifactId>tindev</artifactId>
+    <groupId>fr.squirtles</groupId>
+    <artifactId>tindev-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Tindev</name>
