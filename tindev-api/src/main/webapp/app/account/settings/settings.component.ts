@@ -5,7 +5,10 @@ import { AccountService, JhiLanguageHelper, Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-settings',
-    templateUrl: './settings.component.html'
+    templateUrl: './settings.component.html',
+    styleUrls: [
+        'settings.scss'
+    ]
 })
 export class SettingsComponent implements OnInit {
     error: string;

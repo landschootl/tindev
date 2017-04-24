@@ -1,6 +1,23 @@
 <div>
     <div class="row">
         <div class="col-md-8 offset-md-2">
+            <div class="cover-picture">
+                <img align="left" class="cover-image-lg" src="http://fbuzz.net/wp-content/uploads/2012/avril-04/couverture-facebook-citation-38.jpg" alt="Profile image example"/>
+                <img align="left" class="cover-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+                <div class="cover-profile-text">
+                    <h1 jhiTranslate="settings.title" translateValues="{username: '{{settingsAccount.login}}'}" *ngIf="settingsAccount">User settings for [<b>{{settingsAccount.login}}</b>]</h1>
+                    <p>Girls just wanna go fun.</p>
+                </div>
+                <div id="timelineNav">
+                    <div id="timelineButtons">
+                <span class="follow">
+                    <button type="button" class="UserActions-editButton edit-button btn" data-scribe-element="profile_edit_button" style="border-color:#cccccc;background-color:#ffffff;margin-left:365px;">
+                        <span class="button-text">Edit profile</span>
+                    </button>
+                </span>
+                    </div>
+                </div>
+            </div>
             <h2 jhiTranslate="settings.title" translateValues="{username: '{{settingsAccount.login}}'}" *ngIf="settingsAccount">User settings for [<b>{{settingsAccount.login}}</b>]</h2>
 
             <div class="alert alert-success" *ngIf="success" jhiTranslate="settings.messages.success">
@@ -82,5 +99,4 @@
             </form>
         </div>
     </div>
-
 </div>
