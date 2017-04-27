@@ -92,6 +92,7 @@ module.exports = function (options) {
                 { from: './node_modules/core-js/client/shim.min.js', to: 'core-js-shim.min.js' },
                 { from: './node_modules/swagger-ui/dist', to: 'swagger-ui/dist' },
                 { from: './src/main/webapp/swagger-ui/', to: 'swagger-ui' },
+                { from: './src/main/webapp/content/images', to: 'images' },
                 { from: './src/main/webapp/favicon.ico', to: 'favicon.ico' },
                 { from: './src/main/webapp/robots.txt', to: 'robots.txt' },
                 { from: './src/main/webapp/i18n', to: 'i18n' }

@@ -1,4 +1,3 @@
-
 /* ==============================================================
 Bootstrap tweaks
 ===============================================================*/
@@ -34,8 +33,6 @@ Generic styles
 /* other generic styles */
 
 .jh-card {
-    padding: 1.5%;
-    margin-top: 20px;
     border: none;
 }
 
@@ -209,3 +206,9 @@ ui bootstrap tweaks
 
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
+
+@import 'agency.scss';
+
+.page-content {
+    margin-top: 80px;
+}
