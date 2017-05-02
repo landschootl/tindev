@@ -24,12 +24,15 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:    	#2DB9D7,
+  secondary:  	#F0BD0F,
+  danger:     	#D91A00,
+  safe : 	  	#2ECE4E,
+  light:     	#B8E8E4,
+  dark:       	#409EA6,
+  text-primary:	#222
 );
+
 
 
 // App iOS Variables
