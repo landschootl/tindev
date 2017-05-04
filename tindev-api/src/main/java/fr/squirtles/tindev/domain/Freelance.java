@@ -30,6 +30,9 @@ public class Freelance implements Serializable {
     @ManyToOne
     private Specialty specialty;
 
+    @ManyToOne
+    private Domain domain;
+
     public Long getId() {
         return id;
     }
@@ -75,6 +78,19 @@ public class Freelance implements Serializable {
 
     public void setSpecialty(Specialty specialty) {
         this.specialty = specialty;
+    }
+
+    public Domain getDomain() {
+        return domain;
+    }
+
+    public Freelance domain(Domain domain) {
+        this.domain = domain;
+        return this;
+    }
+
+    public void setDomain(Domain domain) {
+        this.domain = domain;
     }
 
     @Override

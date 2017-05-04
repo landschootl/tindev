@@ -6,6 +6,13 @@
             "otherEntityName": "specialty",
             "relationshipType": "many-to-one",
             "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "domain",
+            "otherEntityName": "domain",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [],
+            "otherEntityField": "name"
         }
     ],
     "fields": [

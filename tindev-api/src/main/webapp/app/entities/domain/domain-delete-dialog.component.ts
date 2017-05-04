@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -25,12 +25,12 @@ export class DomainDeleteDialogComponent {
         this.jhiLanguageService.setLocations(['domain']);
     }
 
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
-        this.domainService.delete(id).subscribe(response => {
+    confirmDelete(id: number) {
+        this.domainService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'domainListModification',
                 content: 'Deleted an domain'
@@ -49,13 +49,13 @@ export class DomainDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private domainPopupService: DomainPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.domainPopupService
                 .open(DomainDeleteDialogComponent, params['id']);
         });

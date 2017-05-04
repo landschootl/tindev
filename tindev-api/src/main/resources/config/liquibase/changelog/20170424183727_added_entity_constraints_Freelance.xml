@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="specialty"/>
 
+        <addForeignKeyConstraint baseColumnNames="domain_id"
+                                 baseTableName="freelance"
+                                 constraintName="fk_freelance_domain_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="domain"/>
+
     </changeSet>
 </databaseChangeLog>

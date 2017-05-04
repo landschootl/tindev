@@ -16,7 +16,8 @@
                 "title": "Domain"
             },
             "name": "Name",
-            "code": "Code"
+            "code": "Code",
+            "freelances": "Freelances"
         }
     }
 }

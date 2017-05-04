@@ -1,9 +1,12 @@
 package fr.squirtles.tindev.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -25,6 +28,10 @@ public class Domain implements Serializable {
 
     @Column(name = "code")
     private Integer code;
+
+    @OneToMany(mappedBy = "domain")
+    @JsonIgnore
+    private Set<Freelance> freelances = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -58,6 +65,31 @@ public class Domain implements Serializable {
 
     public void setCode(Integer code) {
         this.code = code;
+    }
+
+    public Set<Freelance> getFreelances() {
+        return freelances;
+    }
+
+    public Domain freelances(Set<Freelance> freelances) {
+        this.freelances = freelances;
+        return this;
+    }
+
+    public Domain addFreelances(Freelance freelance) {
+        this.freelances.add(freelance);
+        freelance.setDomain(this);
+        return this;
+    }
+
+    public Domain removeFreelances(Freelance freelance) {
+        this.freelances.remove(freelance);
+        freelance.setDomain(null);
+        return this;
+    }
+
+    public void setFreelances(Set<Freelance> freelances) {
+        this.freelances = freelances;
     }
 
     @Override

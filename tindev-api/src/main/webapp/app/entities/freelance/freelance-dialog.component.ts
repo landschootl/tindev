@@ -9,6 +9,7 @@ import { Freelance } from './freelance.model';
 import { FreelancePopupService } from './freelance-popup.service';
 import { FreelanceService } from './freelance.service';
 import { Specialty, SpecialtyService } from '../specialty';
+import { Domain, DomainService } from '../domain';
 
 @Component({
     selector: 'jhi-freelance-dialog',
@@ -21,12 +22,15 @@ export class FreelanceDialogComponent implements OnInit {
     isSaving: boolean;
 
     specialties: Specialty[];
+
+    domains: Domain[];
         constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private freelanceService: FreelanceService,
         private specialtyService: SpecialtyService,
+        private domainService: DomainService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['freelance']);
@@ -37,6 +41,8 @@ export class FreelanceDialogComponent implements OnInit {
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.specialtyService.query().subscribe(
             (res: Response) => { this.specialties = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.domainService.query().subscribe(
+            (res: Response) => { this.domains = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear() {
         this.activeModal.dismiss('cancel');
@@ -76,6 +82,10 @@ export class FreelanceDialogComponent implements OnInit {
     }
 
     trackSpecialtyById(index: number, item: Specialty) {
+        return item.id;
+    }
+
+    trackDomainById(index: number, item: Domain) {
         return item.id;
     }
 }

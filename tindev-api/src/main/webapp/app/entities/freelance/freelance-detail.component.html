@@ -18,6 +18,12 @@
                 <a [routerLink]="['/specialty', freelance.specialty?.id]">{{freelance.specialty?.name}}</a>
             </div>
         </dd>
+        <dt><span jhiTranslate="tindevApp.freelance.domain">Domain</span></dt>
+        <dd>
+            <div *ngIf="freelance.domain">
+                <a [routerLink]="['/domain', freelance.domain?.id]">{{freelance.domain?.name}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"
