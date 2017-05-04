@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+
 import { Specialty } from './specialty.model';
 import { SpecialtyService } from './specialty.service';
 
@@ -12,8 +14,10 @@ export class SpecialtyDetailComponent implements OnInit, OnDestroy {
 
     specialty: Specialty;
     private subscription: any;
+    private eventSubscriber: Subscription;
 
     constructor(
+        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private specialtyService: SpecialtyService,
         private route: ActivatedRoute
@@ -22,13 +26,14 @@ export class SpecialtyDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
+        this.registerChangeInSpecialties();
     }
 
-    load (id) {
-        this.specialtyService.find(id).subscribe(specialty => {
+    load(id) {
+        this.specialtyService.find(id).subscribe((specialty) => {
             this.specialty = specialty;
         });
     }
@@ -38,6 +43,10 @@ export class SpecialtyDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
     }
 
+    registerChangeInSpecialties() {
+        this.eventSubscriber = this.eventManager.subscribe('specialtyListModification', (response) => this.load(this.specialty.id));
+    }
 }

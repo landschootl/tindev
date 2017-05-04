@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
 import { Specialty } from './specialty.model';
 import { SpecialtyPopupService } from './specialty-popup.service';
@@ -32,35 +32,40 @@ export class SpecialtyDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    save () {
+    save() {
         this.isSaving = true;
         if (this.specialty.id !== undefined) {
             this.specialtyService.update(this.specialty)
                 .subscribe((res: Specialty) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         } else {
             this.specialtyService.create(this.specialty)
                 .subscribe((res: Specialty) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         }
     }
 
-    private onSaveSuccess (result: Specialty) {
+    private onSaveSuccess(result: Specialty) {
         this.eventManager.broadcast({ name: 'specialtyListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError (error) {
+    private onSaveError(error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
         this.isSaving = false;
         this.onError(error);
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 }
@@ -74,13 +79,13 @@ export class SpecialtyPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private specialtyPopupService: SpecialtyPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.modalRef = this.specialtyPopupService
                     .open(SpecialtyDialogComponent, params['id']);
@@ -88,7 +93,6 @@ export class SpecialtyPopupComponent implements OnInit, OnDestroy {
                 this.modalRef = this.specialtyPopupService
                     .open(SpecialtyDialogComponent);
             }
-
         });
     }
 

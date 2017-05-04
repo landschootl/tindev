@@ -16,7 +16,8 @@
                 "title": "Specialty"
             },
             "name": "Name",
-            "code": "Code"
+            "code": "Code",
+            "freelances": "Freelances"
         }
     }
 }

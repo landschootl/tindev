@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -25,12 +25,12 @@ export class SpecialtyDeleteDialogComponent {
         this.jhiLanguageService.setLocations(['specialty']);
     }
 
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
-        this.specialtyService.delete(id).subscribe(response => {
+    confirmDelete(id: number) {
+        this.specialtyService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'specialtyListModification',
                 content: 'Deleted an specialty'
@@ -49,13 +49,13 @@ export class SpecialtyDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private specialtyPopupService: SpecialtyPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.specialtyPopupService
                 .open(SpecialtyDeleteDialogComponent, params['id']);
         });

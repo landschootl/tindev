@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseRequestOptions, Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Specialty } from './specialty.model';
@@ -11,14 +11,14 @@ export class SpecialtyService {
     constructor(private http: Http) { }
 
     create(specialty: Specialty): Observable<Specialty> {
-        let copy: Specialty = Object.assign({}, specialty);
+        const copy: Specialty = Object.assign({}, specialty);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
     update(specialty: Specialty): Observable<Specialty> {
-        let copy: Specialty = Object.assign({}, specialty);
+        const copy: Specialty = Object.assign({}, specialty);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
@@ -31,7 +31,7 @@ export class SpecialtyService {
     }
 
     query(req?: any): Observable<Response> {
-        let options = this.createRequestOption(req);
+        const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
         ;
     }
@@ -39,11 +39,10 @@ export class SpecialtyService {
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
-
     private createRequestOption(req?: any): BaseRequestOptions {
-        let options: BaseRequestOptions = new BaseRequestOptions();
+        const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {
-            let params: URLSearchParams = new URLSearchParams();
+            const params: URLSearchParams = new URLSearchParams();
             params.set('page', req.page);
             params.set('size', req.size);
             if (req.sort) {
