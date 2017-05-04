@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseRequestOptions, Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Freelance } from './freelance.model';
@@ -12,7 +12,7 @@ export class FreelanceService {
     constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(freelance: Freelance): Observable<Freelance> {
-        let copy: Freelance = Object.assign({}, freelance);
+        const copy: Freelance = Object.assign({}, freelance);
         copy.birthdate = this.dateUtils
             .convertLocalDateToServer(freelance.birthdate);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
@@ -21,7 +21,7 @@ export class FreelanceService {
     }
 
     update(freelance: Freelance): Observable<Freelance> {
-        let copy: Freelance = Object.assign({}, freelance);
+        const copy: Freelance = Object.assign({}, freelance);
         copy.birthdate = this.dateUtils
             .convertLocalDateToServer(freelance.birthdate);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
@@ -31,7 +31,7 @@ export class FreelanceService {
 
     find(id: number): Observable<Freelance> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            let jsonResponse = res.json();
+            const jsonResponse = res.json();
             jsonResponse.birthdate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse.birthdate);
             return jsonResponse;
@@ -39,7 +39,7 @@ export class FreelanceService {
     }
 
     query(req?: any): Observable<Response> {
-        let options = this.createRequestOption(req);
+        const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
         ;
@@ -50,7 +50,7 @@ export class FreelanceService {
     }
 
     private convertResponse(res: any): any {
-        let jsonResponse = res.json();
+        const jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
             jsonResponse[i].birthdate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse[i].birthdate);
@@ -60,9 +60,9 @@ export class FreelanceService {
     }
 
     private createRequestOption(req?: any): BaseRequestOptions {
-        let options: BaseRequestOptions = new BaseRequestOptions();
+        const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {
-            let params: URLSearchParams = new URLSearchParams();
+            const params: URLSearchParams = new URLSearchParams();
             params.set('page', req.page);
             params.set('size', req.size);
             if (req.sort) {

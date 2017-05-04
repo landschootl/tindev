@@ -27,6 +27,9 @@ public class Freelance implements Serializable {
     @Column(name = "birthdate")
     private LocalDate birthdate;
 
+    @ManyToOne
+    private Specialty specialty;
+
     public Long getId() {
         return id;
     }
@@ -59,6 +62,19 @@ public class Freelance implements Serializable {
 
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public Specialty getSpecialty() {
+        return specialty;
+    }
+
+    public Freelance specialty(Specialty specialty) {
+        this.specialty = specialty;
+        return this;
+    }
+
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
     }
 
     @Override

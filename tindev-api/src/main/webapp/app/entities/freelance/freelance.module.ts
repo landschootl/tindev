@@ -1,19 +1,18 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
-
 import {
+    FreelanceService,
+    FreelancePopupService,
     FreelanceComponent,
-    FreelanceDeleteDialogComponent,
-    FreelanceDeletePopupComponent,
     FreelanceDetailComponent,
     FreelanceDialogComponent,
     FreelancePopupComponent,
-    freelancePopupRoute,
-    FreelancePopupService,
+    FreelanceDeletePopupComponent,
+    FreelanceDeleteDialogComponent,
     freelanceRoute,
-    FreelanceService
+    freelancePopupRoute,
 } from './';
 
 const ENTITY_STATES = [

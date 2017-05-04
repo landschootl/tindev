@@ -1,11 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Response } from '@angular/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService } from 'ng-jhipster';
 
 import { Freelance } from './freelance.model';
 import { FreelanceService } from './freelance.service';
-import { Principal } from '../../shared';
+import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-freelance',
@@ -46,15 +48,14 @@ freelances: Freelance[];
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId (index: number, item: Freelance) {
+    trackId(index: number, item: Freelance) {
         return item.id;
     }
-
     registerChangeInFreelances() {
         this.eventSubscriber = this.eventManager.subscribe('freelanceListModification', (response) => this.loadAll());
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 }

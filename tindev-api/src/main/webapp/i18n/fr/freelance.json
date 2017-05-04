@@ -16,7 +16,8 @@
                 "title": "Freelance"
             },
             "dailyPrice": "Daily Price",
-            "birthdate": "Birthdate"
+            "birthdate": "Birthdate",
+            "specialty": "Specialty"
         }
     }
 }

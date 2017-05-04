@@ -12,6 +12,12 @@
         <dd>
             <span>{{freelance.birthdate | date:'mediumDate'}}</span>
         </dd>
+        <dt><span jhiTranslate="tindevApp.freelance.specialty">Specialty</span></dt>
+        <dd>
+            <div *ngIf="freelance.specialty">
+                <a [routerLink]="['/specialty', freelance.specialty?.id]">{{freelance.specialty?.name}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"
