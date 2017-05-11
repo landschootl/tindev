@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+
 import { Discussion } from './discussion.model';
 import { DiscussionService } from './discussion.service';
 
@@ -12,8 +14,10 @@ export class DiscussionDetailComponent implements OnInit, OnDestroy {
 
     discussion: Discussion;
     private subscription: any;
+    private eventSubscriber: Subscription;
 
     constructor(
+        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private discussionService: DiscussionService,
         private route: ActivatedRoute
@@ -22,13 +26,14 @@ export class DiscussionDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
+        this.registerChangeInDiscussions();
     }
 
-    load (id) {
-        this.discussionService.find(id).subscribe(discussion => {
+    load(id) {
+        this.discussionService.find(id).subscribe((discussion) => {
             this.discussion = discussion;
         });
     }
@@ -38,6 +43,10 @@ export class DiscussionDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
     }
 
+    registerChangeInDiscussions() {
+        this.eventSubscriber = this.eventManager.subscribe('discussionListModification', (response) => this.load(this.discussion.id));
+    }
 }

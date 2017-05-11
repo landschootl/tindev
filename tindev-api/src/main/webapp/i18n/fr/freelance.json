@@ -21,7 +21,8 @@
             "domain": "Domain",
             "trainings": "Trainings",
             "skills": "Skills",
-            "experiences": "Experiences"
+            "experiences": "Experiences",
+            "discussions": "Discussions"
         }
     }
 }

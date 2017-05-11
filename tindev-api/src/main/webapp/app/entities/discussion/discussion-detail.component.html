@@ -4,6 +4,12 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tindevApp.discussion.freelance">Freelance</span></dt>
+        <dd>
+            <div *ngIf="discussion.freelance">
+                <a [routerLink]="['/freelance', discussion.freelance?.id]">{{discussion.freelance?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

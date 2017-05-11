@@ -20,12 +20,28 @@ public class Discussion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private Freelance freelance;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Freelance getFreelance() {
+        return freelance;
+    }
+
+    public Discussion freelance(Freelance freelance) {
+        this.freelance = freelance;
+        return this;
+    }
+
+    public void setFreelance(Freelance freelance) {
+        this.freelance = freelance;
     }
 
     @Override

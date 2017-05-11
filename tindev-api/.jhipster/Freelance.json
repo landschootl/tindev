@@ -31,6 +31,12 @@
             "otherEntityName": "experience",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "freelance"
+        },
+        {
+            "relationshipName": "discussions",
+            "otherEntityName": "discussion",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "freelance"
         }
     ],
     "fields": [
