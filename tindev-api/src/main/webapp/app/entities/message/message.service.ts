@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseRequestOptions, Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Message } from './message.model';
@@ -12,7 +12,7 @@ export class MessageService {
     constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(message: Message): Observable<Message> {
-        let copy: Message = Object.assign({}, message);
+        const copy: Message = Object.assign({}, message);
         copy.postingDate = this.dateUtils
             .convertLocalDateToServer(message.postingDate);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
@@ -21,7 +21,7 @@ export class MessageService {
     }
 
     update(message: Message): Observable<Message> {
-        let copy: Message = Object.assign({}, message);
+        const copy: Message = Object.assign({}, message);
         copy.postingDate = this.dateUtils
             .convertLocalDateToServer(message.postingDate);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
@@ -31,7 +31,7 @@ export class MessageService {
 
     find(id: number): Observable<Message> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            let jsonResponse = res.json();
+            const jsonResponse = res.json();
             jsonResponse.postingDate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse.postingDate);
             return jsonResponse;
@@ -39,7 +39,7 @@ export class MessageService {
     }
 
     query(req?: any): Observable<Response> {
-        let options = this.createRequestOption(req);
+        const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
         ;
@@ -50,7 +50,7 @@ export class MessageService {
     }
 
     private convertResponse(res: any): any {
-        let jsonResponse = res.json();
+        const jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
             jsonResponse[i].postingDate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse[i].postingDate);
@@ -60,9 +60,9 @@ export class MessageService {
     }
 
     private createRequestOption(req?: any): BaseRequestOptions {
-        let options: BaseRequestOptions = new BaseRequestOptions();
+        const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {
-            let params: URLSearchParams = new URLSearchParams();
+            const params: URLSearchParams = new URLSearchParams();
             params.set('page', req.page);
             params.set('size', req.size);
             if (req.sort) {

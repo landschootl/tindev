@@ -12,6 +12,12 @@
             "otherEntityName": "mission",
             "relationshipType": "many-to-one",
             "otherEntityField": "title"
+        },
+        {
+            "relationshipName": "messages",
+            "otherEntityName": "message",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "discussion"
         }
     ],
     "fields": [],

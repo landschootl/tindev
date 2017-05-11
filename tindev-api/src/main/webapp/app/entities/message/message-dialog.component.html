@@ -1,5 +1,3 @@
-
-
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
@@ -31,6 +29,13 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label jhiTranslate="tindevApp.message.discussion" for="field_discussion">Discussion</label>
+            <select class="form-control" id="field_discussion" name="discussion" [(ngModel)]="message.discussion" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="discussionOption.id === message.discussion?.id ? message.discussion : discussionOption" *ngFor="let discussionOption of discussions; trackBy: trackDiscussionById">{{discussionOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

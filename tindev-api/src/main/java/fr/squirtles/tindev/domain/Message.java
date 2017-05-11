@@ -27,6 +27,9 @@ public class Message implements Serializable {
     @Column(name = "posting_date")
     private LocalDate postingDate;
 
+    @ManyToOne
+    private Discussion discussion;
+
     public Long getId() {
         return id;
     }
@@ -59,6 +62,19 @@ public class Message implements Serializable {
 
     public void setPostingDate(LocalDate postingDate) {
         this.postingDate = postingDate;
+    }
+
+    public Discussion getDiscussion() {
+        return discussion;
+    }
+
+    public Message discussion(Discussion discussion) {
+        this.discussion = discussion;
+        return this;
+    }
+
+    public void setDiscussion(Discussion discussion) {
+        this.discussion = discussion;
     }
 
     @Override

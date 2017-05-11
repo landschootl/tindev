@@ -1,9 +1,15 @@
-import { Routes } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+
+import { UserRouteAccessService } from '../../shared';
+import { PaginationUtil } from 'ng-jhipster';
 
 import { MessageComponent } from './message.component';
 import { MessageDetailComponent } from './message-detail.component';
 import { MessagePopupComponent } from './message-dialog.component';
 import { MessageDeletePopupComponent } from './message-delete-dialog.component';
+
+import { Principal } from '../../shared';
 
 export const messageRoute: Routes = [
   {
@@ -12,14 +18,16 @@ export const messageRoute: Routes = [
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.message.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }, {
     path: 'message/:id',
     component: MessageDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.message.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }
 ];
 
@@ -31,6 +39,7 @@ export const messagePopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.message.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -40,6 +49,7 @@ export const messagePopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.message.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -49,6 +59,7 @@ export const messagePopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.message.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   }
 ];

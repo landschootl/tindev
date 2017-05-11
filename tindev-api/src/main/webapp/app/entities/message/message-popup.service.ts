@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from './message.model';
@@ -6,21 +6,21 @@ import { MessageService } from './message.service';
 @Injectable()
 export class MessagePopupService {
     private isOpen = false;
-    constructor (
+    constructor(
         private modalService: NgbModal,
         private router: Router,
         private messageService: MessageService
 
     ) {}
 
-    open (component: Component, id?: number | any): NgbModalRef {
+    open(component: Component, id?: number | any): NgbModalRef {
         if (this.isOpen) {
             return;
         }
         this.isOpen = true;
 
         if (id) {
-            this.messageService.find(id).subscribe(message => {
+            this.messageService.find(id).subscribe((message) => {
                 if (message.postingDate) {
                     message.postingDate = {
                         year: message.postingDate.getFullYear(),
@@ -36,9 +36,9 @@ export class MessagePopupService {
     }
 
     messageModalRef(component: Component, message: Message): NgbModalRef {
-        let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.message = message;
-        modalRef.result.then(result => {
+        modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {

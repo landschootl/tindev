@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+
 import { Message } from './message.model';
 import { MessageService } from './message.service';
 
@@ -12,8 +14,10 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
 
     message: Message;
     private subscription: any;
+    private eventSubscriber: Subscription;
 
     constructor(
+        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private messageService: MessageService,
         private route: ActivatedRoute
@@ -25,6 +29,7 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
+        this.registerChangeInMessages();
     }
 
     load(id) {
@@ -38,6 +43,10 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
     }
 
+    registerChangeInMessages() {
+        this.eventSubscriber = this.eventManager.subscribe('messageListModification', (response) => this.load(this.message.id));
+    }
 }

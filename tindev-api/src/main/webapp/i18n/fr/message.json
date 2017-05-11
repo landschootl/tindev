@@ -16,7 +16,8 @@
                 "title": "Message"
             },
             "textMessage": "Text Message",
-            "postingDate": "Posting Date"
+            "postingDate": "Posting Date",
+            "discussion": "Discussion"
         }
     }
 }

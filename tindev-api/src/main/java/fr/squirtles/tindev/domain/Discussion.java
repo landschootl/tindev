@@ -1,9 +1,12 @@
 package fr.squirtles.tindev.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -25,6 +28,10 @@ public class Discussion implements Serializable {
 
     @ManyToOne
     private Mission mission;
+
+    @OneToMany(mappedBy = "discussion")
+    @JsonIgnore
+    private Set<Message> messages = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -58,6 +65,31 @@ public class Discussion implements Serializable {
 
     public void setMission(Mission mission) {
         this.mission = mission;
+    }
+
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public Discussion messages(Set<Message> messages) {
+        this.messages = messages;
+        return this;
+    }
+
+    public Discussion addMessages(Message message) {
+        this.messages.add(message);
+        message.setDiscussion(this);
+        return this;
+    }
+
+    public Discussion removeMessages(Message message) {
+        this.messages.remove(message);
+        message.setDiscussion(null);
+        return this;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
     }
 
     @Override

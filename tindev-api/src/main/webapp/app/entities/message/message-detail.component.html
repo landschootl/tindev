@@ -12,6 +12,12 @@
         <dd>
             <span>{{message.postingDate | date:'mediumDate'}}</span>
         </dd>
+        <dt><span jhiTranslate="tindevApp.message.discussion">Discussion</span></dt>
+        <dd>
+            <div *ngIf="message.discussion">
+                <a [routerLink]="['/discussion', message.discussion?.id]">{{message.discussion?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"
