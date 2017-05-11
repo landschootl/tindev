@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseRequestOptions, Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Experience } from './experience.model';
@@ -12,7 +12,7 @@ export class ExperienceService {
     constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(experience: Experience): Observable<Experience> {
-        let copy: Experience = Object.assign({}, experience);
+        const copy: Experience = Object.assign({}, experience);
         copy.startYear = this.dateUtils
             .convertLocalDateToServer(experience.startYear);
         copy.endYear = this.dateUtils
@@ -23,7 +23,7 @@ export class ExperienceService {
     }
 
     update(experience: Experience): Observable<Experience> {
-        let copy: Experience = Object.assign({}, experience);
+        const copy: Experience = Object.assign({}, experience);
         copy.startYear = this.dateUtils
             .convertLocalDateToServer(experience.startYear);
         copy.endYear = this.dateUtils
@@ -35,7 +35,7 @@ export class ExperienceService {
 
     find(id: number): Observable<Experience> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            let jsonResponse = res.json();
+            const jsonResponse = res.json();
             jsonResponse.startYear = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse.startYear);
             jsonResponse.endYear = this.dateUtils
@@ -45,7 +45,7 @@ export class ExperienceService {
     }
 
     query(req?: any): Observable<Response> {
-        let options = this.createRequestOption(req);
+        const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
         ;
@@ -56,7 +56,7 @@ export class ExperienceService {
     }
 
     private convertResponse(res: any): any {
-        let jsonResponse = res.json();
+        const jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
             jsonResponse[i].startYear = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse[i].startYear);
@@ -68,9 +68,9 @@ export class ExperienceService {
     }
 
     private createRequestOption(req?: any): BaseRequestOptions {
-        let options: BaseRequestOptions = new BaseRequestOptions();
+        const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {
-            let params: URLSearchParams = new URLSearchParams();
+            const params: URLSearchParams = new URLSearchParams();
             params.set('page', req.page);
             params.set('size', req.size);
             if (req.sort) {

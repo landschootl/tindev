@@ -1,4 +1,4 @@
-<div class="page-content container">
+<div>
     <h2>
         <span jhiTranslate="tindevApp.experience.home.title">Experiences</span>
         <button class="btn btn-primary float-right create-experience" [routerLink]="['/', { outlets: { popup: ['experience-new'] } }]">
@@ -20,6 +20,7 @@
             <th><span jhiTranslate="tindevApp.experience.startYear">Start Year</span></th>
             <th><span jhiTranslate="tindevApp.experience.endYear">End Year</span></th>
             <th><span jhiTranslate="tindevApp.experience.location">Location</span></th>
+            <th><span jhiTranslate="tindevApp.experience.freelance">Freelance</span></th>
             <th></th>
             </tr>
             </thead>
@@ -29,6 +30,11 @@
                 <td>{{experience.startYear | date:'mediumDate'}}</td>
                 <td>{{experience.endYear | date:'mediumDate'}}</td>
                 <td>{{experience.location}}</td>
+                <td>
+                    <div *ngIf="experience.freelance">
+                        <a [routerLink]="['../freelance', experience.freelance?.id ]" >{{experience.freelance?.id}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

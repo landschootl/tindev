@@ -25,6 +25,12 @@
             "otherEntityName": "skill",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "freelance"
+        },
+        {
+            "relationshipName": "experiences",
+            "otherEntityName": "experience",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "freelance"
         }
     ],
     "fields": [

@@ -2,6 +2,7 @@ import { Specialty } from '../specialty';
 import { Domain } from '../domain';
 import { Training } from '../training';
 import { Skill } from '../skill';
+import { Experience } from '../experience';
 export class Freelance {
     constructor(
         public id?: number,
@@ -11,6 +12,7 @@ export class Freelance {
         public domain?: Domain,
         public trainings?: Training,
         public skills?: Skill,
+        public experiences?: Experience,
     ) {
     }
 }

@@ -30,6 +30,9 @@ public class Experience implements Serializable {
     @Column(name = "location")
     private String location;
 
+    @ManyToOne
+    private Freelance freelance;
+
     public Long getId() {
         return id;
     }
@@ -75,6 +78,19 @@ public class Experience implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Freelance getFreelance() {
+        return freelance;
+    }
+
+    public Experience freelance(Freelance freelance) {
+        this.freelance = freelance;
+        return this;
+    }
+
+    public void setFreelance(Freelance freelance) {
+        this.freelance = freelance;
     }
 
     @Override

@@ -17,7 +17,8 @@
             },
             "startYear": "Start Year",
             "endYear": "End Year",
-            "location": "Location"
+            "location": "Location",
+            "freelance": "Freelance"
         }
     }
 }

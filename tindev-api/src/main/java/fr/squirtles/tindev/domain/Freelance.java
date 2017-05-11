@@ -44,6 +44,10 @@ public class Freelance implements Serializable {
     @JsonIgnore
     private Set<Skill> skills = new HashSet<>();
 
+    @OneToMany(mappedBy = "freelance")
+    @JsonIgnore
+    private Set<Experience> experiences = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -152,6 +156,31 @@ public class Freelance implements Serializable {
 
     public void setSkills(Set<Skill> skills) {
         this.skills = skills;
+    }
+
+    public Set<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public Freelance experiences(Set<Experience> experiences) {
+        this.experiences = experiences;
+        return this;
+    }
+
+    public Freelance addExperiences(Experience experience) {
+        this.experiences.add(experience);
+        experience.setFreelance(this);
+        return this;
+    }
+
+    public Freelance removeExperiences(Experience experience) {
+        this.experiences.remove(experience);
+        experience.setFreelance(null);
+        return this;
+    }
+
+    public void setExperiences(Set<Experience> experiences) {
+        this.experiences = experiences;
     }
 
     @Override

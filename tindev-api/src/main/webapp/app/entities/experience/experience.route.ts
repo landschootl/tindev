@@ -1,9 +1,15 @@
-import { Routes } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+
+import { UserRouteAccessService } from '../../shared';
+import { PaginationUtil } from 'ng-jhipster';
 
 import { ExperienceComponent } from './experience.component';
 import { ExperienceDetailComponent } from './experience-detail.component';
 import { ExperiencePopupComponent } from './experience-dialog.component';
 import { ExperienceDeletePopupComponent } from './experience-delete-dialog.component';
+
+import { Principal } from '../../shared';
 
 export const experienceRoute: Routes = [
   {
@@ -12,14 +18,16 @@ export const experienceRoute: Routes = [
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.experience.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }, {
     path: 'experience/:id',
     component: ExperienceDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.experience.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }
 ];
 
@@ -31,6 +39,7 @@ export const experiencePopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.experience.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -40,6 +49,7 @@ export const experiencePopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.experience.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -49,6 +59,7 @@ export const experiencePopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.experience.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   }
 ];

@@ -20,7 +20,8 @@
             "specialty": "Specialty",
             "domain": "Domain",
             "trainings": "Trainings",
-            "skills": "Skills"
+            "skills": "Skills",
+            "experiences": "Experiences"
         }
     }
 }

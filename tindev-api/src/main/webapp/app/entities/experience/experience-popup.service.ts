@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Experience } from './experience.model';
@@ -6,21 +6,21 @@ import { ExperienceService } from './experience.service';
 @Injectable()
 export class ExperiencePopupService {
     private isOpen = false;
-    constructor (
+    constructor(
         private modalService: NgbModal,
         private router: Router,
         private experienceService: ExperienceService
 
     ) {}
 
-    open (component: Component, id?: number | any): NgbModalRef {
+    open(component: Component, id?: number | any): NgbModalRef {
         if (this.isOpen) {
             return;
         }
         this.isOpen = true;
 
         if (id) {
-            this.experienceService.find(id).subscribe(experience => {
+            this.experienceService.find(id).subscribe((experience) => {
                 if (experience.startYear) {
                     experience.startYear = {
                         year: experience.startYear.getFullYear(),
@@ -43,9 +43,9 @@ export class ExperiencePopupService {
     }
 
     experienceModalRef(component: Component, experience: Experience): NgbModalRef {
-        let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.experience = experience;
-        modalRef.result.then(result => {
+        modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {

@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
 import { Experience } from './experience.model';
 import { ExperiencePopupService } from './experience-popup.service';
 import { ExperienceService } from './experience.service';
+import { Freelance, FreelanceService } from '../freelance';
 
 @Component({
     selector: 'jhi-experience-dialog',
@@ -18,11 +19,14 @@ export class ExperienceDialogComponent implements OnInit {
     experience: Experience;
     authorities: any[];
     isSaving: boolean;
-    constructor(
+
+    freelances: Freelance[];
+            constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private experienceService: ExperienceService,
+        private freelanceService: FreelanceService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['experience']);
@@ -31,37 +35,48 @@ export class ExperienceDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.freelanceService.query().subscribe(
+            (res: Response) => { this.freelances = res.json(); }, (res: Response) => this.onError(res.json()));
     }
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    save () {
+    save() {
         this.isSaving = true;
         if (this.experience.id !== undefined) {
             this.experienceService.update(this.experience)
                 .subscribe((res: Experience) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         } else {
             this.experienceService.create(this.experience)
                 .subscribe((res: Experience) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         }
     }
 
-    private onSaveSuccess (result: Experience) {
+    private onSaveSuccess(result: Experience) {
         this.eventManager.broadcast({ name: 'experienceListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError (error) {
+    private onSaveError(error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
         this.isSaving = false;
         this.onError(error);
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackFreelanceById(index: number, item: Freelance) {
+        return item.id;
     }
 }
 
@@ -74,13 +89,13 @@ export class ExperiencePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private experiencePopupService: ExperiencePopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.modalRef = this.experiencePopupService
                     .open(ExperienceDialogComponent, params['id']);
@@ -88,7 +103,6 @@ export class ExperiencePopupComponent implements OnInit, OnDestroy {
                 this.modalRef = this.experiencePopupService
                     .open(ExperienceDialogComponent);
             }
-
         });
     }
 

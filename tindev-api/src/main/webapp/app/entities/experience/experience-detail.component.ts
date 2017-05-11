@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+
 import { Experience } from './experience.model';
 import { ExperienceService } from './experience.service';
 
@@ -12,8 +14,10 @@ export class ExperienceDetailComponent implements OnInit, OnDestroy {
 
     experience: Experience;
     private subscription: any;
+    private eventSubscriber: Subscription;
 
     constructor(
+        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private experienceService: ExperienceService,
         private route: ActivatedRoute
@@ -22,13 +26,14 @@ export class ExperienceDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
+        this.registerChangeInExperiences();
     }
 
-    load (id) {
-        this.experienceService.find(id).subscribe(experience => {
+    load(id) {
+        this.experienceService.find(id).subscribe((experience) => {
             this.experience = experience;
         });
     }
@@ -38,6 +43,10 @@ export class ExperienceDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
     }
 
+    registerChangeInExperiences() {
+        this.eventSubscriber = this.eventManager.subscribe('experienceListModification', (response) => this.load(this.experience.id));
+    }
 }
