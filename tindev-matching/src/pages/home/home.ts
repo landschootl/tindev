@@ -12,7 +12,7 @@ import { RegisterPage } from '../../pages/register/register';
 export class HomePage {
 
   loading: Loading;
-  registerCredentials = { email: '', password: ''};
+  registerCredentials = { email: 'mathieu.saab@tindev.com', password: 'azerty'};
 
   constructor(public nav: NavController, public navParams: NavParams, 
     public tindevSession: TindevSession, private auth: AuthService,

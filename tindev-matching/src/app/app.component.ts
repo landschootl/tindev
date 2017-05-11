@@ -25,10 +25,9 @@ export class MyApp {
       Splashscreen.hide();
 
       this.pages = [
-      { title: 'Home', component: HomePage, icon:'home'},
+      { title: 'Home', component: MatchingPage, icon:'home'},
       { title: 'Profile', component: HomePage, icon:'briefcase' },
-      { title: 'Conversations', component: HomePage, icon:'chatboxes' },
-      { title: 'Search', component: MatchingPage, icon:'eye' },
+      { title: 'Conversations', component: HomePage, icon:'chatboxes' }
     ];
     });
   }
