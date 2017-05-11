@@ -14,11 +14,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="discussion"/>
 
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="message"
-                                 constraintName="fk_message_user_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
-
     </changeSet>
 </databaseChangeLog>
