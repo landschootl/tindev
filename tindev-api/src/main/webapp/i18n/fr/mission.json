@@ -21,7 +21,8 @@
             "maxSalary": "Max Salary",
             "startDate": "Start Date",
             "endDate": "End Date",
-            "discussions": "Discussions"
+            "discussions": "Discussions",
+            "recruiter": "Recruiter"
         }
     }
 }

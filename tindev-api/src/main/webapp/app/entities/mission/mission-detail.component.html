@@ -28,6 +28,12 @@
         <dd>
             <span>{{mission.endDate | date:'mediumDate'}}</span>
         </dd>
+        <dt><span jhiTranslate="tindevApp.mission.recruiter">Recruiter</span></dt>
+        <dd>
+            <div *ngIf="mission.recruiter">
+                <a [routerLink]="['/recruiter', mission.recruiter?.id]">{{mission.recruiter?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

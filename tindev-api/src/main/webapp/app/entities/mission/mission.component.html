@@ -23,6 +23,7 @@
             <th><span jhiTranslate="tindevApp.mission.maxSalary">Max Salary</span></th>
             <th><span jhiTranslate="tindevApp.mission.startDate">Start Date</span></th>
             <th><span jhiTranslate="tindevApp.mission.endDate">End Date</span></th>
+            <th><span jhiTranslate="tindevApp.mission.recruiter">Recruiter</span></th>
             <th></th>
             </tr>
             </thead>
@@ -35,6 +36,11 @@
                 <td>{{mission.maxSalary}}</td>
                 <td>{{mission.startDate | date:'mediumDate'}}</td>
                 <td>{{mission.endDate | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="mission.recruiter">
+                        <a [routerLink]="['../recruiter', mission.recruiter?.id ]" >{{mission.recruiter?.id}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

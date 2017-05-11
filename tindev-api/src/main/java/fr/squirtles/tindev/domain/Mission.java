@@ -46,6 +46,9 @@ public class Mission implements Serializable {
     @JsonIgnore
     private Set<Discussion> discussions = new HashSet<>();
 
+    @ManyToOne
+    private Recruiter recruiter;
+
     public Long getId() {
         return id;
     }
@@ -155,6 +158,19 @@ public class Mission implements Serializable {
 
     public void setDiscussions(Set<Discussion> discussions) {
         this.discussions = discussions;
+    }
+
+    public Recruiter getRecruiter() {
+        return recruiter;
+    }
+
+    public Mission recruiter(Recruiter recruiter) {
+        this.recruiter = recruiter;
+        return this;
+    }
+
+    public void setRecruiter(Recruiter recruiter) {
+        this.recruiter = recruiter;
     }
 
     @Override

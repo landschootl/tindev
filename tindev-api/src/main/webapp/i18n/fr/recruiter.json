@@ -16,7 +16,8 @@
                 "title": "Recruiter"
             },
             "company": "Company",
-            "idUser": "Id User"
+            "idUser": "Id User",
+            "missions": "Missions"
         }
     }
 }

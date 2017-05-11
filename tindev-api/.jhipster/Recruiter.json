@@ -1,6 +1,13 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "missions",
+            "otherEntityName": "mission",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "recruiter"
+        }
+    ],
     "fields": [
         {
             "fieldName": "company",

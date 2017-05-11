@@ -8,6 +8,7 @@ import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 import { Mission } from './mission.model';
 import { MissionPopupService } from './mission-popup.service';
 import { MissionService } from './mission.service';
+import { Recruiter, RecruiterService } from '../recruiter';
 
 @Component({
     selector: 'jhi-mission-dialog',
@@ -18,11 +19,14 @@ export class MissionDialogComponent implements OnInit {
     mission: Mission;
     authorities: any[];
     isSaving: boolean;
+
+    recruiters: Recruiter[];
             constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private missionService: MissionService,
+        private recruiterService: RecruiterService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['mission']);
@@ -31,6 +35,8 @@ export class MissionDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.recruiterService.query().subscribe(
+            (res: Response) => { this.recruiters = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear() {
         this.activeModal.dismiss('cancel');
@@ -67,6 +73,10 @@ export class MissionDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackRecruiterById(index: number, item: Recruiter) {
+        return item.id;
     }
 }
 

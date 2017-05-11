@@ -1,4 +1,5 @@
 import { Discussion } from '../discussion';
+import { Recruiter } from '../recruiter';
 export class Mission {
     constructor(
         public id?: number,
@@ -9,6 +10,7 @@ export class Mission {
         public startDate?: any,
         public endDate?: any,
         public discussions?: Discussion,
+        public recruiter?: Recruiter,
     ) {
     }
 }

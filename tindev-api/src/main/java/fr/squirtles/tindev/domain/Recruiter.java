@@ -1,10 +1,13 @@
 package fr.squirtles.tindev.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -27,6 +30,10 @@ public class Recruiter implements Serializable {
     @NotNull
     @Column(name = "id_user", nullable = false)
     private Long idUser;
+
+    @OneToMany(mappedBy = "recruiter")
+    @JsonIgnore
+    private Set<Mission> missions = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -60,6 +67,31 @@ public class Recruiter implements Serializable {
 
     public void setIdUser(Long idUser) {
         this.idUser = idUser;
+    }
+
+    public Set<Mission> getMissions() {
+        return missions;
+    }
+
+    public Recruiter missions(Set<Mission> missions) {
+        this.missions = missions;
+        return this;
+    }
+
+    public Recruiter addMissions(Mission mission) {
+        this.missions.add(mission);
+        mission.setRecruiter(this);
+        return this;
+    }
+
+    public Recruiter removeMissions(Mission mission) {
+        this.missions.remove(mission);
+        mission.setRecruiter(null);
+        return this;
+    }
+
+    public void setMissions(Set<Mission> missions) {
+        this.missions = missions;
     }
 
     @Override

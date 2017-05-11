@@ -6,6 +6,12 @@
             "otherEntityName": "discussion",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "mission"
+        },
+        {
+            "relationshipName": "recruiter",
+            "otherEntityName": "recruiter",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
