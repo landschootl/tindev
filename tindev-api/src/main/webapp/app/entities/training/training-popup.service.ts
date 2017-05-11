@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Training } from './training.model';
@@ -6,21 +6,21 @@ import { TrainingService } from './training.service';
 @Injectable()
 export class TrainingPopupService {
     private isOpen = false;
-    constructor (
+    constructor(
         private modalService: NgbModal,
         private router: Router,
         private trainingService: TrainingService
 
     ) {}
 
-    open (component: Component, id?: number | any): NgbModalRef {
+    open(component: Component, id?: number | any): NgbModalRef {
         if (this.isOpen) {
             return;
         }
         this.isOpen = true;
 
         if (id) {
-            this.trainingService.find(id).subscribe(training => {
+            this.trainingService.find(id).subscribe((training) => {
                 if (training.startDate) {
                     training.startDate = {
                         year: training.startDate.getFullYear(),
@@ -43,9 +43,9 @@ export class TrainingPopupService {
     }
 
     trainingModalRef(component: Component, training: Training): NgbModalRef {
-        let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.training = training;
-        modalRef.result.then(result => {
+        modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {

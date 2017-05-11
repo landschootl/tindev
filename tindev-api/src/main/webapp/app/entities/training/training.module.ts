@@ -1,19 +1,18 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
-
 import {
+    TrainingService,
+    TrainingPopupService,
     TrainingComponent,
-    TrainingDeleteDialogComponent,
-    TrainingDeletePopupComponent,
     TrainingDetailComponent,
     TrainingDialogComponent,
     TrainingPopupComponent,
-    trainingPopupRoute,
-    TrainingPopupService,
+    TrainingDeletePopupComponent,
+    TrainingDeleteDialogComponent,
     trainingRoute,
-    TrainingService
+    trainingPopupRoute,
 } from './';
 
 const ENTITY_STATES = [

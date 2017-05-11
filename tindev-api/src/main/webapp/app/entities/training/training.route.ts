@@ -1,9 +1,15 @@
-import { Routes } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+
+import { UserRouteAccessService } from '../../shared';
+import { PaginationUtil } from 'ng-jhipster';
 
 import { TrainingComponent } from './training.component';
 import { TrainingDetailComponent } from './training-detail.component';
 import { TrainingPopupComponent } from './training-dialog.component';
 import { TrainingDeletePopupComponent } from './training-delete-dialog.component';
+
+import { Principal } from '../../shared';
 
 export const trainingRoute: Routes = [
   {
@@ -12,14 +18,16 @@ export const trainingRoute: Routes = [
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.training.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }, {
     path: 'training/:id',
     component: TrainingDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.training.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }
 ];
 
@@ -31,6 +39,7 @@ export const trainingPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.training.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -40,6 +49,7 @@ export const trainingPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.training.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -49,6 +59,7 @@ export const trainingPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.training.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   }
 ];

@@ -33,6 +33,9 @@ public class Training implements Serializable {
     @Column(name = "location")
     private String location;
 
+    @ManyToOne
+    private Freelance freelance;
+
     public Long getId() {
         return id;
     }
@@ -91,6 +94,19 @@ public class Training implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Freelance getFreelance() {
+        return freelance;
+    }
+
+    public Training freelance(Freelance freelance) {
+        this.freelance = freelance;
+        return this;
+    }
+
+    public void setFreelance(Freelance freelance) {
+        this.freelance = freelance;
     }
 
     @Override

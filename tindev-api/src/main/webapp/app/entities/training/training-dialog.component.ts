@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
 import { Training } from './training.model';
 import { TrainingPopupService } from './training-popup.service';
 import { TrainingService } from './training.service';
+import { Freelance, FreelanceService } from '../freelance';
 
 @Component({
     selector: 'jhi-training-dialog',
@@ -18,11 +19,14 @@ export class TrainingDialogComponent implements OnInit {
     training: Training;
     authorities: any[];
     isSaving: boolean;
-    constructor(
+
+    freelances: Freelance[];
+            constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private trainingService: TrainingService,
+        private freelanceService: FreelanceService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['training']);
@@ -31,37 +35,48 @@ export class TrainingDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.freelanceService.query().subscribe(
+            (res: Response) => { this.freelances = res.json(); }, (res: Response) => this.onError(res.json()));
     }
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    save () {
+    save() {
         this.isSaving = true;
         if (this.training.id !== undefined) {
             this.trainingService.update(this.training)
                 .subscribe((res: Training) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         } else {
             this.trainingService.create(this.training)
                 .subscribe((res: Training) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         }
     }
 
-    private onSaveSuccess (result: Training) {
+    private onSaveSuccess(result: Training) {
         this.eventManager.broadcast({ name: 'trainingListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError (error) {
+    private onSaveError(error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
         this.isSaving = false;
         this.onError(error);
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackFreelanceById(index: number, item: Freelance) {
+        return item.id;
     }
 }
 
@@ -74,13 +89,13 @@ export class TrainingPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private trainingPopupService: TrainingPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.modalRef = this.trainingPopupService
                     .open(TrainingDialogComponent, params['id']);
@@ -88,7 +103,6 @@ export class TrainingPopupComponent implements OnInit, OnDestroy {
                 this.modalRef = this.trainingPopupService
                     .open(TrainingDialogComponent);
             }
-
         });
     }
 

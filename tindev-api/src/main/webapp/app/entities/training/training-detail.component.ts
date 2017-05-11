@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+
 import { Training } from './training.model';
 import { TrainingService } from './training.service';
 
@@ -12,8 +14,10 @@ export class TrainingDetailComponent implements OnInit, OnDestroy {
 
     training: Training;
     private subscription: any;
+    private eventSubscriber: Subscription;
 
     constructor(
+        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private trainingService: TrainingService,
         private route: ActivatedRoute
@@ -22,13 +26,14 @@ export class TrainingDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
+        this.registerChangeInTrainings();
     }
 
-    load (id) {
-        this.trainingService.find(id).subscribe(training => {
+    load(id) {
+        this.trainingService.find(id).subscribe((training) => {
             this.training = training;
         });
     }
@@ -38,6 +43,10 @@ export class TrainingDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
     }
 
+    registerChangeInTrainings() {
+        this.eventSubscriber = this.eventManager.subscribe('trainingListModification', (response) => this.load(this.training.id));
+    }
 }

@@ -18,7 +18,8 @@
             "startDate": "Start Date",
             "endDate": "End Date",
             "name": "Name",
-            "location": "Location"
+            "location": "Location",
+            "freelance": "Freelance"
         }
     }
 }

@@ -18,7 +18,8 @@
             "dailyPrice": "Daily Price",
             "birthdate": "Birthdate",
             "specialty": "Specialty",
-            "domain": "Domain"
+            "domain": "Domain",
+            "trainings": "Trainings"
         }
     }
 }

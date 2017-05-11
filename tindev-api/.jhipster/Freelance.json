@@ -13,6 +13,12 @@
             "relationshipType": "many-to-one",
             "relationshipValidateRules": [],
             "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "trainings",
+            "otherEntityName": "training",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "freelance"
         }
     ],
     "fields": [

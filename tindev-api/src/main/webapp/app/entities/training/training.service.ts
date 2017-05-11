@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseRequestOptions, Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Training } from './training.model';
@@ -12,7 +12,7 @@ export class TrainingService {
     constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(training: Training): Observable<Training> {
-        let copy: Training = Object.assign({}, training);
+        const copy: Training = Object.assign({}, training);
         copy.startDate = this.dateUtils
             .convertLocalDateToServer(training.startDate);
         copy.endDate = this.dateUtils
@@ -23,7 +23,7 @@ export class TrainingService {
     }
 
     update(training: Training): Observable<Training> {
-        let copy: Training = Object.assign({}, training);
+        const copy: Training = Object.assign({}, training);
         copy.startDate = this.dateUtils
             .convertLocalDateToServer(training.startDate);
         copy.endDate = this.dateUtils
@@ -35,7 +35,7 @@ export class TrainingService {
 
     find(id: number): Observable<Training> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            let jsonResponse = res.json();
+            const jsonResponse = res.json();
             jsonResponse.startDate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse.startDate);
             jsonResponse.endDate = this.dateUtils
@@ -45,7 +45,7 @@ export class TrainingService {
     }
 
     query(req?: any): Observable<Response> {
-        let options = this.createRequestOption(req);
+        const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
         ;
@@ -56,7 +56,7 @@ export class TrainingService {
     }
 
     private convertResponse(res: any): any {
-        let jsonResponse = res.json();
+        const jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
             jsonResponse[i].startDate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse[i].startDate);
@@ -68,9 +68,9 @@ export class TrainingService {
     }
 
     private createRequestOption(req?: any): BaseRequestOptions {
-        let options: BaseRequestOptions = new BaseRequestOptions();
+        const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {
-            let params: URLSearchParams = new URLSearchParams();
+            const params: URLSearchParams = new URLSearchParams();
             params.set('page', req.page);
             params.set('size', req.size);
             if (req.sort) {

@@ -20,6 +20,12 @@
         <dd>
             <span>{{training.location}}</span>
         </dd>
+        <dt><span jhiTranslate="tindevApp.training.freelance">Freelance</span></dt>
+        <dd>
+            <div *ngIf="training.freelance">
+                <a [routerLink]="['/freelance', training.freelance?.id]">{{training.freelance?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"
