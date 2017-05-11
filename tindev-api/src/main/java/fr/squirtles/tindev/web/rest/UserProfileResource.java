@@ -1,9 +1,9 @@
 package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import fr.squirtles.tindev.domain.Userprofile;
+import fr.squirtles.tindev.domain.UserProfile;
 
-import fr.squirtles.tindev.repository.UserprofileRepository;
+import fr.squirtles.tindev.repository.UserProfileRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -17,102 +17,102 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing Userprofile.
+ * REST controller for managing UserProfile.
  */
 @RestController
 @RequestMapping("/api")
-public class UserprofileResource {
+public class UserProfileResource {
 
-    private final Logger log = LoggerFactory.getLogger(UserprofileResource.class);
+    private final Logger log = LoggerFactory.getLogger(UserProfileResource.class);
 
-    private static final String ENTITY_NAME = "userprofile";
+    private static final String ENTITY_NAME = "userProfile";
         
-    private final UserprofileRepository userprofileRepository;
+    private final UserProfileRepository userProfileRepository;
 
-    public UserprofileResource(UserprofileRepository userprofileRepository) {
-        this.userprofileRepository = userprofileRepository;
+    public UserProfileResource(UserProfileRepository userProfileRepository) {
+        this.userProfileRepository = userProfileRepository;
     }
 
     /**
-     * POST  /userprofiles : Create a new userprofile.
+     * POST  /user-profiles : Create a new userProfile.
      *
-     * @param userprofile the userprofile to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new userprofile, or with status 400 (Bad Request) if the userprofile has already an ID
+     * @param userProfile the userProfile to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new userProfile, or with status 400 (Bad Request) if the userProfile has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/userprofiles")
+    @PostMapping("/user-profiles")
     @Timed
-    public ResponseEntity<Userprofile> createUserprofile(@RequestBody Userprofile userprofile) throws URISyntaxException {
-        log.debug("REST request to save Userprofile : {}", userprofile);
-        if (userprofile.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new userprofile cannot already have an ID")).body(null);
+    public ResponseEntity<UserProfile> createUserProfile(@RequestBody UserProfile userProfile) throws URISyntaxException {
+        log.debug("REST request to save UserProfile : {}", userProfile);
+        if (userProfile.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new userProfile cannot already have an ID")).body(null);
         }
-        Userprofile result = userprofileRepository.save(userprofile);
-        return ResponseEntity.created(new URI("/api/userprofiles/" + result.getId()))
+        UserProfile result = userProfileRepository.save(userProfile);
+        return ResponseEntity.created(new URI("/api/user-profiles/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /userprofiles : Updates an existing userprofile.
+     * PUT  /user-profiles : Updates an existing userProfile.
      *
-     * @param userprofile the userprofile to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated userprofile,
-     * or with status 400 (Bad Request) if the userprofile is not valid,
-     * or with status 500 (Internal Server Error) if the userprofile couldnt be updated
+     * @param userProfile the userProfile to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated userProfile,
+     * or with status 400 (Bad Request) if the userProfile is not valid,
+     * or with status 500 (Internal Server Error) if the userProfile couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/userprofiles")
+    @PutMapping("/user-profiles")
     @Timed
-    public ResponseEntity<Userprofile> updateUserprofile(@RequestBody Userprofile userprofile) throws URISyntaxException {
-        log.debug("REST request to update Userprofile : {}", userprofile);
-        if (userprofile.getId() == null) {
-            return createUserprofile(userprofile);
+    public ResponseEntity<UserProfile> updateUserProfile(@RequestBody UserProfile userProfile) throws URISyntaxException {
+        log.debug("REST request to update UserProfile : {}", userProfile);
+        if (userProfile.getId() == null) {
+            return createUserProfile(userProfile);
         }
-        Userprofile result = userprofileRepository.save(userprofile);
+        UserProfile result = userProfileRepository.save(userProfile);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, userprofile.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, userProfile.getId().toString()))
             .body(result);
     }
 
     /**
-     * GET  /userprofiles : get all the userprofiles.
+     * GET  /user-profiles : get all the userProfiles.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of userprofiles in body
+     * @return the ResponseEntity with status 200 (OK) and the list of userProfiles in body
      */
-    @GetMapping("/userprofiles")
+    @GetMapping("/user-profiles")
     @Timed
-    public List<Userprofile> getAllUserprofiles() {
-        log.debug("REST request to get all Userprofiles");
-        List<Userprofile> userprofiles = userprofileRepository.findAll();
-        return userprofiles;
+    public List<UserProfile> getAllUserProfiles() {
+        log.debug("REST request to get all UserProfiles");
+        List<UserProfile> userProfiles = userProfileRepository.findAll();
+        return userProfiles;
     }
 
     /**
-     * GET  /userprofiles/:id : get the "id" userprofile.
+     * GET  /user-profiles/:id : get the "id" userProfile.
      *
-     * @param id the id of the userprofile to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the userprofile, or with status 404 (Not Found)
+     * @param id the id of the userProfile to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the userProfile, or with status 404 (Not Found)
      */
-    @GetMapping("/userprofiles/{id}")
+    @GetMapping("/user-profiles/{id}")
     @Timed
-    public ResponseEntity<Userprofile> getUserprofile(@PathVariable Long id) {
-        log.debug("REST request to get Userprofile : {}", id);
-        Userprofile userprofile = userprofileRepository.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(userprofile));
+    public ResponseEntity<UserProfile> getUserProfile(@PathVariable Long id) {
+        log.debug("REST request to get UserProfile : {}", id);
+        UserProfile userProfile = userProfileRepository.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(userProfile));
     }
 
     /**
-     * DELETE  /userprofiles/:id : delete the "id" userprofile.
+     * DELETE  /user-profiles/:id : delete the "id" userProfile.
      *
-     * @param id the id of the userprofile to delete
+     * @param id the id of the userProfile to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/userprofiles/{id}")
+    @DeleteMapping("/user-profiles/{id}")
     @Timed
-    public ResponseEntity<Void> deleteUserprofile(@PathVariable Long id) {
-        log.debug("REST request to delete Userprofile : {}", id);
-        userprofileRepository.delete(id);
+    public ResponseEntity<Void> deleteUserProfile(@PathVariable Long id) {
+        log.debug("REST request to delete UserProfile : {}", id);
+        userProfileRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 

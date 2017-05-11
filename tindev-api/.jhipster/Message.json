@@ -6,12 +6,6 @@
             "otherEntityName": "discussion",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipName": "userProfile",
-            "otherEntityName": "userprofile",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
         }
     ],
     "fields": [

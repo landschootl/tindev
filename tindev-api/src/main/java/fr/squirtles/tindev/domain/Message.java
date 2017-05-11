@@ -30,9 +30,6 @@ public class Message implements Serializable {
     @ManyToOne
     private Discussion discussion;
 
-    @ManyToOne
-    private Userprofile userProfile;
-
     public Long getId() {
         return id;
     }
@@ -78,19 +75,6 @@ public class Message implements Serializable {
 
     public void setDiscussion(Discussion discussion) {
         this.discussion = discussion;
-    }
-
-    public Userprofile getUserProfile() {
-        return userProfile;
-    }
-
-    public Message userProfile(Userprofile userprofile) {
-        this.userProfile = userprofile;
-        return this;
-    }
-
-    public void setUserProfile(Userprofile userprofile) {
-        this.userProfile = userprofile;
     }
 
     @Override

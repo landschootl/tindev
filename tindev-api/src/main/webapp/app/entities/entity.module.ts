@@ -11,7 +11,6 @@ import { TindevDiscussionModule } from './discussion/discussion.module';
 import { TindevExperienceModule } from './experience/experience.module';
 import { TindevTrainingModule } from './training/training.module';
 import { TindevMessageModule } from './message/message.module';
-import { TindevUserprofileModule } from './userprofile/userprofile.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -27,7 +26,6 @@ import { TindevUserprofileModule } from './userprofile/userprofile.module';
         TindevExperienceModule,
         TindevTrainingModule,
         TindevMessageModule,
-        TindevUserprofileModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

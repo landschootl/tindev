@@ -1,15 +1,15 @@
 package fr.squirtles.tindev.repository;
 
-import fr.squirtles.tindev.domain.Userprofile;
+import fr.squirtles.tindev.domain.UserProfile;
 
 import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
 
 /**
- * Spring Data JPA repository for the Userprofile entity.
+ * Spring Data JPA repository for the UserProfile entity.
  */
 @SuppressWarnings("unused")
-public interface UserprofileRepository extends JpaRepository<Userprofile,Long> {
+public interface UserProfileRepository extends JpaRepository<UserProfile,Long> {
 
 }

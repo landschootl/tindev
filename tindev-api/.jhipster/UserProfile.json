@@ -1,44 +1,37 @@
 {
-    "fluentMethods": true,
-    "relationships": [
-        {
-            "relationshipName": "messages",
-            "otherEntityName": "message",
-            "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "userProfile"
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "firstname",
-            "comment": "<p>Pr&eacute;nom de l&#39;utilisateur</p>",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "lastname",
-            "comment": "<p>Nom de l&#39;utilisateur</p>",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "description",
-            "comment": "<p>Description de l&#39;utilisateur</p>",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "photoUrl",
-            "comment": "<p>URL de la photo de l&#39;utilisateur</p>",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "city",
-            "comment": "<p>Ville du freelance</p>",
-            "fieldType": "String"
-        }
-    ],
-    "changelogDate": "20170424183725",
-    "dto": "no",
-    "service": "no",
-    "entityTableName": "user_profile",
-    "pagination": "no",
-    "javadoc": "<p>Cette classe repr&eacute;sente un utilisateur.</p>"
+  "fluentMethods": true,
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "firstname",
+      "comment": "<p>Pr&eacute;nom de l&#39;utilisateur</p>",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastname",
+      "comment": "<p>Nom de l&#39;utilisateur</p>",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "comment": "<p>Description de l&#39;utilisateur</p>",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photoUrl",
+      "comment": "<p>URL de la photo de l&#39;utilisateur</p>",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "comment": "<p>Ville du freelance</p>",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20170424183725",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "javadoc": "<p>Cette classe repr&eacute;sente un utilisateur.</p>",
+  "entityTableName": "user_profile"
 }

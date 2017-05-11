@@ -9,7 +9,6 @@ import { Message } from './message.model';
 import { MessagePopupService } from './message-popup.service';
 import { MessageService } from './message.service';
 import { Discussion, DiscussionService } from '../discussion';
-import { UserProfile, UserProfileService } from '../user-profile/';
 
 @Component({
     selector: 'jhi-message-dialog',
@@ -22,15 +21,12 @@ export class MessageDialogComponent implements OnInit {
     isSaving: boolean;
 
     discussions: Discussion[];
-
-    userprofiles: UserProfile[];
         constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private messageService: MessageService,
         private discussionService: DiscussionService,
-        private userprofileService: UserProfileService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['message']);
@@ -41,8 +37,6 @@ export class MessageDialogComponent implements OnInit {
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.discussionService.query().subscribe(
             (res: Response) => { this.discussions = res.json(); }, (res: Response) => this.onError(res.json()));
-        this.userprofileService.query().subscribe(
-            (res: Response) => { this.userprofiles = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear() {
         this.activeModal.dismiss('cancel');
@@ -82,10 +76,6 @@ export class MessageDialogComponent implements OnInit {
     }
 
     trackDiscussionById(index: number, item: Discussion) {
-        return item.id;
-    }
-
-    trackUserprofileById(index: number, item: UserProfile) {
         return item.id;
     }
 }

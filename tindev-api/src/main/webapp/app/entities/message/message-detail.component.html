@@ -18,12 +18,6 @@
                 <a [routerLink]="['/discussion', message.discussion?.id]">{{message.discussion?.id}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="tindevApp.message.userProfile">User Profile</span></dt>
-        <dd>
-            <div *ngIf="message.userProfile">
-                <a [routerLink]="['/userprofile', message.userProfile?.id]">{{message.userProfile?.id}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"
