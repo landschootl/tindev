@@ -17,6 +17,7 @@
             },
             "dailyPrice": "Daily Price",
             "birthdate": "Birthdate",
+            "idUser": "Id User",
             "specialty": "Specialty",
             "domain": "Domain",
             "trainings": "Trainings",

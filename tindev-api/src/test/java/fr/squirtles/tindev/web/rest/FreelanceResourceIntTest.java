@@ -45,6 +45,9 @@ public class FreelanceResourceIntTest {
     private static final LocalDate DEFAULT_BIRTHDATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_BIRTHDATE = LocalDate.now(ZoneId.systemDefault());
 
+    private static final Long DEFAULT_ID_USER = 1L;
+    private static final Long UPDATED_ID_USER = 2L;
+
     @Autowired
     private FreelanceRepository freelanceRepository;
 
@@ -83,7 +86,8 @@ public class FreelanceResourceIntTest {
     public static Freelance createEntity(EntityManager em) {
         Freelance freelance = new Freelance()
             .dailyPrice(DEFAULT_DAILY_PRICE)
-            .birthdate(DEFAULT_BIRTHDATE);
+            .birthdate(DEFAULT_BIRTHDATE)
+            .idUser(DEFAULT_ID_USER);
         return freelance;
     }
 
@@ -109,6 +113,7 @@ public class FreelanceResourceIntTest {
         Freelance testFreelance = freelanceList.get(freelanceList.size() - 1);
         assertThat(testFreelance.getDailyPrice()).isEqualTo(DEFAULT_DAILY_PRICE);
         assertThat(testFreelance.getBirthdate()).isEqualTo(DEFAULT_BIRTHDATE);
+        assertThat(testFreelance.getIdUser()).isEqualTo(DEFAULT_ID_USER);
     }
 
     @Test
@@ -132,6 +137,24 @@ public class FreelanceResourceIntTest {
 
     @Test
     @Transactional
+    public void checkIdUserIsRequired() throws Exception {
+        int databaseSizeBeforeTest = freelanceRepository.findAll().size();
+        // set the field null
+        freelance.setIdUser(null);
+
+        // Create the Freelance, which fails.
+
+        restFreelanceMockMvc.perform(post("/api/freelances")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(freelance)))
+            .andExpect(status().isBadRequest());
+
+        List<Freelance> freelanceList = freelanceRepository.findAll();
+        assertThat(freelanceList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllFreelances() throws Exception {
         // Initialize the database
         freelanceRepository.saveAndFlush(freelance);
@@ -142,7 +165,8 @@ public class FreelanceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(freelance.getId().intValue())))
             .andExpect(jsonPath("$.[*].dailyPrice").value(hasItem(DEFAULT_DAILY_PRICE)))
-            .andExpect(jsonPath("$.[*].birthdate").value(hasItem(DEFAULT_BIRTHDATE.toString())));
+            .andExpect(jsonPath("$.[*].birthdate").value(hasItem(DEFAULT_BIRTHDATE.toString())))
+            .andExpect(jsonPath("$.[*].idUser").value(hasItem(DEFAULT_ID_USER.intValue())));
     }
 
     @Test
@@ -157,7 +181,8 @@ public class FreelanceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(freelance.getId().intValue()))
             .andExpect(jsonPath("$.dailyPrice").value(DEFAULT_DAILY_PRICE))
-            .andExpect(jsonPath("$.birthdate").value(DEFAULT_BIRTHDATE.toString()));
+            .andExpect(jsonPath("$.birthdate").value(DEFAULT_BIRTHDATE.toString()))
+            .andExpect(jsonPath("$.idUser").value(DEFAULT_ID_USER.intValue()));
     }
 
     @Test
@@ -179,7 +204,8 @@ public class FreelanceResourceIntTest {
         Freelance updatedFreelance = freelanceRepository.findOne(freelance.getId());
         updatedFreelance
             .dailyPrice(UPDATED_DAILY_PRICE)
-            .birthdate(UPDATED_BIRTHDATE);
+            .birthdate(UPDATED_BIRTHDATE)
+            .idUser(UPDATED_ID_USER);
 
         restFreelanceMockMvc.perform(put("/api/freelances")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -192,6 +218,7 @@ public class FreelanceResourceIntTest {
         Freelance testFreelance = freelanceList.get(freelanceList.size() - 1);
         assertThat(testFreelance.getDailyPrice()).isEqualTo(UPDATED_DAILY_PRICE);
         assertThat(testFreelance.getBirthdate()).isEqualTo(UPDATED_BIRTHDATE);
+        assertThat(testFreelance.getIdUser()).isEqualTo(UPDATED_ID_USER);
     }
 
     @Test

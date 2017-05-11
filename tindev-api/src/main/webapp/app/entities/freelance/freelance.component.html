@@ -19,6 +19,7 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="tindevApp.freelance.dailyPrice">Daily Price</span></th>
             <th><span jhiTranslate="tindevApp.freelance.birthdate">Birthdate</span></th>
+            <th><span jhiTranslate="tindevApp.freelance.idUser">Id User</span></th>
             <th><span jhiTranslate="tindevApp.freelance.specialty">Specialty</span></th>
             <th><span jhiTranslate="tindevApp.freelance.domain">Domain</span></th>
             <th></th>
@@ -29,6 +30,7 @@
                 <td><a [routerLink]="['../freelance', freelance.id ]">{{freelance.id}}</a></td>
                 <td>{{freelance.dailyPrice}}</td>
                 <td>{{freelance.birthdate | date:'mediumDate'}}</td>
+                <td>{{freelance.idUser}}</td>
                 <td>
                     <div *ngIf="freelance.specialty">
                         <a [routerLink]="['../specialty', freelance.specialty?.id ]" >{{freelance.specialty?.name}}</a>

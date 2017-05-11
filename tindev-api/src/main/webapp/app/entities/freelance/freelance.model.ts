@@ -9,6 +9,7 @@ export class Freelance {
         public id?: number,
         public dailyPrice?: number,
         public birthdate?: any,
+        public idUser?: number,
         public specialty?: Specialty,
         public domain?: Domain,
         public trainings?: Training,

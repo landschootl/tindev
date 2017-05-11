@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -29,6 +30,10 @@ public class Freelance implements Serializable {
 
     @Column(name = "birthdate")
     private LocalDate birthdate;
+
+    @NotNull
+    @Column(name = "id_user", nullable = false)
+    private Long idUser;
 
     @ManyToOne
     private Specialty specialty;
@@ -84,6 +89,19 @@ public class Freelance implements Serializable {
 
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public Freelance idUser(Long idUser) {
+        this.idUser = idUser;
+        return this;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     public Specialty getSpecialty() {
@@ -238,6 +256,7 @@ public class Freelance implements Serializable {
             "id=" + id +
             ", dailyPrice='" + dailyPrice + "'" +
             ", birthdate='" + birthdate + "'" +
+            ", idUser='" + idUser + "'" +
             '}';
     }
 }

@@ -48,6 +48,13 @@
             "fieldName": "birthdate",
             "comment": "<p>Date de naissance du freelance</p>",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "idUser",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20170424183727",
