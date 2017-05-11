@@ -18,6 +18,10 @@
                 <a [routerLink]="['/discussion', message.discussion?.id]">{{message.discussion?.id}}</a>
             </div>
         </dd>
+        <dt><span jhiTranslate="tindevApp.message.user">User</span></dt>
+        <dd>
+            {{message.user?.login}}
+        </dd>
     </dl>
 
     <button type="submit"

@@ -1,0 +1,17 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "messages",
+            "otherEntityName": "message",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "user"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20170511204021",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "user",
+    "pagination": "no"
+}

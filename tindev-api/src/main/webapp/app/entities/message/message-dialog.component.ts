@@ -9,6 +9,7 @@ import { Message } from './message.model';
 import { MessagePopupService } from './message-popup.service';
 import { MessageService } from './message.service';
 import { Discussion, DiscussionService } from '../discussion';
+import { User, UserService } from '../../shared';
 
 @Component({
     selector: 'jhi-message-dialog',
@@ -21,12 +22,15 @@ export class MessageDialogComponent implements OnInit {
     isSaving: boolean;
 
     discussions: Discussion[];
+
+    users: User[];
         constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private messageService: MessageService,
         private discussionService: DiscussionService,
+        private userService: UserService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['message']);
@@ -37,6 +41,8 @@ export class MessageDialogComponent implements OnInit {
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.discussionService.query().subscribe(
             (res: Response) => { this.discussions = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.userService.query().subscribe(
+            (res: Response) => { this.users = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear() {
         this.activeModal.dismiss('cancel');
@@ -76,6 +82,10 @@ export class MessageDialogComponent implements OnInit {
     }
 
     trackDiscussionById(index: number, item: Discussion) {
+        return item.id;
+    }
+
+    trackUserById(index: number, item: User) {
         return item.id;
     }
 }

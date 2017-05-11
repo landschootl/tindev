@@ -30,6 +30,9 @@ public class Message implements Serializable {
     @ManyToOne
     private Discussion discussion;
 
+    @ManyToOne
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -75,6 +78,19 @@ public class Message implements Serializable {
 
     public void setDiscussion(Discussion discussion) {
         this.discussion = discussion;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Message user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
