@@ -1,22 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {User} from '../shared/models/user';
 import 'rxjs/add/operator/map';
 //Sauf erreur de ma part, ca ne devrait pas être ici je suppose
-export class User {
-  firstname: string;
-  lastname: string;
-  email: string;
-  recruiter: boolean;
-  completedProfile:boolean;
- 
-  constructor(firstname: string, lastname: string, recruiter: boolean, email: string, completedProfile: boolean) {
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.recruiter = recruiter;
-    this.email = email;
-    this.completedProfile = completedProfile;
-  }
-}
  
 @Injectable()
 export class AuthService {

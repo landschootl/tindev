@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams , AlertController, LoadingController, Loading} from 'ionic-angular';
+import { NavController, MenuController, NavParams , AlertController, LoadingController, Loading} from 'ionic-angular';
 import { TindevSession } from '../../providers/tindev-session';
 import { AuthService } from '../../providers/auth-service';
 import { MatchingPage } from '../../pages/matching/matching';
@@ -12,10 +12,13 @@ import { RegisterPage } from '../../pages/register/register';
 export class HomePage {
 
   loading: Loading;
-  registerCredentials = { email: '', password: ''};
+  registerCredentials = { email: 'mathieu.saab@tindev.com', password: 'azerty'};
 
-  constructor(public nav: NavController, public navParams: NavParams, public tindevSession: TindevSession, private auth: AuthService,private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+  constructor(public nav: NavController, public navParams: NavParams, 
+    public tindevSession: TindevSession, private auth: AuthService,
+    private alertCtrl: AlertController, private loadingCtrl: LoadingController, private menu: MenuController) {
     this.tindevSession = tindevSession;
+    this.menu.enable(false);
   }
 
   ionViewDidLoad() {
@@ -31,6 +34,7 @@ export class HomePage {
     //Il faudra enlever le parametre true quand ce sera gardé dans un user
     this.auth.login(this.registerCredentials).subscribe(allowed => {
       if (allowed) {        
+        this.menu.enable(true);
         this.nav.setRoot(MatchingPage);
       } else {
         this.showError("Invalid credentials");
