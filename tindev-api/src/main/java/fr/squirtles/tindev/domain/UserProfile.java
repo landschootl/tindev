@@ -1,9 +1,12 @@
 package fr.squirtles.tindev.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -12,7 +15,7 @@ import java.util.Objects;
 @ApiModel(description = "<p>Cette classe repr&eacute;sente un utilisateur.</p>")
 @Entity
 @Table(name = "user_profile")
-public class UserProfile implements Serializable {
+public class Userprofile implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,6 +38,10 @@ public class UserProfile implements Serializable {
     @Column(name = "city")
     private String city;
 
+    @OneToMany(mappedBy = "userProfile")
+    @JsonIgnore
+    private Set<Message> messages = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -47,7 +54,7 @@ public class UserProfile implements Serializable {
         return firstname;
     }
 
-    public UserProfile firstname(String firstname) {
+    public Userprofile firstname(String firstname) {
         this.firstname = firstname;
         return this;
     }
@@ -60,7 +67,7 @@ public class UserProfile implements Serializable {
         return lastname;
     }
 
-    public UserProfile lastname(String lastname) {
+    public Userprofile lastname(String lastname) {
         this.lastname = lastname;
         return this;
     }
@@ -73,7 +80,7 @@ public class UserProfile implements Serializable {
         return description;
     }
 
-    public UserProfile description(String description) {
+    public Userprofile description(String description) {
         this.description = description;
         return this;
     }
@@ -86,7 +93,7 @@ public class UserProfile implements Serializable {
         return photoUrl;
     }
 
-    public UserProfile photoUrl(String photoUrl) {
+    public Userprofile photoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
         return this;
     }
@@ -99,13 +106,38 @@ public class UserProfile implements Serializable {
         return city;
     }
 
-    public UserProfile city(String city) {
+    public Userprofile city(String city) {
         this.city = city;
         return this;
     }
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public Userprofile messages(Set<Message> messages) {
+        this.messages = messages;
+        return this;
+    }
+
+    public Userprofile addMessages(Message message) {
+        this.messages.add(message);
+        message.setUserProfile(this);
+        return this;
+    }
+
+    public Userprofile removeMessages(Message message) {
+        this.messages.remove(message);
+        message.setUserProfile(null);
+        return this;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
     }
 
     @Override
@@ -116,11 +148,11 @@ public class UserProfile implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        UserProfile userProfile = (UserProfile) o;
-        if (userProfile.id == null || id == null) {
+        Userprofile userprofile = (Userprofile) o;
+        if (userprofile.id == null || id == null) {
             return false;
         }
-        return Objects.equals(id, userProfile.id);
+        return Objects.equals(id, userprofile.id);
     }
 
     @Override
@@ -130,7 +162,7 @@ public class UserProfile implements Serializable {
 
     @Override
     public String toString() {
-        return "UserProfile{" +
+        return "Userprofile{" +
             "id=" + id +
             ", firstname='" + firstname + "'" +
             ", lastname='" + lastname + "'" +

@@ -2,8 +2,8 @@ package fr.squirtles.tindev.web.rest;
 
 import fr.squirtles.tindev.TindevApp;
 
-import fr.squirtles.tindev.domain.UserProfile;
-import fr.squirtles.tindev.repository.UserProfileRepository;
+import fr.squirtles.tindev.domain.Userprofile;
+import fr.squirtles.tindev.repository.UserprofileRepository;
 import fr.squirtles.tindev.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -29,13 +29,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test class for the UserProfileResource REST controller.
+ * Test class for the UserprofileResource REST controller.
  *
- * @see UserProfileResource
+ * @see UserprofileResource
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TindevApp.class)
-public class UserProfileResourceIntTest {
+public class UserprofileResourceIntTest {
 
     private static final String DEFAULT_FIRSTNAME = "AAAAAAAAAA";
     private static final String UPDATED_FIRSTNAME = "BBBBBBBBBB";
@@ -53,7 +53,7 @@ public class UserProfileResourceIntTest {
     private static final String UPDATED_CITY = "BBBBBBBBBB";
 
     @Autowired
-    private UserProfileRepository userProfileRepository;
+    private UserprofileRepository userprofileRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -67,15 +67,15 @@ public class UserProfileResourceIntTest {
     @Autowired
     private EntityManager em;
 
-    private MockMvc restUserProfileMockMvc;
+    private MockMvc restUserprofileMockMvc;
 
-    private UserProfile userProfile;
+    private Userprofile userprofile;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        UserProfileResource userProfileResource = new UserProfileResource(userProfileRepository);
-        this.restUserProfileMockMvc = MockMvcBuilders.standaloneSetup(userProfileResource)
+        UserprofileResource userprofileResource = new UserprofileResource(userprofileRepository);
+        this.restUserprofileMockMvc = MockMvcBuilders.standaloneSetup(userprofileResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setMessageConverters(jacksonMessageConverter).build();
@@ -87,73 +87,73 @@ public class UserProfileResourceIntTest {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static UserProfile createEntity(EntityManager em) {
-        UserProfile userProfile = new UserProfile()
+    public static Userprofile createEntity(EntityManager em) {
+        Userprofile userprofile = new Userprofile()
             .firstname(DEFAULT_FIRSTNAME)
             .lastname(DEFAULT_LASTNAME)
             .description(DEFAULT_DESCRIPTION)
             .photoUrl(DEFAULT_PHOTO_URL)
             .city(DEFAULT_CITY);
-        return userProfile;
+        return userprofile;
     }
 
     @Before
     public void initTest() {
-        userProfile = createEntity(em);
+        userprofile = createEntity(em);
     }
 
     @Test
     @Transactional
-    public void createUserProfile() throws Exception {
-        int databaseSizeBeforeCreate = userProfileRepository.findAll().size();
+    public void createUserprofile() throws Exception {
+        int databaseSizeBeforeCreate = userprofileRepository.findAll().size();
 
-        // Create the UserProfile
-        restUserProfileMockMvc.perform(post("/api/user-profiles")
+        // Create the Userprofile
+        restUserprofileMockMvc.perform(post("/api/userprofiles")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(userProfile)))
+            .content(TestUtil.convertObjectToJsonBytes(userprofile)))
             .andExpect(status().isCreated());
 
-        // Validate the UserProfile in the database
-        List<UserProfile> userProfileList = userProfileRepository.findAll();
-        assertThat(userProfileList).hasSize(databaseSizeBeforeCreate + 1);
-        UserProfile testUserProfile = userProfileList.get(userProfileList.size() - 1);
-        assertThat(testUserProfile.getFirstname()).isEqualTo(DEFAULT_FIRSTNAME);
-        assertThat(testUserProfile.getLastname()).isEqualTo(DEFAULT_LASTNAME);
-        assertThat(testUserProfile.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testUserProfile.getPhotoUrl()).isEqualTo(DEFAULT_PHOTO_URL);
-        assertThat(testUserProfile.getCity()).isEqualTo(DEFAULT_CITY);
+        // Validate the Userprofile in the database
+        List<Userprofile> userprofileList = userprofileRepository.findAll();
+        assertThat(userprofileList).hasSize(databaseSizeBeforeCreate + 1);
+        Userprofile testUserprofile = userprofileList.get(userprofileList.size() - 1);
+        assertThat(testUserprofile.getFirstname()).isEqualTo(DEFAULT_FIRSTNAME);
+        assertThat(testUserprofile.getLastname()).isEqualTo(DEFAULT_LASTNAME);
+        assertThat(testUserprofile.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testUserprofile.getPhotoUrl()).isEqualTo(DEFAULT_PHOTO_URL);
+        assertThat(testUserprofile.getCity()).isEqualTo(DEFAULT_CITY);
     }
 
     @Test
     @Transactional
-    public void createUserProfileWithExistingId() throws Exception {
-        int databaseSizeBeforeCreate = userProfileRepository.findAll().size();
+    public void createUserprofileWithExistingId() throws Exception {
+        int databaseSizeBeforeCreate = userprofileRepository.findAll().size();
 
-        // Create the UserProfile with an existing ID
-        userProfile.setId(1L);
+        // Create the Userprofile with an existing ID
+        userprofile.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restUserProfileMockMvc.perform(post("/api/user-profiles")
+        restUserprofileMockMvc.perform(post("/api/userprofiles")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(userProfile)))
+            .content(TestUtil.convertObjectToJsonBytes(userprofile)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
-        List<UserProfile> userProfileList = userProfileRepository.findAll();
-        assertThat(userProfileList).hasSize(databaseSizeBeforeCreate);
+        List<Userprofile> userprofileList = userprofileRepository.findAll();
+        assertThat(userprofileList).hasSize(databaseSizeBeforeCreate);
     }
 
     @Test
     @Transactional
-    public void getAllUserProfiles() throws Exception {
+    public void getAllUserprofiles() throws Exception {
         // Initialize the database
-        userProfileRepository.saveAndFlush(userProfile);
+        userprofileRepository.saveAndFlush(userprofile);
 
-        // Get all the userProfileList
-        restUserProfileMockMvc.perform(get("/api/user-profiles?sort=id,desc"))
+        // Get all the userprofileList
+        restUserprofileMockMvc.perform(get("/api/userprofiles?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(userProfile.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(userprofile.getId().intValue())))
             .andExpect(jsonPath("$.[*].firstname").value(hasItem(DEFAULT_FIRSTNAME.toString())))
             .andExpect(jsonPath("$.[*].lastname").value(hasItem(DEFAULT_LASTNAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
@@ -163,15 +163,15 @@ public class UserProfileResourceIntTest {
 
     @Test
     @Transactional
-    public void getUserProfile() throws Exception {
+    public void getUserprofile() throws Exception {
         // Initialize the database
-        userProfileRepository.saveAndFlush(userProfile);
+        userprofileRepository.saveAndFlush(userprofile);
 
-        // Get the userProfile
-        restUserProfileMockMvc.perform(get("/api/user-profiles/{id}", userProfile.getId()))
+        // Get the userprofile
+        restUserprofileMockMvc.perform(get("/api/userprofiles/{id}", userprofile.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(userProfile.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(userprofile.getId().intValue()))
             .andExpect(jsonPath("$.firstname").value(DEFAULT_FIRSTNAME.toString()))
             .andExpect(jsonPath("$.lastname").value(DEFAULT_LASTNAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
@@ -181,82 +181,82 @@ public class UserProfileResourceIntTest {
 
     @Test
     @Transactional
-    public void getNonExistingUserProfile() throws Exception {
-        // Get the userProfile
-        restUserProfileMockMvc.perform(get("/api/user-profiles/{id}", Long.MAX_VALUE))
+    public void getNonExistingUserprofile() throws Exception {
+        // Get the userprofile
+        restUserprofileMockMvc.perform(get("/api/userprofiles/{id}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
 
     @Test
     @Transactional
-    public void updateUserProfile() throws Exception {
+    public void updateUserprofile() throws Exception {
         // Initialize the database
-        userProfileRepository.saveAndFlush(userProfile);
-        int databaseSizeBeforeUpdate = userProfileRepository.findAll().size();
+        userprofileRepository.saveAndFlush(userprofile);
+        int databaseSizeBeforeUpdate = userprofileRepository.findAll().size();
 
-        // Update the userProfile
-        UserProfile updatedUserProfile = userProfileRepository.findOne(userProfile.getId());
-        updatedUserProfile
+        // Update the userprofile
+        Userprofile updatedUserprofile = userprofileRepository.findOne(userprofile.getId());
+        updatedUserprofile
             .firstname(UPDATED_FIRSTNAME)
             .lastname(UPDATED_LASTNAME)
             .description(UPDATED_DESCRIPTION)
             .photoUrl(UPDATED_PHOTO_URL)
             .city(UPDATED_CITY);
 
-        restUserProfileMockMvc.perform(put("/api/user-profiles")
+        restUserprofileMockMvc.perform(put("/api/userprofiles")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedUserProfile)))
+            .content(TestUtil.convertObjectToJsonBytes(updatedUserprofile)))
             .andExpect(status().isOk());
 
-        // Validate the UserProfile in the database
-        List<UserProfile> userProfileList = userProfileRepository.findAll();
-        assertThat(userProfileList).hasSize(databaseSizeBeforeUpdate);
-        UserProfile testUserProfile = userProfileList.get(userProfileList.size() - 1);
-        assertThat(testUserProfile.getFirstname()).isEqualTo(UPDATED_FIRSTNAME);
-        assertThat(testUserProfile.getLastname()).isEqualTo(UPDATED_LASTNAME);
-        assertThat(testUserProfile.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testUserProfile.getPhotoUrl()).isEqualTo(UPDATED_PHOTO_URL);
-        assertThat(testUserProfile.getCity()).isEqualTo(UPDATED_CITY);
+        // Validate the Userprofile in the database
+        List<Userprofile> userprofileList = userprofileRepository.findAll();
+        assertThat(userprofileList).hasSize(databaseSizeBeforeUpdate);
+        Userprofile testUserprofile = userprofileList.get(userprofileList.size() - 1);
+        assertThat(testUserprofile.getFirstname()).isEqualTo(UPDATED_FIRSTNAME);
+        assertThat(testUserprofile.getLastname()).isEqualTo(UPDATED_LASTNAME);
+        assertThat(testUserprofile.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testUserprofile.getPhotoUrl()).isEqualTo(UPDATED_PHOTO_URL);
+        assertThat(testUserprofile.getCity()).isEqualTo(UPDATED_CITY);
     }
 
     @Test
     @Transactional
-    public void updateNonExistingUserProfile() throws Exception {
-        int databaseSizeBeforeUpdate = userProfileRepository.findAll().size();
+    public void updateNonExistingUserprofile() throws Exception {
+        int databaseSizeBeforeUpdate = userprofileRepository.findAll().size();
 
-        // Create the UserProfile
+        // Create the Userprofile
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restUserProfileMockMvc.perform(put("/api/user-profiles")
+        restUserprofileMockMvc.perform(put("/api/userprofiles")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(userProfile)))
+            .content(TestUtil.convertObjectToJsonBytes(userprofile)))
             .andExpect(status().isCreated());
 
-        // Validate the UserProfile in the database
-        List<UserProfile> userProfileList = userProfileRepository.findAll();
-        assertThat(userProfileList).hasSize(databaseSizeBeforeUpdate + 1);
+        // Validate the Userprofile in the database
+        List<Userprofile> userprofileList = userprofileRepository.findAll();
+        assertThat(userprofileList).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
     @Test
     @Transactional
-    public void deleteUserProfile() throws Exception {
+    public void deleteUserprofile() throws Exception {
         // Initialize the database
-        userProfileRepository.saveAndFlush(userProfile);
-        int databaseSizeBeforeDelete = userProfileRepository.findAll().size();
+        userprofileRepository.saveAndFlush(userprofile);
+        int databaseSizeBeforeDelete = userprofileRepository.findAll().size();
 
-        // Get the userProfile
-        restUserProfileMockMvc.perform(delete("/api/user-profiles/{id}", userProfile.getId())
+        // Get the userprofile
+        restUserprofileMockMvc.perform(delete("/api/userprofiles/{id}", userprofile.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<UserProfile> userProfileList = userProfileRepository.findAll();
-        assertThat(userProfileList).hasSize(databaseSizeBeforeDelete - 1);
+        List<Userprofile> userprofileList = userprofileRepository.findAll();
+        assertThat(userprofileList).hasSize(databaseSizeBeforeDelete - 1);
     }
 
     @Test
     @Transactional
     public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(UserProfile.class);
+        TestUtil.equalsVerifier(Userprofile.class);
     }
 }

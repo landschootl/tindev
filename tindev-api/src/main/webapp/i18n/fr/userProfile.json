@@ -1,25 +1,26 @@
 {
     "tindevApp": {
-        "userProfile" : {
+        "userprofile" : {
             "home": {
-                "title": "UserProfiles",
-                "createLabel": "Créer un nouveau User Profile",
-                "createOrEditLabel": "Créer ou éditer un User Profile"
+                "title": "Userprofiles",
+                "createLabel": "Créer un nouveau Userprofile",
+                "createOrEditLabel": "Créer ou éditer un Userprofile"
             },
-            "created": "Un nouveau User Profile a été créé avec l'identifiant {{ param }}",
-            "updated": "Le User Profile avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le User Profile avec l'identifiant {{ param }} a été supprimé",
+            "created": "Un nouveau Userprofile a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Userprofile avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Userprofile avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le User Profile {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer le Userprofile {{ id }} ?"
             },
             "detail": {
-                "title": "User Profile"
+                "title": "Userprofile"
             },
             "firstname": "Firstname",
             "lastname": "Lastname",
             "description": "Description",
             "photoUrl": "Photo Url",
-            "city": "City"
+            "city": "City",
+            "messages": "Messages"
         }
     }
 }

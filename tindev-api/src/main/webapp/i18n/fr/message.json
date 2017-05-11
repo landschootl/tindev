@@ -17,7 +17,8 @@
             },
             "textMessage": "Text Message",
             "postingDate": "Posting Date",
-            "discussion": "Discussion"
+            "discussion": "Discussion",
+            "userProfile": "User Profile"
         }
     }
 }

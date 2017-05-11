@@ -20,6 +20,7 @@
             <th><span jhiTranslate="tindevApp.message.textMessage">Text Message</span></th>
             <th><span jhiTranslate="tindevApp.message.postingDate">Posting Date</span></th>
             <th><span jhiTranslate="tindevApp.message.discussion">Discussion</span></th>
+            <th><span jhiTranslate="tindevApp.message.userProfile">User Profile</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,6 +32,11 @@
                 <td>
                     <div *ngIf="message.discussion">
                         <a [routerLink]="['../discussion', message.discussion?.id ]" >{{message.discussion?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="message.userProfile">
+                        <a [routerLink]="['../userprofile', message.userProfile?.id ]" >{{message.userProfile?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

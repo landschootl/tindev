@@ -36,6 +36,13 @@
                 <option [ngValue]="discussionOption.id === message.discussion?.id ? message.discussion : discussionOption" *ngFor="let discussionOption of discussions; trackBy: trackDiscussionById">{{discussionOption.id}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label jhiTranslate="tindevApp.message.userProfile" for="field_userProfile">User Profile</label>
+            <select class="form-control" id="field_userProfile" name="userProfile" [(ngModel)]="message.userProfile" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userprofileOption.id === message.userProfile?.id ? message.userProfile : userprofileOption" *ngFor="let userprofileOption of userprofiles; trackBy: trackUserprofileById">{{userprofileOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
