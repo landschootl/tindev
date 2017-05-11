@@ -1,11 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Response } from '@angular/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService } from 'ng-jhipster';
 
 import { Recruiter } from './recruiter.model';
 import { RecruiterService } from './recruiter.service';
-import { Principal } from '../../shared';
+import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-recruiter',
@@ -46,15 +48,14 @@ recruiters: Recruiter[];
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId (index: number, item: Recruiter) {
+    trackId(index: number, item: Recruiter) {
         return item.id;
     }
-
     registerChangeInRecruiters() {
         this.eventSubscriber = this.eventManager.subscribe('recruiterListModification', (response) => this.loadAll());
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 }

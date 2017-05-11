@@ -15,7 +15,8 @@
             "detail": {
                 "title": "Recruiter"
             },
-            "company": "Company"
+            "company": "Company",
+            "idUser": "Id User"
         }
     }
 }

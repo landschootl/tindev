@@ -40,6 +40,9 @@ public class RecruiterResourceIntTest {
     private static final String DEFAULT_COMPANY = "AAAAAAAAAA";
     private static final String UPDATED_COMPANY = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_ID_USER = 1L;
+    private static final Long UPDATED_ID_USER = 2L;
+
     @Autowired
     private RecruiterRepository recruiterRepository;
 
@@ -77,7 +80,8 @@ public class RecruiterResourceIntTest {
      */
     public static Recruiter createEntity(EntityManager em) {
         Recruiter recruiter = new Recruiter()
-            .company(DEFAULT_COMPANY);
+            .company(DEFAULT_COMPANY)
+            .idUser(DEFAULT_ID_USER);
         return recruiter;
     }
 
@@ -102,6 +106,7 @@ public class RecruiterResourceIntTest {
         assertThat(recruiterList).hasSize(databaseSizeBeforeCreate + 1);
         Recruiter testRecruiter = recruiterList.get(recruiterList.size() - 1);
         assertThat(testRecruiter.getCompany()).isEqualTo(DEFAULT_COMPANY);
+        assertThat(testRecruiter.getIdUser()).isEqualTo(DEFAULT_ID_USER);
     }
 
     @Test
@@ -125,6 +130,24 @@ public class RecruiterResourceIntTest {
 
     @Test
     @Transactional
+    public void checkIdUserIsRequired() throws Exception {
+        int databaseSizeBeforeTest = recruiterRepository.findAll().size();
+        // set the field null
+        recruiter.setIdUser(null);
+
+        // Create the Recruiter, which fails.
+
+        restRecruiterMockMvc.perform(post("/api/recruiters")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(recruiter)))
+            .andExpect(status().isBadRequest());
+
+        List<Recruiter> recruiterList = recruiterRepository.findAll();
+        assertThat(recruiterList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllRecruiters() throws Exception {
         // Initialize the database
         recruiterRepository.saveAndFlush(recruiter);
@@ -134,7 +157,8 @@ public class RecruiterResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(recruiter.getId().intValue())))
-            .andExpect(jsonPath("$.[*].company").value(hasItem(DEFAULT_COMPANY.toString())));
+            .andExpect(jsonPath("$.[*].company").value(hasItem(DEFAULT_COMPANY.toString())))
+            .andExpect(jsonPath("$.[*].idUser").value(hasItem(DEFAULT_ID_USER.intValue())));
     }
 
     @Test
@@ -148,7 +172,8 @@ public class RecruiterResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(recruiter.getId().intValue()))
-            .andExpect(jsonPath("$.company").value(DEFAULT_COMPANY.toString()));
+            .andExpect(jsonPath("$.company").value(DEFAULT_COMPANY.toString()))
+            .andExpect(jsonPath("$.idUser").value(DEFAULT_ID_USER.intValue()));
     }
 
     @Test
@@ -169,7 +194,8 @@ public class RecruiterResourceIntTest {
         // Update the recruiter
         Recruiter updatedRecruiter = recruiterRepository.findOne(recruiter.getId());
         updatedRecruiter
-            .company(UPDATED_COMPANY);
+            .company(UPDATED_COMPANY)
+            .idUser(UPDATED_ID_USER);
 
         restRecruiterMockMvc.perform(put("/api/recruiters")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -181,6 +207,7 @@ public class RecruiterResourceIntTest {
         assertThat(recruiterList).hasSize(databaseSizeBeforeUpdate);
         Recruiter testRecruiter = recruiterList.get(recruiterList.size() - 1);
         assertThat(testRecruiter.getCompany()).isEqualTo(UPDATED_COMPANY);
+        assertThat(testRecruiter.getIdUser()).isEqualTo(UPDATED_ID_USER);
     }
 
     @Test

@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
 import { Recruiter } from './recruiter.model';
 import { RecruiterPopupService } from './recruiter-popup.service';
@@ -32,35 +32,40 @@ export class RecruiterDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    save () {
+    save() {
         this.isSaving = true;
         if (this.recruiter.id !== undefined) {
             this.recruiterService.update(this.recruiter)
                 .subscribe((res: Recruiter) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         } else {
             this.recruiterService.create(this.recruiter)
                 .subscribe((res: Recruiter) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         }
     }
 
-    private onSaveSuccess (result: Recruiter) {
+    private onSaveSuccess(result: Recruiter) {
         this.eventManager.broadcast({ name: 'recruiterListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError (error) {
+    private onSaveError(error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
         this.isSaving = false;
         this.onError(error);
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 }
@@ -74,13 +79,13 @@ export class RecruiterPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private recruiterPopupService: RecruiterPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.modalRef = this.recruiterPopupService
                     .open(RecruiterDialogComponent, params['id']);
@@ -88,7 +93,6 @@ export class RecruiterPopupComponent implements OnInit, OnDestroy {
                 this.modalRef = this.recruiterPopupService
                     .open(RecruiterDialogComponent);
             }
-
         });
     }
 

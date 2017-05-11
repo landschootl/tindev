@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -42,7 +43,7 @@ public class RecruiterResource {
      */
     @PostMapping("/recruiters")
     @Timed
-    public ResponseEntity<Recruiter> createRecruiter(@RequestBody Recruiter recruiter) throws URISyntaxException {
+    public ResponseEntity<Recruiter> createRecruiter(@Valid @RequestBody Recruiter recruiter) throws URISyntaxException {
         log.debug("REST request to save Recruiter : {}", recruiter);
         if (recruiter.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new recruiter cannot already have an ID")).body(null);
@@ -64,7 +65,7 @@ public class RecruiterResource {
      */
     @PutMapping("/recruiters")
     @Timed
-    public ResponseEntity<Recruiter> updateRecruiter(@RequestBody Recruiter recruiter) throws URISyntaxException {
+    public ResponseEntity<Recruiter> updateRecruiter(@Valid @RequestBody Recruiter recruiter) throws URISyntaxException {
         log.debug("REST request to update Recruiter : {}", recruiter);
         if (recruiter.getId() == null) {
             return createRecruiter(recruiter);

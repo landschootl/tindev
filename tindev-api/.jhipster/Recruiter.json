@@ -1,17 +1,24 @@
 {
-  "fluentMethods": true,
-  "relationships": [],
-  "fields": [
-    {
-      "fieldName": "company",
-      "comment": "<p>Entreprise du recruteur</p>",
-      "fieldType": "String"
-    }
-  ],
-  "changelogDate": "20170424183726",
-  "dto": "no",
-  "pagination": "no",
-  "service": "no",
-  "javadoc": "<p>Cette classe repr&eacute;sente un recruteur.</p>",
-  "entityTableName": "recruiter"
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "company",
+            "comment": "<p>Entreprise du recruteur</p>",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "idUser",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170424183726",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "recruiter",
+    "pagination": "no",
+    "javadoc": "<p>Cette classe repr&eacute;sente un recruteur.</p>"
 }

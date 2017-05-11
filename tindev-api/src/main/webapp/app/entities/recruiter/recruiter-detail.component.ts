@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+
 import { Recruiter } from './recruiter.model';
 import { RecruiterService } from './recruiter.service';
 
@@ -12,8 +14,10 @@ export class RecruiterDetailComponent implements OnInit, OnDestroy {
 
     recruiter: Recruiter;
     private subscription: any;
+    private eventSubscriber: Subscription;
 
     constructor(
+        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private recruiterService: RecruiterService,
         private route: ActivatedRoute
@@ -22,13 +26,14 @@ export class RecruiterDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
+        this.registerChangeInRecruiters();
     }
 
-    load (id) {
-        this.recruiterService.find(id).subscribe(recruiter => {
+    load(id) {
+        this.recruiterService.find(id).subscribe((recruiter) => {
             this.recruiter = recruiter;
         });
     }
@@ -38,6 +43,10 @@ export class RecruiterDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
     }
 
+    registerChangeInRecruiters() {
+        this.eventSubscriber = this.eventManager.subscribe('recruiterListModification', (response) => this.load(this.recruiter.id));
+    }
 }

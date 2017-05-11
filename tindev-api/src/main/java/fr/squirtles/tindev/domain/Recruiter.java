@@ -3,6 +3,7 @@ package fr.squirtles.tindev.domain;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -23,6 +24,10 @@ public class Recruiter implements Serializable {
     @Column(name = "company")
     private String company;
 
+    @NotNull
+    @Column(name = "id_user", nullable = false)
+    private Long idUser;
+
     public Long getId() {
         return id;
     }
@@ -42,6 +47,19 @@ public class Recruiter implements Serializable {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public Recruiter idUser(Long idUser) {
+        this.idUser = idUser;
+        return this;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     @Override
@@ -69,6 +87,7 @@ public class Recruiter implements Serializable {
         return "Recruiter{" +
             "id=" + id +
             ", company='" + company + "'" +
+            ", idUser='" + idUser + "'" +
             '}';
     }
 }

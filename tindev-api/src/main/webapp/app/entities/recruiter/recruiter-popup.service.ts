@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Recruiter } from './recruiter.model';
@@ -6,21 +6,21 @@ import { RecruiterService } from './recruiter.service';
 @Injectable()
 export class RecruiterPopupService {
     private isOpen = false;
-    constructor (
+    constructor(
         private modalService: NgbModal,
         private router: Router,
         private recruiterService: RecruiterService
 
     ) {}
 
-    open (component: Component, id?: number | any): NgbModalRef {
+    open(component: Component, id?: number | any): NgbModalRef {
         if (this.isOpen) {
             return;
         }
         this.isOpen = true;
 
         if (id) {
-            this.recruiterService.find(id).subscribe(recruiter => {
+            this.recruiterService.find(id).subscribe((recruiter) => {
                 this.recruiterModalRef(component, recruiter);
             });
         } else {
@@ -29,9 +29,9 @@ export class RecruiterPopupService {
     }
 
     recruiterModalRef(component: Component, recruiter: Recruiter): NgbModalRef {
-        let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.recruiter = recruiter;
-        modalRef.result.then(result => {
+        modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {

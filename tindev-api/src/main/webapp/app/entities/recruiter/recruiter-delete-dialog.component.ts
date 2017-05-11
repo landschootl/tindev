@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -25,12 +25,12 @@ export class RecruiterDeleteDialogComponent {
         this.jhiLanguageService.setLocations(['recruiter']);
     }
 
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
-        this.recruiterService.delete(id).subscribe(response => {
+    confirmDelete(id: number) {
+        this.recruiterService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'recruiterListModification',
                 content: 'Deleted an recruiter'
@@ -49,13 +49,13 @@ export class RecruiterDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private recruiterPopupService: RecruiterPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.recruiterPopupService
                 .open(RecruiterDeleteDialogComponent, params['id']);
         });
