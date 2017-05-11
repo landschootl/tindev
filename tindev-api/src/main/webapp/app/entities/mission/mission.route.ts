@@ -1,9 +1,15 @@
-import { Routes } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+
+import { UserRouteAccessService } from '../../shared';
+import { PaginationUtil } from 'ng-jhipster';
 
 import { MissionComponent } from './mission.component';
 import { MissionDetailComponent } from './mission-detail.component';
 import { MissionPopupComponent } from './mission-dialog.component';
 import { MissionDeletePopupComponent } from './mission-delete-dialog.component';
+
+import { Principal } from '../../shared';
 
 export const missionRoute: Routes = [
   {
@@ -12,14 +18,16 @@ export const missionRoute: Routes = [
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }, {
     path: 'mission/:id',
     component: MissionDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }
 ];
 
@@ -31,6 +39,7 @@ export const missionPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -40,6 +49,7 @@ export const missionPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -49,6 +59,7 @@ export const missionPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   }
 ];

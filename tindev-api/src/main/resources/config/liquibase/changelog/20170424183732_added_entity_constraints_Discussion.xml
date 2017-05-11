@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="freelance"/>
 
+        <addForeignKeyConstraint baseColumnNames="mission_id"
+                                 baseTableName="discussion"
+                                 constraintName="fk_discussion_mission_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mission"/>
+
     </changeSet>
 </databaseChangeLog>

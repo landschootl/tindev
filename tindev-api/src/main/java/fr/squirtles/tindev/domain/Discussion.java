@@ -23,6 +23,9 @@ public class Discussion implements Serializable {
     @ManyToOne
     private Freelance freelance;
 
+    @ManyToOne
+    private Mission mission;
+
     public Long getId() {
         return id;
     }
@@ -42,6 +45,19 @@ public class Discussion implements Serializable {
 
     public void setFreelance(Freelance freelance) {
         this.freelance = freelance;
+    }
+
+    public Mission getMission() {
+        return mission;
+    }
+
+    public Discussion mission(Mission mission) {
+        this.mission = mission;
+        return this;
+    }
+
+    public void setMission(Mission mission) {
+        this.mission = mission;
     }
 
     @Override

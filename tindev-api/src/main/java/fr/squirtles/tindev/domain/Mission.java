@@ -1,10 +1,13 @@
 package fr.squirtles.tindev.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -38,6 +41,10 @@ public class Mission implements Serializable {
 
     @Column(name = "end_date")
     private LocalDate endDate;
+
+    @OneToMany(mappedBy = "mission")
+    @JsonIgnore
+    private Set<Discussion> discussions = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -123,6 +130,31 @@ public class Mission implements Serializable {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public Set<Discussion> getDiscussions() {
+        return discussions;
+    }
+
+    public Mission discussions(Set<Discussion> discussions) {
+        this.discussions = discussions;
+        return this;
+    }
+
+    public Mission addDiscussions(Discussion discussion) {
+        this.discussions.add(discussion);
+        discussion.setMission(this);
+        return this;
+    }
+
+    public Mission removeDiscussions(Discussion discussion) {
+        this.discussions.remove(discussion);
+        discussion.setMission(null);
+        return this;
+    }
+
+    public void setDiscussions(Set<Discussion> discussions) {
+        this.discussions = discussions;
     }
 
     @Override

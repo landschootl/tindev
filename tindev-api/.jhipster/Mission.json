@@ -1,42 +1,49 @@
 {
-  "fluentMethods": true,
-  "relationships": [],
-  "fields": [
-    {
-      "fieldName": "title",
-      "comment": "<p>Titre de la mission</p>",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "description",
-      "comment": "<p>Description de la mission</p>",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "minSalary",
-      "comment": "<p>Salaire minimum recherch&eacute; de la mission</p>",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "maxSalary",
-      "comment": "<p>Salaire maximum recherch&eacute; de la mission</p>",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "startDate",
-      "comment": "<p>Date de d&eacute;but de la mission</p>",
-      "fieldType": "LocalDate"
-    },
-    {
-      "fieldName": "endDate",
-      "comment": "<p>Date de fin de la mission</p>",
-      "fieldType": "LocalDate"
-    }
-  ],
-  "changelogDate": "20170424183728",
-  "dto": "no",
-  "pagination": "no",
-  "service": "no",
-  "javadoc": "<p>Cette classe repr&eacute;sente une mission cr&eacute;&eacute;e par un recruteur.</p>",
-  "entityTableName": "mission"
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "discussions",
+            "otherEntityName": "discussion",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "mission"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "comment": "<p>Titre de la mission</p>",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "comment": "<p>Description de la mission</p>",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "minSalary",
+            "comment": "<p>Salaire minimum recherch&eacute; de la mission</p>",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "maxSalary",
+            "comment": "<p>Salaire maximum recherch&eacute; de la mission</p>",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "startDate",
+            "comment": "<p>Date de d&eacute;but de la mission</p>",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "endDate",
+            "comment": "<p>Date de fin de la mission</p>",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170424183728",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "mission",
+    "pagination": "no",
+    "javadoc": "<p>Cette classe repr&eacute;sente une mission cr&eacute;&eacute;e par un recruteur.</p>"
 }

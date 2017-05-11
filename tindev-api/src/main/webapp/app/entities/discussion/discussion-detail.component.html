@@ -10,6 +10,12 @@
                 <a [routerLink]="['/freelance', discussion.freelance?.id]">{{discussion.freelance?.id}}</a>
             </div>
         </dd>
+        <dt><span jhiTranslate="tindevApp.discussion.mission">Mission</span></dt>
+        <dd>
+            <div *ngIf="discussion.mission">
+                <a [routerLink]="['/mission', discussion.mission?.id]">{{discussion.mission?.title}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

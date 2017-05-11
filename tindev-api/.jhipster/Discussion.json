@@ -6,6 +6,12 @@
             "otherEntityName": "freelance",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "mission",
+            "otherEntityName": "mission",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "title"
         }
     ],
     "fields": [],

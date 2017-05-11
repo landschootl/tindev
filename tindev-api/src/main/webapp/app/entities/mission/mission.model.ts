@@ -1,3 +1,4 @@
+import { Discussion } from '../discussion';
 export class Mission {
     constructor(
         public id?: number,
@@ -7,6 +8,7 @@ export class Mission {
         public maxSalary?: number,
         public startDate?: any,
         public endDate?: any,
+        public discussions?: Discussion,
     ) {
     }
 }

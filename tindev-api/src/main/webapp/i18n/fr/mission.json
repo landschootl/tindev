@@ -20,7 +20,8 @@
             "minSalary": "Min Salary",
             "maxSalary": "Max Salary",
             "startDate": "Start Date",
-            "endDate": "End Date"
+            "endDate": "End Date",
+            "discussions": "Discussions"
         }
     }
 }

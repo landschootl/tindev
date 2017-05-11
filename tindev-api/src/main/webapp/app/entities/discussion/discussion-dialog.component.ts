@@ -9,6 +9,7 @@ import { Discussion } from './discussion.model';
 import { DiscussionPopupService } from './discussion-popup.service';
 import { DiscussionService } from './discussion.service';
 import { Freelance, FreelanceService } from '../freelance';
+import { Mission, MissionService } from '../mission';
 
 @Component({
     selector: 'jhi-discussion-dialog',
@@ -21,12 +22,15 @@ export class DiscussionDialogComponent implements OnInit {
     isSaving: boolean;
 
     freelances: Freelance[];
+
+    missions: Mission[];
     constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private discussionService: DiscussionService,
         private freelanceService: FreelanceService,
+        private missionService: MissionService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['discussion']);
@@ -37,6 +41,8 @@ export class DiscussionDialogComponent implements OnInit {
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.freelanceService.query().subscribe(
             (res: Response) => { this.freelances = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.missionService.query().subscribe(
+            (res: Response) => { this.missions = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear() {
         this.activeModal.dismiss('cancel');
@@ -76,6 +82,10 @@ export class DiscussionDialogComponent implements OnInit {
     }
 
     trackFreelanceById(index: number, item: Freelance) {
+        return item.id;
+    }
+
+    trackMissionById(index: number, item: Mission) {
         return item.id;
     }
 }
