@@ -19,6 +19,12 @@
             "otherEntityName": "training",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "freelance"
+        },
+        {
+            "relationshipName": "skills",
+            "otherEntityName": "skill",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "freelance"
         }
     ],
     "fields": [

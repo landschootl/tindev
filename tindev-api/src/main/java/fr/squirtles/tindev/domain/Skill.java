@@ -23,6 +23,9 @@ public class Skill implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @ManyToOne
+    private Freelance freelance;
+
     public Long getId() {
         return id;
     }
@@ -42,6 +45,19 @@ public class Skill implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Freelance getFreelance() {
+        return freelance;
+    }
+
+    public Skill freelance(Freelance freelance) {
+        this.freelance = freelance;
+        return this;
+    }
+
+    public void setFreelance(Freelance freelance) {
+        this.freelance = freelance;
     }
 
     @Override

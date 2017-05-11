@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseRequestOptions, Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Skill } from './skill.model';
@@ -11,14 +11,14 @@ export class SkillService {
     constructor(private http: Http) { }
 
     create(skill: Skill): Observable<Skill> {
-        let copy: Skill = Object.assign({}, skill);
+        const copy: Skill = Object.assign({}, skill);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
     update(skill: Skill): Observable<Skill> {
-        let copy: Skill = Object.assign({}, skill);
+        const copy: Skill = Object.assign({}, skill);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
@@ -31,7 +31,7 @@ export class SkillService {
     }
 
     query(req?: any): Observable<Response> {
-        let options = this.createRequestOption(req);
+        const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
         ;
     }
@@ -39,11 +39,10 @@ export class SkillService {
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
-
     private createRequestOption(req?: any): BaseRequestOptions {
-        let options: BaseRequestOptions = new BaseRequestOptions();
+        const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {
-            let params: URLSearchParams = new URLSearchParams();
+            const params: URLSearchParams = new URLSearchParams();
             params.set('page', req.page);
             params.set('size', req.size);
             if (req.sort) {

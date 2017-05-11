@@ -15,7 +15,8 @@
             "detail": {
                 "title": "Skill"
             },
-            "name": "Name"
+            "name": "Name",
+            "freelance": "Freelance"
         }
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -25,12 +25,12 @@ export class SkillDeleteDialogComponent {
         this.jhiLanguageService.setLocations(['skill']);
     }
 
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
-        this.skillService.delete(id).subscribe(response => {
+    confirmDelete(id: number) {
+        this.skillService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'skillListModification',
                 content: 'Deleted an skill'
@@ -49,13 +49,13 @@ export class SkillDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private skillPopupService: SkillPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.skillPopupService
                 .open(SkillDeleteDialogComponent, params['id']);
         });

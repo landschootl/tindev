@@ -8,6 +8,12 @@
         <dd>
             <span>{{skill.name}}</span>
         </dd>
+        <dt><span jhiTranslate="tindevApp.skill.freelance">Freelance</span></dt>
+        <dd>
+            <div *ngIf="skill.freelance">
+                <a [routerLink]="['/freelance', skill.freelance?.id]">{{skill.freelance?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

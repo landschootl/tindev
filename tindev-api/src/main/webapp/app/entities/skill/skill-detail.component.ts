@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+
 import { Skill } from './skill.model';
 import { SkillService } from './skill.service';
 
@@ -12,8 +14,10 @@ export class SkillDetailComponent implements OnInit, OnDestroy {
 
     skill: Skill;
     private subscription: any;
+    private eventSubscriber: Subscription;
 
     constructor(
+        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private skillService: SkillService,
         private route: ActivatedRoute
@@ -22,13 +26,14 @@ export class SkillDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
+        this.registerChangeInSkills();
     }
 
-    load (id) {
-        this.skillService.find(id).subscribe(skill => {
+    load(id) {
+        this.skillService.find(id).subscribe((skill) => {
             this.skill = skill;
         });
     }
@@ -38,6 +43,10 @@ export class SkillDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
     }
 
+    registerChangeInSkills() {
+        this.eventSubscriber = this.eventManager.subscribe('skillListModification', (response) => this.load(this.skill.id));
+    }
 }

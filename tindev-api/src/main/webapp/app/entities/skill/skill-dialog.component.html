@@ -1,5 +1,3 @@
-
-
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
@@ -21,6 +19,13 @@
              />
         </div>
 
+        <div class="form-group">
+            <label jhiTranslate="tindevApp.skill.freelance" for="field_freelance">Freelance</label>
+            <select class="form-control" id="field_freelance" name="freelance" [(ngModel)]="skill.freelance" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="freelanceOption.id === skill.freelance?.id ? skill.freelance : freelanceOption" *ngFor="let freelanceOption of freelances; trackBy: trackFreelanceById">{{freelanceOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

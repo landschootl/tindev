@@ -19,7 +19,8 @@
             "birthdate": "Birthdate",
             "specialty": "Specialty",
             "domain": "Domain",
-            "trainings": "Trainings"
+            "trainings": "Trainings",
+            "skills": "Skills"
         }
     }
 }
