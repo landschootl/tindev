@@ -9,6 +9,8 @@ import { HttpModule } from '@angular/http';
 import { CapitalizePipe } from '../shared/pipes/capitalize.pipe';
 import { TindevSession } from '../providers/tindev-session';
 import { AuthService } from '../providers/auth-service';
+import { Storage } from '@ionic/storage';
+import { ApiUtils } from '../shared/utils/api';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,6 @@ import { AuthService } from '../providers/auth-service';
     MatchingPage,
     RegisterPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, TindevSession, AuthService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, TindevSession, AuthService, Storage, ApiUtils]
 })
 export class AppModule {}
