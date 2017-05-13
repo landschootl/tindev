@@ -3,6 +3,7 @@ import { NavController, MenuController, NavParams , AlertController, LoadingCont
 import { TindevSession } from '../../providers/tindev-session';
 import { AuthService } from '../../providers/auth-service';
 import { MatchingPage } from '../../pages/matching/matching';
+import { ToastController } from 'ionic-angular';
 import { RegisterPage } from '../../pages/register/register';
 
 @Component({
@@ -12,11 +13,12 @@ import { RegisterPage } from '../../pages/register/register';
 export class HomePage {
 
   loading: Loading;
-  registerCredentials = { email: 'mathieu.saab@tindev.com', password: 'azerty'};
+  registerCredentials = { username: 'user', password: 'user'};
 
   constructor(public nav: NavController, public navParams: NavParams, 
     public tindevSession: TindevSession, private auth: AuthService,
-    private alertCtrl: AlertController, private loadingCtrl: LoadingController, private menu: MenuController) {
+    private alertCtrl: AlertController, private loadingCtrl: LoadingController, 
+    private menu: MenuController, private toastCtrl : ToastController) {
     this.tindevSession = tindevSession;
     this.menu.enable(false);
   }
@@ -32,10 +34,19 @@ export class HomePage {
   public login() {
     this.showLoading();
     //Il faudra enlever le parametre true quand ce sera gardé dans un user
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {        
-        this.menu.enable(true);
-        this.nav.setRoot(MatchingPage);
+    this.auth.apiAuthenticate(this.registerCredentials).subscribe(allowed => {
+      if (allowed) {
+        //Authentication successful, now we can get the information from the newly logged user
+        this.auth.apiAccount().subscribe(user => {
+          let toast = this.toastCtrl.create({
+            message: 'Welcome ' + user.firstname,
+            duration: 2000,
+            position: 'bottom'
+          });
+          toast.present(toast);
+          this.menu.enable(true);
+          this.nav.setRoot(MatchingPage);
+          });
       } else {
         this.showError("Invalid credentials");
       }
