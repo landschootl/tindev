@@ -5,6 +5,7 @@ import { HomePage } from '../pages/home/home';
 import { AuthService } from '../providers/auth-service';
 import { MatchingPage } from '../pages/matching/matching';
 import { RegisterPage } from '../pages/register/register';
+//import { MatchesListPage } from '../pages/matches-list-page/matches-list-page';
 import { Nav, Menu, NavController, NavParams , AlertController, LoadingController, Loading} from 'ionic-angular';
 
 
