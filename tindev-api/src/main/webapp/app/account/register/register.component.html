@@ -47,6 +47,21 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="role">Profil</label>
+                    <div class="radio" id="role">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionFreelance" value="freelance" checked>
+                            Freelance
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionRecruiter" value="recruiter">
+                            Recruter
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="email" jhiTranslate="global.form.email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" #email="ngModel" placeholder="{{'global.form.email.placeholder' | translate}}"
                             [(ngModel)]="registerAccount.email" minlength=5 maxlength=100 required>
