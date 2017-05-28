@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../shared/models/user';
 import {ApiUtils} from '../shared/utils/api';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Http, Response, RequestOptions} from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 //Sauf erreur de ma part, ca ne devrait pas être ici je suppose

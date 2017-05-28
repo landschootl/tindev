@@ -38,6 +38,7 @@ export class HomePage {
       if (allowed) {
         //Authentication successful, now we can get the information from the newly logged user
         this.auth.apiAccount().subscribe(user => {
+          //showToast('Welcome ' + user.firstname);
           let toast = this.toastCtrl.create({
             message: 'Welcome ' + user.firstname,
             duration: 2000,
@@ -48,12 +49,23 @@ export class HomePage {
           this.nav.setRoot(MatchingPage);
           });
       } else {
-        this.showError("Invalid credentials");
+        this.loading.dismiss();
+        this.showToast("Invalid credentials");
       }
     },
       error => {
-        this.showError(error);
+        this.loading.dismiss();
+        this.showToast("Invalid credentials");
       });
+  }
+
+  public showToast(text) { 
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 2000,
+      position: 'bottom'
+    });
+    toast.present(toast);
   }
 
   showLoading() {
@@ -63,16 +75,4 @@ export class HomePage {
     });
     this.loading.present();
   }
- 
-  showError(text) {
-    this.loading.dismiss();
- 
-    let alert = this.alertCtrl.create({
-      title: 'Attempt failed',
-      subTitle: text,
-      buttons: ['OK']
-    });
-    alert.present(prompt);
-  }
-
 }
