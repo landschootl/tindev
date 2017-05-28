@@ -44,6 +44,7 @@ export class HomePage {
             duration: 2000,
             position: 'bottom'
           });
+          toast.present(toast);
           this.menu.enable(true);
           this.nav.setRoot(MatchingPage);
           });
