@@ -1,0 +1,45 @@
+
+<div *ngIf="freelance">
+    <h2><span jhiTranslate="tindevApp.freelance.detail.title">Freelance</span> {{freelance.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tindevApp.freelance.dailyPrice">Daily Price</span></dt>
+        <dd>
+            <span>{{freelance.dailyPrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.freelance.birthdate">Birthdate</span></dt>
+        <dd>
+            <span>{{freelance.birthdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.freelance.idUser">Id User</span></dt>
+        <dd>
+            <span>{{freelance.idUser}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.freelance.specialty">Specialty</span></dt>
+        <dd>
+            <div *ngIf="freelance.specialty">
+                <a [routerLink]="['/specialty', freelance.specialty?.id]">{{freelance.specialty?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.freelance.domain">Domain</span></dt>
+        <dd>
+            <div *ngIf="freelance.domain">
+                <a [routerLink]="['/domain', freelance.domain?.id]">{{freelance.domain?.name}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'freelance/'+ freelance.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

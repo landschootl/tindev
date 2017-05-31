@@ -1,0 +1,29 @@
+{
+    "tindevApp": {
+        "freelance" : {
+            "home": {
+                "title": "Freelances",
+                "createLabel": "Créer un nouveau Freelance",
+                "createOrEditLabel": "Créer ou éditer un Freelance"
+            },
+            "created": "Un nouveau Freelance a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Freelance avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Freelance avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Freelance {{ id }} ?"
+            },
+            "detail": {
+                "title": "Freelance"
+            },
+            "dailyPrice": "Daily Price",
+            "birthdate": "Birthdate",
+            "idUser": "Id User",
+            "specialty": "Specialty",
+            "domain": "Domain",
+            "trainings": "Trainings",
+            "skills": "Skills",
+            "experiences": "Experiences",
+            "discussions": "Discussions"
+        }
+    }
+}

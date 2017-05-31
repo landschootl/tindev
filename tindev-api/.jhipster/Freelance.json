@@ -1,0 +1,66 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "specialty",
+            "otherEntityName": "specialty",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "domain",
+            "otherEntityName": "domain",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [],
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "trainings",
+            "otherEntityName": "training",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "freelance"
+        },
+        {
+            "relationshipName": "skills",
+            "otherEntityName": "skill",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "freelance"
+        },
+        {
+            "relationshipName": "experiences",
+            "otherEntityName": "experience",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "freelance"
+        },
+        {
+            "relationshipName": "discussions",
+            "otherEntityName": "discussion",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "freelance"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dailyPrice",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "birthdate",
+            "comment": "<p>Date de naissance du freelance</p>",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "idUser",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170424183727",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "freelance",
+    "pagination": "no",
+    "javadoc": "<p>Cette classe repr&eacute;sente un freelance.</p>"
+}

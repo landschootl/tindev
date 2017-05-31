@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>
+      Tindev Matching
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+	<ion-searchbar
+	  [(ngModel)]="searchinput"
+	  (ionInput)="onSearchInput($event)"
+	  placeholder="Project or interlocutor name">
+	</ion-searchbar>
+	<div *ngIf="this.showSearchLoader" class="loading">
+		<ion-spinner style="text-align: center" name="dots"></ion-spinner>
+	</div>
+</ion-header>
+<ion-content padding>
+	<ion-list>
+		<ion-item (click)="openConversationPage(item)" *ngFor="let item of searchMatchingData" detail-push>
+			<div>
+				<span class="title" color="text-primary">{{ item.project_name }} | <span class="interlocutor-name" color="text-light"> {{item.interlocutor_name}}</span></span> <br/>
+				<br/>
+				<span class="message_content" color="text-light">{{ item.last_message.content}}</span>
+			</div>
+		</ion-item>
+	</ion-list>
+</ion-content>

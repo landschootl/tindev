@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "freelance",
+            "otherEntityName": "freelance",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "comment": "<p>Libell&eacute; de la comp&eacute;tence</p>",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170424183729",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "skill",
+    "pagination": "no",
+    "javadoc": "<p>Cette classe repr&eacute;sente une comp&eacute;tence d&#39;un freelance.</p><p>Exemple : Java</p>"
+}

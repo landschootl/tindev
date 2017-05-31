@@ -1,0 +1,51 @@
+
+<div *ngIf="mission">
+    <h2><span jhiTranslate="tindevApp.mission.detail.title">Mission</span> {{mission.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tindevApp.mission.title">Title</span></dt>
+        <dd>
+            <span>{{mission.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.mission.description">Description</span></dt>
+        <dd>
+            <span>{{mission.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.mission.minSalary">Min Salary</span></dt>
+        <dd>
+            <span>{{mission.minSalary}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.mission.maxSalary">Max Salary</span></dt>
+        <dd>
+            <span>{{mission.maxSalary}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.mission.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{mission.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.mission.endDate">End Date</span></dt>
+        <dd>
+            <span>{{mission.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.mission.recruiter">Recruiter</span></dt>
+        <dd>
+            <div *ngIf="mission.recruiter">
+                <a [routerLink]="['/recruiter', mission.recruiter?.id]">{{mission.recruiter?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mission/'+ mission.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

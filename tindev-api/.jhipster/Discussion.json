@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "freelance",
+            "otherEntityName": "freelance",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "mission",
+            "otherEntityName": "mission",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "title"
+        },
+        {
+            "relationshipName": "messages",
+            "otherEntityName": "message",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "discussion"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20170424183732",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "discussion",
+    "pagination": "no",
+    "javadoc": "<p>Cette classe repr&eacute;sente une discussion entre un recruteur et un freelance.</p>"
+}

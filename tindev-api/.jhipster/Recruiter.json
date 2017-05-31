@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "missions",
+            "otherEntityName": "mission",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "recruiter"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "company",
+            "comment": "<p>Entreprise du recruteur</p>",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "idUser",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170424183726",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "recruiter",
+    "pagination": "no",
+    "javadoc": "<p>Cette classe repr&eacute;sente un recruteur.</p>"
+}

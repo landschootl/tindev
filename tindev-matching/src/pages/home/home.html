@@ -1,0 +1,84 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title text-center>
+      Tindev Matching
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content>
+    <ion-row>
+      <ion-col text-center id="main-div">
+        <img src="assets/images/icon.png"/>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <h1 color="text-primary">
+          {{this.tindevSession.isDevMode() == true ? "Dev build 0.0.0" : "Release build 0.0.0"}}
+        </h1>
+      </ion-col>
+    </ion-row>
+    <div class="login-box">
+    <form (ngSubmit)="login()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="registerCredentials.username" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+            </ion-item>
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
+          <button ion-button class="register-btn" block clear type="button" (click)="createAccount()">Create new account</button>
+          <button ion-button color="text-primary" class="forgot-btn" block clear type="button" >Forgot your password ?</button>
+        </ion-col>
+      </ion-row>
+      
+    </form>
+  </div>
+</ion-content>
+<!--
+login inspired by https://devdactic.com/login-ionic-2/
+-->
+
+<!--
+<ion-content padding>
+  <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
+    <ion-card #mycards1 swing-card *ngFor="let c of cards">
+      <ion-item *ngIf="c.picture">
+        <img id="card-image" *ngIf="c.picture" [src]="c.picture.large">
+        <h1 id="card-title">{{ c.name.first | capitalize }}, {{ c.age }}</h1>
+        <h2 id="card-subtitle">{{ c.location.city | capitalize }}</h2>
+      </ion-item>
+
+      <ion-row *ngIf="c.name">
+        <ion-col>
+          <button ion-button color="danger" round outline large (click)="voteUp(false)">
+            <ion-icon name="thumbs-down"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="secondary" round outline large (click)="voteUp(true)">
+            <ion-icon name="thumbs-up"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-content>
+-->

@@ -1,0 +1,71 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myFreelanceLabel" jhiTranslate="tindevApp.freelance.home.createOrEditLabel">Create or edit a Freelance</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!freelance.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="freelance.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.freelance.dailyPrice" for="field_dailyPrice">Daily Price</label>
+            <input type="number" class="form-control" name="dailyPrice" id="field_dailyPrice"
+                [(ngModel)]="freelance.dailyPrice"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.freelance.birthdate" for="field_birthdate">Birthdate</label>
+            <div class="input-group">
+                <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker  #birthdateDp="ngbDatepicker" [(ngModel)]="freelance.birthdate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="birthdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.freelance.idUser" for="field_idUser">Id User</label>
+            <input type="number" class="form-control" name="idUser" id="field_idUser"
+                [(ngModel)]="freelance.idUser"
+            required />
+            <div [hidden]="!(editForm.controls.idUser?.dirty && editForm.controls.idUser?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.idUser?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.idUser?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="tindevApp.freelance.specialty" for="field_specialty">Specialty</label>
+            <select class="form-control" id="field_specialty" name="specialty" [(ngModel)]="freelance.specialty" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="specialtyOption.id === freelance.specialty?.id ? freelance.specialty : specialtyOption" *ngFor="let specialtyOption of specialties; trackBy: trackSpecialtyById">{{specialtyOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="tindevApp.freelance.domain" for="field_domain">Domain</label>
+            <select class="form-control" id="field_domain" name="domain" [(ngModel)]="freelance.domain" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="domainOption.id === freelance.domain?.id ? freelance.domain : domainOption" *ngFor="let domainOption of domains; trackBy: trackDomainById">{{domainOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

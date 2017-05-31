@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "freelances",
+            "otherEntityName": "freelance",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "specialty"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "comment": "<p>Nom de la sp&eacute;cialit&eacute;</p>",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170424183731",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "specialty",
+    "pagination": "no",
+    "javadoc": "<p>Cette classe repr&eacute;sente une sp&eacute;cialit&eacute; d&#39;un freelance.</p><p>Exemple&nbsp;: front (d&eacute;veloppeur front)</p>"
+}
