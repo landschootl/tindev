@@ -1,6 +1,7 @@
 .idea/
 **/*.DS_Store
 **/*.iml
-/target/
-/.classpath
-/.project
+**/target/
+**/.classpath
+**/.project
+**/node_modules
