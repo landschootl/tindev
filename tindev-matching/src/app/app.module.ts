@@ -14,31 +14,44 @@ import { AuthService } from '../providers/auth-service';
 import { Storage } from '@ionic/storage';
 import { ApiUtils } from '../shared/utils/api';
 import { ConversationService } from '../providers/conversation-service';
+import { UserService } from '../providers/user-service';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    MatchingPage,
-    RegisterPage,
-    MatchesListPage,
-    ConversationPage,
-    CapitalizePipe
-  ],
-  imports: [
-    IonicModule.forRoot(MyApp),
-    SwingModule,
-    HttpModule
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    MatchingPage,
-    ConversationPage,
-    MatchesListPage,
-    RegisterPage
-  ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, TindevSession, AuthService, Storage, ApiUtils, ConversationService]
+    declarations: [
+        MyApp,
+        HomePage,
+        MatchingPage,
+        RegisterPage,
+        MatchesListPage,
+        ConversationPage,
+        CapitalizePipe
+    ],
+    imports: [
+        IonicModule.forRoot(MyApp),
+        SwingModule,
+        HttpModule
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        HomePage,
+        MatchingPage,
+        ConversationPage,
+        MatchesListPage,
+        RegisterPage
+    ],
+    providers: [
+        {
+            provide: ErrorHandler,
+            useClass: IonicErrorHandler
+        },
+        TindevSession,
+        AuthService,
+        Storage,
+        ApiUtils,
+        ConversationService,
+        UserService
+    ]
 })
-export class AppModule {}
+export class AppModule {
+}
