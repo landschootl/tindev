@@ -1,11 +1,11 @@
-import { Component, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { HomePage } from '../pages/home/home';
 import { AuthService } from '../providers/auth-service';
 import { MatchingPage } from '../pages/matching/matching';
-import { RegisterPage } from '../pages/register/register';
-import { Nav, Menu, NavController, NavParams , AlertController, LoadingController, Loading} from 'ionic-angular';
+import { MatchesListPage } from '../pages/matches-list/matches-list';
+import { Nav, Menu} from 'ionic-angular';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class MyApp {
       this.pages = [
       { title: 'Home', component: MatchingPage, icon:'home'},
       { title: 'Profile', component: HomePage, icon:'briefcase' },
-      { title: 'Conversations', component: HomePage, icon:'chatboxes' }
+      { title: 'Conversations', component: MatchesListPage, icon:'chatboxes' }
     ];
     });
   }

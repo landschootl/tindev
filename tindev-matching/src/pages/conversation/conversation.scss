@@ -1,0 +1,51 @@
+page-conversation {
+	.conversation-header {
+	padding:3vh 3vh 3vh 3vh;
+		.title-name {
+			float : left;
+			padding-top:3.5vh;
+			font-weight:bold;
+			font-size : 120%;
+		}
+		.user-profile-picture-container {
+			float : right;
+		}
+
+		.user-profile-picture {
+			border-radius:50%;
+			max-height:10vh;
+			min-height:10vh;
+		}
+		height:15vh;
+		border-bottom : 1px solid #999;
+		box-shadow : 0 0 5px #888;
+	}
+
+	ion-item {
+
+	}
+
+	.users_message {
+		text-align:right;
+		float:right;
+	}
+
+	.message_name {
+		font-weight:bold;
+	}
+
+	.message {
+		max-width:60vw;
+		margin : 0;
+		overflow: hidden;
+    	white-space: nowrap;
+    	background-color:#eee;
+    	border-radius:10%;
+	}
+
+	.message-content {
+		margin : 10px;
+		overflow-wrap: break-word;
+ 		word-wrap: break-word;
+	}
+}
