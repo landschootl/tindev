@@ -39,16 +39,18 @@ export class RegisterPage {
     }
 
     public register() {
+        this.showLoading();
+
         if (this.confirmPassword !== this.registerAccount.password) {
             this.showError('Vos mots de passe sont différents !');
+        } else if (this.registerAccount.password.length < 5) {
+            this.showError('Votre mot de passe doit avoir 5 caractères au minimum.');
         } else {
             if (this.recruiter) {
                 this.registerAccount.authorities = ["ROLE_RECRUITER"];
             } else {
                 this.registerAccount.authorities = ["ROLE_FREELANCE"];
             }
-
-            this.showLoading();
 
             this.userService.save(this.registerAccount).subscribe(() => {
                 this.authService.apiAuthenticate({username: this.registerAccount.login, password: this.registerAccount.password}).subscribe(allowed => {
@@ -86,13 +88,13 @@ export class RegisterPage {
     }
 
     showError(text) {
-        this.loading.dismiss();
-
         let alert = this.alertCtrl.create({
             title: 'Attempt failed',
             subTitle: text,
             buttons: ['OK']
         });
         alert.present(prompt);
+
+        this.loading.dismiss();
     }
 }
