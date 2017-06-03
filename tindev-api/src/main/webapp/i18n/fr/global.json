@@ -18,6 +18,7 @@
                 "experience": "Experience",
                 "training": "Training",
                 "message": "Message",
+                "userMatching": "User Matching",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

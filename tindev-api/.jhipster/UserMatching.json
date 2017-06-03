@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "freelance",
+            "otherEntityName": "freelance",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "recruiter",
+            "otherEntityName": "recruiter",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "score",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170603173225",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "user_matching",
+    "pagination": "pagination"
+}

@@ -1,0 +1,37 @@
+
+<div *ngIf="userMatching">
+    <h2><span jhiTranslate="tindevApp.userMatching.detail.title">User Matching</span> {{userMatching.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tindevApp.userMatching.score">Score</span></dt>
+        <dd>
+            <span>{{userMatching.score}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.userMatching.freelance">Freelance</span></dt>
+        <dd>
+            <div *ngIf="userMatching.freelance">
+                <a [routerLink]="['/freelance', userMatching.freelance?.id]">{{userMatching.freelance?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.userMatching.recruiter">Recruiter</span></dt>
+        <dd>
+            <div *ngIf="userMatching.recruiter">
+                <a [routerLink]="['/recruiter', userMatching.recruiter?.id]">{{userMatching.recruiter?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'user-matching/'+ userMatching.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

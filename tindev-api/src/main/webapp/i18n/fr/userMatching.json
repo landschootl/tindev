@@ -1,0 +1,23 @@
+{
+    "tindevApp": {
+        "userMatching" : {
+            "home": {
+                "title": "UserMatchings",
+                "createLabel": "Créer un nouveau User Matching",
+                "createOrEditLabel": "Créer ou éditer un User Matching"
+            },
+            "created": "Un nouveau User Matching a été créé avec l'identifiant {{ param }}",
+            "updated": "Le User Matching avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le User Matching avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le User Matching {{ id }} ?"
+            },
+            "detail": {
+                "title": "User Matching"
+            },
+            "score": "Score",
+            "freelance": "Freelance",
+            "recruiter": "Recruiter"
+        }
+    }
+}

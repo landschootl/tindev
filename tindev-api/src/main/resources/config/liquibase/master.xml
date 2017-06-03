@@ -16,6 +16,7 @@
     <include file="classpath:config/liquibase/changelog/20170424183733_added_entity_Experience.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170424183734_added_entity_Training.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170424183735_added_entity_Message.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170603173225_added_entity_UserMatching.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170424183727_added_entity_constraints_Freelance.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170424183734_added_entity_constraints_Training.xml" relativeToChangelogFile="false"/>
@@ -24,5 +25,6 @@
     <include file="classpath:config/liquibase/changelog/20170424183732_added_entity_constraints_Discussion.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170424183728_added_entity_constraints_Mission.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170424183735_added_entity_constraints_Message.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170603173225_added_entity_constraints_UserMatching.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
