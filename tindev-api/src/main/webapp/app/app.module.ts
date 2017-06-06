@@ -42,7 +42,7 @@ import { PaginationConfig } from './blocks/config/uib-pagination.config';
         ErrorComponent,
         PageRibbonComponent,
         ActiveMenuDirective,
-        FooterComponent
+        FooterComponent,
     ],
     providers: [
         ProfileService,
