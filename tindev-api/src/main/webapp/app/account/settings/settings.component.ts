@@ -10,7 +10,7 @@ import { NgbTabsetConfig } from "@ng-bootstrap/ng-bootstrap";
     styleUrls: [
         'settings.scss'
     ],
-    providers: [NgbTabsetConfig] 
+    providers: [NgbTabsetConfig]
 })
 export class SettingsComponent implements OnInit {
     error: string;
@@ -66,7 +66,8 @@ export class SettingsComponent implements OnInit {
             langKey: account.langKey,
             lastName: account.lastName,
             login: account.login,
-            imageUrl: account.imageUrl
+            imageUrl: account.imageUrl,
+            authorities: account.authorities
         };
     }
 }
