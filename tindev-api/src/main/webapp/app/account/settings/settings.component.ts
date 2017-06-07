@@ -3,6 +3,8 @@ import { JhiLanguageService } from 'ng-jhipster';
 
 import { AccountService, JhiLanguageHelper, Principal } from '../../shared';
 import { NgbTabsetConfig } from "@ng-bootstrap/ng-bootstrap";
+import {ProfileRecruiterComponent} from "../../profile-recruiter/profile-recruiter.component";
+import {ProfileFreelanceComponent} from "../../profile-freelance/profile-freelance.component";
 
 @Component({
     selector: 'jhi-settings',

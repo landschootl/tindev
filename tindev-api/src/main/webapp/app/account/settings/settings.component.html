@@ -20,10 +20,12 @@
                         <br>
                         <div *ngIf="settingsAccount">
                             ici
-                            <div *ngIf="settingsAccount.authorities.contains('ROLE_FREELANCE')">
+                            <div *ngIf="settingsAccount.authorities.includes('ROLE_FREELANCE')">
+                                free
                                 <jhi-profile-freelance></jhi-profile-freelance>
                             </div>
-                            <div *ngIf="settingsAccount.authorities.contains('ROLE_RECRUITER')">
+                            <div *ngIf="settingsAccount.authorities.includes('ROLE_RECRUITER')">
+                                rec
                                 <jhi-profile-recruiter></jhi-profile-recruiter>
                             </div>
                         </div>
