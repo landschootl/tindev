@@ -18,9 +18,14 @@
                 <ngb-tab title="Informations personnelles">
                     <template ngbTabContent>
                         <br>
-                        <div>
-                            <div *ngIf="settingsAccount.authorities.includes('ROLE_FREELANCE')">FREELANCE</div>
-                            <div *ngIf="settingsAccount.authorities.includes('ROLE_RECRUITER')">RECRUITER</div>
+                        <div *ngIf="settingsAccount">
+                            ici
+                            <div *ngIf="settingsAccount.authorities.contains('ROLE_FREELANCE')">
+                                <jhi-profile-freelance></jhi-profile-freelance>
+                            </div>
+                            <div *ngIf="settingsAccount.authorities.contains('ROLE_RECRUITER')">
+                                <jhi-profile-recruiter></jhi-profile-recruiter>
+                            </div>
                         </div>
                     </template>
                 </ngb-tab>

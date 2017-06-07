@@ -23,6 +23,8 @@ import {
 } from './layouts';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { ProfileFreelanceComponent } from './profile-freelance/profile-freelance.component';
+import { ProfileRecruiterComponent } from './profile-recruiter/profile-recruiter.component';
 
 @NgModule({
     imports: [
@@ -43,6 +45,8 @@ import { PaginationConfig } from './blocks/config/uib-pagination.config';
         PageRibbonComponent,
         ActiveMenuDirective,
         FooterComponent,
+        ProfileFreelanceComponent,
+        ProfileRecruiterComponent,
     ],
     providers: [
         ProfileService,

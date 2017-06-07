@@ -48,15 +48,15 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="role">Profil</label>
-                    <div class="radio" id="role">
+                    <div class="radio" id="role" #role>
                         <label>
-                            <input type="radio" name="optionsRadios" id="optionFreelance" value="ROLE_FREELANCE">
+                            <input type="radio" name="optionsRadios" id="optionFreelance" value="ROLE_FREELANCE" (click)="changeProfile('ROLE_FREELANCE')">
                             Freelance
                         </label>
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="optionsRadios" id="optionRecruiter" value="ROLE_RECRUITER">
+                            <input type="radio" name="optionsRadios" id="optionRecruiter" value="ROLE_RECRUITER" (click)="changeProfile('ROLE_RECRUITER')">
                             Recruter
                         </label>
                     </div>

@@ -39,6 +39,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#login'), 'focus', []);
     }
 
+    changeProfile(profile: string): void {
+        this.registerAccount.authorities = [profile];
+    }
+
     register() {
         if (this.registerAccount.password !== this.confirmPassword) {
             this.doNotMatch = 'ERROR';
@@ -49,7 +53,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             this.errorEmailExists = null;
             this.languageService.getCurrent().then((key) => {
                 this.registerAccount.langKey = key;
-                this.registerAccount.authorities = ["ROLE_FREELANCE"];
 
                 this.registerService.save(this.registerAccount).subscribe(() => {
                     this.success = true;
