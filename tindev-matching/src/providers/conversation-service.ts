@@ -26,15 +26,15 @@ export class ConversationService {
   	var data :Array<Conversation>;
   	data = [];
 
-  	var mac = new Message('2017-05-18T13:58:23', "Hello Mr. I'm sending you this message in order to have a meeting with you because I think your profile is exactly what we need for our project", 'Ali Conners', 'ali.conners@tindev.com', 'user@localhost');
+  	var mac = new Message('2017-05-18T13:58:23', "Bonjour M. je vous contacte car votre profil correspondrait à la mission. Nous pourrions peut-être également avoir un entretien téléphonique ou physique selon vos disponibilités", 'Ali Conners', 'ali.conners@tindev.com', 'user@localhost');
   	var cac = new Conversation('Chef de projet Big Data', 'Ali Conners',mac);
   	data.push(cac);
 
-  	var mth = new Message('2017-05-18T13:57:23', "Hello Mr. I'm sending you this message in order to have a meeting with you because I think your profile is exactly what we need for our project", 'Trevor Jensen', 'trever.jensen@tindev.com', 'user@localhost');
+  	var mth = new Message('2017-05-18T13:57:23', "Bonjour M. je vous contacte car votre profil correspondrait à la mission. Nous pourrions peut-être également avoir un entretien téléphonique ou physique selon vos disponibilités", 'Trevor Jensen', 'trever.jensen@tindev.com', 'user@localhost');
   	var cth = new Conversation('Développeur mobile', 'Trevor Hansen',mth);
   	data.push(cth);
 
-  	var msa = new Message('2017-05-18T13:57:22', "Hello Mr. I'm interested in your profile. Please contact my associate Mr Trevor Jensen", 'Sandra Adams', 'sandra.adams@tindev.com', 'user@localhost');
+  	var msa = new Message('2017-05-18T13:57:22', "Bonjour M. je vous contacte car votre profil correspondrait à la mission. Nous pourrions peut-être également avoir un entretien téléphonique ou physique selon vos disponibilités", 'Sandra Adams', 'sandra.adams@tindev.com', 'user@localhost');
   	var csa = new Conversation('Développeur fullstack', 'Sandra Adams',msa);
   	data.push(csa);
   	return Observable.create(observer => {

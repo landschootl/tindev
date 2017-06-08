@@ -17,6 +17,10 @@ export class Conversation {
   public addMessage(email : string, content : string) {
     var m = new Message('date', content, 'Test', email, this.interlocutor.email);
     this.messages.push(m);
+    return new Promise(function(resolve, reject) {
+      resolve('good');
+      reject('notgood');
+    });
   }
 }
 

@@ -40,10 +40,12 @@ export class ConversationPage {
   public send() {
     //console.log("sending : " + this.currentMessage);
     //api add message
-    this.scrollBottom();
     this.fullConversation.addMessage(this.auth.getUserInfo().email, this.currentMessage);
     this.currentMessage = '';
-    
+    var that = this;
+    setTimeout(function () {
+      that.scrollBottom();
+      }, 50);
   }
 
   public scrollBottom() {

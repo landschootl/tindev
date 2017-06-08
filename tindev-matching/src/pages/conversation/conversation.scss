@@ -1,8 +1,12 @@
 page-conversation {
-	
+	word-wrap:break-word !important;
 	.block {
-	display:block;
+		display:block;
 	}
+
+	.scrollable {
+		margin-bottom:10vh;
+	}	
 
 	.conversation-header {
 	padding:3vh 3vh 3vh 3vh;
@@ -40,10 +44,8 @@ page-conversation {
 		min-width:60vw;
 		width:60vw;
 		margin : 0;
-		overflow: hidden;
-    	white-space: nowrap;
     	background-color:#eee;
-    	border-radius:10%;
+    	height:auto;
 	}
 
 	.users_message {
@@ -55,8 +57,6 @@ page-conversation {
 
 	.message-content {
 		margin : 10px;
-		overflow-wrap: break-word;
- 		word-wrap: break-word;
 	}
 
 	.conversation-footer {
