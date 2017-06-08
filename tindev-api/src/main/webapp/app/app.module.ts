@@ -9,6 +9,10 @@ import { TindevHomeModule } from './home/home.module';
 import { TindevAdminModule } from './admin/admin.module';
 import { TindevAccountModule } from './account/account.module';
 import { TindevEntityModule } from './entities/entity.module';
+import { MissionModule } from './mission/mission.module';
+import { customHttpProvider } from './blocks/interceptor/http.provider';
+import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import {ProfileFreelanceModule} from "./profile-freelance/profile-freelance.module";
 
 import {
     ActiveMenuDirective,
@@ -20,8 +24,7 @@ import {
     PageRibbonComponent,
     ProfileService
 } from './layouts';
-import { customHttpProvider } from './blocks/interceptor/http.provider';
-import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import {ProfileRecruiterComponent} from "./profile-recruiter/profile-recruiter.component";
 
 @NgModule({
     imports: [
@@ -32,7 +35,8 @@ import { PaginationConfig } from './blocks/config/uib-pagination.config';
         TindevHomeModule,
         TindevAdminModule,
         TindevAccountModule,
-        TindevEntityModule
+        TindevEntityModule,
+        ProfileFreelanceModule
     ],
     declarations: [
         JhiMainComponent,
@@ -40,7 +44,8 @@ import { PaginationConfig } from './blocks/config/uib-pagination.config';
         ErrorComponent,
         PageRibbonComponent,
         ActiveMenuDirective,
-        FooterComponent
+        FooterComponent,
+        ProfileRecruiterComponent
     ],
     providers: [
         ProfileService,

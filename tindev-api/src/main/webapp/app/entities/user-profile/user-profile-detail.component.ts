@@ -32,6 +32,7 @@ export class UserProfileDetailComponent implements OnInit, OnDestroy {
             this.userProfile = userProfile;
         });
     }
+
     previousState() {
         window.history.back();
     }

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Join Tindev</ion-title>
+    <ion-title>Création de compte</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,40 +20,31 @@
       </ion-col>
     </ion-row>
     <div class="register-box">
-    <form (ngSubmit)="signin()" #registerForm="ngForm">
+    <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
           <ion-list inset>
 
           	<ion-item>
-			  <ion-label color="text-primary">Are you a recruiter ?</ion-label>
-			  <ion-toggle checked="false" name="recruiter" [(ngModel)]="registerCredentials.recruiter"></ion-toggle>
+			  <ion-label color="text-primary">Etes-vous un recruteur ?</ion-label>
+			  <ion-toggle checked="false" name="recruiter" [(ngModel)]="recruiter"></ion-toggle>
 			</ion-item>
 
 			<ion-item>
-              <ion-input type="text" placeholder="Last name" name="lastname" [(ngModel)]="registerCredentials.lastname" required></ion-input>
+              <ion-input type="text" placeholder="Votre nom d'utilisateur" name="username" [(ngModel)]="registerAccount.login" required></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input type="text" placeholder="First name" name="firstname" [(ngModel)]="registerCredentials.firstname" required></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input type="email" placeholder="Votre email" name="email" [(ngModel)]="registerAccount.email" required></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="unconfirmed-password" required></ion-input>
+              <ion-input type="password" placeholder="Mot de passe" name="unconfirmed-password" [(ngModel)]="registerAccount.password" required></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input type="password" placeholder="Please confirm your password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input type="password" placeholder="Confirmation du mot de passe" name="password" [(ngModel)]="confirmPassword" required></ion-input>
             </ion-item>
-
-            <ion-item>
-			  <ion-label>Accept  <a href="">Terms of use</a></ion-label>
-			  <ion-checkbox></ion-checkbox>
-		    </ion-item>
             
           </ion-list>
         </ion-col>
@@ -61,7 +52,7 @@
       
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Signin</button>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Enregistrement</button>
         </ion-col>
       </ion-row>
       

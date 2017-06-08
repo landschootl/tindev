@@ -15,7 +15,7 @@
 	<ion-searchbar
 	  [(ngModel)]="searchinput"
 	  (ionInput)="onSearchInput($event)"
-	  placeholder="Project or interlocutor name">
+	  placeholder="Projet ou nom de l'interlocuteur">
 	</ion-searchbar>
 	<div *ngIf="this.showSearchLoader" class="loading">
 		<ion-spinner style="text-align: center" name="dots"></ion-spinner>

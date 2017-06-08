@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { JhiLanguageService } from 'ng-jhipster';
 
 import { AccountService, JhiLanguageHelper, Principal } from '../../shared';
+import { NgbTabsetConfig } from "@ng-bootstrap/ng-bootstrap";
+import {ProfileRecruiterComponent} from "../../profile-recruiter/profile-recruiter.component";
+import {ProfileFreelanceComponent} from "../../profile-freelance/profile-freelance.component";
 
 @Component({
     selector: 'jhi-settings',
     templateUrl: './settings.component.html',
     styleUrls: [
         'settings.scss'
-    ]
+    ],
+    providers: [NgbTabsetConfig]
 })
 export class SettingsComponent implements OnInit {
     error: string;
@@ -23,7 +27,8 @@ export class SettingsComponent implements OnInit {
         private account: AccountService,
         private principal: Principal,
         private languageService: JhiLanguageService,
-        private languageHelper: JhiLanguageHelper
+        private languageHelper: JhiLanguageHelper,
+        private config: NgbTabsetConfig
     ) {
         this.languageService.setLocations(['settings']);
     }
@@ -63,7 +68,8 @@ export class SettingsComponent implements OnInit {
             langKey: account.langKey,
             lastName: account.lastName,
             login: account.login,
-            imageUrl: account.imageUrl
+            imageUrl: account.imageUrl,
+            authorities: account.authorities
         };
     }
 }

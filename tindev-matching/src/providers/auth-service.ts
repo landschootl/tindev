@@ -59,22 +59,6 @@ export class AuthService {
       });
   }
  
- //TODO
-  public register(credentials) {
-    if (credentials.email === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
-    } else {
-      // At this point store the credentials to your backend!
-      // Refactor ici pour rappeler une fonction login
-      return Observable.create(observer => {
-        this.currentUser = new User(credentials.firstname, credentials.lastname, credentials.recruiter, 'ludovic.landschoot@tindev.com', false, undefined);
-        console.log("User logged in : " + this.currentUser.firstname + " " + this.currentUser.lastname + " : " + this.currentUser.email + " recruiter : " + this.currentUser.recruiter);
-        observer.next(true);
-        observer.complete();
-      });
-    }
-  }
- 
   public getUserInfo() : User {
     return this.currentUser;
   }
