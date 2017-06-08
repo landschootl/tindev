@@ -106,8 +106,11 @@ public class UserService {
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authorityRepository.findOne(AuthoritiesConstants.USER));
 
+        String freelanceOrRecruiter = "";
+
         for (String auth: auths) {
             if (!auth.equals(AuthoritiesConstants.ADMIN)) {
+                freelanceOrRecruiter = auth;
                 Authority authority = new Authority();
                 authority.setName(auth);
                 authorities.add(authority);
@@ -122,11 +125,11 @@ public class UserService {
         userProfile.setId(idUser);
         userProfileRepository.save(userProfile);
 
-        if(authorities.contains(AuthoritiesConstants.FREELANCE)){
+        if(freelanceOrRecruiter.equals(AuthoritiesConstants.FREELANCE)){
             Freelance freelance = new Freelance();
             freelance.setIdUser(idUser);
             freelanceRepository.save(freelance);
-        } else if(authorities.contains(AuthoritiesConstants.RECRUITER)){
+        } else if(freelanceOrRecruiter.equals(AuthoritiesConstants.RECRUITER)){
             Recruiter recruiter = new Recruiter();
             recruiter.setIdUser(idUser);
             recruiterRepository.save(recruiter);
