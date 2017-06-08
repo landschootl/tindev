@@ -44,6 +44,7 @@ export class FreelanceDialogComponent implements OnInit {
         this.domainService.query().subscribe(
             (res: Response) => { this.domains = res.json(); }, (res: Response) => this.onError(res.json()));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }

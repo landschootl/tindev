@@ -1,4 +1,10 @@
 <div *ngIf="userProfile && freelanceProfile">
+    <div class="alert alert-success" *ngIf="successEditUserProfile">
+        <strong>Les informations utilisateur sont bien sauvegardé !</strong>
+    </div>
+    <div class="alert alert-error" *ngIf="errorEditUserProfile !== ''">
+        {{errorEditUserProfile}}
+    </div>
     <div class="row">
         <p class="profile-sous-title col-md-8">MES INFORMATIONS UTILISATEUR</p>
         <button (click)="saveUserProfile()" type="button" class="edit-button btn btn-sm col-md-4">
@@ -26,9 +32,15 @@
 
 
     <hr>
+    <div class="alert alert-success" *ngIf="successEditFreelanceProfile">
+        <strong>Les informations métier sont bien sauvegardé !</strong>
+    </div>
+    <div *ngIf="errorEditFreelanceProfile !== ''">
+        {{errorEditFreelanceProfile}}
+    </div>
     <div class="row">
         <p class="profile-sous-title col-md-8">MES INFORMATIONS METIER</p>
-        <button (click)="saveUserProfile()" type="button" class="edit-button btn btn-sm col-md-4">
+        <button (click)="saveFreelanceProfile()" type="button" class="edit-button btn btn-sm col-md-4">
             <span class="button-text">Enregistrer</span>
         </button>
     </div>
@@ -41,7 +53,7 @@
     <div class="form-group">
         <label class="form-control-label" for="field_birthdate">Date de naissance</label>
         <div class="input-group">
-            <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker  #birthdateDp="ngbDatepicker" [(ngModel)]="freelanceProfile.birthdate"
+            <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker #birthdateDp="ngbDatepicker" [(ngModel)]="freelanceProfile.birthdate"
             />
             <span class="input-group-btn">
                     <button type="button" class="btn btn-default" (click)="birthdateDp.toggle()"><i class="fa fa-calendar"></i></button>
@@ -52,14 +64,14 @@
         <label for="field_specialty">Spécialité</label>
         <select class="form-control" id="field_specialty" name="specialty" [(ngModel)]="freelanceProfile.specialty" >
             <option [ngValue]="null"></option>
-            <option [ngValue]="specialtyOption.id === freelance.specialty?.id ? freelance.specialty : specialtyOption" *ngFor="let specialtyOption of specialties; trackBy: trackSpecialtyById">{{specialtyOption.name}}</option>
+            <option [ngValue]="specialtyOption.id === freelanceProfile.specialty?.id ? freelanceProfile.specialty : specialtyOption" *ngFor="let specialtyOption of specialties; trackBy: trackSpecialtyById">{{specialtyOption.name}}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="field_domain">Domaine</label>
         <select class="form-control" id="field_domain" name="domain" [(ngModel)]="freelanceProfile.domain" >
             <option [ngValue]="null"></option>
-            <option [ngValue]="domainOption.id === freelance.domain?.id ? freelance.domain : domainOption" *ngFor="let domainOption of domains; trackBy: trackDomainById">{{domainOption.name}}</option>
+            <option [ngValue]="domainOption.id === freelanceProfile.domain?.id ? freelanceProfile.domain : domainOption" *ngFor="let domainOption of domains; trackBy: trackDomainById">{{domainOption.name}}</option>
         </select>
     </div>
 </div>
