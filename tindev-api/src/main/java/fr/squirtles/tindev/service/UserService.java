@@ -2,8 +2,10 @@ package fr.squirtles.tindev.service;
 
 import fr.squirtles.tindev.domain.Authority;
 import fr.squirtles.tindev.domain.User;
+import fr.squirtles.tindev.domain.UserProfile;
 import fr.squirtles.tindev.repository.AuthorityRepository;
 import fr.squirtles.tindev.config.Constants;
+import fr.squirtles.tindev.repository.UserProfileRepository;
 import fr.squirtles.tindev.repository.UserRepository;
 import fr.squirtles.tindev.security.AuthoritiesConstants;
 import fr.squirtles.tindev.security.SecurityUtils;
@@ -33,12 +35,15 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserProfileRepository userProfileRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
+    public UserService(UserRepository userRepository, UserProfileRepository userProfileRepository,PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
+        this.userProfileRepository = userProfileRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
     }
@@ -85,6 +90,7 @@ public class UserService {
         String imageUrl, String langKey, Set<String> auths) {
 
         User newUser = new User();
+
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(login);
@@ -110,6 +116,11 @@ public class UserService {
 
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
+
+        UserProfile userProfile = new UserProfile();
+        userProfile.setId(userRepository.findOneByLogin(login).get().getId());
+        userProfileRepository.save(userProfile);
+
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
