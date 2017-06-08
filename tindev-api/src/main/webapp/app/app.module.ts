@@ -12,7 +12,6 @@ import { TindevEntityModule } from './entities/entity.module';
 import { MissionModule } from './mission/mission.module';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
-import {ProfileFreelanceModule} from "./profile-freelance/profile-freelance.module";
 
 import {
     ActiveMenuDirective,
@@ -24,7 +23,6 @@ import {
     PageRibbonComponent,
     ProfileService
 } from './layouts';
-import {ProfileRecruiterComponent} from "./profile-recruiter/profile-recruiter.component";
 
 @NgModule({
     imports: [
@@ -35,8 +33,7 @@ import {ProfileRecruiterComponent} from "./profile-recruiter/profile-recruiter.c
         TindevHomeModule,
         TindevAdminModule,
         TindevAccountModule,
-        TindevEntityModule,
-        ProfileFreelanceModule
+        TindevEntityModule
     ],
     declarations: [
         JhiMainComponent,
@@ -44,8 +41,7 @@ import {ProfileRecruiterComponent} from "./profile-recruiter/profile-recruiter.c
         ErrorComponent,
         PageRibbonComponent,
         ActiveMenuDirective,
-        FooterComponent,
-        ProfileRecruiterComponent
+        FooterComponent
     ],
     providers: [
         ProfileService,

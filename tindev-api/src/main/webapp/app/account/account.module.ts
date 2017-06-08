@@ -18,6 +18,8 @@ import {
     RegisterComponent,
     SettingsComponent
 } from './';
+import {ProfileFreelanceComponent} from "./profile-freelance/profile-freelance.component";
+import {ProfileRecruiterComponent} from "./profile-recruiter/profile-recruiter.component";
 
 @NgModule({
     imports: [
@@ -31,7 +33,9 @@ import {
         PasswordStrengthBarComponent,
         PasswordResetInitComponent,
         PasswordResetFinishComponent,
-        SettingsComponent
+        SettingsComponent,
+        ProfileFreelanceComponent,
+        ProfileRecruiterComponent
     ],
     providers: [
         Register,
