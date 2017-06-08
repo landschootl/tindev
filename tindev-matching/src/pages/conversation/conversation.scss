@@ -1,4 +1,9 @@
 page-conversation {
+	
+	.block {
+	display:block;
+	}
+
 	.conversation-header {
 	padding:3vh 3vh 3vh 3vh;
 		.title-name {
@@ -19,15 +24,11 @@ page-conversation {
 		height:15vh;
 		border-bottom : 1px solid #999;
 		box-shadow : 0 0 5px #888;
+		display:block;
 	}
 
 	ion-item {
 
-	}
-
-	.users_message {
-		text-align:right;
-		float:right;
 	}
 
 	.message_name {
@@ -36,6 +37,8 @@ page-conversation {
 
 	.message {
 		max-width:60vw;
+		min-width:60vw;
+		width:60vw;
 		margin : 0;
 		overflow: hidden;
     	white-space: nowrap;
@@ -43,9 +46,31 @@ page-conversation {
     	border-radius:10%;
 	}
 
+	.users_message {
+		text-align:right;
+		float:right;
+		background-color:#2DB9D7;
+		color:white;
+	}
+
 	.message-content {
 		margin : 10px;
 		overflow-wrap: break-word;
  		word-wrap: break-word;
+	}
+
+	.conversation-footer {
+		border-top : 1px solid #999;
+		box-shadow : 0 0 3px #888;
+	}
+
+	#send_message {
+		max-width:85vw;
+		float:left;
+	}
+	#send_button {
+		max-width:13vw;
+		min-width:13vw;
+		float:right;
 	}
 }

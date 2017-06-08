@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { ConversationService } from '../../providers/conversation-service';
 import { Conversation } from '../../shared/models/conversation';
 import { AuthService } from '../../providers/auth-service';
-import {Message} from '../../shared/models/message';
+import { Message } from '../../shared/models/message';
 
 /*
   Generated class for the Conversation page.
@@ -16,7 +16,9 @@ import {Message} from '../../shared/models/message';
   templateUrl: 'conversation.html'
 })
 export class ConversationPage {
+  @ViewChild(Content) content : Content;
   fullConversation : Conversation;
+  currentMessage : string;
   placeholderpicture = 'assets/images/user-picture-placeholder.jpg';
   
   constructor(public navCtrl: NavController, public navParams: NavParams, conv : ConversationService, public auth : AuthService) {
@@ -25,14 +27,28 @@ export class ConversationPage {
   	console.log(this.fullConversation);
   }
 
-  ionViewDidLoad() {
-    console.log('conversation did load');
+  ionViewDidEnter() {
+    this.scrollBottom();
   }
 
   isUsersMessage(message : Message) {
   	if (message.email_sender == this.auth.getUserInfo().email) {
   		return 'users_message';
   	}
+  }
+
+  public send() {
+    //console.log("sending : " + this.currentMessage);
+    //api add message
+    this.scrollBottom();
+    this.fullConversation.addMessage(this.auth.getUserInfo().email, this.currentMessage);
+    this.currentMessage = '';
+    
+  }
+
+  public scrollBottom() {
+    let dimensions = this.content.getContentDimensions();
+    this.content.scrollToBottom();
   }
 
 }

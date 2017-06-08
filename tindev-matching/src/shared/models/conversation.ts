@@ -13,6 +13,11 @@ export class Conversation {
     this.interlocutor_name = interlocutor_name;
     this.last_message = last_message;
   }
+
+  public addMessage(email : string, content : string) {
+    var m = new Message('date', content, 'Test', email, this.interlocutor.email);
+    this.messages.push(m);
+  }
 }
 
 
