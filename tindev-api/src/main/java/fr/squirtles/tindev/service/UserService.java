@@ -1,17 +1,14 @@
 package fr.squirtles.tindev.service;
 
-import fr.squirtles.tindev.domain.Authority;
-import fr.squirtles.tindev.domain.User;
-import fr.squirtles.tindev.domain.UserProfile;
-import fr.squirtles.tindev.repository.AuthorityRepository;
+import fr.squirtles.tindev.domain.*;
+import fr.squirtles.tindev.repository.*;
 import fr.squirtles.tindev.config.Constants;
-import fr.squirtles.tindev.repository.UserProfileRepository;
-import fr.squirtles.tindev.repository.UserRepository;
 import fr.squirtles.tindev.security.AuthoritiesConstants;
 import fr.squirtles.tindev.security.SecurityUtils;
 import fr.squirtles.tindev.service.util.RandomUtil;
 import fr.squirtles.tindev.service.dto.UserDTO;
 
+import fr.squirtles.tindev.web.rest.FreelanceResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -34,16 +31,19 @@ public class UserService {
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
-
     private final UserProfileRepository userProfileRepository;
+    private final FreelanceRepository freelanceRepository;
+    private final RecruiterRepository recruiterRepository;
 
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, UserProfileRepository userProfileRepository,PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
+    public UserService(UserRepository userRepository, UserProfileRepository userProfileRepository, FreelanceRepository freelanceRepository, RecruiterRepository recruiterRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.userProfileRepository = userProfileRepository;
+        this.freelanceRepository = freelanceRepository;
+        this.recruiterRepository = recruiterRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
     }
@@ -116,10 +116,21 @@ public class UserService {
 
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
+        Long idUser = userRepository.findOneByLogin(login).get().getId();
 
         UserProfile userProfile = new UserProfile();
-        userProfile.setId(userRepository.findOneByLogin(login).get().getId());
+        userProfile.setId(idUser);
         userProfileRepository.save(userProfile);
+
+        if(authorities.contains(AuthoritiesConstants.FREELANCE)){
+            Freelance freelance = new Freelance();
+            freelance.setIdUser(idUser);
+            freelanceRepository.save(freelance);
+        } else if(authorities.contains(AuthoritiesConstants.RECRUITER)){
+            Recruiter recruiter = new Recruiter();
+            recruiter.setIdUser(idUser);
+            recruiterRepository.save(recruiter);
+        }
 
         log.debug("Created Information for User: {}", newUser);
         return newUser;
