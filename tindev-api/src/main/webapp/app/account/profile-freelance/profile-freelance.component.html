@@ -1,1 +1,38 @@
-Freelance
+<div *ngIf="userProfile">
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tindevApp.userProfile.firstname">Firstname</span></dt>
+        <dd>
+            <span>{{userProfile.firstname}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.userProfile.lastname">Lastname</span></dt>
+        <dd>
+            <span>{{userProfile.lastname}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.userProfile.description">Description</span></dt>
+        <dd>
+            <span>{{userProfile.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.userProfile.photoUrl">Photo Url</span></dt>
+        <dd>
+            <span>{{userProfile.photoUrl}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.userProfile.city">City</span></dt>
+        <dd>
+            <span>{{userProfile.city}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'user-profile/'+ userProfile.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
