@@ -3,19 +3,25 @@ import {UserProfile} from "../../entities/user-profile/user-profile.model";
 import {JhiLanguageService} from "ng-jhipster";
 import {UserProfileService} from "../../entities/user-profile/user-profile.service";
 import {ActivatedRoute} from "@angular/router";
+import {FreelanceService} from "../../entities/freelance/freelance.service";
+import {Freelance} from "../../entities/freelance/freelance.model";
 
 @Component({
   selector: 'jhi-profile-freelance',
   templateUrl: './profile-freelance.component.html',
-  styles: ['profile-freelance.scss']
+  styleUrls: [
+      'profile-freelance.scss'
+  ]
 })
 export class ProfileFreelanceComponent implements OnInit, OnDestroy, OnChanges {
 
     @Input() settingsAccount: any;
     userProfile: UserProfile;
+    freelanceProfile: Freelance;
 
     constructor(
         private jhiLanguageService: JhiLanguageService,
+        private freelanceService: FreelanceService,
         private userProfileService: UserProfileService,
         private route: ActivatedRoute
     ) {
@@ -23,7 +29,6 @@ export class ProfileFreelanceComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
-        console.log("changes");
         if (changes['settingsAccount']) {
             this.load(this.settingsAccount.id);
         }
@@ -35,6 +40,9 @@ export class ProfileFreelanceComponent implements OnInit, OnDestroy, OnChanges {
     load(id) {
         this.userProfileService.find(id).subscribe(userProfile => {
             this.userProfile = userProfile;
+        });
+        this.freelanceService.query("FROM freelance F WHERE F.idUser = "+id).subscribe(freelanceProfile => {
+            this.freelanceProfile = freelanceProfile;
         });
     }
 

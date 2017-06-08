@@ -34,6 +34,7 @@ userProfiles: UserProfile[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {

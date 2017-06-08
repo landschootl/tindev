@@ -1,38 +1,55 @@
-<div *ngIf="userProfile">
-    <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="tindevApp.userProfile.firstname">Firstname</span></dt>
-        <dd>
-            <span>{{userProfile.firstname}}</span>
-        </dd>
-        <dt><span jhiTranslate="tindevApp.userProfile.lastname">Lastname</span></dt>
-        <dd>
-            <span>{{userProfile.lastname}}</span>
-        </dd>
-        <dt><span jhiTranslate="tindevApp.userProfile.description">Description</span></dt>
-        <dd>
-            <span>{{userProfile.description}}</span>
-        </dd>
-        <dt><span jhiTranslate="tindevApp.userProfile.photoUrl">Photo Url</span></dt>
-        <dd>
-            <span>{{userProfile.photoUrl}}</span>
-        </dd>
-        <dt><span jhiTranslate="tindevApp.userProfile.city">City</span></dt>
-        <dd>
-            <span>{{userProfile.city}}</span>
-        </dd>
-    </dl>
+<div *ngIf="userProfile && freelanceProfile">
+    <p class="profile-sous-title">MES INFORMATIONS UTILISATEUR</p>
+    <div class="form-group">
+        <label class="form-control-label" for="field_description">Description</label>
+        <input type="text" class="form-control" name="description" id="field_description"
+               [(ngModel)]="userProfile.description"
+        />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_photoUrl">Url de la photo</label>
+        <input type="text" class="form-control" name="photoUrl" id="field_photoUrl"
+               [(ngModel)]="userProfile.photoUrl"
+        />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_city">Ville</label>
+        <input type="text" class="form-control" name="city" id="field_city"
+               [(ngModel)]="userProfile.city"
+        />
+    </div>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'user-profile/'+ userProfile.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
+    <hr>
+    <p class="profile-sous-title">MES INFORMATIONS METIER</p>
+    <div class="form-group">
+        <label class="form-control-label" for="field_dailyPrice">Prix</label>
+        <input type="number" class="form-control" name="dailyPrice" id="field_dailyPrice"
+               [(ngModel)]="freelanceProfile.dailyPrice"
+        />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_birthdate">Date de naissance</label>
+        <div class="input-group">
+            <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker  #birthdateDp="ngbDatepicker" [(ngModel)]="freelanceProfile.birthdate"
+            />
+            <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="birthdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="field_specialty">Spécialité</label>
+        <select class="form-control" id="field_specialty" name="specialty" [(ngModel)]="freelanceProfile.specialty" >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="specialtyOption.id === freelance.specialty?.id ? freelance.specialty : specialtyOption" *ngFor="let specialtyOption of specialties; trackBy: trackSpecialtyById">{{specialtyOption.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="field_domain">Domaine</label>
+        <select class="form-control" id="field_domain" name="domain" [(ngModel)]="freelanceProfile.domain" >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="domainOption.id === freelance.domain?.id ? freelance.domain : domainOption" *ngFor="let domainOption of domains; trackBy: trackDomainById">{{domainOption.name}}</option>
+        </select>
+    </div>
 </div>
