@@ -21,3 +21,5 @@ export * from './shared-libs.module';
 export * from './shared-common.module';
 export * from './shared.module';
 export * from './auth/user-route-access-service';
+export * from './model/request-util';
+export * from './model/response-wrapper.model';

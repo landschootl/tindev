@@ -1,0 +1,20 @@
+{
+    "tindevApp": {
+        "matching" : {
+            "home": {
+                "title": "Matchings",
+                "createLabel": "Créer un nouveau Matching",
+                "createOrEditLabel": "Créer ou éditer un Matching"
+            },
+            "created": "Un nouveau Matching a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Matching avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Matching avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Matching {{ id }} ?"
+            },
+            "detail": {
+                "title": "Matching"
+            }
+        }
+    }
+}
