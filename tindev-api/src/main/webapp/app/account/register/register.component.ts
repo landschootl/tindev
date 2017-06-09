@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         this.success = false;
         this.registerAccount = {};
+        this.registerAccount.authorities = ['ROLE_FREELANCE'];
     }
 
     ngAfterViewInit() {
