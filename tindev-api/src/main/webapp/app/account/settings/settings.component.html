@@ -2,8 +2,9 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <div class="cover-picture">
-                <img align="left" class="cover-image-lg" src="{{coverUrl}}" alt="Profile image example" />
-                <img align="left" class="cover-image-profile thumbnail" src="{{profileUrl}}" alt="Profile image example" />
+                <img class="cover-image-lg" src="{{coverUrl}}" alt="Profile image example"/>
+                <img class="cover-image-profile thumbnail" src="{{profileUrl}}"
+                     alt="Profile image example"/>
                 <div class="cover-profile-text">
                     <h2 *ngIf="settingsAccount"><b>{{settingsAccount.firstName}} {{settingsAccount.lastName}}</b></h2>
                 </div>
@@ -33,8 +34,10 @@
                         <form name="form" role="form" #settingsForm="ngForm" *ngIf="settingsAccount" novalidate>
                             <div class="form-group">
                                 <label class="form-control-label" for="firstName">Nom</label>
-                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{settings?.form?.firstname.placeholder}}"
-                                       [(ngModel)]="settingsAccount.firstName" minlength=1 maxlength=50 #firstNameInput="ngModel"
+                                <input type="text" class="form-control" id="firstName" name="firstName"
+                                       placeholder="{{settings?.form?.firstname.placeholder}}"
+                                       [(ngModel)]="settingsAccount.firstName" minlength=1 maxlength=50
+                                       #firstNameInput="ngModel"
                                        required>
                                 <div *ngIf="firstNameInput.dirty && firstNameInput.invalid">
                                     <small class="form-text text-danger" *ngIf="firstNameInput.errors.required">
@@ -50,8 +53,10 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="lastName">Prénom</label>
-                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{settings?.form?.lastname.placeholder}}"
-                                       [(ngModel)]="settingsAccount.lastName" minlength=1 maxlength=50 #lastNameInput="ngModel"
+                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                       placeholder="{{settings?.form?.lastname.placeholder}}"
+                                       [(ngModel)]="settingsAccount.lastName" minlength=1 maxlength=50
+                                       #lastNameInput="ngModel"
                                        required>
                                 <div *ngIf="lastNameInput.dirty && lastNameInput.invalid">
                                     <small class="form-text text-danger" *ngIf="lastNameInput.errors.required">
@@ -67,8 +72,10 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="{{global?.form?.email.placeholder}}"
-                                       [(ngModel)]="settingsAccount.email" minlength=5 maxlength=100 #emailInput="ngModel" required>
+                                <input type="email" class="form-control" id="email" name="email"
+                                       placeholder="{{global?.form?.email.placeholder}}"
+                                       [(ngModel)]="settingsAccount.email" minlength=5 maxlength=100
+                                       #emailInput="ngModel" required>
                                 <div *ngIf="emailInput.dirty && emailInput.invalid">
                                     <small class="form-text text-danger" *ngIf="emailInput.errors.required">
                                         Your email is required.
@@ -86,14 +93,19 @@
                             </div>
                             <div class="form-group" *ngIf="languages && languages.length > 0">
                                 <label for="langKey">Langue</label>
-                                <select class="form-control" id="langKey" name="langKey" [(ngModel)]="settingsAccount.langKey">
-                                    <option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</option>
+                                <select class="form-control" id="langKey" name="langKey"
+                                        [(ngModel)]="settingsAccount.langKey">
+                                    <option *ngFor="let language of languages" [value]="language">{{language |
+                                        findLanguageFromKey}}
+                                    </option>
                                 </select>
                             </div>
                             <div id="timelineNav">
                                 <div id="timelineButtons">
                                     <span class="follow">
-                                        <button (click)="save()" type="button" class="userActions-editButton edit-button btn" data-scribe-element="profile_edit_button">
+                                        <button (click)="save()" type="button"
+                                                class="userActions-editButton edit-button btn"
+                                                data-scribe-element="profile_edit_button">
                                             <span class="button-text">Enregistrer</span>
                                         </button>
                                     </span>

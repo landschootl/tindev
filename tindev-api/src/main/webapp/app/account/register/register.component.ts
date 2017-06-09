@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ElementRef, OnInit, Renderer } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiLanguageService } from 'ng-jhipster';
-
+import { JhiLanguageService, EventManager } from 'ng-jhipster';
 import { Register } from './register.service';
-import { LoginModalService } from '../../shared';
+import { Router } from '@angular/router';
+import { LoginModalService } from '../../shared/login/login-modal.service';
+import { LoginService } from '../../shared/login/login.service';
 
 @Component({
     selector: 'jhi-register',
@@ -23,6 +24,9 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     constructor(
         private languageService: JhiLanguageService,
         private loginModalService: LoginModalService,
+        private eventManager: EventManager,
+        private loginService: LoginService,
+        private router: Router,
         private registerService: Register,
         private elementRef: ElementRef,
         private renderer: Renderer
@@ -56,6 +60,18 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
                 this.registerService.save(this.registerAccount).subscribe(() => {
                     this.success = true;
+
+                    this.loginService.login({
+                        username: this.registerAccount.login,
+                        password: this.registerAccount.password,
+                        rememberMe: false
+                    }).then(() => {
+                        this.router.navigate(['']);
+                        this.eventManager.broadcast({
+                            name: 'authenticationSuccess',
+                            content: 'Sending Authentication Success'
+                        });
+                    });
                 }, (response) => this.processError(response));
             });
         }

@@ -1,22 +1,22 @@
-import {Component, Input, OnChanges, OnInit, SimpleChange} from '@angular/core';
-import {UserProfile} from "../../entities/user-profile/user-profile.model";
-import {JhiLanguageService} from "ng-jhipster";
-import {UserProfileService} from "../../entities/user-profile/user-profile.service";
-import {ActivatedRoute} from "@angular/router";
-import {FreelanceService} from "../../entities/freelance/freelance.service";
-import {Freelance} from "../../entities/freelance/freelance.model";
-import {error} from "util";
-import {Specialty} from "../../entities/specialty/specialty.model";
-import {Domain} from "../../entities/domain/domain.model";
-import {SpecialtyService} from "../../entities/specialty/specialty.service";
-import {DomainService} from "../../entities/domain/domain.service";
+import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { UserProfile } from '../../entities/user-profile/user-profile.model';
+import { JhiLanguageService } from 'ng-jhipster';
+import { UserProfileService } from '../../entities/user-profile/user-profile.service';
+import { ActivatedRoute } from '@angular/router';
+import { FreelanceService } from '../../entities/freelance/freelance.service';
+import { Freelance } from '../../entities/freelance/freelance.model';
+import { error } from 'util';
+import { Specialty } from '../../entities/specialty/specialty.model';
+import { Domain } from '../../entities/domain/domain.model';
+import { SpecialtyService } from '../../entities/specialty/specialty.service';
+import { DomainService } from '../../entities/domain/domain.service';
 
 @Component({
-  selector: 'jhi-profile-freelance',
-  templateUrl: './profile-freelance.component.html',
-  styleUrls: [
-      'profile-freelance.scss'
-  ]
+    selector: 'jhi-profile-freelance',
+    templateUrl: './profile-freelance.component.html',
+    styleUrls: [
+        'profile-freelance.scss'
+    ]
 })
 export class ProfileFreelanceComponent implements OnInit, OnChanges {
 
@@ -32,18 +32,16 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     successEditFreelanceProfile: boolean;
     errorEditFreelanceProfile: string;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private freelanceService: FreelanceService,
         private userProfileService: UserProfileService,
         private specialtyService: SpecialtyService,
         private domainService: DomainService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['userProfile']);
     }
 
-    ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+    ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
         if (changes['settingsAccount']) {
             this.load(this.settingsAccount.id);
         }
@@ -72,12 +70,12 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.userProfileService.find(id).subscribe(userProfile => {
             this.userProfile = userProfile;
         });
-        this.freelanceService.query("FROM freelance F WHERE F.idUser = "+id).subscribe(freelanceProfile => {
+        this.freelanceService.query('FROM freelance F WHERE F.idUser = ' + id).subscribe(freelanceProfile => {
             this.freelanceProfile = freelanceProfile.json()[0];
         });
     }
 
-    saveUserProfile(){
+    saveUserProfile() {
         this.userProfileService.update(this.userProfile)
             .subscribe(
                 (res: UserProfile) => {
@@ -87,11 +85,11 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
                 },
                 (res: Response) => {
                     this.successEditUserProfile = false;
-                    console.log("error => ", res);
+                    console.log('error => ', res);
                 });
     }
 
-    saveFreelanceProfile(){
+    saveFreelanceProfile() {
         this.freelanceService.update(this.freelanceProfile)
             .subscribe(
                 (res: Freelance) => {
@@ -101,7 +99,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
                 },
                 (res: Response) => {
                     this.successEditFreelanceProfile = false;
-                    console.log("error => ", res);
+                    console.log('error => ', res);
                 });
     }
 

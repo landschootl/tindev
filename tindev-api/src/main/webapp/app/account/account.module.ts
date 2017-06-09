@@ -3,8 +3,8 @@ import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../shared';
 
-import {ProfileFreelanceComponent} from "./profile-freelance/profile-freelance.component";
-import {ProfileRecruiterComponent} from "./profile-recruiter/profile-recruiter.component";
+import {ProfileFreelanceComponent} from './profile-freelance/profile-freelance.component';
+import {ProfileRecruiterComponent} from './profile-recruiter/profile-recruiter.component';
 import {
     accountState,
     Activate,
