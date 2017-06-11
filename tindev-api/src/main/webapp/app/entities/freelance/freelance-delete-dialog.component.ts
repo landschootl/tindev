@@ -25,12 +25,12 @@ export class FreelanceDeleteDialogComponent {
         this.jhiLanguageService.setLocations(['freelance']);
     }
 
-    clear() {
+    clear () {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete(id: number) {
-        this.freelanceService.delete(id).subscribe((response) => {
+    confirmDelete (id: number) {
+        this.freelanceService.delete(id).subscribe(response => {
             this.eventManager.broadcast({
                 name: 'freelanceListModification',
                 content: 'Deleted an freelance'
@@ -49,13 +49,13 @@ export class FreelanceDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
+    constructor (
         private route: ActivatedRoute,
         private freelancePopupService: FreelancePopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe((params) => {
+        this.routeSub = this.route.params.subscribe(params => {
             this.modalRef = this.freelancePopupService
                 .open(FreelanceDeleteDialogComponent, params['id']);
         });

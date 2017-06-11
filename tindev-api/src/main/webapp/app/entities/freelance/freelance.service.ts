@@ -12,7 +12,7 @@ export class FreelanceService {
     constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(freelance: Freelance): Observable<Freelance> {
-        const copy: Freelance = Object.assign({}, freelance);
+        let copy: Freelance = Object.assign({}, freelance);
         copy.birthdate = this.dateUtils
             .convertLocalDateToServer(freelance.birthdate);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
@@ -21,7 +21,7 @@ export class FreelanceService {
     }
 
     update(freelance: Freelance): Observable<Freelance> {
-        const copy: Freelance = Object.assign({}, freelance);
+        let copy: Freelance = Object.assign({}, freelance);
         copy.birthdate = this.dateUtils
             .convertLocalDateToServer(freelance.birthdate);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
@@ -31,7 +31,7 @@ export class FreelanceService {
 
     find(id: number): Observable<Freelance> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            const jsonResponse = res.json();
+            let jsonResponse = res.json();
             jsonResponse.birthdate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse.birthdate);
             return jsonResponse;
@@ -39,7 +39,7 @@ export class FreelanceService {
     }
 
     query(req?: any): Observable<Response> {
-        const options = this.createRequestOption(req);
+        let options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
         ;
@@ -49,8 +49,9 @@ export class FreelanceService {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
+
     private convertResponse(res: any): any {
-        const jsonResponse = res.json();
+        let jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
             jsonResponse[i].birthdate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse[i].birthdate);
@@ -60,9 +61,9 @@ export class FreelanceService {
     }
 
     private createRequestOption(req?: any): BaseRequestOptions {
-        const options: BaseRequestOptions = new BaseRequestOptions();
+        let options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {
-            const params: URLSearchParams = new URLSearchParams();
+            let params: URLSearchParams = new URLSearchParams();
             params.set('page', req.page);
             params.set('size', req.size);
             if (req.sort) {

@@ -12,6 +12,12 @@
             "otherEntityName": "recruiter",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "matchings",
+            "otherEntityName": "matching",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "mission"
         }
     ],
     "fields": [

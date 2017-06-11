@@ -6,21 +6,21 @@ import { MissionService } from './mission.service';
 @Injectable()
 export class MissionPopupService {
     private isOpen = false;
-    constructor(
+    constructor (
         private modalService: NgbModal,
         private router: Router,
         private missionService: MissionService
 
     ) {}
 
-    open(component: Component, id?: number | any): NgbModalRef {
+    open (component: Component, id?: number | any): NgbModalRef {
         if (this.isOpen) {
             return;
         }
         this.isOpen = true;
 
         if (id) {
-            this.missionService.find(id).subscribe((mission) => {
+            this.missionService.find(id).subscribe(mission => {
                 if (mission.startDate) {
                     mission.startDate = {
                         year: mission.startDate.getFullYear(),
@@ -43,9 +43,9 @@ export class MissionPopupService {
     }
 
     missionModalRef(component: Component, mission: Mission): NgbModalRef {
-        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.mission = mission;
-        modalRef.result.then((result) => {
+        modalRef.result.then(result => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {

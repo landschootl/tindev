@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
+
 import {
     MissionService,
     MissionPopupService,
@@ -15,7 +16,7 @@ import {
     missionPopupRoute,
 } from './';
 
-const ENTITY_STATES = [
+let ENTITY_STATES = [
     ...missionRoute,
     ...missionPopupRoute,
 ];

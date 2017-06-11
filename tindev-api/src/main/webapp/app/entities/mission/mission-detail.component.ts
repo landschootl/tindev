@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
-import { EventManager , JhiLanguageService  } from 'ng-jhipster';
-
+import { JhiLanguageService } from 'ng-jhipster';
 import { Mission } from './mission.model';
 import { MissionService } from './mission.service';
 
@@ -14,10 +12,8 @@ export class MissionDetailComponent implements OnInit, OnDestroy {
 
     mission: Mission;
     private subscription: any;
-    private eventSubscriber: Subscription;
 
     constructor(
-        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private missionService: MissionService,
         private route: ActivatedRoute
@@ -26,14 +22,13 @@ export class MissionDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe((params) => {
+        this.subscription = this.route.params.subscribe(params => {
             this.load(params['id']);
         });
-        this.registerChangeInMissions();
     }
 
-    load(id) {
-        this.missionService.find(id).subscribe((mission) => {
+    load (id) {
+        this.missionService.find(id).subscribe(mission => {
             this.mission = mission;
         });
     }
@@ -43,10 +38,6 @@ export class MissionDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
-        this.eventManager.destroy(this.eventSubscriber);
     }
 
-    registerChangeInMissions() {
-        this.eventSubscriber = this.eventManager.subscribe('missionListModification', (response) => this.load(this.mission.id));
-    }
 }

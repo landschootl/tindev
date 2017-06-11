@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
-import { EventManager , JhiLanguageService  } from 'ng-jhipster';
-
+import { JhiLanguageService } from 'ng-jhipster';
 import { Freelance } from './freelance.model';
 import { FreelanceService } from './freelance.service';
 
@@ -14,10 +12,8 @@ export class FreelanceDetailComponent implements OnInit, OnDestroy {
 
     freelance: Freelance;
     private subscription: any;
-    private eventSubscriber: Subscription;
 
     constructor(
-        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private freelanceService: FreelanceService,
         private route: ActivatedRoute
@@ -26,14 +22,13 @@ export class FreelanceDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe((params) => {
+        this.subscription = this.route.params.subscribe(params => {
             this.load(params['id']);
         });
-        this.registerChangeInFreelances();
     }
 
-    load(id) {
-        this.freelanceService.find(id).subscribe((freelance) => {
+    load (id) {
+        this.freelanceService.find(id).subscribe(freelance => {
             this.freelance = freelance;
         });
     }
@@ -43,10 +38,6 @@ export class FreelanceDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
-        this.eventManager.destroy(this.eventSubscriber);
     }
 
-    registerChangeInFreelances() {
-        this.eventSubscriber = this.eventManager.subscribe('freelanceListModification', (response) => this.load(this.freelance.id));
-    }
 }

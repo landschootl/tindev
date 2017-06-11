@@ -1,10 +1,13 @@
 import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
+import { MockBackend } from '@angular/http/testing';
+import { Http, BaseRequestOptions } from '@angular/http';
 import { OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { DateUtils, DataUtils, EventManager } from 'ng-jhipster';
-import { TindevTestModule } from '../../../test.module';
+import { DateUtils, DataUtils } from 'ng-jhipster';
+import { JhiLanguageService } from 'ng-jhipster';
+import { MockLanguageService } from '../../../helpers/mock-language.service';
 import { MockActivatedRoute } from '../../../helpers/mock-route.service';
 import { MissionDetailComponent } from '../../../../../../main/webapp/app/entities/mission/mission-detail.component';
 import { MissionService } from '../../../../../../main/webapp/app/entities/mission/mission.service';
@@ -19,9 +22,10 @@ describe('Component Tests', () => {
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
-                imports: [TindevTestModule],
                 declarations: [MissionDetailComponent],
                 providers: [
+                    MockBackend,
+                    BaseRequestOptions,
                     DateUtils,
                     DataUtils,
                     DatePipe,
@@ -29,8 +33,18 @@ describe('Component Tests', () => {
                         provide: ActivatedRoute,
                         useValue: new MockActivatedRoute({id: 123})
                     },
-                    MissionService,
-                    EventManager
+                    {
+                        provide: Http,
+                        useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
+                            return new Http(backendInstance, defaultOptions);
+                        },
+                        deps: [MockBackend, BaseRequestOptions]
+                    },
+                    {
+                        provide: JhiLanguageService,
+                        useClass: MockLanguageService
+                    },
+                    MissionService
                 ]
             }).overrideComponent(MissionDetailComponent, {
                 set: {

@@ -49,6 +49,10 @@ public class Mission implements Serializable {
     @ManyToOne
     private Recruiter recruiter;
 
+    @OneToMany(mappedBy = "mission")
+    @JsonIgnore
+    private Set<Matching> matchings = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -171,6 +175,31 @@ public class Mission implements Serializable {
 
     public void setRecruiter(Recruiter recruiter) {
         this.recruiter = recruiter;
+    }
+
+    public Set<Matching> getMatchings() {
+        return matchings;
+    }
+
+    public Mission matchings(Set<Matching> matchings) {
+        this.matchings = matchings;
+        return this;
+    }
+
+    public Mission addMatchings(Matching matching) {
+        this.matchings.add(matching);
+        matching.setMission(this);
+        return this;
+    }
+
+    public Mission removeMatchings(Matching matching) {
+        this.matchings.remove(matching);
+        matching.setMission(null);
+        return this;
+    }
+
+    public void setMatchings(Set<Matching> matchings) {
+        this.matchings = matchings;
     }
 
     @Override

@@ -12,7 +12,7 @@ export class MissionService {
     constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(mission: Mission): Observable<Mission> {
-        const copy: Mission = Object.assign({}, mission);
+        let copy: Mission = Object.assign({}, mission);
         copy.startDate = this.dateUtils
             .convertLocalDateToServer(mission.startDate);
         copy.endDate = this.dateUtils
@@ -23,7 +23,7 @@ export class MissionService {
     }
 
     update(mission: Mission): Observable<Mission> {
-        const copy: Mission = Object.assign({}, mission);
+        let copy: Mission = Object.assign({}, mission);
         copy.startDate = this.dateUtils
             .convertLocalDateToServer(mission.startDate);
         copy.endDate = this.dateUtils
@@ -35,7 +35,7 @@ export class MissionService {
 
     find(id: number): Observable<Mission> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            const jsonResponse = res.json();
+            let jsonResponse = res.json();
             jsonResponse.startDate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse.startDate);
             jsonResponse.endDate = this.dateUtils
@@ -45,7 +45,7 @@ export class MissionService {
     }
 
     query(req?: any): Observable<Response> {
-        const options = this.createRequestOption(req);
+        let options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
         ;
@@ -55,8 +55,9 @@ export class MissionService {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
+
     private convertResponse(res: any): any {
-        const jsonResponse = res.json();
+        let jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
             jsonResponse[i].startDate = this.dateUtils
                 .convertLocalDateFromServer(jsonResponse[i].startDate);
@@ -68,9 +69,9 @@ export class MissionService {
     }
 
     private createRequestOption(req?: any): BaseRequestOptions {
-        const options: BaseRequestOptions = new BaseRequestOptions();
+        let options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {
-            const params: URLSearchParams = new URLSearchParams();
+            let params: URLSearchParams = new URLSearchParams();
             params.set('page', req.page);
             params.set('size', req.size);
             if (req.sort) {

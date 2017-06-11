@@ -22,7 +22,8 @@
             "startDate": "Start Date",
             "endDate": "End Date",
             "discussions": "Discussions",
-            "recruiter": "Recruiter"
+            "recruiter": "Recruiter",
+            "matchings": "Matchings"
         }
     }
 }

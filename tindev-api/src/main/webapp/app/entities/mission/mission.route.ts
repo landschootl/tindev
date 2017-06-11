@@ -11,6 +11,7 @@ import { MissionDeletePopupComponent } from './mission-delete-dialog.component';
 
 import { Principal } from '../../shared';
 
+
 export const missionRoute: Routes = [
   {
     path: 'mission',
@@ -18,16 +19,14 @@ export const missionRoute: Routes = [
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   }, {
     path: 'mission/:id',
     component: MissionDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   }
 ];
 
@@ -39,7 +38,6 @@ export const missionPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
     },
-    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -49,7 +47,6 @@ export const missionPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
     },
-    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -59,7 +56,6 @@ export const missionPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.mission.home.title'
     },
-    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   }
 ];

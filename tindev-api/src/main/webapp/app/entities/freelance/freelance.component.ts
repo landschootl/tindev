@@ -48,14 +48,18 @@ freelances: Freelance[];
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: Freelance) {
+    trackId (index: number, item: Freelance) {
         return item.id;
     }
+
+
+
     registerChangeInFreelances() {
         this.eventSubscriber = this.eventManager.subscribe('freelanceListModification', (response) => this.loadAll());
     }
 
-    private onError(error) {
+
+    private onError (error) {
         this.alertService.error(error.message, null, null);
     }
 }

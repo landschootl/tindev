@@ -57,6 +57,10 @@ public class Freelance implements Serializable {
     @JsonIgnore
     private Set<Discussion> discussions = new HashSet<>();
 
+    @OneToMany(mappedBy = "freelance")
+    @JsonIgnore
+    private Set<Matching> matchings = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -228,6 +232,31 @@ public class Freelance implements Serializable {
 
     public void setDiscussions(Set<Discussion> discussions) {
         this.discussions = discussions;
+    }
+
+    public Set<Matching> getMatchings() {
+        return matchings;
+    }
+
+    public Freelance matchings(Set<Matching> matchings) {
+        this.matchings = matchings;
+        return this;
+    }
+
+    public Freelance addMatchings(Matching matching) {
+        this.matchings.add(matching);
+        matching.setFreelance(this);
+        return this;
+    }
+
+    public Freelance removeMatchings(Matching matching) {
+        this.matchings.remove(matching);
+        matching.setFreelance(null);
+        return this;
+    }
+
+    public void setMatchings(Set<Matching> matchings) {
+        this.matchings = matchings;
     }
 
     @Override

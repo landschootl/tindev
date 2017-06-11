@@ -25,12 +25,12 @@ export class MissionDeleteDialogComponent {
         this.jhiLanguageService.setLocations(['mission']);
     }
 
-    clear() {
+    clear () {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete(id: number) {
-        this.missionService.delete(id).subscribe((response) => {
+    confirmDelete (id: number) {
+        this.missionService.delete(id).subscribe(response => {
             this.eventManager.broadcast({
                 name: 'missionListModification',
                 content: 'Deleted an mission'
@@ -49,13 +49,13 @@ export class MissionDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
+    constructor (
         private route: ActivatedRoute,
         private missionPopupService: MissionPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe((params) => {
+        this.routeSub = this.route.params.subscribe(params => {
             this.modalRef = this.missionPopupService
                 .open(MissionDeleteDialogComponent, params['id']);
         });

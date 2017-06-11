@@ -37,6 +37,12 @@
             "otherEntityName": "discussion",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "freelance"
+        },
+        {
+            "relationshipName": "matchings",
+            "otherEntityName": "matching",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "freelance"
         }
     ],
     "fields": [

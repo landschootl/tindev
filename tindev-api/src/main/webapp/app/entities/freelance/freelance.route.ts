@@ -11,6 +11,7 @@ import { FreelanceDeletePopupComponent } from './freelance-delete-dialog.compone
 
 import { Principal } from '../../shared';
 
+
 export const freelanceRoute: Routes = [
   {
     path: 'freelance',
@@ -18,16 +19,14 @@ export const freelanceRoute: Routes = [
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.freelance.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   }, {
     path: 'freelance/:id',
     component: FreelanceDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.freelance.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   }
 ];
 
@@ -39,7 +38,6 @@ export const freelancePopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.freelance.home.title'
     },
-    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -49,7 +47,6 @@ export const freelancePopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.freelance.home.title'
     },
-    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -59,7 +56,6 @@ export const freelancePopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'tindevApp.freelance.home.title'
     },
-    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   }
 ];
