@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
-import { EventManager  } from 'ng-jhipster';
-
+import { JhiLanguageService } from 'ng-jhipster';
 import { Matching } from './matching.model';
 import { MatchingService } from './matching.service';
 
@@ -13,25 +11,24 @@ import { MatchingService } from './matching.service';
 export class MatchingDetailComponent implements OnInit, OnDestroy {
 
     matching: Matching;
-    private subscription: Subscription;
-    private eventSubscriber: Subscription;
+    private subscription: any;
 
     constructor(
-        private eventManager: EventManager,
+        private jhiLanguageService: JhiLanguageService,
         private matchingService: MatchingService,
         private route: ActivatedRoute
     ) {
+        this.jhiLanguageService.setLocations(['matching']);
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe((params) => {
+        this.subscription = this.route.params.subscribe(params => {
             this.load(params['id']);
         });
-        this.registerChangeInMatchings();
     }
 
-    load(id) {
-        this.matchingService.find(id).subscribe((matching) => {
+    load (id) {
+        this.matchingService.find(id).subscribe(matching => {
             this.matching = matching;
         });
     }
@@ -41,13 +38,6 @@ export class MatchingDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
-        this.eventManager.destroy(this.eventSubscriber);
     }
 
-    registerChangeInMatchings() {
-        this.eventSubscriber = this.eventManager.subscribe(
-            'matchingListModification',
-            (response) => this.load(this.matching.id)
-        );
-    }
 }

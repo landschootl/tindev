@@ -14,71 +14,66 @@ import { Principal } from '../../shared';
 @Injectable()
 export class MatchingResolvePagingParams implements Resolve<any> {
 
-    constructor(private paginationUtil: PaginationUtil) {}
+  constructor(private paginationUtil: PaginationUtil) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const page = route.queryParams['page'] ? route.queryParams['page'] : '1';
-        const sort = route.queryParams['sort'] ? route.queryParams['sort'] : 'id,asc';
-        return {
-            page: this.paginationUtil.parsePage(page),
-            predicate: this.paginationUtil.parsePredicate(sort),
-            ascending: this.paginationUtil.parseAscending(sort)
-      };
-    }
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+      let page = route.queryParams['page'] ? route.queryParams['page'] : '1';
+      let sort = route.queryParams['sort'] ? route.queryParams['sort'] : 'id,asc';
+      return {
+          page: this.paginationUtil.parsePage(page),
+          predicate: this.paginationUtil.parsePredicate(sort),
+          ascending: this.paginationUtil.parseAscending(sort)
+    };
+  }
 }
 
 export const matchingRoute: Routes = [
-    {
-        path: 'matching',
-        component: MatchingComponent,
-        resolve: {
-            'pagingParams': MatchingResolvePagingParams
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'tindevApp.matching.home.title'
-        },
-        canActivate: [UserRouteAccessService]
-    }, {
-        path: 'matching/:id',
-        component: MatchingDetailComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'tindevApp.matching.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+  {
+    path: 'matching',
+    component: MatchingComponent,
+    resolve: {
+      'pagingParams': MatchingResolvePagingParams
+    },
+    data: {
+        authorities: ['ROLE_USER'],
+        pageTitle: 'tindevApp.matching.home.title'
     }
+  }, {
+    path: 'matching/:id',
+    component: MatchingDetailComponent,
+    data: {
+        authorities: ['ROLE_USER'],
+        pageTitle: 'tindevApp.matching.home.title'
+    }
+  }
 ];
 
 export const matchingPopupRoute: Routes = [
-    {
-        path: 'matching-new',
-        component: MatchingPopupComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'tindevApp.matching.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+  {
+    path: 'matching-new',
+    component: MatchingPopupComponent,
+    data: {
+        authorities: ['ROLE_USER'],
+        pageTitle: 'tindevApp.matching.home.title'
     },
-    {
-        path: 'matching/:id/edit',
-        component: MatchingPopupComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'tindevApp.matching.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+    outlet: 'popup'
+  },
+  {
+    path: 'matching/:id/edit',
+    component: MatchingPopupComponent,
+    data: {
+        authorities: ['ROLE_USER'],
+        pageTitle: 'tindevApp.matching.home.title'
     },
-    {
-        path: 'matching/:id/delete',
-        component: MatchingDeletePopupComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'tindevApp.matching.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+    outlet: 'popup'
+  },
+  {
+    path: 'matching/:id/delete',
+    component: MatchingDeletePopupComponent,
+    data: {
+        authorities: ['ROLE_USER'],
+        pageTitle: 'tindevApp.matching.home.title'
+    },
+    outlet: 'popup'
+  }
 ];

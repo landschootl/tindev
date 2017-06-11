@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Matching.
+    -->
+    <changeSet id="20170608143453-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="mission_id"
+                                 baseTableName="matching"
+                                 constraintName="fk_matching_mission_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mission"/>
+
+        <addForeignKeyConstraint baseColumnNames="freelance_id"
+                                 baseTableName="matching"
+                                 constraintName="fk_matching_freelance_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="freelance"/>
+
+    </changeSet>
+</databaseChangeLog>

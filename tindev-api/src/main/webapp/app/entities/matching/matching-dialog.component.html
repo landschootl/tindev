@@ -1,3 +1,5 @@
+
+
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
@@ -12,7 +14,59 @@
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="matching.id" readonly />
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.matching.score" for="field_score">Score</label>
+            <input type="number" class="form-control" name="score" id="field_score"
+                [(ngModel)]="matching.score"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.matching.fLikedDate" for="field_fLikedDate">F Liked Date</label>
+            <div class="input-group">
+                <input id="field_fLikedDate" type="text" class="form-control" name="fLikedDate" ngbDatepicker  #fLikedDateDp="ngbDatepicker" [(ngModel)]="matching.fLikedDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="fLikedDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.matching.rLikedDate" for="field_rLikedDate">R Liked Date</label>
+            <div class="input-group">
+                <input id="field_rLikedDate" type="text" class="form-control" name="rLikedDate" ngbDatepicker  #rLikedDateDp="ngbDatepicker" [(ngModel)]="matching.rLikedDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="rLikedDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.matching.freelanceLiked" for="field_freelanceLiked">Freelance Liked</label>
+            <input type="checkbox" class="form-control" name="freelanceLiked" id="field_freelanceLiked"
+                [(ngModel)]="matching.freelanceLiked"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.matching.recruiterLiked" for="field_recruiterLiked">Recruiter Liked</label>
+            <input type="checkbox" class="form-control" name="recruiterLiked" id="field_recruiterLiked"
+                [(ngModel)]="matching.recruiterLiked"
+             />
+        </div>
 
+        <div class="form-group">
+            <label jhiTranslate="tindevApp.matching.mission" for="field_mission">Mission</label>
+            <select class="form-control" id="field_mission" name="mission" [(ngModel)]="matching.mission" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="missionOption.id === matching.mission?.id ? matching.mission : missionOption" *ngFor="let missionOption of missions; trackBy: trackMissionById">{{missionOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="tindevApp.matching.freelance" for="field_freelance">Freelance</label>
+            <select class="form-control" id="field_freelance" name="freelance" [(ngModel)]="matching.freelance" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="freelanceOption.id === matching.freelance?.id ? matching.freelance : freelanceOption" *ngFor="let freelanceOption of freelances; trackBy: trackFreelanceById">{{freelanceOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

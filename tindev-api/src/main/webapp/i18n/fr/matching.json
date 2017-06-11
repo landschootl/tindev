@@ -14,7 +14,14 @@
             },
             "detail": {
                 "title": "Matching"
-            }
+            },
+            "score": "Score",
+            "fLikedDate": "F Liked Date",
+            "rLikedDate": "R Liked Date",
+            "freelanceLiked": "Freelance Liked",
+            "recruiterLiked": "Recruiter Liked",
+            "mission": "Mission",
+            "freelance": "Freelance"
         }
     }
 }

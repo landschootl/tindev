@@ -17,12 +17,34 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="score"><span jhiTranslate="tindevApp.matching.score">Score</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fLikedDate"><span jhiTranslate="tindevApp.matching.fLikedDate">F Liked Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rLikedDate"><span jhiTranslate="tindevApp.matching.rLikedDate">R Liked Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="freelanceLiked"><span jhiTranslate="tindevApp.matching.freelanceLiked">Freelance Liked</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="recruiterLiked"><span jhiTranslate="tindevApp.matching.recruiterLiked">Recruiter Liked</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mission.id"><span jhiTranslate="tindevApp.matching.mission">Mission</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="freelance.id"><span jhiTranslate="tindevApp.matching.freelance">Freelance</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let matching of matchings ;trackBy: trackId">
                 <td><a [routerLink]="['../matching', matching.id ]">{{matching.id}}</a></td>
+                <td>{{matching.score}}</td>
+                <td>{{matching.fLikedDate | date:'mediumDate'}}</td>
+                <td>{{matching.rLikedDate | date:'mediumDate'}}</td>
+                <td>{{matching.freelanceLiked}}</td>
+                <td>{{matching.recruiterLiked}}</td>
+                <td>
+                    <div *ngIf="matching.mission">
+                        <a [routerLink]="['../mission', matching.mission?.id ]" >{{matching.mission?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="matching.freelance">
+                        <a [routerLink]="['../freelance', matching.freelance?.id ]" >{{matching.freelance?.id}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -2,13 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
 import { Matching } from './matching.model';
 import { MatchingPopupService } from './matching-popup.service';
 import { MatchingService } from './matching.service';
+import { Mission, MissionService } from '../mission';
+import { Freelance, FreelanceService } from '../freelance';
 
 @Component({
     selector: 'jhi-matching-dialog',
@@ -20,61 +21,67 @@ export class MatchingDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+    missions: Mission[];
+
+    freelances: Freelance[];
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private matchingService: MatchingService,
+        private missionService: MissionService,
+        private freelanceService: FreelanceService,
         private eventManager: EventManager
     ) {
+        this.jhiLanguageService.setLocations(['matching']);
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.missionService.query().subscribe(
+            (res: Response) => { this.missions = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.freelanceService.query().subscribe(
+            (res: Response) => { this.freelances = res.json(); }, (res: Response) => this.onError(res.json()));
     }
-    clear() {
+    clear () {
         this.activeModal.dismiss('cancel');
     }
 
-    save() {
+    save () {
         this.isSaving = true;
         if (this.matching.id !== undefined) {
-            this.subscribeToSaveResponse(
-                this.matchingService.update(this.matching), false);
+            this.matchingService.update(this.matching)
+                .subscribe((res: Matching) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         } else {
-            this.subscribeToSaveResponse(
-                this.matchingService.create(this.matching), true);
+            this.matchingService.create(this.matching)
+                .subscribe((res: Matching) =>
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Matching>, isCreated: boolean) {
-        result.subscribe((res: Matching) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
-    }
-
-    private onSaveSuccess(result: Matching, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? 'tindevApp.matching.created'
-            : 'tindevApp.matching.updated',
-            { param : result.id }, null);
-
+    private onSaveSuccess (result: Matching) {
         this.eventManager.broadcast({ name: 'matchingListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError(error) {
-        try {
-            error.json();
-        } catch (exception) {
-            error.message = error.text();
-        }
+    private onSaveError (error) {
         this.isSaving = false;
         this.onError(error);
     }
 
-    private onError(error) {
+    private onError (error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackMissionById(index: number, item: Mission) {
+        return item.id;
+    }
+
+    trackFreelanceById(index: number, item: Freelance) {
+        return item.id;
     }
 }
 
@@ -87,13 +94,13 @@ export class MatchingPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
+    constructor (
         private route: ActivatedRoute,
         private matchingPopupService: MatchingPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe((params) => {
+        this.routeSub = this.route.params.subscribe(params => {
             if ( params['id'] ) {
                 this.modalRef = this.matchingPopupService
                     .open(MatchingDialogComponent, params['id']);
@@ -101,6 +108,7 @@ export class MatchingPopupComponent implements OnInit, OnDestroy {
                 this.modalRef = this.matchingPopupService
                     .open(MatchingDialogComponent);
             }
+
         });
     }
 

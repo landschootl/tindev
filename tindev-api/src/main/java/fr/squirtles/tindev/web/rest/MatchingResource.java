@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +32,7 @@ public class MatchingResource {
     private final Logger log = LoggerFactory.getLogger(MatchingResource.class);
 
     private static final String ENTITY_NAME = "matching";
-
+        
     private final MatchingRepository matchingRepository;
 
     public MatchingResource(MatchingRepository matchingRepository) {
@@ -124,4 +123,5 @@ public class MatchingResource {
         matchingRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
 }

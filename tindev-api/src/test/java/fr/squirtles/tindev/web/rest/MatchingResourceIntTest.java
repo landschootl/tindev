@@ -21,6 +21,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,6 +38,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TindevApp.class)
 public class MatchingResourceIntTest {
+
+    private static final Integer DEFAULT_SCORE = 1;
+    private static final Integer UPDATED_SCORE = 2;
+
+    private static final LocalDate DEFAULT_F_LIKED_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_F_LIKED_DATE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_R_LIKED_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_R_LIKED_DATE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final Boolean DEFAULT_FREELANCE_LIKED = false;
+    private static final Boolean UPDATED_FREELANCE_LIKED = true;
+
+    private static final Boolean DEFAULT_RECRUITER_LIKED = false;
+    private static final Boolean UPDATED_RECRUITER_LIKED = true;
 
     @Autowired
     private MatchingRepository matchingRepository;
@@ -73,7 +90,12 @@ public class MatchingResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static Matching createEntity(EntityManager em) {
-        Matching matching = new Matching();
+        Matching matching = new Matching()
+            .score(DEFAULT_SCORE)
+            .fLikedDate(DEFAULT_F_LIKED_DATE)
+            .rLikedDate(DEFAULT_R_LIKED_DATE)
+            .freelanceLiked(DEFAULT_FREELANCE_LIKED)
+            .recruiterLiked(DEFAULT_RECRUITER_LIKED);
         return matching;
     }
 
@@ -97,6 +119,11 @@ public class MatchingResourceIntTest {
         List<Matching> matchingList = matchingRepository.findAll();
         assertThat(matchingList).hasSize(databaseSizeBeforeCreate + 1);
         Matching testMatching = matchingList.get(matchingList.size() - 1);
+        assertThat(testMatching.getScore()).isEqualTo(DEFAULT_SCORE);
+        assertThat(testMatching.getfLikedDate()).isEqualTo(DEFAULT_F_LIKED_DATE);
+        assertThat(testMatching.getrLikedDate()).isEqualTo(DEFAULT_R_LIKED_DATE);
+        assertThat(testMatching.isFreelanceLiked()).isEqualTo(DEFAULT_FREELANCE_LIKED);
+        assertThat(testMatching.isRecruiterLiked()).isEqualTo(DEFAULT_RECRUITER_LIKED);
     }
 
     @Test
@@ -128,7 +155,12 @@ public class MatchingResourceIntTest {
         restMatchingMockMvc.perform(get("/api/matchings?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(matching.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(matching.getId().intValue())))
+            .andExpect(jsonPath("$.[*].score").value(hasItem(DEFAULT_SCORE)))
+            .andExpect(jsonPath("$.[*].fLikedDate").value(hasItem(DEFAULT_F_LIKED_DATE.toString())))
+            .andExpect(jsonPath("$.[*].rLikedDate").value(hasItem(DEFAULT_R_LIKED_DATE.toString())))
+            .andExpect(jsonPath("$.[*].freelanceLiked").value(hasItem(DEFAULT_FREELANCE_LIKED.booleanValue())))
+            .andExpect(jsonPath("$.[*].recruiterLiked").value(hasItem(DEFAULT_RECRUITER_LIKED.booleanValue())));
     }
 
     @Test
@@ -141,7 +173,12 @@ public class MatchingResourceIntTest {
         restMatchingMockMvc.perform(get("/api/matchings/{id}", matching.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(matching.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(matching.getId().intValue()))
+            .andExpect(jsonPath("$.score").value(DEFAULT_SCORE))
+            .andExpect(jsonPath("$.fLikedDate").value(DEFAULT_F_LIKED_DATE.toString()))
+            .andExpect(jsonPath("$.rLikedDate").value(DEFAULT_R_LIKED_DATE.toString()))
+            .andExpect(jsonPath("$.freelanceLiked").value(DEFAULT_FREELANCE_LIKED.booleanValue()))
+            .andExpect(jsonPath("$.recruiterLiked").value(DEFAULT_RECRUITER_LIKED.booleanValue()));
     }
 
     @Test
@@ -161,6 +198,12 @@ public class MatchingResourceIntTest {
 
         // Update the matching
         Matching updatedMatching = matchingRepository.findOne(matching.getId());
+        updatedMatching
+            .score(UPDATED_SCORE)
+            .fLikedDate(UPDATED_F_LIKED_DATE)
+            .rLikedDate(UPDATED_R_LIKED_DATE)
+            .freelanceLiked(UPDATED_FREELANCE_LIKED)
+            .recruiterLiked(UPDATED_RECRUITER_LIKED);
 
         restMatchingMockMvc.perform(put("/api/matchings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -171,6 +214,11 @@ public class MatchingResourceIntTest {
         List<Matching> matchingList = matchingRepository.findAll();
         assertThat(matchingList).hasSize(databaseSizeBeforeUpdate);
         Matching testMatching = matchingList.get(matchingList.size() - 1);
+        assertThat(testMatching.getScore()).isEqualTo(UPDATED_SCORE);
+        assertThat(testMatching.getfLikedDate()).isEqualTo(UPDATED_F_LIKED_DATE);
+        assertThat(testMatching.getrLikedDate()).isEqualTo(UPDATED_R_LIKED_DATE);
+        assertThat(testMatching.isFreelanceLiked()).isEqualTo(UPDATED_FREELANCE_LIKED);
+        assertThat(testMatching.isRecruiterLiked()).isEqualTo(UPDATED_RECRUITER_LIKED);
     }
 
     @Test
@@ -212,14 +260,5 @@ public class MatchingResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Matching.class);
-        Matching matching1 = new Matching();
-        matching1.setId(1L);
-        Matching matching2 = new Matching();
-        matching2.setId(matching1.getId());
-        assertThat(matching1).isEqualTo(matching2);
-        matching2.setId(2L);
-        assertThat(matching1).isNotEqualTo(matching2);
-        matching1.setId(null);
-        assertThat(matching1).isNotEqualTo(matching2);
     }
 }

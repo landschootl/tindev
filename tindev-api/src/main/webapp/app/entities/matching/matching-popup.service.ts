@@ -6,21 +6,35 @@ import { MatchingService } from './matching.service';
 @Injectable()
 export class MatchingPopupService {
     private isOpen = false;
-    constructor(
+    constructor (
         private modalService: NgbModal,
         private router: Router,
         private matchingService: MatchingService
 
     ) {}
 
-    open(component: Component, id?: number | any): NgbModalRef {
+    open (component: Component, id?: number | any): NgbModalRef {
         if (this.isOpen) {
             return;
         }
         this.isOpen = true;
 
         if (id) {
-            this.matchingService.find(id).subscribe((matching) => {
+            this.matchingService.find(id).subscribe(matching => {
+                if (matching.fLikedDate) {
+                    matching.fLikedDate = {
+                        year: matching.fLikedDate.getFullYear(),
+                        month: matching.fLikedDate.getMonth() + 1,
+                        day: matching.fLikedDate.getDate()
+                    };
+                }
+                if (matching.rLikedDate) {
+                    matching.rLikedDate = {
+                        year: matching.rLikedDate.getFullYear(),
+                        month: matching.rLikedDate.getMonth() + 1,
+                        day: matching.rLikedDate.getDate()
+                    };
+                }
                 this.matchingModalRef(component, matching);
             });
         } else {
@@ -29,9 +43,9 @@ export class MatchingPopupService {
     }
 
     matchingModalRef(component: Component, matching: Matching): NgbModalRef {
-        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.matching = matching;
-        modalRef.result.then((result) => {
+        modalRef.result.then(result => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {

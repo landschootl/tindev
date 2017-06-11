@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Response } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService } from 'ng-jhipster';
 
 import { Matching } from './matching.model';
 import { MatchingService } from './matching.service';
-import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
+import { ITEMS_PER_PAGE, Principal } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
@@ -30,6 +31,7 @@ currentAccount: any;
     reverse: any;
 
     constructor(
+        private jhiLanguageService: JhiLanguageService,
         private matchingService: MatchingService,
         private parseLinks: ParseLinks,
         private alertService: AlertService,
@@ -41,12 +43,13 @@ currentAccount: any;
         private paginationConfig: PaginationConfig
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
-        this.routeData = this.activatedRoute.data.subscribe((data) => {
+        this.routeData = this.activatedRoute.data.subscribe(data => {
             this.page = data['pagingParams'].page;
             this.previousPage = data['pagingParams'].page;
             this.reverse = data['pagingParams'].ascending;
             this.predicate = data['pagingParams'].predicate;
         });
+        this.jhiLanguageService.setLocations(['matching']);
     }
 
     loadAll() {
@@ -54,11 +57,11 @@ currentAccount: any;
             page: this.page - 1,
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
-            (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
-            (res: ResponseWrapper) => this.onError(res.json)
+            (res: Response) => this.onSuccess(res.json(), res.headers),
+            (res: Response) => this.onError(res.json())
         );
     }
-    loadPage(page: number) {
+    loadPage (page: number) {
         if (page !== this.previousPage) {
             this.previousPage = page;
             this.transition();
@@ -95,29 +98,33 @@ currentAccount: any;
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: Matching) {
+    trackId (index: number, item: Matching) {
         return item.id;
     }
+
+
+
     registerChangeInMatchings() {
         this.eventSubscriber = this.eventManager.subscribe('matchingListModification', (response) => this.loadAll());
     }
 
-    sort() {
-        const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+    sort () {
+        let result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
         if (this.predicate !== 'id') {
             result.push('id');
         }
         return result;
     }
 
-    private onSuccess(data, headers) {
+    private onSuccess (data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         this.queryCount = this.totalItems;
         // this.page = pagingParams.page;
         this.matchings = data;
     }
-    private onError(error) {
+
+    private onError (error) {
         this.alertService.error(error.message, null, null);
     }
 }

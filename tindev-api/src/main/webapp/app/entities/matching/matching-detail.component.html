@@ -4,6 +4,38 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="tindevApp.matching.score">Score</span></dt>
+        <dd>
+            <span>{{matching.score}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.matching.fLikedDate">F Liked Date</span></dt>
+        <dd>
+            <span>{{matching.fLikedDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.matching.rLikedDate">R Liked Date</span></dt>
+        <dd>
+            <span>{{matching.rLikedDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.matching.freelanceLiked">Freelance Liked</span></dt>
+        <dd>
+            <span>{{matching.freelanceLiked}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.matching.recruiterLiked">Recruiter Liked</span></dt>
+        <dd>
+            <span>{{matching.recruiterLiked}}</span>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.matching.mission">Mission</span></dt>
+        <dd>
+            <div *ngIf="matching.mission">
+                <a [routerLink]="['/mission', matching.mission?.id]">{{matching.mission?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.matching.freelance">Freelance</span></dt>
+        <dd>
+            <div *ngIf="matching.freelance">
+                <a [routerLink]="['/freelance', matching.freelance?.id]">{{matching.freelance?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

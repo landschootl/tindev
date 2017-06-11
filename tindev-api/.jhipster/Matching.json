@@ -1,7 +1,41 @@
 {
     "fluentMethods": true,
-    "relationships": [],
-    "fields": [],
+    "relationships": [
+        {
+            "relationshipName": "mission",
+            "otherEntityName": "mission",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "freelance",
+            "otherEntityName": "freelance",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "score",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fLikedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "rLikedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "freelanceLiked",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "recruiterLiked",
+            "fieldType": "Boolean"
+        }
+    ],
     "changelogDate": "20170608143453",
     "dto": "no",
     "service": "no",
