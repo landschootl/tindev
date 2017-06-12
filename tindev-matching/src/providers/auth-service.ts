@@ -53,6 +53,7 @@ export class AuthService {
       let json = response.json();
       //TODO add verification on whether the user is a recruiter or not
       //TODO add veriication if the profile is completed or not
+      console.log(json);
       this.currentUser = new User(json.firstname, json.lastname, false, json.email, true, this.token);
       this.storage.set('currentUser', JSON.stringify({user: this.currentUser}));
       return this.currentUser;

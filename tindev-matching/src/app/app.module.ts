@@ -15,6 +15,8 @@ import { Storage } from '@ionic/storage';
 import { ApiUtils } from '../shared/utils/api';
 import { ConversationService } from '../providers/conversation-service';
 import { UserService } from '../providers/user-service';
+import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-selection/recruiters-mission-selection';
+
 
 @NgModule({
     declarations: [
@@ -24,7 +26,8 @@ import { UserService } from '../providers/user-service';
         RegisterPage,
         MatchesListPage,
         ConversationPage,
-        CapitalizePipe
+        CapitalizePipe,
+        RecruitersMissionSelectionPage
     ],
     imports: [
         IonicModule.forRoot(MyApp),
@@ -38,7 +41,8 @@ import { UserService } from '../providers/user-service';
         MatchingPage,
         ConversationPage,
         MatchesListPage,
-        RegisterPage
+        RegisterPage,
+        RecruitersMissionSelectionPage
     ],
     providers: [
         {
