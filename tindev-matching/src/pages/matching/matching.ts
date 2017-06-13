@@ -24,8 +24,8 @@ export class MatchingPage {
     private capitalizePipe: CapitalizePipe,
     private auth: AuthService) {
     this.stackConfig = {
-      throwOutConfidence: (offset, element) => {
-        return Math.min(Math.abs(offset) / (element.offsetWidth/2), 1);
+      throwOutConfidence: (offsetX, offsetY, element) => {
+        return Math.min(Math.abs(offsetX) / (element.offsetWidth/2), 1);
       },
       throwOutDistance: (d) => {
         return 800;
