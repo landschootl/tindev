@@ -6,10 +6,9 @@
                 <img class="cover-image-profile thumbnail" src="{{profileUrl}}"
                      alt="Profile image example"/>
                 <div class="cover-profile-text">
-                    <h2 *ngIf="settingsAccount"><b>{{settingsAccount.firstName}} {{settingsAccount.lastName}}</b></h2>
+                    <h2 *ngIf="settingsAccount"><b>{{settingsAccount.firstName}}</b> {{settingsAccount.lastName}}</h2>
                 </div>
             </div>
-            <br>
             <div class="alert alert-success" *ngIf="success">
                 <strong>Le profile est bien sauvegardé !</strong>
             </div>
@@ -17,7 +16,6 @@
             <ngb-tabset>
                 <ngb-tab title="Informations personnelles">
                     <template ngbTabContent>
-                        <br>
                         <div *ngIf="settingsAccount">
                             <div *ngIf="settingsAccount.authorities.includes('ROLE_FREELANCE')">
                                 <jhi-profile-freelance [settingsAccount]="settingsAccount"></jhi-profile-freelance>

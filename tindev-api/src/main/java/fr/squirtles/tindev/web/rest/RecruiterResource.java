@@ -27,7 +27,7 @@ public class RecruiterResource {
     private final Logger log = LoggerFactory.getLogger(RecruiterResource.class);
 
     private static final String ENTITY_NAME = "recruiter";
-        
+
     private final RecruiterRepository recruiterRepository;
 
     public RecruiterResource(RecruiterRepository recruiterRepository) {
@@ -99,7 +99,7 @@ public class RecruiterResource {
     @Timed
     public ResponseEntity<Recruiter> getRecruiter(@PathVariable Long id) {
         log.debug("REST request to get Recruiter : {}", id);
-        Recruiter recruiter = recruiterRepository.findOne(id);
+        Recruiter recruiter = recruiterRepository.findByIdUser(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(recruiter));
     }
 

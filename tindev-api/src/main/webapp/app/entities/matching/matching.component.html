@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     <h2>
         <span jhiTranslate="tindevApp.matching.home.title">Matchings</span>
         <button class="btn btn-primary float-right create-matching" [routerLink]="['/', { outlets: { popup: ['matching-new'] } }]">
@@ -85,4 +85,5 @@
                 <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
             </div>
         </div>
+    </div>
 </div>

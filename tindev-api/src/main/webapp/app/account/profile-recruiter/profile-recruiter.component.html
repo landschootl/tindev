@@ -1,1 +1,53 @@
-Recruteur
+<div *ngIf="userProfile && recruiterProfile">
+    <div class="alert alert-success" *ngIf="successEditUserProfile">
+        <strong>Les informations utilisateur sont bien sauvegardé !</strong>
+    </div>
+    <div class="alert alert-error" *ngIf="errorEditUserProfile !== ''">
+        {{errorEditUserProfile}}
+    </div>
+    <div class="row">
+        <p class="profile-sous-title col-md-8">MES INFORMATIONS UTILISATEUR</p>
+        <button (click)="saveUserProfile()" type="button" class="edit-button btn btn-sm col-md-4">
+            <span class="button-text">Enregistrer</span>
+        </button>
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_description">Description</label>
+        <input type="text" class="form-control" name="description" id="field_description"
+               [(ngModel)]="userProfile.description"
+        />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_photoUrl">Url de la photo</label>
+        <input type="text" class="form-control" name="photoUrl" id="field_photoUrl"
+               [(ngModel)]="userProfile.photoUrl"
+        />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_city">Ville</label>
+        <input type="text" class="form-control" name="city" id="field_city"
+               [(ngModel)]="userProfile.city"
+        />
+    </div>
+
+
+    <hr>
+    <div class="alert alert-success" *ngIf="successEditRecruiterProfile">
+        <strong>Les informations métier sont bien sauvegardé !</strong>
+    </div>
+    <div *ngIf="errorEditRecruiterProfile !== ''">
+        {{errorEditRecruiterProfile}}
+    </div>
+    <div class="row">
+        <p class="profile-sous-title col-md-8">MES INFORMATIONS METIER</p>
+        <button (click)="saveRecruiterProfile()" type="button" class="edit-button btn btn-sm col-md-4">
+            <span class="button-text">Enregistrer</span>
+        </button>
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_company">Entreprise</label>
+        <input type="text" class="form-control" name="company" id="field_company"
+               [(ngModel)]="recruiterProfile.company"
+        />
+    </div>
+</div>

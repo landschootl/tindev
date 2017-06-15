@@ -5,7 +5,6 @@ import { UserProfileService } from '../../entities/user-profile/user-profile.ser
 import { ActivatedRoute } from '@angular/router';
 import { FreelanceService } from '../../entities/freelance/freelance.service';
 import { Freelance } from '../../entities/freelance/freelance.model';
-import { error } from 'util';
 import { Specialty } from '../../entities/specialty/specialty.model';
 import { Domain } from '../../entities/domain/domain.model';
 import { SpecialtyService } from '../../entities/specialty/specialty.service';
@@ -19,7 +18,6 @@ import { DomainService } from '../../entities/domain/domain.service';
     ]
 })
 export class ProfileFreelanceComponent implements OnInit, OnChanges {
-
     @Input() settingsAccount: any;
 
     userProfile: UserProfile;
@@ -70,8 +68,8 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.userProfileService.find(id).subscribe(userProfile => {
             this.userProfile = userProfile;
         });
-        this.freelanceService.query('FROM freelance F WHERE F.idUser = ' + id).subscribe(freelanceProfile => {
-            this.freelanceProfile = freelanceProfile.json()[0];
+        this.freelanceService.find(id).subscribe(freelanceProfile => {
+            this.freelanceProfile = freelanceProfile;
         });
     }
 
@@ -106,5 +104,4 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     previousState() {
         window.history.back();
     }
-
 }

@@ -27,7 +27,7 @@ public class FreelanceResource {
     private final Logger log = LoggerFactory.getLogger(FreelanceResource.class);
 
     private static final String ENTITY_NAME = "freelance";
-        
+
     private final FreelanceRepository freelanceRepository;
 
     public FreelanceResource(FreelanceRepository freelanceRepository) {
@@ -99,7 +99,7 @@ public class FreelanceResource {
     @Timed
     public ResponseEntity<Freelance> getFreelance(@PathVariable Long id) {
         log.debug("REST request to get Freelance : {}", id);
-        Freelance freelance = freelanceRepository.findOne(id);
+        Freelance freelance = freelanceRepository.findByIdUser(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(freelance));
     }
 
