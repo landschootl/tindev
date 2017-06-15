@@ -2,8 +2,10 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Freelance;
+import fr.squirtles.tindev.domain.Mission;
 import fr.squirtles.tindev.domain.Recruiter;
 
+import fr.squirtles.tindev.repository.MissionRepository;
 import fr.squirtles.tindev.repository.RecruiterRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

@@ -50,4 +50,44 @@
                [(ngModel)]="recruiterProfile.company"
         />
     </div>
+
+    <hr>
+    <div class="row">
+        <p class="profile-sous-title col-md-8">MES MISSIONS</p>
+        <add-mission-dialog [newMission]="newMission" class="col-md-4"></add-mission-dialog>
+    </div>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Salaire minimum</th>
+            <th>Salaire maximum</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mission of missions">
+                <td>{{mission.title}}</td>
+                <td>{{mission.description}}</td>
+                <td>{{mission.minSalary}}</td>
+                <td>{{mission.maxSalary}}</td>
+                <td>{{mission.startDate}}</td>
+                <td>{{mission.endDate}}</td>
+                <td>
+                    <update-mission-dialog [mission]="mission"></update-mission-dialog>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'mission/'+ mission.id + '/delete'} }]"
+                            replaceUrl="true"
+                            class="btn btn-danger btn-sm">
+                        <span class="fa fa-remove"></span>
+                        <span class="hidden-md-down">Supprimer</span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
