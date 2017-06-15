@@ -17,8 +17,9 @@ export class MatchingPage {
   @ViewChild('myswing1') swingStack: SwingStackComponent;
   @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
 
-  cards: Array<any>;
+  cards: Array<any> = [];
   stackConfig: StackConfig;
+  currentCard: any;
 
   constructor(private http: Http,
     private toastCtrl: ToastController,
@@ -42,11 +43,20 @@ export class MatchingPage {
       });
 
       this.cards = [];
-      this.addNewCards();
+      this.nextCard();
     }
   }
 
   voteUp(like: boolean) {
+    if(this.auth.currentUser.recruiter) {
+      //Recruiter
+    } else {
+      //Freelance
+      debugger;
+
+      this.matchingService.save(this.currentCard);
+    }
+    this.nextCard();
     /*
     let removedCard = this.cards.pop();
     let message: string;
@@ -67,7 +77,7 @@ export class MatchingPage {
     */
   }
 
-  addNewCards() {
+  nextCard() {
     /*this.http.get('https://randomuser.me/api/?results=' + count)
       .map(data => data.json().results)
       .subscribe(result => {
@@ -76,11 +86,22 @@ export class MatchingPage {
           this.cards.push(val);
         }
       })*/
+    if(!this.cards.length) {
+      this.matchingService.getAll().then((data) => {
+        this.cards = data;
+      });
+    }
+    this.currentCard = this.cards.length ? this.cards.shift() : null;
 
-    this.matchingService.getAll().then((data) => {
-      debugger;
-      this.cards = data;
-    });
+    // this.cards.length && this.showCard(this.cards[0]) || this.showNoCardAnyMore();
+  }
+
+  private showCard(matching: any) {
+
+  }
+
+  private showNoCardAnyMore() {
+
   }
 
   private calculateAge(b: any) {

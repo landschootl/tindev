@@ -27,4 +27,8 @@ export class MatchingService {
         return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
         });
     }
+
+    public save(matching: any) {
+        
+    }
 }
