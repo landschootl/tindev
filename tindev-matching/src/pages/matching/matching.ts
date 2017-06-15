@@ -48,14 +48,7 @@ export class MatchingPage {
   }
 
   voteUp(like: boolean) {
-    if(this.auth.currentUser.recruiter) {
-      //Recruiter
-    } else {
-      //Freelance
-      debugger;
-
-      this.matchingService.save(this.currentCard);
-    }
+    this.matchingService.save(this.currentCard, like);
     this.nextCard();
     /*
     let removedCard = this.cards.pop();

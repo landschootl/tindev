@@ -28,7 +28,11 @@ export class MatchingService {
         });
     }
 
-    public save(matching: any) {
-        
+    public save(matching: any, liked: boolean) {
+        if(this.auth.currentUser.recruiter) {
+
+        } else {
+
+        }
     }
 }
