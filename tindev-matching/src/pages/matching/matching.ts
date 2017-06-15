@@ -42,12 +42,11 @@ export class MatchingPage {
       });
 
       this.cards = [];
-      this.addNewCards(1);
+      this.addNewCards();
     }
   }
 
   voteUp(like: boolean) {
-    this.matchingService.getBestMatching();
     /*
     let removedCard = this.cards.pop();
     let message: string;
@@ -68,15 +67,19 @@ export class MatchingPage {
     */
   }
 
-  addNewCards(count: number) {
-    this.http.get('https://randomuser.me/api/?results=' + count)
+  addNewCards() {
+    /*this.http.get('https://randomuser.me/api/?results=' + count)
       .map(data => data.json().results)
       .subscribe(result => {
         for (let val of result) {
           val.age = this.calculateAge(val.dob);
           this.cards.push(val);
         }
-      })
+      })*/
+
+    this.matchingService.getAll().then((data) => {
+      this.cards = data;
+    });
   }
 
   private calculateAge(b: any) {

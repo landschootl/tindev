@@ -13,6 +13,14 @@ export class MatchingService {
     //     return this.http.put(this.apic.base_url + 'matching/save', matching);
     // }
 
+    public getAll() {
+        let headers = this.apic.getHeadersWithToken(this.auth.token);
+        let options = new RequestOptions({headers:headers});
+        return this.http.get(this.apic.base_url + 'matchings', options).toPromise().then(function(data) {
+            return data.json();
+         });
+    }
+
     public getBestMatching() {
         let headers = this.apic.getHeadersWithToken(this.auth.token);
         let options = new RequestOptions({headers:headers});
