@@ -34,6 +34,14 @@
         {
             "fieldName": "recruiterLiked",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "freelanceVoted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "recruiterVoted",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20170608143453",
