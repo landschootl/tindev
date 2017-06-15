@@ -11,5 +11,6 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface MissionRepository extends JpaRepository<Mission,Long> {
+    @Query("SELECT * from Mission m join Matching ma on m.id = ma.mission where ");
 
 }

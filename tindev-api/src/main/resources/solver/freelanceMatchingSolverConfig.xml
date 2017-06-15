@@ -11,6 +11,6 @@
 
     <!-- Optimization algorithms configuration -->
     <termination>
-        <secondsSpentLimit>30</secondsSpentLimit>
+        <secondsSpentLimit>1</secondsSpentLimit>
     </termination>
 </solver>

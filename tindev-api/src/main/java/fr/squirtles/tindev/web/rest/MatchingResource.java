@@ -153,7 +153,7 @@ public class MatchingResource {
             // J'ai besoin des matching existant et des matching en cours (mission qui aurait deja matché)
             // Build the Solver
             SolverFactory<FreelanceMatchingSolution> solverFactory = SolverFactory.createFromXmlResource(
-                "fr/squirtles/tindev/service/matching/solver/freelanceMatchingSolverConfig.xml");
+                "solver/freelanceMatchingSolverConfig.xml");
             Solver<FreelanceMatchingSolution> solver = solverFactory.buildSolver();
 
             FreelanceMatchingSolution unsolvedMatching = new FreelanceMatchingSolution();
@@ -185,7 +185,8 @@ public class MatchingResource {
 
         unsolved.setMissionList(missions);
         unsolved.setExistingMatchings(existingMatchings);
-
+        unsolved.setFreelance(freelance);
+        unsolved.setMatchings(new ArrayList<>());
     }
 
     private List<Matching> findMatching(Freelance freelance) {

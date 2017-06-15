@@ -2,6 +2,7 @@ package fr.squirtles.tindev.service.matching.solver;
 
 import fr.squirtles.tindev.service.matching.FreelanceMatchingSolution;
 import org.optaplanner.core.api.score.Score;
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
 
 /**
@@ -10,6 +11,6 @@ import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
 public class FreelanceMatchingEasyScoreCalculator implements EasyScoreCalculator<FreelanceMatchingSolution> {
     @Override
     public Score calculateScore(FreelanceMatchingSolution freelanceMatchingSolution) {
-        return null;
+        return HardSoftScore.valueOf(1, 1);
     }
 }

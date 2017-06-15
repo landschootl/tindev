@@ -25,14 +25,14 @@ export class MatchingPage {
     private capitalizePipe: CapitalizePipe,
     private auth: AuthService,
     private matchingService: MatchingService) {
-    this.stackConfig = {
+    /*this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
         return Math.min(Math.abs(offsetX) / (element.offsetWidth/2), 1);
       },
       throwOutDistance: (d) => {
         return 800;
       }
-    };
+    };*/
   }
 
   ngAfterViewInit() {
@@ -47,6 +47,7 @@ export class MatchingPage {
   }
 
   voteUp(like: boolean) {
+    debugger;
     this.matchingService.getBestMatching();
     /*
     let removedCard = this.cards.pop();
