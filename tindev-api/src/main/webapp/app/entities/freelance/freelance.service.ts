@@ -74,4 +74,13 @@ export class FreelanceService {
         }
         return options;
     }
+
+    findByIdUser(id: number): Observable<Freelance> {
+        return this.http.get(`api/users/${id}/freelances`).map((res: Response) => {
+            let jsonResponse = res.json();
+            jsonResponse.birthdate = this.dateUtils
+                .convertLocalDateFromServer(jsonResponse.birthdate);
+            return jsonResponse;
+        });
+    }
 }

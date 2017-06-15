@@ -45,7 +45,7 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
         this.userProfileService.find(id).subscribe(userProfile => {
             this.userProfile = userProfile;
         });
-        this.recruiterService.find(id).subscribe(recruiterProfile => {
+        this.recruiterService.findByIdUser(id).subscribe(recruiterProfile => {
             this.recruiterProfile = recruiterProfile;
         });
     }

@@ -1,6 +1,7 @@
 package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import fr.squirtles.tindev.domain.Freelance;
 import fr.squirtles.tindev.domain.Recruiter;
 
 import fr.squirtles.tindev.repository.RecruiterRepository;
@@ -99,7 +100,21 @@ public class RecruiterResource {
     @Timed
     public ResponseEntity<Recruiter> getRecruiter(@PathVariable Long id) {
         log.debug("REST request to get Recruiter : {}", id);
-        Recruiter recruiter = recruiterRepository.findByIdUser(id);
+        Recruiter recruiter = recruiterRepository.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(recruiter));
+    }
+
+    /**
+     * GET  /recruiters/:iduser : get the "{idUser}" recruiters.
+     *
+     * @param idUser the id of the recruiters to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the freelance, or with status 404 (Not Found)
+     */
+    @GetMapping("/users/{idUser}/recruiters")
+    @Timed
+    public ResponseEntity<Recruiter> getFreelanceByIdUser(@PathVariable Long idUser) {
+        log.debug("REST request to get Recruiter : {}", idUser);
+        Recruiter recruiter = recruiterRepository.findByIdUser(idUser);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(recruiter));
     }
 

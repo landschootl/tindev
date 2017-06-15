@@ -99,7 +99,21 @@ public class FreelanceResource {
     @Timed
     public ResponseEntity<Freelance> getFreelance(@PathVariable Long id) {
         log.debug("REST request to get Freelance : {}", id);
-        Freelance freelance = freelanceRepository.findByIdUser(id);
+        Freelance freelance = freelanceRepository.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(freelance));
+    }
+
+    /**
+     * GET  /freelances/:iduser : get the "{idUser}" freelance.
+     *
+     * @param idUser the id of the freelance to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the freelance, or with status 404 (Not Found)
+     */
+    @GetMapping("/users/{idUser}/freelances")
+    @Timed
+    public ResponseEntity<Freelance> getFreelanceByIdUser(@PathVariable Long idUser) {
+        log.debug("REST request to get Freelance : {}", idUser);
+        Freelance freelance = freelanceRepository.findByIdUser(idUser);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(freelance));
     }
 
