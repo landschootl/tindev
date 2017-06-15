@@ -20,6 +20,8 @@
             "rLikedDate": "R Liked Date",
             "freelanceLiked": "Freelance Liked",
             "recruiterLiked": "Recruiter Liked",
+            "freelanceVoted": "Freelance Voted",
+            "recruiterVoted": "Recruiter Voted",
             "mission": "Mission",
             "freelance": "Freelance"
         }

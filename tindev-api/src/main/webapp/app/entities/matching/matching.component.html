@@ -22,6 +22,8 @@
             <th jhiSortBy="rLikedDate"><span jhiTranslate="tindevApp.matching.rLikedDate">R Liked Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="freelanceLiked"><span jhiTranslate="tindevApp.matching.freelanceLiked">Freelance Liked</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="recruiterLiked"><span jhiTranslate="tindevApp.matching.recruiterLiked">Recruiter Liked</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="freelanceVoted"><span jhiTranslate="tindevApp.matching.freelanceVoted">Freelance Voted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="recruiterVoted"><span jhiTranslate="tindevApp.matching.recruiterVoted">Recruiter Voted</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="mission.id"><span jhiTranslate="tindevApp.matching.mission">Mission</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="freelance.id"><span jhiTranslate="tindevApp.matching.freelance">Freelance</span> <span class="fa fa-sort"></span></th>
             <th></th>
@@ -35,6 +37,8 @@
                 <td>{{matching.rLikedDate | date:'mediumDate'}}</td>
                 <td>{{matching.freelanceLiked}}</td>
                 <td>{{matching.recruiterLiked}}</td>
+                <td>{{matching.freelanceVoted}}</td>
+                <td>{{matching.recruiterVoted}}</td>
                 <td>
                     <div *ngIf="matching.mission">
                         <a [routerLink]="['../mission', matching.mission?.id ]" >{{matching.mission?.id}}</a>
