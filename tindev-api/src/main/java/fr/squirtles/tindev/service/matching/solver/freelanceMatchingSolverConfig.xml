@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+    <!-- Domain model configuration -->
+    <scanAnnotatedClasses/>
+
+    <!-- Score configuration -->
+    <scoreDirectorFactory>
+        <easyScoreCalculatorClass>fr.squirtles.tindev.service.matching.solver.FreelanceMatchingEasyScoreCalculator</easyScoreCalculatorClass>
+        <!--<scoreDrl>fr/squirtles/tindev/service/matching/solver/freelanceMatchingScoreRules.drl</scoreDrl>-->
+    </scoreDirectorFactory>
+
+    <!-- Optimization algorithms configuration -->
+    <termination>
+        <secondsSpentLimit>30</secondsSpentLimit>
+    </termination>
+</solver>

@@ -1,13 +1,24 @@
 package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import fr.squirtles.tindev.domain.Freelance;
 import fr.squirtles.tindev.domain.Matching;
 
+import fr.squirtles.tindev.domain.Mission;
+import fr.squirtles.tindev.repository.FreelanceRepository;
 import fr.squirtles.tindev.repository.MatchingRepository;
+import fr.squirtles.tindev.repository.MissionRepository;
+import fr.squirtles.tindev.repository.UserRepository;
+import fr.squirtles.tindev.security.AuthoritiesConstants;
+import fr.squirtles.tindev.security.SecurityUtils;
+import fr.squirtles.tindev.service.matching.FreelanceMatching;
+import fr.squirtles.tindev.service.matching.FreelanceMatchingSolution;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import fr.squirtles.tindev.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.optaplanner.core.api.solver.Solver;
+import org.optaplanner.core.api.solver.SolverFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -19,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,11 +44,17 @@ public class MatchingResource {
     private final Logger log = LoggerFactory.getLogger(MatchingResource.class);
 
     private static final String ENTITY_NAME = "matching";
-        
-    private final MatchingRepository matchingRepository;
 
-    public MatchingResource(MatchingRepository matchingRepository) {
+    private final MatchingRepository matchingRepository;
+    private final UserRepository userRepository;
+    private final FreelanceRepository freelanceRepository;
+    private MissionRepository missionRepository;
+
+    public MatchingResource(MatchingRepository matchingRepository, UserRepository userRepository, FreelanceRepository freelanceRepository, MissionRepository missionRepository) {
         this.matchingRepository = matchingRepository;
+        this.userRepository = userRepository;
+        this.freelanceRepository = freelanceRepository;
+        this.missionRepository = missionRepository;
     }
 
     /**
@@ -124,4 +142,64 @@ public class MatchingResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    /*
+      FREELANCE
+     */
+    @GetMapping("/matchings/best")
+    @Timed
+    public List<Matching> getBestMatching() {
+        log.debug("tindddeeeeeeevvvvv");
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
+            // J'ai besoin des matching existant et des matching en cours (mission qui aurait deja matché)
+            // Build the Solver
+            SolverFactory<FreelanceMatchingSolution> solverFactory = SolverFactory.createFromXmlResource(
+                "fr/squirtles/tindev/service/matching/solver/freelanceMatchingSolverConfig.xml");
+            Solver<FreelanceMatchingSolution> solver = solverFactory.buildSolver();
+
+            FreelanceMatchingSolution unsolvedMatching = new FreelanceMatchingSolution();
+
+            initFreelanceProblem(unsolvedMatching);
+
+            // Solve the problem
+            FreelanceMatchingSolution foundMatching = solver.solve(unsolvedMatching);
+
+            return convertMatchingSolutionToMatchings(foundMatching);
+        } else if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
+
+        }
+
+
+
+        return null;
+    }
+
+    private List<Matching> convertMatchingSolutionToMatchings(FreelanceMatchingSolution foundMatching) {
+        return null;
+    }
+
+    private void initFreelanceProblem(FreelanceMatchingSolution unsolved) {
+        Freelance freelance = freelanceRepository.findByIdUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
+        final List<Matching> matchings = findMatching(freelance);
+        final List<Mission> missions = missionRepository.findAll();
+        List<FreelanceMatching> existingMatchings = convertMatching(matchings, freelance);
+
+        unsolved.setMissionList(missions);
+        unsolved.setExistingMatchings(existingMatchings);
+
+    }
+
+    private List<Matching> findMatching(Freelance freelance) {
+        return matchingRepository.findByFreelance(freelance);
+    }
+
+    List<FreelanceMatching> convertMatching(List<Matching> matchings, Freelance freelance) {
+        final List<FreelanceMatching> freelanceMatchings = new ArrayList<>();
+        matchings.stream().forEach(m -> {
+            final FreelanceMatching matching = new FreelanceMatching();
+            matching.setFreelance(m.getFreelance());
+            matching.setMission(m.getMission());
+        });
+
+        return freelanceMatchings;
+    }
 }

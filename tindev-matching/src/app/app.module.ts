@@ -15,6 +15,7 @@ import { Storage } from '@ionic/storage';
 import { ApiUtils } from '../shared/utils/api';
 import { ConversationService } from '../providers/conversation-service';
 import { UserService } from '../providers/user-service';
+import {MatchingService} from "../providers/matching-service";
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import { UserService } from '../providers/user-service';
         },
         TindevSession,
         AuthService,
+        MatchingService,
         Storage,
         ApiUtils,
         ConversationService,
