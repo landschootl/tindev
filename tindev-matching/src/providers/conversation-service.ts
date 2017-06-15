@@ -54,7 +54,7 @@ export class ConversationService {
         }
     }
 
-    var u : User = new User('Ali', 'Conners', true, 'ali.conners@tindev.com', true, '');
+    var u : User = new User(99, 'Ali', 'Conners', true, 'ali.conners@tindev.com', true, '');
     conversation.messages = data;
     conversation.interlocutor = u;
     return conversation;

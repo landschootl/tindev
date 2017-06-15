@@ -15,6 +15,7 @@ import { Storage } from '@ionic/storage';
 import { ApiUtils } from '../shared/utils/api';
 import { ConversationService } from '../providers/conversation-service';
 import { UserService } from '../providers/user-service';
+import { MissionService } from '../providers/mission-service';
 import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-selection/recruiters-mission-selection';
 
 
@@ -54,7 +55,8 @@ import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-sele
         Storage,
         ApiUtils,
         ConversationService,
-        UserService
+        UserService,
+        MissionService
     ]
 })
 export class AppModule {

@@ -9,6 +9,7 @@ export class UserService {
     constructor(private http: Http, private apic : ApiUtils) {}
 
     public save(account: any): Observable<any> {
+    	console.log(account);
         return this.http.post(this.apic.base_url + 'register', account);
     }
 }

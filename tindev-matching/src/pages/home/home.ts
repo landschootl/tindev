@@ -5,6 +5,7 @@ import { AuthService } from '../../providers/auth-service';
 import { MatchingPage } from '../../pages/matching/matching';
 import { ToastController } from 'ionic-angular';
 import { RegisterPage } from '../../pages/register/register';
+import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
 
 @Component({
   selector: 'home',
@@ -24,7 +25,6 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage. tindevSession : ' + this.tindevSession.isDevMode());
   }
 
   public createAccount() {
@@ -38,7 +38,6 @@ export class HomePage {
       if (allowed) {
         //Authentication successful, now we can get the information from the newly logged user
         this.auth.apiAccount().subscribe(user => {
-          //showToast('Welcome ' + user.firstname);
           let toast = this.toastCtrl.create({
             message: 'Welcome ' + user.firstname,
             duration: 2000,
@@ -46,16 +45,21 @@ export class HomePage {
           });
           toast.present(toast);
           this.menu.enable(true);
-          this.nav.setRoot(MatchingPage);
+          if (user.recruiter === true) {
+            this.loading.dismiss();
+            this.nav.push(RecruitersMissionSelectionPage);
+          } else {
+            this.nav.setRoot(MatchingPage);
+          }
           });
       } else {
         this.loading.dismiss();
-        this.showToast("Invalid credentials");
+        this.showToast("Informations de connexion invalides");
       }
     },
       error => {
         this.loading.dismiss();
-        this.showToast("Invalid credentials");
+        this.showToast("Informations de connexion invalides");
       });
   }
 

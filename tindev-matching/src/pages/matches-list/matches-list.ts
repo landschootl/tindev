@@ -95,8 +95,8 @@ export class MatchesListPage {
   actualizeItems(input : string) {
     this.searchMatchingData = [];
     for(let d of this.data) {
-      if(d.project_name.toLowerCase().includes(input) 
-        || d.interlocutor_name.toLowerCase().includes(input)) {
+      if(d.project_name.toLowerCase().includes(input.toLowerCase()) 
+        || d.interlocutor_name.toLowerCase().includes(input.toLowerCase())) {
         this.searchMatchingData.push(d);
       }
     }

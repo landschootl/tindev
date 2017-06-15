@@ -2,9 +2,10 @@ import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { SwingStackComponent, StackConfig, SwingCardComponent, ThrowEvent } from 'angular2-swing';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { ToastController } from 'ionic-angular';
+import { ToastController, NavParams, NavController} from 'ionic-angular';
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
 import { AuthService } from '../../providers/auth-service';
+import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
 
 @Component({
   selector: 'page-matching',
@@ -15,14 +16,21 @@ export class MatchingPage {
 
   @ViewChild('myswing1') swingStack: SwingStackComponent;
   @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
-
+  matchingProfile : any; //Could be user or mission
   cards: Array<any>;
   stackConfig: StackConfig;
 
   constructor(private http: Http,
     private toastCtrl: ToastController,
     private capitalizePipe: CapitalizePipe,
-    private auth: AuthService) {
+    private auth: AuthService, public navParams: NavParams, public nav : NavController) {
+    console.log(navParams.data.mission);
+    if(navParams.data.mission != undefined)
+      this.matchingProfile = navParams.data.mission;
+    else
+      this.matchingProfile = auth.currentUser;
+    console.log("matching profile is : ");
+    console.log(this.matchingProfile);
     this.stackConfig = {
       throwOutConfidence: (offset, element) => {
         return Math.min(Math.abs(offset) / (element.offsetWidth/2), 1);
@@ -79,6 +87,10 @@ export class MatchingPage {
     let ageDifMs = Date.now() - birthday.getTime();
     let ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  goToMissionSelection() {
+    this.nav.push(RecruitersMissionSelectionPage);
   }
 
 }

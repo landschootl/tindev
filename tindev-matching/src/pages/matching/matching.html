@@ -52,6 +52,12 @@
       </ion-card>
     </div>
   </div>
+  <div id="another-mission" *ngIf="this.auth.currentUser.recruiter">
+  <button ion-button (click)="goToMissionSelection()">
+    <ion-icon class="margin-right" name="arrow-dropleft"></ion-icon>
+    <p>Match with another mission</p>
+  </button>
+</div>
 <!--
   <div *ngIf="!this.auth.getUserInfo().completedProfile">
    

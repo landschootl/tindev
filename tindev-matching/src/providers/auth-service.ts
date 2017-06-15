@@ -32,7 +32,6 @@ export class AuthService {
       let token = response.json() && response.json().id_token;
       if(token) {
         this.token = token;
-        console.log("token : " + this.token);
         //Saving the user and his token into the storage
         this.storage.set('currentUser', JSON.stringify({username: credentials.username, token: token}));
         return true;
@@ -53,8 +52,9 @@ export class AuthService {
       let json = response.json();
       //TODO add verification on whether the user is a recruiter or not
       //TODO add veriication if the profile is completed or not
-      console.log(json);
-      this.currentUser = new User(json.firstname, json.lastname, false, json.email, true, this.token);
+      var isrecruiter : boolean = json.authorities.indexOf('ROLE_RECRUITER') >= 0;
+      // >= 0
+      this.currentUser = new User(json.id, json.firstName, json.lastName, isrecruiter, json.email, true, this.token);
       this.storage.set('currentUser', JSON.stringify({user: this.currentUser}));
       return this.currentUser;
       });
