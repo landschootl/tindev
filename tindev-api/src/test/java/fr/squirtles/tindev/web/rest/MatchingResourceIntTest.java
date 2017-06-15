@@ -3,7 +3,10 @@ package fr.squirtles.tindev.web.rest;
 import fr.squirtles.tindev.TindevApp;
 
 import fr.squirtles.tindev.domain.Matching;
+import fr.squirtles.tindev.repository.FreelanceRepository;
 import fr.squirtles.tindev.repository.MatchingRepository;
+import fr.squirtles.tindev.repository.MissionRepository;
+import fr.squirtles.tindev.repository.UserRepository;
 import fr.squirtles.tindev.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -58,6 +61,12 @@ public class MatchingResourceIntTest {
     private MatchingRepository matchingRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private FreelanceRepository freelanceRepository;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -73,10 +82,13 @@ public class MatchingResourceIntTest {
 
     private Matching matching;
 
+    @Autowired
+    private MissionRepository missionRepository;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        MatchingResource matchingResource = new MatchingResource(matchingRepository);
+        MatchingResource matchingResource = new MatchingResource(matchingRepository, userRepository, freelanceRepository, missionRepository);
         this.restMatchingMockMvc = MockMvcBuilders.standaloneSetup(matchingResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

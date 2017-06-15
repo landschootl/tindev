@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { ToastController } from 'ionic-angular';
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
 import { AuthService } from '../../providers/auth-service';
+import {MatchingService} from "../../providers/matching-service";
 
 @Component({
   selector: 'page-matching',
@@ -22,7 +23,8 @@ export class MatchingPage {
   constructor(private http: Http,
     private toastCtrl: ToastController,
     private capitalizePipe: CapitalizePipe,
-    private auth: AuthService) {
+    private auth: AuthService,
+    private matchingService: MatchingService) {
     this.stackConfig = {
       throwOutConfidence: (offset, element) => {
         return Math.min(Math.abs(offset) / (element.offsetWidth/2), 1);
@@ -45,6 +47,8 @@ export class MatchingPage {
   }
 
   voteUp(like: boolean) {
+    this.matchingService.getBestMatching();
+    /*
     let removedCard = this.cards.pop();
     let message: string;
     this.addNewCards(1);
@@ -61,6 +65,7 @@ export class MatchingPage {
       position: 'bottom'
     });
     toast.present(toast);
+    */
   }
 
   addNewCards(count: number) {
