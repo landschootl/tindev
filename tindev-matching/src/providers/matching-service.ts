@@ -14,11 +14,9 @@ export class MatchingService {
     // }
 
     public getBestMatching() {
-        debugger;
         let headers = this.apic.getHeadersWithToken(this.auth.token);
         let options = new RequestOptions({headers:headers});
-        return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
-            debugger;
-        });
+        /*return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
+        });*/
     }
 }
