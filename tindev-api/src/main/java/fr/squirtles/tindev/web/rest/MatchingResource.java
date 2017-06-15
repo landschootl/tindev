@@ -144,7 +144,7 @@ public class MatchingResource {
 
     /*
       FREELANCE
-     */
+     *//*
     @GetMapping("/matchings/best")
     @Timed
     public List<Matching> getBestMatching() {
@@ -168,7 +168,35 @@ public class MatchingResource {
 
         }
 
+        return null;
+    }*/
 
+    @GetMapping("/matchings/best")
+    public List<Matching> getMatchings() {
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
+            Freelance freelance = freelanceRepository.findByIdUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
+            List<Mission> missions = missionRepository.findAll();
+            List<Matching> matchings = new ArrayList<>();
+
+            this.matchingRepository.findByFreelance(freelance).forEach(matching -> {
+                if(!matching.isFreelanceVoted()) {
+                    matchings.add(matching);
+                } else {
+                    missions.remove(matching.getMission());
+                }
+            });
+
+            missions.stream().forEach(mission -> {
+                Matching matching = new Matching();
+                matching.setFreelance(freelance);
+                matching.setMission(mission);
+                matchings.add(matching);
+            });
+
+            return matchings;
+        } else if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.RECRUITER)) {
+            return null;
+        }
 
         return null;
     }

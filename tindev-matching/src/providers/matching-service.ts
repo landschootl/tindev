@@ -16,7 +16,7 @@ export class MatchingService {
     public getAll() {
         let headers = this.apic.getHeadersWithToken(this.auth.token);
         let options = new RequestOptions({headers:headers});
-        return this.http.get(this.apic.base_url + 'matchings', options).toPromise().then(function(data) {
+        return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
             return data.json();
          });
     }
@@ -24,7 +24,7 @@ export class MatchingService {
     public getBestMatching() {
         let headers = this.apic.getHeadersWithToken(this.auth.token);
         let options = new RequestOptions({headers:headers});
-        /*return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
-        });*/
+        return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
+        });
     }
 }
