@@ -19,17 +19,9 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class ProfileRecruiterComponent implements OnInit, OnChanges {
     @Input() settingsAccount: any;
-
+    @Input() userProfile: UserProfile;
     eventSubscriber: Subscription;
-
-    userProfile: UserProfile;
-    successEditUserProfile: boolean;
-    errorEditUserProfile: string;
-
     recruiterProfile: Recruiter;
-    successEditRecruiterProfile: boolean;
-    errorEditRecruiterProfile: string;
-
     missions: Mission[];
     newMission: Mission;
 
@@ -54,9 +46,6 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
     }
 
     load(id) {
-        this.userProfileService.find(id).subscribe(userProfile => {
-            this.userProfile = userProfile;
-        });
         this.recruiterService.findByIdUser(id).subscribe(recruiterProfile => {
             this.recruiterProfile = recruiterProfile;
             this.loadMissions(recruiterProfile.id);
@@ -79,12 +68,9 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
         this.userProfileService.update(this.userProfile)
             .subscribe(
                 (res: UserProfile) => {
-                    this.successEditUserProfile = true;
-                    this.errorEditUserProfile = '';
-                    this.userProfile = res;
+
                 },
                 (res: Response) => {
-                    this.successEditUserProfile = false;
                     console.log('error => ', res);
                 });
     }
@@ -93,12 +79,9 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
         this.recruiterService.update(this.recruiterProfile)
             .subscribe(
                 (res: Recruiter) => {
-                    this.successEditRecruiterProfile = true;
-                    this.errorEditRecruiterProfile = '';
                     this.recruiterProfile = res;
                 },
                 (res: Response) => {
-                    this.successEditRecruiterProfile = false;
                     console.log('error => ', res);
                 });
     }

@@ -1,10 +1,4 @@
 <div *ngIf="userProfile && recruiterProfile">
-    <div class="alert alert-success" *ngIf="successEditUserProfile">
-        <strong>Les informations utilisateur sont bien sauvegardé !</strong>
-    </div>
-    <div class="alert alert-error" *ngIf="errorEditUserProfile !== ''">
-        {{errorEditUserProfile}}
-    </div>
     <div class="row">
         <p class="profile-sous-title col-md-8">MES INFORMATIONS UTILISATEUR</p>
         <button (click)="saveUserProfile()" type="button" class="edit-button btn btn-sm col-md-4">
@@ -32,12 +26,6 @@
 
 
     <hr>
-    <div class="alert alert-success" *ngIf="successEditRecruiterProfile">
-        <strong>Les informations métier sont bien sauvegardé !</strong>
-    </div>
-    <div *ngIf="errorEditRecruiterProfile !== ''">
-        {{errorEditRecruiterProfile}}
-    </div>
     <div class="row">
         <p class="profile-sous-title col-md-8">MES INFORMATIONS METIER</p>
         <button (click)="saveRecruiterProfile()" type="button" class="edit-button btn btn-sm col-md-4">
@@ -84,7 +72,7 @@
                             replaceUrl="true"
                             class="btn btn-danger btn-sm">
                         <span class="fa fa-remove"></span>
-                        <span class="hidden-md-down">Supprimer</span>
+                        <span class="hidden-md-down"></span>
                     </button>
                 </td>
             </tr>

@@ -19,16 +19,11 @@ import { DomainService } from '../../entities/domain/domain.service';
 })
 export class ProfileFreelanceComponent implements OnInit, OnChanges {
     @Input() settingsAccount: any;
-
-    userProfile: UserProfile;
-    successEditUserProfile: boolean;
-    errorEditUserProfile: string;
+    @Input() userProfile: UserProfile;
 
     freelanceProfile: Freelance;
     specialties: Specialty[];
     domains: Domain[];
-    successEditFreelanceProfile: boolean;
-    errorEditFreelanceProfile: string;
 
     constructor(private jhiLanguageService: JhiLanguageService,
         private freelanceService: FreelanceService,
@@ -65,9 +60,6 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     }
 
     load(id) {
-        this.userProfileService.find(id).subscribe(userProfile => {
-            this.userProfile = userProfile;
-        });
         this.freelanceService.findByIdUser(id).subscribe(freelanceProfile => {
             this.freelanceProfile = freelanceProfile;
         });
@@ -77,12 +69,9 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.userProfileService.update(this.userProfile)
             .subscribe(
                 (res: UserProfile) => {
-                    this.successEditUserProfile = true;
-                    this.errorEditUserProfile = '';
-                    this.userProfile = res;
+
                 },
                 (res: Response) => {
-                    this.successEditUserProfile = false;
                     console.log('error => ', res);
                 });
     }
@@ -91,12 +80,9 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.freelanceService.update(this.freelanceProfile)
             .subscribe(
                 (res: Freelance) => {
-                    this.successEditFreelanceProfile = true;
-                    this.errorEditFreelanceProfile = '';
                     this.freelanceProfile = res;
                 },
                 (res: Response) => {
-                    this.successEditFreelanceProfile = false;
                     console.log('error => ', res);
                 });
     }
