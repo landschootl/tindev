@@ -16,11 +16,11 @@ import { Matching } from '../../shared/models/matching.model';
 export class MatchingPage {
 
     @ViewChild('myswing1') swingStack: SwingStackComponent;
-    @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
+    @ViewChildren('cards') cards: QueryList<SwingCardComponent>;
 
     matchings: Array<Matching> = [];
     stackConfig: StackConfig;
-    currentCard: any;
+    currentCard: Matching;
 
     constructor(private http: Http,
         private toastCtrl: ToastController,
@@ -47,8 +47,8 @@ export class MatchingPage {
         }
     }
 
-    voteUp(like: boolean) {
-        this.matchingService.save(this.currentCard, like);
+    voteUp(liked: boolean) {
+        this.matchingService.save(this.currentCard, liked);
         this.nextCard();
     }
 

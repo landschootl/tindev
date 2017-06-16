@@ -1,62 +1,65 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title text-center>
-      Tindev Matching
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="options"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title text-center>
+            Tindev Matching
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only>
+                <ion-icon name="options"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+    <div *ngIf="auth.getUserInfo().completedProfile">
+        <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)"
+             (throwoutright)="voteUp(true)" id="card-stack">
 
-  <div *ngIf="this.auth.getUserInfo().completedProfile">
-   <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
-      <ion-card #mycards1 swing-card *ngFor="let c of cards">
-        <ion-item *ngIf="c.picture">
-          <img id="card-image" *ngIf="c.picture" [src]="c.picture.large">
-          <h1 id="card-title">{{ c.name.first | capitalize }}, {{ c.age }}</h1>
-          <h2 id="card-subtitle">{{ c.location.city | capitalize }}</h2>
-        </ion-item>
+            <!-- Affichage dans le cas d'un freelance -->
+            <ion-card #cards swing-card *ngFor="let m of matchings">
+                <ion-item>
+                    <img class="card-image" *ngIf="m.mission.imageUrl" [src]="m.mission.imageUrl">
+                    <h1 class="card-title">{{ m.title | capitalize }}</h1>
+                    <h2 class="card-subtitle">{{ m.description | capitalize }}</h2>
+                </ion-item>
 
-        <ion-row *ngIf="c.name">
-          <ion-col>
-            <button ion-button color="danger" round outline large (click)="voteUp(false)">
-              <ion-icon name="thumbs-down"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button color="safe" round outline large (click)="voteUp(true)">
-              <ion-icon name="thumbs-up"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-card>
+                <ion-row >
+                    <ion-col>
+                        <button ion-button color="danger" round outline large (click)="voteUp(false)">
+                            <ion-icon name="thumbs-down"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button color="safe" round outline large (click)="voteUp(true)">
+                            <ion-icon name="thumbs-up"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+        </div>
     </div>
-  </div>
 
-  <div *ngIf="!this.auth.getUserInfo().completedProfile">
-     <div>
-      <ion-card>
-        <ion-item>
-          <img id="un-card-image" src="assets/images/uncompleted-profile-placeholder.jpg">
-          <h1 id="un-card-title">Trouvez votre futur associé</h1>
-        </ion-item>
-        <p id="un-card-subtitle" padding color="danger">Vous devez d'abord compléter votre profil sur l'application Tindev Board.</p>
-      </ion-card>
+    <div *ngIf="!auth.getUserInfo().completedProfile">
+        <div>
+            <ion-card>
+                <ion-item>
+                    <img id="un-card-image" src="assets/images/uncompleted-profile-placeholder.jpg">
+                    <h1 id="un-card-title">Trouvez votre futur associé</h1>
+                </ion-item>
+                <p id="un-card-subtitle" padding color="danger">Vous devez d'abord compléter votre profil sur
+                    l'application Tindev Board.</p>
+            </ion-card>
+        </div>
     </div>
-  </div>
-<!--
-  <div *ngIf="!this.auth.getUserInfo().completedProfile">
-   
-  </div>
-  -->
+    <!--
+      <div *ngIf="!this.auth.getUserInfo().completedProfile">
+
+      </div>
+      -->
 </ion-content>
 
 <!--

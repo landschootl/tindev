@@ -5,20 +5,20 @@ page-home {
     height: 90%;
   }
 
-  #card-image {
+  .card-image {
     pointer-events: none;
   }
 
-  #card-title {
+  .card-title {
     padding-top: 10px;
     font-weight: 400;
   }
 
-  #card-subtitle {
+  .card-subtitle {
     color: grey;
   }
 
-  #infos-like {
+  .infos-like {
     padding-top: 10px;
     font-size: 16px;
   }
