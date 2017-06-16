@@ -1,0 +1,63 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Modifier une mission</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="form-control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                   [(ngModel)]="mission.title"
+            />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_description2">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description2"
+                   [(ngModel)]="mission.description"
+            />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_minSalary">Salaire minimum</label>
+            <input type="number" class="form-control" name="minSalary" id="field_minSalary"
+                   [(ngModel)]="mission.minSalary"
+            />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_maxSalary">Salaire maximum</label>
+            <input type="number" class="form-control" name="maxSalary" id="field_maxSalary"
+                   [(ngModel)]="mission.maxSalary"
+            />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_startDate">Date de début</label>
+            <div class="input-group">
+                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="mission.startDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_endDate">Date de fin</label>
+            <div class="input-group">
+                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="mission.endDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateMission()">Modifier</button>
+    </div>
+</ng-template>
+
+<button type="submit" class="btn btn-primary btn-sm" (click)="open(content)">
+    <span class="fa fa-pencil"></span>
+    <span class="hidden-md-down"></span>
+</button>

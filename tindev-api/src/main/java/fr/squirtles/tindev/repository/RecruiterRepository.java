@@ -12,4 +12,5 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface RecruiterRepository extends JpaRepository<Recruiter,Long> {
 
+    Recruiter findByIdUser(Long id);
 }

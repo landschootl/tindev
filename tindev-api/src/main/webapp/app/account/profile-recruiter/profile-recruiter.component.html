@@ -1,1 +1,81 @@
-Recruteur
+<div *ngIf="userProfile && recruiterProfile">
+    <div class="row">
+        <p class="profile-sous-title col-md-8">MES INFORMATIONS UTILISATEUR</p>
+        <button (click)="saveUserProfile()" type="button" class="edit-button btn btn-sm col-md-4">
+            <span class="button-text">Enregistrer</span>
+        </button>
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_description">Description</label>
+        <input type="text" class="form-control" name="description" id="field_description"
+               [(ngModel)]="userProfile.description"
+        />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_photoUrl">Url de la photo</label>
+        <input type="text" class="form-control" name="photoUrl" id="field_photoUrl"
+               [(ngModel)]="userProfile.photoUrl"
+        />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_city">Ville</label>
+        <input type="text" class="form-control" name="city" id="field_city"
+               [(ngModel)]="userProfile.city"
+        />
+    </div>
+
+
+    <hr>
+    <div class="row">
+        <p class="profile-sous-title col-md-8">MES INFORMATIONS METIER</p>
+        <button (click)="saveRecruiterProfile()" type="button" class="edit-button btn btn-sm col-md-4">
+            <span class="button-text">Enregistrer</span>
+        </button>
+    </div>
+    <div class="form-group">
+        <label class="form-control-label" for="field_company">Entreprise</label>
+        <input type="text" class="form-control" name="company" id="field_company"
+               [(ngModel)]="recruiterProfile.company"
+        />
+    </div>
+
+    <hr>
+    <div class="row">
+        <p class="profile-sous-title col-md-8">MES MISSIONS</p>
+        <add-mission-dialog [newMission]="newMission" class="col-md-4"></add-mission-dialog>
+    </div>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Salaire minimum</th>
+            <th>Salaire maximum</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mission of missions">
+                <td>{{mission.title}}</td>
+                <td>{{mission.description}}</td>
+                <td>{{mission.minSalary}}</td>
+                <td>{{mission.maxSalary}}</td>
+                <td>{{mission.startDate}}</td>
+                <td>{{mission.endDate}}</td>
+                <td>
+                    <update-mission-dialog [mission]="mission"></update-mission-dialog>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'mission/'+ mission.id + '/delete'} }]"
+                            replaceUrl="true"
+                            class="btn btn-danger btn-sm">
+                        <span class="fa fa-remove"></span>
+                        <span class="hidden-md-down"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

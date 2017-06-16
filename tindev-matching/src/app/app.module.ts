@@ -17,7 +17,7 @@ import { ConversationService } from '../providers/conversation-service';
 import { UserService } from '../providers/user-service';
 import { MissionService } from '../providers/mission-service';
 import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-selection/recruiters-mission-selection';
-
+import {MatchingService} from "../providers/matching-service";
 
 @NgModule({
     declarations: [
@@ -52,6 +52,7 @@ import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-sele
         },
         TindevSession,
         AuthService,
+        MatchingService,
         Storage,
         ApiUtils,
         ConversationService,

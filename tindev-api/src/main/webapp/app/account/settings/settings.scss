@@ -1,3 +1,7 @@
+img {
+    float: left;
+}
+
 .cover-picture img.cover-image-lg{
     z-index: 0;
     width: 100%;
@@ -13,8 +17,7 @@
 
 @media (max-width:768px)
 {
-
-    .cover-profile-text>h1{
+    .cover-profile-text>h4 {
         font-weight: 700;
         font-size:16px;
     }
@@ -43,4 +46,8 @@
 .edit-button{
     border-color: #cccccc;
     background-color: #ffffff;
+}
+
+h4 {
+    font-size: 1.8rem;
 }

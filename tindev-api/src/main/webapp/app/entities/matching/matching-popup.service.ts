@@ -6,21 +6,21 @@ import { MatchingService } from './matching.service';
 @Injectable()
 export class MatchingPopupService {
     private isOpen = false;
-    constructor (
+    constructor(
         private modalService: NgbModal,
         private router: Router,
         private matchingService: MatchingService
 
     ) {}
 
-    open (component: Component, id?: number | any): NgbModalRef {
+    open(component: Component, id?: number | any): NgbModalRef {
         if (this.isOpen) {
             return;
         }
         this.isOpen = true;
 
         if (id) {
-            this.matchingService.find(id).subscribe(matching => {
+            this.matchingService.find(id).subscribe((matching) => {
                 if (matching.fLikedDate) {
                     matching.fLikedDate = {
                         year: matching.fLikedDate.getFullYear(),
@@ -43,9 +43,9 @@ export class MatchingPopupService {
     }
 
     matchingModalRef(component: Component, matching: Matching): NgbModalRef {
-        let modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.matching = matching;
-        modalRef.result.then(result => {
+        modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {

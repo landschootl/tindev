@@ -34,6 +34,12 @@ public class Matching implements Serializable {
     @Column(name = "recruiter_liked")
     private Boolean recruiterLiked;
 
+    @Column(name = "freelance_voted")
+    private Boolean freelanceVoted;
+
+    @Column(name = "recruiter_voted")
+    private Boolean recruiterVoted;
+
     @ManyToOne
     private Mission mission;
 
@@ -113,6 +119,32 @@ public class Matching implements Serializable {
         this.recruiterLiked = recruiterLiked;
     }
 
+    public Boolean isFreelanceVoted() {
+        return freelanceVoted;
+    }
+
+    public Matching freelanceVoted(Boolean freelanceVoted) {
+        this.freelanceVoted = freelanceVoted;
+        return this;
+    }
+
+    public void setFreelanceVoted(Boolean freelanceVoted) {
+        this.freelanceVoted = freelanceVoted;
+    }
+
+    public Boolean isRecruiterVoted() {
+        return recruiterVoted;
+    }
+
+    public Matching recruiterVoted(Boolean recruiterVoted) {
+        this.recruiterVoted = recruiterVoted;
+        return this;
+    }
+
+    public void setRecruiterVoted(Boolean recruiterVoted) {
+        this.recruiterVoted = recruiterVoted;
+    }
+
     public Mission getMission() {
         return mission;
     }
@@ -148,26 +180,28 @@ public class Matching implements Serializable {
             return false;
         }
         Matching matching = (Matching) o;
-        if (matching.id == null || id == null) {
+        if (matching.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, matching.id);
+        return Objects.equals(getId(), matching.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Matching{" +
-            "id=" + id +
-            ", score='" + score + "'" +
-            ", fLikedDate='" + fLikedDate + "'" +
-            ", rLikedDate='" + rLikedDate + "'" +
-            ", freelanceLiked='" + freelanceLiked + "'" +
-            ", recruiterLiked='" + recruiterLiked + "'" +
-            '}';
+            "id=" + getId() +
+            ", score='" + getScore() + "'" +
+            ", fLikedDate='" + getfLikedDate() + "'" +
+            ", rLikedDate='" + getrLikedDate() + "'" +
+            ", freelanceLiked='" + isFreelanceLiked() + "'" +
+            ", recruiterLiked='" + isRecruiterLiked() + "'" +
+            ", freelanceVoted='" + isFreelanceVoted() + "'" +
+            ", recruiterVoted='" + isRecruiterVoted() + "'" +
+            "}";
     }
 }

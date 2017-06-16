@@ -6,6 +6,7 @@ import { ToastController, NavParams, NavController} from 'ionic-angular';
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
 import { AuthService } from '../../providers/auth-service';
 import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
+import {MatchingService} from "../../providers/matching-service";
 
 @Component({
   selector: 'page-matching',
@@ -23,7 +24,8 @@ export class MatchingPage {
   constructor(private http: Http,
     private toastCtrl: ToastController,
     private capitalizePipe: CapitalizePipe,
-    private auth: AuthService, public navParams: NavParams, public nav : NavController) {
+
+    private auth: AuthService, public navParams: NavParams, public nav : NavController, private matchingService: MatchingService) {
     console.log(navParams.data.mission);
     if(navParams.data.mission != undefined)
       this.matchingProfile = navParams.data.mission;
@@ -31,14 +33,6 @@ export class MatchingPage {
       this.matchingProfile = auth.currentUser;
     console.log("matching profile is : ");
     console.log(this.matchingProfile);
-    this.stackConfig = {
-      throwOutConfidence: (offset, element) => {
-        return Math.min(Math.abs(offset) / (element.offsetWidth/2), 1);
-      },
-      throwOutDistance: (d) => {
-        return 800;
-      }
-    };
   }
 
   ngAfterViewInit() {
@@ -48,11 +42,12 @@ export class MatchingPage {
       });
 
       this.cards = [];
-      this.addNewCards(1);
+      this.addNewCards();
     }
   }
 
   voteUp(like: boolean) {
+    /*
     let removedCard = this.cards.pop();
     let message: string;
     this.addNewCards(1);
@@ -69,17 +64,23 @@ export class MatchingPage {
       position: 'bottom'
     });
     toast.present(toast);
+    */
   }
 
-  addNewCards(count: number) {
-    this.http.get('https://randomuser.me/api/?results=' + count)
+  addNewCards() {
+    /*this.http.get('https://randomuser.me/api/?results=' + count)
       .map(data => data.json().results)
       .subscribe(result => {
         for (let val of result) {
           val.age = this.calculateAge(val.dob);
           this.cards.push(val);
         }
-      })
+      })*/
+
+    this.matchingService.getAll().then((data) => {
+      debugger;
+      this.cards = data;
+    });
   }
 
   private calculateAge(b: any) {

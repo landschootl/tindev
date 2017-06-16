@@ -5,7 +5,6 @@ import { UserProfileService } from '../../entities/user-profile/user-profile.ser
 import { ActivatedRoute } from '@angular/router';
 import { FreelanceService } from '../../entities/freelance/freelance.service';
 import { Freelance } from '../../entities/freelance/freelance.model';
-import { error } from 'util';
 import { Specialty } from '../../entities/specialty/specialty.model';
 import { Domain } from '../../entities/domain/domain.model';
 import { SpecialtyService } from '../../entities/specialty/specialty.service';
@@ -19,18 +18,12 @@ import { DomainService } from '../../entities/domain/domain.service';
     ]
 })
 export class ProfileFreelanceComponent implements OnInit, OnChanges {
-
     @Input() settingsAccount: any;
-
-    userProfile: UserProfile;
-    successEditUserProfile: boolean;
-    errorEditUserProfile: string;
+    @Input() userProfile: UserProfile;
 
     freelanceProfile: Freelance;
     specialties: Specialty[];
     domains: Domain[];
-    successEditFreelanceProfile: boolean;
-    errorEditFreelanceProfile: string;
 
     constructor(private jhiLanguageService: JhiLanguageService,
         private freelanceService: FreelanceService,
@@ -67,11 +60,8 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     }
 
     load(id) {
-        this.userProfileService.find(id).subscribe(userProfile => {
-            this.userProfile = userProfile;
-        });
-        this.freelanceService.query('FROM freelance F WHERE F.idUser = ' + id).subscribe(freelanceProfile => {
-            this.freelanceProfile = freelanceProfile.json()[0];
+        this.freelanceService.findByIdUser(id).subscribe(freelanceProfile => {
+            this.freelanceProfile = freelanceProfile;
         });
     }
 
@@ -79,12 +69,9 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.userProfileService.update(this.userProfile)
             .subscribe(
                 (res: UserProfile) => {
-                    this.successEditUserProfile = true;
-                    this.errorEditUserProfile = '';
-                    this.userProfile = res;
+
                 },
                 (res: Response) => {
-                    this.successEditUserProfile = false;
                     console.log('error => ', res);
                 });
     }
@@ -93,12 +80,9 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.freelanceService.update(this.freelanceProfile)
             .subscribe(
                 (res: Freelance) => {
-                    this.successEditFreelanceProfile = true;
-                    this.errorEditFreelanceProfile = '';
                     this.freelanceProfile = res;
                 },
                 (res: Response) => {
-                    this.successEditFreelanceProfile = false;
                     console.log('error => ', res);
                 });
     }
@@ -106,5 +90,4 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     previousState() {
         window.history.back();
     }
-
 }

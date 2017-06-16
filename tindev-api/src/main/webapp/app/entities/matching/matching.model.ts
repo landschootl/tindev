@@ -8,10 +8,14 @@ export class Matching {
         public rLikedDate?: any,
         public freelanceLiked?: boolean,
         public recruiterLiked?: boolean,
+        public freelanceVoted?: boolean,
+        public recruiterVoted?: boolean,
         public mission?: Mission,
         public freelance?: Freelance,
     ) {
         this.freelanceLiked = false;
         this.recruiterLiked = false;
+        this.freelanceVoted = false;
+        this.recruiterVoted = false;
     }
 }

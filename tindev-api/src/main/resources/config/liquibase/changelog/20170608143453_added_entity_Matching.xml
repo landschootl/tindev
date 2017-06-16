@@ -42,6 +42,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="freelance_voted" type="bit">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="recruiter_voted" type="bit">
+                <constraints nullable="true" />
+            </column>
+
             <column name="mission_id" type="bigint">
                 <constraints nullable="true" />
             </column>

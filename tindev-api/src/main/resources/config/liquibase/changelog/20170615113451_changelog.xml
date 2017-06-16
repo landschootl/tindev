@@ -1,0 +1,267 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Laurent (generated)" id="1497526496240-1">
+        <createTable tableName="discussion">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="discussionPK"/>
+            </column>
+            <column name="freelance_id" type="BIGINT"/>
+            <column name="mission_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-2">
+        <createTable tableName="domain">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="domainPK"/>
+            </column>
+            <column name="code" type="INT"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-3">
+        <createTable tableName="experience">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="experiencePK"/>
+            </column>
+            <column name="end_year" type="BINARY(255)"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="start_year" type="BINARY(255)"/>
+            <column name="freelance_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-4">
+        <createTable tableName="freelance">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="freelancePK"/>
+            </column>
+            <column name="birthdate" type="BINARY(255)"/>
+            <column name="daily_price" type="INT"/>
+            <column name="id_user" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="domain_id" type="BIGINT"/>
+            <column name="specialty_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-5">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-6">
+        <createTable tableName="jhi_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="BINARY(255)"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-7">
+        <createTable tableName="jhi_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-8">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="BINARY(255)"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(100)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(5)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)"/>
+            <column name="reset_date" type="BINARY(255)"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-9">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-10">
+        <createTable tableName="matching">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="matchingPK"/>
+            </column>
+            <column name="f_liked_date" type="BINARY(255)"/>
+            <column name="freelance_liked" type="BOOLEAN"/>
+            <column name="r_liked_date" type="BINARY(255)"/>
+            <column name="recruiter_liked" type="BOOLEAN"/>
+            <column name="score" type="INT"/>
+            <column name="freelance_id" type="BIGINT"/>
+            <column name="mission_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-11">
+        <createTable tableName="message">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="messagePK"/>
+            </column>
+            <column name="posting_date" type="BINARY(255)"/>
+            <column name="text_message" type="VARCHAR(255)"/>
+            <column name="discussion_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-12">
+        <createTable tableName="mission">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="missionPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="end_date" type="BINARY(255)"/>
+            <column name="max_salary" type="INT"/>
+            <column name="min_salary" type="INT"/>
+            <column name="start_date" type="BINARY(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="recruiter_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-13">
+        <createTable tableName="recruiter">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="recruiterPK"/>
+            </column>
+            <column name="company" type="VARCHAR(255)"/>
+            <column name="id_user" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-14">
+        <createTable tableName="skill">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="skillPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="freelance_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-15">
+        <createTable tableName="specialty">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="specialtyPK"/>
+            </column>
+            <column name="code" type="INT"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-16">
+        <createTable tableName="training">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="trainingPK"/>
+            </column>
+            <column name="end_date" type="BINARY(255)"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="start_date" type="BINARY(255)"/>
+            <column name="freelance_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-17">
+        <createTable tableName="user_profile">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="firstname" type="VARCHAR(255)"/>
+            <column name="lastname" type="VARCHAR(255)"/>
+            <column name="photo_url" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-18">
+        <addPrimaryKey columnNames="event_id, name" tableName="jhi_persistent_audit_evt_data"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-19">
+        <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-20">
+        <addPrimaryKey columnNames="name" constraintName="jhi_authorityPK" tableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-21">
+        <addPrimaryKey columnNames="id" constraintName="user_profilePK" tableName="user_profile"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-22">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-23">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-24">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-25">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-26">
+        <addForeignKeyConstraint baseColumnNames="discussion_id" baseTableName="message" constraintName="FK3nr1t44itdoagqs1w2bo21ho7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="discussion"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-27">
+        <addForeignKeyConstraint baseColumnNames="freelance_id" baseTableName="discussion" constraintName="FK45gl7ormo7hkkkudtoh4gajhq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="freelance"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-28">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-29">
+        <addForeignKeyConstraint baseColumnNames="mission_id" baseTableName="discussion" constraintName="FKcs4ghmlcbmedr3rfxliu7q5nq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="mission"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-30">
+        <addForeignKeyConstraint baseColumnNames="recruiter_id" baseTableName="mission" constraintName="FKd1uxxyuaadrvs0jxkanehf2il" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="recruiter"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-31">
+        <addForeignKeyConstraint baseColumnNames="mission_id" baseTableName="matching" constraintName="FKhrg26rd3ids6mc9nhl5cy2rfi" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="mission"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-32">
+        <addForeignKeyConstraint baseColumnNames="specialty_id" baseTableName="freelance" constraintName="FKib0ed0yvvn3jxhfn2dwvdknij" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="specialty"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-33">
+        <addForeignKeyConstraint baseColumnNames="freelance_id" baseTableName="training" constraintName="FKiyh0h1tdwepkff64r32f08ved" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="freelance"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-34">
+        <addForeignKeyConstraint baseColumnNames="freelance_id" baseTableName="experience" constraintName="FKmdlowdj8q0peipl5t59ubt8qd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="freelance"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-35">
+        <addForeignKeyConstraint baseColumnNames="domain_id" baseTableName="freelance" constraintName="FKmijkuoj03wuere9xhw2fml3yn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="domain"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-36">
+        <addForeignKeyConstraint baseColumnNames="freelance_id" baseTableName="skill" constraintName="FKn3f4mdi5tei89k8k0qrwww8bx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="freelance"/>
+    </changeSet>
+    <changeSet author="Laurent (generated)" id="1497526496240-37">
+        <addForeignKeyConstraint baseColumnNames="freelance_id" baseTableName="matching" constraintName="FKt68gnsak9qco8th5qu98earjh" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="freelance"/>
+    </changeSet>
+</databaseChangeLog>

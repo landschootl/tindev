@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { AlertService, EventManager } from 'ng-jhipster';
 
 import { Matching } from './matching.model';
 import { MatchingPopupService } from './matching-popup.service';
@@ -17,26 +17,26 @@ export class MatchingDeleteDialogComponent {
     matching: Matching;
 
     constructor(
-        private jhiLanguageService: JhiLanguageService,
         private matchingService: MatchingService,
         public activeModal: NgbActiveModal,
+        private alertService: AlertService,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['matching']);
     }
 
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
-        this.matchingService.delete(id).subscribe(response => {
+    confirmDelete(id: number) {
+        this.matchingService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'matchingListModification',
                 content: 'Deleted an matching'
             });
             this.activeModal.dismiss(true);
         });
+        this.alertService.success('tindevApp.matching.deleted', { param : id }, null);
     }
 }
 
@@ -49,13 +49,13 @@ export class MatchingDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private matchingPopupService: MatchingPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.matchingPopupService
                 .open(MatchingDeleteDialogComponent, params['id']);
         });

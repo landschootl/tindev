@@ -1,5 +1,3 @@
-
-
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
@@ -50,6 +48,18 @@
             <label class="form-control-label" jhiTranslate="tindevApp.matching.recruiterLiked" for="field_recruiterLiked">Recruiter Liked</label>
             <input type="checkbox" class="form-control" name="recruiterLiked" id="field_recruiterLiked"
                 [(ngModel)]="matching.recruiterLiked"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.matching.freelanceVoted" for="field_freelanceVoted">Freelance Voted</label>
+            <input type="checkbox" class="form-control" name="freelanceVoted" id="field_freelanceVoted"
+                [(ngModel)]="matching.freelanceVoted"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.matching.recruiterVoted" for="field_recruiterVoted">Recruiter Voted</label>
+            <input type="checkbox" class="form-control" name="recruiterVoted" id="field_recruiterVoted"
+                [(ngModel)]="matching.recruiterVoted"
              />
         </div>
 
