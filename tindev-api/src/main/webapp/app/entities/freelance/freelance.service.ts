@@ -49,7 +49,6 @@ export class FreelanceService {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
-
     private convertResponse(res: any): any {
         let jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
@@ -74,5 +73,14 @@ export class FreelanceService {
             options.search = params;
         }
         return options;
+    }
+
+    findByIdUser(id: number): Observable<Freelance> {
+        return this.http.get(`api/users/${id}/freelances`).map((res: Response) => {
+            let jsonResponse = res.json();
+            jsonResponse.birthdate = this.dateUtils
+                .convertLocalDateFromServer(jsonResponse.birthdate);
+            return jsonResponse;
+        });
     }
 }

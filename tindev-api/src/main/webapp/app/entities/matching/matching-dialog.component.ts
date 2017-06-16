@@ -18,7 +18,6 @@ import { ResponseWrapper } from '../../shared';
     templateUrl: './matching-dialog.component.html'
 })
 export class MatchingDialogComponent implements OnInit {
-
     matching: Matching;
     authorities: any[];
     isSaving: boolean;

@@ -3,7 +3,9 @@ package fr.squirtles.tindev.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Mission;
 
+import fr.squirtles.tindev.domain.Recruiter;
 import fr.squirtles.tindev.repository.MissionRepository;
+import fr.squirtles.tindev.repository.RecruiterRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,11 +25,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class MissionResource {
-
     private final Logger log = LoggerFactory.getLogger(MissionResource.class);
 
     private static final String ENTITY_NAME = "mission";
-        
+
     private final MissionRepository missionRepository;
 
     public MissionResource(MissionRepository missionRepository) {
@@ -102,6 +104,14 @@ public class MissionResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(mission));
     }
 
+    @GetMapping("/recruiters/{idRecruiter}/missions")
+    @Timed
+    public List<Mission> getMissionsByRecruiter(@PathVariable Long idRecruiter) {
+        log.debug("REST request to get Missions : {}", idRecruiter);
+        List<Mission> missions = this.missionRepository.findByRecruiter(idRecruiter);
+        return missions;
+    }
+
     /**
      * DELETE  /missions/:id : delete the "id" mission.
      *
@@ -115,5 +125,4 @@ public class MissionResource {
         missionRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
 }

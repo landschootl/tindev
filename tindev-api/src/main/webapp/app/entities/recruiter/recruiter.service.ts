@@ -54,4 +54,10 @@ export class RecruiterService {
         }
         return options;
     }
+
+    findByIdUser(id: number): Observable<Recruiter> {
+        return this.http.get(`api/users/${id}/recruiters`).map((res: Response) => {
+            return res.json();
+        });
+    }
 }

@@ -15,5 +15,5 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface MatchingRepository extends JpaRepository<Matching,Long> {
-    public List<Matching> findByFreelance(Freelance freelance);
+    List<Matching> findByFreelance(Freelance freelance);
 }

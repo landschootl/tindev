@@ -1,8 +1,11 @@
 package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import fr.squirtles.tindev.domain.Freelance;
+import fr.squirtles.tindev.domain.Mission;
 import fr.squirtles.tindev.domain.Recruiter;
 
+import fr.squirtles.tindev.repository.MissionRepository;
 import fr.squirtles.tindev.repository.RecruiterRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +31,7 @@ public class RecruiterResource {
     private final Logger log = LoggerFactory.getLogger(RecruiterResource.class);
 
     private static final String ENTITY_NAME = "recruiter";
-        
+
     private final RecruiterRepository recruiterRepository;
 
     public RecruiterResource(RecruiterRepository recruiterRepository) {
@@ -100,6 +104,20 @@ public class RecruiterResource {
     public ResponseEntity<Recruiter> getRecruiter(@PathVariable Long id) {
         log.debug("REST request to get Recruiter : {}", id);
         Recruiter recruiter = recruiterRepository.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(recruiter));
+    }
+
+    /**
+     * GET  /recruiters/:iduser : get the "{idUser}" recruiters.
+     *
+     * @param idUser the id of the recruiters to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the freelance, or with status 404 (Not Found)
+     */
+    @GetMapping("/users/{idUser}/recruiters")
+    @Timed
+    public ResponseEntity<Recruiter> getFreelanceByIdUser(@PathVariable Long idUser) {
+        log.debug("REST request to get Recruiter : {}", idUser);
+        Recruiter recruiter = recruiterRepository.findByIdUser(idUser);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(recruiter));
     }
 

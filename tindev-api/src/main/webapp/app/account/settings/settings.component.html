@@ -1,18 +1,16 @@
 <div class="page-content container">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-10 offset-md-1">
             <div class="cover-picture">
                 <img class="cover-image-lg" src="{{coverUrl}}" alt="Profile image example"/>
-                <img class="cover-image-profile thumbnail" src="{{profileUrl}}"
+                <img class="cover-image-profile thumbnail" src="{{userProfile?.photoUrl===''?profileUrl:userProfile?.photoUrl}}"
                      alt="Profile image example"/>
                 <div class="cover-profile-text">
-                    <h2 *ngIf="settingsAccount"><b>{{settingsAccount.firstName}} {{settingsAccount.lastName}}</b></h2>
+                    <h4 *ngIf="settingsAccount"><b>{{settingsAccount.firstName===""?"«nom»":settingsAccount.firstName}}</b> {{settingsAccount.lastName===""?"«prenom»":settingsAccount.lastName}}</h4>
                 </div>
             </div>
             <br>
-            <div class="alert alert-success" *ngIf="success">
-                <strong>Le profile est bien sauvegardé !</strong>
-            </div>
+            <br>
             <jhi-alert-error></jhi-alert-error>
             <ngb-tabset>
                 <ngb-tab title="Informations personnelles">
@@ -20,10 +18,10 @@
                         <br>
                         <div *ngIf="settingsAccount">
                             <div *ngIf="settingsAccount.authorities.includes('ROLE_FREELANCE')">
-                                <jhi-profile-freelance [settingsAccount]="settingsAccount"></jhi-profile-freelance>
+                                <jhi-profile-freelance [settingsAccount]="settingsAccount" [userProfile]="userProfile"></jhi-profile-freelance>
                             </div>
                             <div *ngIf="settingsAccount.authorities.includes('ROLE_RECRUITER')">
-                                <jhi-profile-recruiter [settingsAccount]="settingsAccount"></jhi-profile-recruiter>
+                                <jhi-profile-recruiter [settingsAccount]="settingsAccount" [userProfile]="userProfile"></jhi-profile-recruiter>
                             </div>
                         </div>
                     </template>

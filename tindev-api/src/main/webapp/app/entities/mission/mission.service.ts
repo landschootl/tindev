@@ -83,4 +83,9 @@ export class MissionService {
         }
         return options;
     }
+
+    findByRecruiter(idRecruiter: any): Observable<Response> {
+        return this.http.get(`api/recruiters/${idRecruiter}/missions`)
+            .map((res: any) => this.convertResponse(res));
+    }
 }

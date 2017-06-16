@@ -22,7 +22,8 @@
             "content/scss/vendor.scss",
             "content/scss/global.scss"
         ],
-        "scripts": []
+        "scripts": [
+        ]
     }],
     "addons": [],
     "packages": [],
