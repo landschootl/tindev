@@ -82,9 +82,11 @@ export class MatchingPage {
     if(!this.cards.length) {
       this.matchingService.getAll().then((data) => {
         this.cards = data;
+        this.currentCard = this.cards.length ? this.cards.shift() : null;
+        this.voteUp(true);
       });
     }
-    this.currentCard = this.cards.length ? this.cards.shift() : null;
+    
 
     // this.cards.length && this.showCard(this.cards[0]) || this.showNoCardAnyMore();
   }
