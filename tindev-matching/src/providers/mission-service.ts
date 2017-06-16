@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import {Http, Response, RequestOptions} from '@angular/http';import {Observable} from 'rxjs/Observable';
 import {ApiUtils} from '../shared/utils/api';
 import {Mission} from '../shared/models/mission';
 import {User} from '../shared/models/user';
+import { AuthService } from './auth-service';
 
 import 'rxjs/add/operator/map';
 
@@ -16,13 +16,30 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class MissionService {
 
-  constructor(public http: Http, private apic : ApiUtils) {
+  constructor(public http: Http, private apic : ApiUtils, private auth : AuthService) {
     console.log('Hello MissionService Provider');
   }
 
 
 ///api/recruiters/{id}/missions
-  public apiGetMissionsForRecruiter(u : User) {
+  public apiGetMissionsForRecruiter() : Observable<any> {
+    //Get recruiters id
+    let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
+    let options = new RequestOptions({headers:headers});
+      return this.http.get(this.apic.base_url + 'recruiters/' + this.auth.currentUser.specId + '/missions', options)
+      .map((response:Response) => {
+        var data :Array<Mission>;
+        data = [];
+        let json = response.json();
+        for (let jsonobject of json) {
+          var m = new Mission(jsonobject.id, jsonobject.description, jsonobject.startDate, jsonobject.maxSalary, jsonobject.minSalary, this.auth.currentUser, jsonobject.endDate, jsonobject.title);
+          data.push(m);
+        }
+        return data;
+    });
+
+/*
+    //Get missionlist
   	var data :Array<Mission>;
   	data = [];
 //  constructorpublic maxSalary : number, public minSalary : number, public recruiter : User, public startDate : string, public title : string) {
@@ -38,6 +55,6 @@ export class MissionService {
     return Observable.create(observer => {
   		observer.next(data);
   		observer.complete();
-  	});
+  	});*/
   }
 }

@@ -17,15 +17,23 @@ export class RecruitersMissionSelectionPage {
 	searchMatchingData : Array<Mission>;
 	searchinput : string = '';
 	showSearchLoader : boolean = false;
+	interval : any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController, 
 		private toastCtrl : ToastController, private mission : MissionService, private auth : AuthService) {
-		this.initializeItems();
 	}
+
+	ionViewDidLoad() {
+		this.interval = setInterval(() => {
+	  		if(this.auth.currentUser.specId != undefined) {
+	  			this.initializeItems();
+	  		}
+	  	}, 500);
+  	}
 
 	initializeItems() {
 	  	this.showLoading();
-	  	this.mission.apiGetMissionsForRecruiter(this.auth.currentUser).subscribe(data => {
+	  	this.mission.apiGetMissionsForRecruiter().subscribe(data => {
 	      this.data = data;
 	      this.searchMatchingData = data;
 	    },
@@ -33,6 +41,7 @@ export class RecruitersMissionSelectionPage {
 	        this.loading.dismiss();
 	        this.showToast("Impossible de récupérer vos missions");
 	      });
+	      clearInterval(this.interval);
 	  }
 
 	  public showToast(text) {

@@ -4,6 +4,7 @@ import {User} from '../shared/models/user';
 import {ApiUtils} from '../shared/utils/api';
 import {Http, Response, RequestOptions} from '@angular/http';
 import { Storage } from '@ionic/storage';
+import { UserService } from './user-service';
 import 'rxjs/add/operator/map';
 //Sauf erreur de ma part, ca ne devrait pas être ici je suppose
  
@@ -12,7 +13,7 @@ export class AuthService {
   public currentUser : User;
   public token:string;
 
-  constructor(private http:Http, private storage:Storage, private apic : ApiUtils) {
+  constructor(private http:Http, private storage:Storage, private apic : ApiUtils, private user : UserService) {
     this.storage.get('currentUser').then((user:any)=>{
       let currentUser = JSON.parse(user);
       this.token = currentUser && currentUser.token;
@@ -53,6 +54,12 @@ export class AuthService {
       //TODO add verification on whether the user is a recruiter or not
       //TODO add veriication if the profile is completed or not
       var isrecruiter : boolean = json.authorities.indexOf('ROLE_RECRUITER') >= 0;
+      var recruiterid : number;
+      if(isrecruiter) {
+        this.user.getRecruitersIdForUser(json.id, this.token).subscribe(id => {
+            this.currentUser.specId=id;
+          });
+      } 
       // >= 0
       this.currentUser = new User(json.id, json.firstName, json.lastName, isrecruiter, json.email, true, this.token);
       this.storage.set('currentUser', JSON.stringify({user: this.currentUser}));
