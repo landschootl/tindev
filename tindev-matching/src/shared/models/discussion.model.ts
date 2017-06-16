@@ -1,6 +1,7 @@
-import { Freelance } from '../freelance';
-import { Mission } from '../mission';
-import { Message } from '../message';
+import { Freelance } from './freelance.model';
+import { Mission } from './mission.model';
+import { Message } from './message.model';
+
 export class Discussion {
     constructor(
         public id?: number,

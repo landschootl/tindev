@@ -1,6 +1,7 @@
-import { Discussion } from '../discussion';
-import { Recruiter } from '../recruiter';
-import { Matching } from '../matching';
+import { Discussion } from './discussion.model';
+import { Recruiter } from './recruiter.model';
+import { Matching } from "./matching.model";
+
 export class Mission {
     constructor(
         public id?: number,

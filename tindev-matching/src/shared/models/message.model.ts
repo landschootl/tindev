@@ -1,4 +1,5 @@
-import { Discussion } from '../discussion';
+import { Discussion } from './discussion.model';
+
 export class Message {
     constructor(
         public id?: number,

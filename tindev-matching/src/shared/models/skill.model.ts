@@ -1,4 +1,5 @@
-import { Freelance } from '../freelance';
+import { Freelance } from './freelance.model';
+
 export class Skill {
     constructor(
         public id?: number,

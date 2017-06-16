@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { ApiUtils } from '../shared/utils/api';
-import { AuthService } from "./auth-service";
+import { AuthService } from './auth-service';
 import 'rxjs/add/operator/toPromise';
 import {ToastController} from "ionic-angular";
 
@@ -34,7 +34,6 @@ export class MatchingService {
     }
 
     public save(matching: any, liked: boolean) {
-        debugger;
         if (this.auth.currentUser.recruiter) {
             matching.recruiterLiked = liked;
             matching.recruiterVoted = true;

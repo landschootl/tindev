@@ -1,4 +1,5 @@
-import { Mission } from '../mission';
+import { Mission } from './mission.model';
+
 export class Recruiter {
     constructor(
         public id?: number,

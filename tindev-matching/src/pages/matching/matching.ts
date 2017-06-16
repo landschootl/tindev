@@ -5,105 +5,77 @@ import 'rxjs/add/operator/map';
 import { ToastController } from 'ionic-angular';
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
 import { AuthService } from '../../providers/auth-service';
-import {MatchingService} from "../../providers/matching-service";
+import { MatchingService } from "../../providers/matching-service";
+import { Matching } from '../../shared/models/matching.model';
 
 @Component({
-  selector: 'page-matching',
-  templateUrl: 'matching.html',
-  providers: [CapitalizePipe]
+    selector: 'page-matching',
+    templateUrl: 'matching.html',
+    providers: [CapitalizePipe]
 })
 export class MatchingPage {
 
-  @ViewChild('myswing1') swingStack: SwingStackComponent;
-  @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
+    @ViewChild('myswing1') swingStack: SwingStackComponent;
+    @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
 
-  cards: Array<any> = [];
-  stackConfig: StackConfig;
-  currentCard: any;
+    matchings: Array<Matching> = [];
+    stackConfig: StackConfig;
+    currentCard: any;
 
-  constructor(private http: Http,
-    private toastCtrl: ToastController,
-    private capitalizePipe: CapitalizePipe,
-    private auth: AuthService,
-    private matchingService: MatchingService) {
-    // this.stackConfig = {
-    //   throwOutConfidence: (offsetX, offsetY, element) => {
-    //     return Math.min(Math.abs(offsetX) / (element.offsetWidth/2), 1);
-    //   },
-    //   throwOutDistance: (d) => {
-    //     return 800;
-    //   }
-    // };
-  }
-
-  ngAfterViewInit() {
-    if(this.auth.getUserInfo().completedProfile) {
-      this.swingStack.throwin.subscribe((event: ThrowEvent) => {
-        event.target.style.background = '#ffffff';
-      });
-
-      this.cards = [];
-      this.nextCard();
-    }
-  }
-
-  voteUp(like: boolean) {
-    this.matchingService.save(this.currentCard, like);
-    this.nextCard();
-    /*
-    let removedCard = this.cards.pop();
-    let message: string;
-    this.addNewCards(1);
-
-    if (like) {
-      message = 'YES : ' + this.capitalizePipe.transform(removedCard.name.first) + ' :)';
-    } else {
-      message = 'NO : ' + this.capitalizePipe.transform(removedCard.name.first) + ' :(';
+    constructor(private http: Http,
+        private toastCtrl: ToastController,
+        private capitalizePipe: CapitalizePipe,
+        private auth: AuthService,
+        private matchingService: MatchingService) {
+        this.stackConfig = {
+            throwOutConfidence: (offsetX, offsetY, element) => {
+                return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
+            },
+            throwOutDistance: (d) => {
+                return 800;
+            }
+        };
     }
 
-    let toast = this.toastCtrl.create({
-      message: message,
-      duration: 2000,
-      position: 'bottom'
-    });
-    toast.present(toast);
-    */
-  }
-
-  nextCard() {
-    /*this.http.get('https://randomuser.me/api/?results=' + count)
-      .map(data => data.json().results)
-      .subscribe(result => {
-        for (let val of result) {
-          val.age = this.calculateAge(val.dob);
-          this.cards.push(val);
+    ngAfterViewInit() {
+        if (this.auth.getUserInfo().completedProfile) {
+            this.swingStack.throwin.subscribe((event: ThrowEvent) => {
+                event.target.style.background = '#ffffff';
+            });
+            this.matchings = [];
+            this.nextCard();
         }
-      })*/
-    if(!this.cards.length) {
-      this.matchingService.getAll().then((data) => {
-        this.cards = data;
-        this.currentCard = this.cards.length ? this.cards.shift() : null;
-        this.voteUp(true);
-      });
     }
-    
 
-    // this.cards.length && this.showCard(this.cards[0]) || this.showNoCardAnyMore();
-  }
+    voteUp(like: boolean) {
+        this.matchingService.save(this.currentCard, like);
+        this.nextCard();
+    }
 
-  private showCard(matching: any) {
+    nextCard() {
+        if (!this.matchings.length) {
+            this.matchingService.getAll().then((data) => {
+                this.matchings = data;
+                this.currentCard = this.matchings.length ? this.matchings.shift() : null;
+            });
+        } else {
+            this.currentCard = this.matchings.length ? this.matchings.shift() : null;
+        }
+    }
 
-  }
+    private showCard(matching: any) {
 
-  private showNoCardAnyMore() {
+    }
 
-  }
+    private showNoCardAnyMore() {
 
-  private calculateAge(b: any) {
-    let birthday = new Date(b.replace(' ', 'T'));
-    let ageDifMs = Date.now() - birthday.getTime();
-    let ageDate = new Date(ageDifMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  }
+    }
+
+    private calculateAge(b: any) {
+        let birthday = new Date(b.replace(' ', 'T'));
+        let ageDifMs = Date.now() - birthday.getTime();
+        let ageDate = new Date(ageDifMs);
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
 
 }

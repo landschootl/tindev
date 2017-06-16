@@ -1,5 +1,6 @@
-import { Mission } from '../mission';
-import { Freelance } from '../freelance';
+import { Mission } from './mission.model';
+import { Freelance } from './freelance.model';
+
 export class Matching {
     constructor(
         public id?: number,
