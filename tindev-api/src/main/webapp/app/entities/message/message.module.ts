@@ -1,18 +1,18 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
 import {
-    MessageService,
-    MessagePopupService,
     MessageComponent,
+    MessageDeleteDialogComponent,
+    MessageDeletePopupComponent,
     MessageDetailComponent,
     MessageDialogComponent,
     MessagePopupComponent,
-    MessageDeletePopupComponent,
-    MessageDeleteDialogComponent,
-    messageRoute,
     messagePopupRoute,
+    MessagePopupService,
+    messageRoute,
+    MessageService
 } from './';
 
 const ENTITY_STATES = [

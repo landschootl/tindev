@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModel;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * <p>Cette classe repr&eacute;sente le domaine d&#39;activit&eacute; d&#39;un freelance.</p><p>Exemple : D&eacute;veloppeur.</p>

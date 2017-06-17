@@ -1,8 +1,8 @@
 package fr.squirtles.tindev.web.rest.vm;
 
 import fr.squirtles.tindev.service.dto.UserDTO;
-import javax.validation.constraints.Size;
 
+import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
 import java.util.Set;
 

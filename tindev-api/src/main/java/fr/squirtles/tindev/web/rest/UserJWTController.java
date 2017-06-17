@@ -1,13 +1,9 @@
 package fr.squirtles.tindev.web.rest;
 
+import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.security.jwt.JWTConfigurer;
 import fr.squirtles.tindev.security.jwt.TokenProvider;
 import fr.squirtles.tindev.web.rest.vm.LoginVM;
-
-import java.util.Collections;
-
-import com.codahale.metrics.annotation.Timed;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,10 +13,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/api")

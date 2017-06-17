@@ -1,15 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
 
 import { DiscussionComponent } from './discussion.component';
 import { DiscussionDetailComponent } from './discussion-detail.component';
 import { DiscussionPopupComponent } from './discussion-dialog.component';
 import { DiscussionDeletePopupComponent } from './discussion-delete-dialog.component';
-
-import { Principal } from '../../shared';
 
 export const discussionRoute: Routes = [
   {

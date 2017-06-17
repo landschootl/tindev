@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModel;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * <p>Cette classe repr&eacute;sente une discussion entre un recruteur et un freelance.</p>

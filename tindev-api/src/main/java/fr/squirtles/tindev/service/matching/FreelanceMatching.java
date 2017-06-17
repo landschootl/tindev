@@ -5,8 +5,6 @@ import fr.squirtles.tindev.domain.Mission;
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
 
-import java.util.List;
-
 /**
  * Created by Maws on 15/06/2017.
  */

@@ -1,18 +1,18 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
 import {
-    DomainService,
-    DomainPopupService,
     DomainComponent,
+    DomainDeleteDialogComponent,
+    DomainDeletePopupComponent,
     DomainDetailComponent,
     DomainDialogComponent,
     DomainPopupComponent,
-    DomainDeletePopupComponent,
-    DomainDeleteDialogComponent,
-    domainRoute,
     domainPopupRoute,
+    DomainPopupService,
+    domainRoute,
+    DomainService
 } from './';
 
 const ENTITY_STATES = [

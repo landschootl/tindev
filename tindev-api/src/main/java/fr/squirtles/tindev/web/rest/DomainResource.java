@@ -2,7 +2,6 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Domain;
-
 import fr.squirtles.tindev.repository.DomainRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class DomainResource {
     private final Logger log = LoggerFactory.getLogger(DomainResource.class);
 
     private static final String ENTITY_NAME = "domain";
-        
+
     private final DomainRepository domainRepository;
 
     public DomainResource(DomainRepository domainRepository) {

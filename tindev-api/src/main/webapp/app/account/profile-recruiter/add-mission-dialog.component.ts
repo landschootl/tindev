@@ -1,9 +1,9 @@
-import {Component, Input} from "@angular/core";
+import { Component, Input } from '@angular/core';
 
-import {ModalDismissReasons, NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
-import {Mission} from "../../entities/mission/mission.model";
-import {MissionService} from "../../entities/mission/mission.service";
-import {EventManager} from "ng-jhipster";
+import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Mission } from '../../entities/mission/mission.model';
+import { MissionService } from '../../entities/mission/mission.service';
+import { EventManager } from 'ng-jhipster';
 
 @Component({
     selector: 'add-mission-dialog',
@@ -21,7 +21,7 @@ export class AddMissionComponent {
     constructor(private modalService: NgbModal, private missionService: MissionService, private eventManager: EventManager) {}
 
     open(content) {
-        this.modalRef = this.modalService.open(content, {size: "lg"});
+        this.modalRef = this.modalService.open(content, {size: 'lg'});
         this.modalRef.result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
         }, (reason) => {
@@ -39,7 +39,7 @@ export class AddMissionComponent {
         }
     }
 
-    createMission(){
+    createMission() {
         this.missionService.create(this.newMission).subscribe(
             (res: Response) => {
                 this.newMission = new Mission();

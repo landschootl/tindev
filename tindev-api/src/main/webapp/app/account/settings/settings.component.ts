@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { JhiLanguageService } from 'ng-jhipster';
-
 import { AccountService, JhiLanguageHelper, Principal } from '../../shared';
 import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
-import {UserProfile} from "../../entities/user-profile/user-profile.model";
-import {UserProfileService} from "../../entities/user-profile/user-profile.service";
+import { UserProfile } from '../../entities/user-profile/user-profile.model';
+import { UserProfileService } from '../../entities/user-profile/user-profile.service';
 
 @Component({
     selector: 'jhi-settings',
@@ -44,7 +43,7 @@ export class SettingsComponent implements OnInit {
         });
     }
 
-    loadUserProfile(id: any){
+    loadUserProfile(id: any) {
         this.userProfileService.find(id).subscribe(userProfile => {
             this.userProfile = userProfile;
         });

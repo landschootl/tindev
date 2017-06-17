@@ -1,10 +1,9 @@
 package fr.squirtles.tindev.config;
 
-import fr.squirtles.tindev.security.*;
-import fr.squirtles.tindev.security.jwt.*;
-
-import io.github.jhipster.security.*;
-
+import fr.squirtles.tindev.security.AuthoritiesConstants;
+import fr.squirtles.tindev.security.jwt.JWTConfigurer;
+import fr.squirtles.tindev.security.jwt.TokenProvider;
+import io.github.jhipster.security.Http401UnauthorizedEntryPoint;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

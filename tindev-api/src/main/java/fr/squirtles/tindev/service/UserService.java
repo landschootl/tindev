@@ -1,14 +1,12 @@
 package fr.squirtles.tindev.service;
 
+import fr.squirtles.tindev.config.Constants;
 import fr.squirtles.tindev.domain.*;
 import fr.squirtles.tindev.repository.*;
-import fr.squirtles.tindev.config.Constants;
 import fr.squirtles.tindev.security.AuthoritiesConstants;
 import fr.squirtles.tindev.security.SecurityUtils;
-import fr.squirtles.tindev.service.util.RandomUtil;
 import fr.squirtles.tindev.service.dto.UserDTO;
-
-import fr.squirtles.tindev.web.rest.FreelanceResource;
+import fr.squirtles.tindev.service.util.RandomUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -19,7 +17,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Service class for managing users.

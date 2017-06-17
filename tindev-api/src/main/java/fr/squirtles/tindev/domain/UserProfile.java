@@ -2,7 +2,10 @@ package fr.squirtles.tindev.domain;
 
 import io.swagger.annotations.ApiModel;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 

@@ -1,19 +1,19 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
 import {
-    MatchingService,
-    MatchingPopupService,
     MatchingComponent,
+    MatchingDeleteDialogComponent,
+    MatchingDeletePopupComponent,
     MatchingDetailComponent,
     MatchingDialogComponent,
     MatchingPopupComponent,
-    MatchingDeletePopupComponent,
-    MatchingDeleteDialogComponent,
-    matchingRoute,
     matchingPopupRoute,
+    MatchingPopupService,
     MatchingResolvePagingParams,
+    matchingRoute,
+    MatchingService
 } from './';
 
 const ENTITY_STATES = [

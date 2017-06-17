@@ -2,7 +2,6 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Freelance;
-
 import fr.squirtles.tindev.repository.FreelanceRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;

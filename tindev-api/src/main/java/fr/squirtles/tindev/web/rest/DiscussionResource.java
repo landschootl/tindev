@@ -2,7 +2,6 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Discussion;
-
 import fr.squirtles.tindev.repository.DiscussionRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class DiscussionResource {
     private final Logger log = LoggerFactory.getLogger(DiscussionResource.class);
 
     private static final String ENTITY_NAME = "discussion";
-        
+
     private final DiscussionRepository discussionRepository;
 
     public DiscussionResource(DiscussionRepository discussionRepository) {

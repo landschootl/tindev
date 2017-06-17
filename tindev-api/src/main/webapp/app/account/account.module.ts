@@ -3,8 +3,8 @@ import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../shared';
 
-import {ProfileFreelanceComponent} from './profile-freelance/profile-freelance.component';
-import {ProfileRecruiterComponent} from './profile-recruiter/profile-recruiter.component';
+import { ProfileFreelanceComponent } from './profile-freelance/profile-freelance.component';
+import { ProfileRecruiterComponent } from './profile-recruiter/profile-recruiter.component';
 import {
     accountState,
     Activate,
@@ -20,8 +20,8 @@ import {
     RegisterComponent,
     SettingsComponent
 } from './';
-import {AddMissionComponent} from "./profile-recruiter/add-mission-dialog.component";
-import {UpdateMissionComponent} from "./profile-recruiter/update-mission-dialog.component";
+import { AddMissionComponent } from './profile-recruiter/add-mission-dialog.component';
+import { UpdateMissionComponent } from './profile-recruiter/update-mission-dialog.component';
 
 @NgModule({
     imports: [

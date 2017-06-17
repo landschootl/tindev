@@ -2,9 +2,8 @@ package fr.squirtles.tindev.repository;
 
 import fr.squirtles.tindev.domain.Freelance;
 import fr.squirtles.tindev.domain.Matching;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
 

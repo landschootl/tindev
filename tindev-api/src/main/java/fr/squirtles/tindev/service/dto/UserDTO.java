@@ -1,13 +1,12 @@
 package fr.squirtles.tindev.service.dto;
 
 import fr.squirtles.tindev.config.Constants;
-
 import fr.squirtles.tindev.domain.Authority;
 import fr.squirtles.tindev.domain.User;
-
 import org.hibernate.validator.constraints.Email;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;

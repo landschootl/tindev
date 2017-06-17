@@ -3,7 +3,8 @@ package fr.squirtles.tindev.service.mapper;
 import fr.squirtles.tindev.domain.Authority;
 import fr.squirtles.tindev.domain.User;
 import fr.squirtles.tindev.service.dto.UserDTO;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 import java.util.Set;

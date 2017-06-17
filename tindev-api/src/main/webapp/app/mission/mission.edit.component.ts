@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventManager, JhiLanguageService, AlertService } from 'ng-jhipster';
-import { MissionService } from "../entities/mission/mission.service";
+import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { MissionService } from '../entities/mission/mission.service';
 import { Principal } from '../shared';
 
 @Component({

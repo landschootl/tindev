@@ -2,7 +2,6 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.UserProfile;
-
 import fr.squirtles.tindev.repository.UserProfileRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class UserProfileResource {
     private final Logger log = LoggerFactory.getLogger(UserProfileResource.class);
 
     private static final String ENTITY_NAME = "userProfile";
-        
+
     private final UserProfileRepository userProfileRepository;
 
     public UserProfileResource(UserProfileRepository userProfileRepository) {

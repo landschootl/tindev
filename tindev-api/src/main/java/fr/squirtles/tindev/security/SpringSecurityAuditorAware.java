@@ -1,7 +1,6 @@
 package fr.squirtles.tindev.security;
 
 import fr.squirtles.tindev.config.Constants;
-
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

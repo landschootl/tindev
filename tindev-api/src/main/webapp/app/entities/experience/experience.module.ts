@@ -1,18 +1,18 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
 import {
-    ExperienceService,
-    ExperiencePopupService,
     ExperienceComponent,
+    ExperienceDeleteDialogComponent,
+    ExperienceDeletePopupComponent,
     ExperienceDetailComponent,
     ExperienceDialogComponent,
     ExperiencePopupComponent,
-    ExperienceDeletePopupComponent,
-    ExperienceDeleteDialogComponent,
-    experienceRoute,
     experiencePopupRoute,
+    ExperiencePopupService,
+    experienceRoute,
+    ExperienceService
 } from './';
 
 const ENTITY_STATES = [

@@ -3,7 +3,6 @@ package fr.squirtles.tindev.repository;
 import fr.squirtles.tindev.config.Constants;
 import fr.squirtles.tindev.config.audit.AuditEventConverter;
 import fr.squirtles.tindev.domain.PersistentAuditEvent;
-
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.boot.actuate.audit.AuditEventRepository;
 import org.springframework.stereotype.Repository;

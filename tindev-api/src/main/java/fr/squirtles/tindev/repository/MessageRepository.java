@@ -1,10 +1,7 @@
 package fr.squirtles.tindev.repository;
 
 import fr.squirtles.tindev.domain.Message;
-
-import org.springframework.data.jpa.repository.*;
-
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Spring Data JPA repository for the Message entity.

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, Renderer } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiLanguageService, EventManager } from 'ng-jhipster';
+import { EventManager, JhiLanguageService } from 'ng-jhipster';
 import { Register } from './register.service';
 import { Router } from '@angular/router';
 import { LoginModalService } from '../../shared/login/login-modal.service';

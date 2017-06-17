@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
 import { PaginationUtil } from 'ng-jhipster';
@@ -8,8 +8,6 @@ import { MatchingComponent } from './matching.component';
 import { MatchingDetailComponent } from './matching-detail.component';
 import { MatchingPopupComponent } from './matching-dialog.component';
 import { MatchingDeletePopupComponent } from './matching-delete-dialog.component';
-
-import { Principal } from '../../shared';
 
 @Injectable()
 export class MatchingResolvePagingParams implements Resolve<any> {

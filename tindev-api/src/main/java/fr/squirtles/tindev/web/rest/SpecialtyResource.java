@@ -2,7 +2,6 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Specialty;
-
 import fr.squirtles.tindev.repository.SpecialtyRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class SpecialtyResource {
     private final Logger log = LoggerFactory.getLogger(SpecialtyResource.class);
 
     private static final String ENTITY_NAME = "specialty";
-        
+
     private final SpecialtyRepository specialtyRepository;
 
     public SpecialtyResource(SpecialtyRepository specialtyRepository) {

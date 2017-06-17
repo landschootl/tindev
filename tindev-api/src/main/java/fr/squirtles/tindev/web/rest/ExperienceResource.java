@@ -2,7 +2,6 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Experience;
-
 import fr.squirtles.tindev.repository.ExperienceRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class ExperienceResource {
     private final Logger log = LoggerFactory.getLogger(ExperienceResource.class);
 
     private static final String ENTITY_NAME = "experience";
-        
+
     private final ExperienceRepository experienceRepository;
 
     public ExperienceResource(ExperienceRepository experienceRepository) {

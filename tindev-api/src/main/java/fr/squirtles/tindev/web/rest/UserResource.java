@@ -1,19 +1,18 @@
 package fr.squirtles.tindev.web.rest;
 
-import fr.squirtles.tindev.config.Constants;
 import com.codahale.metrics.annotation.Timed;
+import fr.squirtles.tindev.config.Constants;
 import fr.squirtles.tindev.domain.User;
 import fr.squirtles.tindev.repository.UserRepository;
 import fr.squirtles.tindev.security.AuthoritiesConstants;
 import fr.squirtles.tindev.service.MailService;
 import fr.squirtles.tindev.service.UserService;
 import fr.squirtles.tindev.service.dto.UserDTO;
-import fr.squirtles.tindev.web.rest.vm.ManagedUserVM;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import fr.squirtles.tindev.web.rest.util.PaginationUtil;
+import fr.squirtles.tindev.web.rest.vm.ManagedUserVM;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -26,7 +25,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing users.

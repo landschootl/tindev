@@ -2,7 +2,6 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Training;
-
 import fr.squirtles.tindev.repository.TrainingRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class TrainingResource {
     private final Logger log = LoggerFactory.getLogger(TrainingResource.class);
 
     private static final String ENTITY_NAME = "training";
-        
+
     private final TrainingRepository trainingRepository;
 
     public TrainingResource(TrainingRepository trainingRepository) {

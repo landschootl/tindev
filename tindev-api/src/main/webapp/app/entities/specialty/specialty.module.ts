@@ -1,18 +1,18 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
 import {
-    SpecialtyService,
-    SpecialtyPopupService,
     SpecialtyComponent,
+    SpecialtyDeleteDialogComponent,
+    SpecialtyDeletePopupComponent,
     SpecialtyDetailComponent,
     SpecialtyDialogComponent,
     SpecialtyPopupComponent,
-    SpecialtyDeletePopupComponent,
-    SpecialtyDeleteDialogComponent,
-    specialtyRoute,
     specialtyPopupRoute,
+    SpecialtyPopupService,
+    specialtyRoute,
+    SpecialtyService
 } from './';
 
 const ENTITY_STATES = [

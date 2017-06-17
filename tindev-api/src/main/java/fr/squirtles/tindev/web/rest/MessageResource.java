@@ -2,7 +2,6 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Message;
-
 import fr.squirtles.tindev.repository.MessageRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -26,7 +25,7 @@ public class MessageResource {
     private final Logger log = LoggerFactory.getLogger(MessageResource.class);
 
     private static final String ENTITY_NAME = "message";
-        
+
     private final MessageRepository messageRepository;
 
     public MessageResource(MessageRepository messageRepository) {

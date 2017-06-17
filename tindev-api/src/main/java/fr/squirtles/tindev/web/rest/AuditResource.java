@@ -2,7 +2,6 @@ package fr.squirtles.tindev.web.rest;
 
 import fr.squirtles.tindev.service.AuditEventService;
 import fr.squirtles.tindev.web.rest.util.PaginationUtil;
-
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 import org.springframework.boot.actuate.audit.AuditEvent;
