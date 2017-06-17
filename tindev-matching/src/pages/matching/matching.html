@@ -16,15 +16,14 @@
 
 <ion-content padding>
     <div *ngIf="auth.getUserInfo().completedProfile">
-        <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)"
-             (throwoutright)="voteUp(true)" id="card-stack">
+        <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
 
             <!-- Affichage dans le cas d'un freelance -->
-            <ion-card #cards swing-card *ngFor="let m of matchings">
+            <ion-card #cards swing-card *ngIf="currentCard">
                 <ion-item>
-                    <img class="card-image" *ngIf="m.mission.imageUrl" [src]="m.mission.imageUrl">
-                    <h1 class="card-title">{{ m.title | capitalize }}</h1>
-                    <h2 class="card-subtitle">{{ m.description | capitalize }}</h2>
+                    <img class="card-image" *ngIf="currentCard.mission.imageUrl" [src]="currentCard.mission.imageUrl">
+                    <h1 class="card-title">{{ currentCard.mission.title | capitalize }}</h1>
+                    <h2 class="card-subtitle">{{ currentCard.mission.description | capitalize }}</h2>
                 </ion-item>
 
                 <ion-row>
@@ -50,8 +49,7 @@
                     <img id="un-card-image" src="assets/images/uncompleted-profile-placeholder.jpg">
                     <h1 id="un-card-title">Trouvez votre futur associé</h1>
                 </ion-item>
-                <p id="un-card-subtitle" padding color="danger">Vous devez d'abord compléter votre profil sur
-                    l'application Tindev Board.</p>
+                <p id="un-card-subtitle" padding color="danger">Vous devez d'abord compléter votre profil sur l'application Tindev Board.</p>
             </ion-card>
         </div>
     </div>
