@@ -4,6 +4,7 @@ import {User} from '../shared/models/user';
 import {ApiUtils} from '../shared/utils/api';
 import {Http, Response, RequestOptions} from '@angular/http';
 import { Storage } from '@ionic/storage';
+import { UserService } from './user-service';
 import 'rxjs/add/operator/map';
 //Sauf erreur de ma part, ca ne devrait pas être ici je suppose
  
@@ -12,7 +13,7 @@ export class AuthService {
   public currentUser : User;
   public token:string;
 
-  constructor(private http:Http, private storage:Storage, private apic : ApiUtils) {
+  constructor(private http:Http, private storage:Storage, private apic : ApiUtils, private user : UserService) {
     this.storage.get('currentUser').then((user:any)=>{
       let currentUser = JSON.parse(user);
       this.token = currentUser && currentUser.token;
@@ -32,7 +33,6 @@ export class AuthService {
       let token = response.json() && response.json().id_token;
       if(token) {
         this.token = token;
-        console.log("token : " + this.token);
         //Saving the user and his token into the storage
         this.storage.set('currentUser', JSON.stringify({username: credentials.username, token: token}));
         return true;
@@ -53,7 +53,15 @@ export class AuthService {
       let json = response.json();
       //TODO add verification on whether the user is a recruiter or not
       //TODO add veriication if the profile is completed or not
-      this.currentUser = new User(json.firstname, json.lastname, false, json.email, true, this.token);
+      var isrecruiter : boolean = json.authorities.indexOf('ROLE_RECRUITER') >= 0;
+      var recruiterid : number;
+      if(isrecruiter) {
+        this.user.getRecruitersIdForUser(json.id, this.token).subscribe(id => {
+            this.currentUser.specId=id;
+          });
+      } 
+      // >= 0
+      this.currentUser = new User(json.id, json.firstName, json.lastName, isrecruiter, json.email, true, this.token);
       this.storage.set('currentUser', JSON.stringify({user: this.currentUser}));
       return this.currentUser;
       });

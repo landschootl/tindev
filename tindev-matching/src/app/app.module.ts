@@ -15,6 +15,8 @@ import { Storage } from '@ionic/storage';
 import { ApiUtils } from '../shared/utils/api';
 import { ConversationService } from '../providers/conversation-service';
 import { UserService } from '../providers/user-service';
+import { MissionService } from '../providers/mission-service';
+import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-selection/recruiters-mission-selection';
 import {MatchingService} from "../providers/matching-service";
 
 @NgModule({
@@ -25,7 +27,8 @@ import {MatchingService} from "../providers/matching-service";
         RegisterPage,
         MatchesListPage,
         ConversationPage,
-        CapitalizePipe
+        CapitalizePipe,
+        RecruitersMissionSelectionPage
     ],
     imports: [
         IonicModule.forRoot(MyApp),
@@ -39,7 +42,8 @@ import {MatchingService} from "../providers/matching-service";
         MatchingPage,
         ConversationPage,
         MatchesListPage,
-        RegisterPage
+        RegisterPage,
+        RecruitersMissionSelectionPage
     ],
     providers: [
         {
@@ -52,7 +56,8 @@ import {MatchingService} from "../providers/matching-service";
         Storage,
         ApiUtils,
         ConversationService,
-        UserService
+        UserService,
+        MissionService
     ]
 })
 export class AppModule {
