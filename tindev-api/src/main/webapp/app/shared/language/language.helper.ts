@@ -25,7 +25,7 @@ export class JhiLanguageHelper {
      */
     updateTitle(titleKey?: string) {
         if (!titleKey) {
-             titleKey = this.getPageTitle(this.router.routerState.snapshot.root);
+            titleKey = this.getPageTitle(this.router.routerState.snapshot.root);
         }
 
         this.translateService.get(titleKey).subscribe((title) => {
@@ -44,7 +44,8 @@ export class JhiLanguageHelper {
     }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
-        let title: string = (routeSnapshot.data && routeSnapshot.data['pageTitle']) ? routeSnapshot.data['pageTitle'] : 'tindevApp';
+        let title: string = (routeSnapshot.data &&
+                             routeSnapshot.data['pageTitle']) ? routeSnapshot.data['pageTitle'] : 'tindevApp';
         if (routeSnapshot.firstChild) {
             title = this.getPageTitle(routeSnapshot.firstChild) || title;
         }

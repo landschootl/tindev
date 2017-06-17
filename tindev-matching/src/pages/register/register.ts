@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import {
-    AlertController, Loading, LoadingController, MenuController, NavController, NavParams,
+    AlertController,
+    Loading,
+    LoadingController,
+    MenuController,
+    NavController,
+    NavParams,
     ToastController
 } from 'ionic-angular';
 import { TindevSession } from '../../providers/tindev-session';
@@ -53,30 +58,33 @@ export class RegisterPage {
             }
 
             this.userService.save(this.registerAccount).subscribe(() => {
-                this.authService.apiAuthenticate({username: this.registerAccount.login, password: this.registerAccount.password}).subscribe(allowed => {
-                    if (allowed) {
-                        this.authService.apiAccount().subscribe(user => {
-                            let toast = this.toastCtrl.create({
-                                message: 'Bienvenue ' + user.firstname,
-                                duration: 2000,
-                                position: 'bottom'
-                            });
-                            toast.present(toast);
-                            this.menu.enable(true);
-                            this.nav.setRoot(MatchingPage);
+                    this.authService.apiAuthenticate({
+                        username: this.registerAccount.login,
+                        password: this.registerAccount.password
+                    }).subscribe(allowed => {
+                            if (allowed) {
+                                this.authService.apiAccount().subscribe(user => {
+                                    let toast = this.toastCtrl.create({
+                                        message: 'Bienvenue ' + user.firstname,
+                                        duration: 2000,
+                                        position: 'bottom'
+                                    });
+                                    toast.present(toast);
+                                    this.menu.enable(true);
+                                    this.nav.setRoot(MatchingPage);
+                                    this.loading.dismiss();
+                                });
+                            }
+                        },
+                        error => {
                             this.loading.dismiss();
+                            this.showError(error);
                         });
-                    }
                 },
                 error => {
                     this.loading.dismiss();
                     this.showError(error);
                 });
-            },
-            error => {
-                this.loading.dismiss();
-                this.showError(error);
-            });
         }
     }
 

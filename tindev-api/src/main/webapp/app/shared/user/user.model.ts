@@ -12,8 +12,8 @@ export class User {
     public lastModifiedBy?: string;
     public lastModifiedDate?: Date;
     public password?: string;
-    constructor(
-        id?: any,
+
+    constructor(id?: any,
         login?: string,
         firstName?: string,
         lastName?: string,
@@ -25,8 +25,7 @@ export class User {
         createdDate?: Date,
         lastModifiedBy?: string,
         lastModifiedDate?: Date,
-        password?: string
-    ) {
+        password?: string) {
         this.id = id ? id : null;
         this.login = login ? login : null;
         this.firstName = firstName ? firstName : null;

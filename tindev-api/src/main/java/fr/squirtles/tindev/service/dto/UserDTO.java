@@ -63,9 +63,9 @@ public class UserDTO {
     }
 
     public UserDTO(Long id, String login, String firstName, String lastName,
-        String email, boolean activated, String imageUrl, String langKey,
-        String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate,
-        Set<String> authorities) {
+                   String email, boolean activated, String imageUrl, String langKey,
+                   String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate,
+                   Set<String> authorities) {
 
         this.id = id;
         this.login = login;

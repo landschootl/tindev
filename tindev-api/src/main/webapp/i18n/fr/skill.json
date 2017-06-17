@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "skill" : {
+        "skill": {
             "home": {
                 "title": "Skills",
                 "createLabel": "Créer un nouveau Skill",

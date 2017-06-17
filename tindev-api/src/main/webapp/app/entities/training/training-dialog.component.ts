@@ -21,14 +21,13 @@ export class TrainingDialogComponent implements OnInit {
     isSaving: boolean;
 
     freelances: Freelance[];
-            constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private trainingService: TrainingService,
         private freelanceService: FreelanceService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['training']);
     }
 
@@ -36,8 +35,11 @@ export class TrainingDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.freelanceService.query().subscribe(
-            (res: Response) => { this.freelances = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.freelances = res.json();
+            }, (res: Response) => this.onError(res.json()));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -56,7 +58,7 @@ export class TrainingDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Training) {
-        this.eventManager.broadcast({ name: 'trainingListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'trainingListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -89,14 +91,13 @@ export class TrainingPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private trainingPopupService: TrainingPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private trainingPopupService: TrainingPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.trainingPopupService
                     .open(TrainingDialogComponent, params['id']);
             } else {

@@ -1,4 +1,4 @@
-import { Specialty } from "./specialty.model";
+import { Specialty } from './specialty.model';
 import { Domain } from './domain.model';
 import { Training } from './training.model';
 import { Skill } from './skill.model';
@@ -7,8 +7,7 @@ import { Discussion } from './discussion.model';
 import { Matching } from './matching.model';
 
 export class Freelance {
-    constructor(
-        public id?: number,
+    constructor(public id?: number,
         public dailyPrice?: number,
         public birthdate?: any,
         public idUser?: number,
@@ -18,7 +17,6 @@ export class Freelance {
         public skills?: Skill,
         public experiences?: Experience,
         public discussions?: Discussion,
-        public matchings?: Matching,
-    ) {
+        public matchings?: Matching,) {
     }
 }

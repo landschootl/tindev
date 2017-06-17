@@ -12,7 +12,8 @@ import { MatchingDeletePopupComponent } from './matching-delete-dialog.component
 @Injectable()
 export class MatchingResolvePagingParams implements Resolve<any> {
 
-    constructor(private paginationUtil: PaginationUtil) {}
+    constructor(private paginationUtil: PaginationUtil) {
+    }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const page = route.queryParams['page'] ? route.queryParams['page'] : '1';
@@ -21,7 +22,7 @@ export class MatchingResolvePagingParams implements Resolve<any> {
             page: this.paginationUtil.parsePage(page),
             predicate: this.paginationUtil.parsePredicate(sort),
             ascending: this.paginationUtil.parseAscending(sort)
-      };
+        };
     }
 }
 

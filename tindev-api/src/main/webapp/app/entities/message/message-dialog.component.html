@@ -1,39 +1,48 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myMessageLabel" jhiTranslate="tindevApp.message.home.createOrEditLabel">Create or edit a Message</h4>
+        <h4 class="modal-title" id="myMessageLabel" jhiTranslate="tindevApp.message.home.createOrEditLabel">Create or
+            edit a Message</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;</button>
+                (click)="clear()">&times;
+        </button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!message.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="message.id" readonly />
+                   [(ngModel)]="message.id" readonly/>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.message.textMessage" for="field_textMessage">Text Message</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.message.textMessage" for="field_textMessage">Text
+                Message</label>
             <input type="text" class="form-control" name="textMessage" id="field_textMessage"
-                [(ngModel)]="message.textMessage"
-             />
+                   [(ngModel)]="message.textMessage"
+            />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.message.postingDate" for="field_postingDate">Posting Date</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.message.postingDate" for="field_postingDate">Posting
+                Date</label>
             <div class="input-group">
-                <input id="field_postingDate" type="text" class="form-control" name="postingDate" ngbDatepicker  #postingDateDp="ngbDatepicker" [(ngModel)]="message.postingDate"
+                <input id="field_postingDate" type="text" class="form-control" name="postingDate" ngbDatepicker
+                       #postingDateDp="ngbDatepicker" [(ngModel)]="message.postingDate"
                 />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="postingDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default" (click)="postingDateDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>
 
         <div class="form-group">
             <label jhiTranslate="tindevApp.message.discussion" for="field_discussion">Discussion</label>
-            <select class="form-control" id="field_discussion" name="discussion" [(ngModel)]="message.discussion" >
+            <select class="form-control" id="field_discussion" name="discussion" [(ngModel)]="message.discussion">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="discussionOption.id === message.discussion?.id ? message.discussion : discussionOption" *ngFor="let discussionOption of discussions; trackBy: trackDiscussionById">{{discussionOption.id}}</option>
+                <option
+                    [ngValue]="discussionOption.id === message.discussion?.id ? message.discussion : discussionOption"
+                    *ngFor="let discussionOption of discussions; trackBy: trackDiscussionById">{{discussionOption.id}}
+                </option>
             </select>
         </div>
     </div>

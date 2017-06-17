@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "specialty" : {
+        "specialty": {
             "home": {
                 "title": "Specialties",
                 "createLabel": "Créer un nouveau Specialty",

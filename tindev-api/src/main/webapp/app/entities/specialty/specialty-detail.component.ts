@@ -16,12 +16,10 @@ export class SpecialtyDetailComponent implements OnInit, OnDestroy {
     private subscription: any;
     private eventSubscriber: Subscription;
 
-    constructor(
-        private eventManager: EventManager,
+    constructor(private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private specialtyService: SpecialtyService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['specialty']);
     }
 
@@ -37,6 +35,7 @@ export class SpecialtyDetailComponent implements OnInit, OnDestroy {
             this.specialty = specialty;
         });
     }
+
     previousState() {
         window.history.back();
     }

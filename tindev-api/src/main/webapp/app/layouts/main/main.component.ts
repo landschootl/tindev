@@ -9,14 +9,14 @@ import { JhiLanguageHelper, StateStorageService } from '../../shared';
 })
 export class JhiMainComponent implements OnInit {
 
-    constructor(
-        private jhiLanguageHelper: JhiLanguageHelper,
+    constructor(private jhiLanguageHelper: JhiLanguageHelper,
         private router: Router,
-        private $storageService: StateStorageService,
-    ) {}
+        private $storageService: StateStorageService,) {
+    }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
-        let title: string = (routeSnapshot.data && routeSnapshot.data['pageTitle']) ? routeSnapshot.data['pageTitle'] : 'tindevApp';
+        let title: string = (routeSnapshot.data &&
+                             routeSnapshot.data['pageTitle']) ? routeSnapshot.data['pageTitle'] : 'tindevApp';
         if (routeSnapshot.firstChild) {
             title = this.getPageTitle(routeSnapshot.firstChild) || title;
         }

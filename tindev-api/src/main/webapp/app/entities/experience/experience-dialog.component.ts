@@ -21,14 +21,13 @@ export class ExperienceDialogComponent implements OnInit {
     isSaving: boolean;
 
     freelances: Freelance[];
-            constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private experienceService: ExperienceService,
         private freelanceService: FreelanceService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['experience']);
     }
 
@@ -36,8 +35,11 @@ export class ExperienceDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.freelanceService.query().subscribe(
-            (res: Response) => { this.freelances = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.freelances = res.json();
+            }, (res: Response) => this.onError(res.json()));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -56,7 +58,7 @@ export class ExperienceDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Experience) {
-        this.eventManager.broadcast({ name: 'experienceListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'experienceListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -89,14 +91,13 @@ export class ExperiencePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private experiencePopupService: ExperiencePopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private experiencePopupService: ExperiencePopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.experiencePopupService
                     .open(ExperienceDialogComponent, params['id']);
             } else {

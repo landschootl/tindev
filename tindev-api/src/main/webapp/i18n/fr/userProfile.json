@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "userProfile" : {
+        "userProfile": {
             "home": {
                 "title": "UserProfiles",
                 "createLabel": "Créer un nouveau User Profile",

@@ -16,12 +16,10 @@ export class TrainingDetailComponent implements OnInit, OnDestroy {
     private subscription: any;
     private eventSubscriber: Subscription;
 
-    constructor(
-        private eventManager: EventManager,
+    constructor(private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private trainingService: TrainingService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['training']);
     }
 
@@ -37,6 +35,7 @@ export class TrainingDetailComponent implements OnInit, OnDestroy {
             this.training = training;
         });
     }
+
     previousState() {
         window.history.back();
     }

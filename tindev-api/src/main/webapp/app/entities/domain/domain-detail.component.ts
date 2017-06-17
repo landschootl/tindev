@@ -16,12 +16,10 @@ export class DomainDetailComponent implements OnInit, OnDestroy {
     private subscription: any;
     private eventSubscriber: Subscription;
 
-    constructor(
-        private eventManager: EventManager,
+    constructor(private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private domainService: DomainService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['domain']);
     }
 
@@ -37,6 +35,7 @@ export class DomainDetailComponent implements OnInit, OnDestroy {
             this.domain = domain;
         });
     }
+
     previousState() {
         window.history.back();
     }

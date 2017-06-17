@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "mission" : {
+        "mission": {
             "home": {
                 "title": "Missions",
                 "createLabel": "Créer un nouveau Mission",

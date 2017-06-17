@@ -17,16 +17,14 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     username: string;
     credentials: any;
 
-    constructor(
-        private eventManager: EventManager,
+    constructor(private eventManager: EventManager,
         private languageService: JhiLanguageService,
         private loginService: LoginService,
         private stateStorageService: StateStorageService,
         private elementRef: ElementRef,
         private renderer: Renderer,
         private router: Router,
-        public activeModal: NgbActiveModal
-    ) {
+        public activeModal: NgbActiveModal) {
         this.credentials = {};
     }
 

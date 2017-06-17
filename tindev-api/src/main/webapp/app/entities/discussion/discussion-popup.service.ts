@@ -6,12 +6,11 @@ import { DiscussionService } from './discussion.service';
 @Injectable()
 export class DiscussionPopupService {
     private isOpen = false;
-    constructor(
-        private modalService: NgbModal,
-        private router: Router,
-        private discussionService: DiscussionService
 
-    ) {}
+    constructor(private modalService: NgbModal,
+        private router: Router,
+        private discussionService: DiscussionService) {
+    }
 
     open(component: Component, id?: number | any): NgbModalRef {
         if (this.isOpen) {
@@ -29,13 +28,13 @@ export class DiscussionPopupService {
     }
 
     discussionModalRef(component: Component, discussion: Discussion): NgbModalRef {
-        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static' });
         modalRef.componentInstance.discussion = discussion;
         modalRef.result.then((result) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
             this.isOpen = false;
         });
         return modalRef;

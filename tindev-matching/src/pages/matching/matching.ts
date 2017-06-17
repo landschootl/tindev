@@ -1,11 +1,11 @@
-import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { SwingStackComponent, StackConfig, SwingCardComponent, ThrowEvent } from 'angular2-swing';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { StackConfig, SwingCardComponent, SwingStackComponent, ThrowEvent } from 'angular2-swing';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { ToastController, NavParams, NavController} from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
 import { AuthService } from '../../providers/auth-service';
-import { MatchingService } from "../../providers/matching-service";
+import { MatchingService } from '../../providers/matching-service';
 import { Matching } from '../../shared/models/matching.model';
 import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
 
@@ -18,7 +18,7 @@ export class MatchingPage {
     @ViewChild('myswing1') swingStack: SwingStackComponent;
     @ViewChildren('cards') cards: QueryList<SwingCardComponent>;
 
-    matchingProfile : any; //Could be user or mission
+    matchingProfile: any; //Could be user or mission
     matchings: Array<Matching> = [];
     stackConfig: StackConfig;
     currentCard: Matching;
@@ -27,8 +27,8 @@ export class MatchingPage {
         private toastCtrl: ToastController,
         private capitalizePipe: CapitalizePipe,
         private auth: AuthService,
-        public navParams: NavParams, 
-        public nav : NavController,
+        public navParams: NavParams,
+        public nav: NavController,
         private matchingService: MatchingService) {
         // this.stackConfig = {
         //     throwOutConfidence: (offsetX, offsetY, element) => {
@@ -39,10 +39,11 @@ export class MatchingPage {
         //     }
         // };
         console.log(navParams.data.mission);
-        if(navParams.data.mission != undefined)
-        this.matchingProfile = navParams.data.mission;
-        else
-        this.matchingProfile = auth.currentUser;
+        if (navParams.data.mission != undefined) {
+            this.matchingProfile = navParams.data.mission;
+        } else {
+            this.matchingProfile = auth.currentUser;
+        }
         console.log("matching profile is : ");
         console.log(this.matchingProfile);
     }
@@ -73,14 +74,6 @@ export class MatchingPage {
         }
     }
 
-    private showCard(matching: any) {
-
-    }
-
-    private showNoCardAnyMore() {
-
-    }
-
     private calculateAge(b: any) {
         let birthday = new Date(b.replace(' ', 'T'));
         let ageDifMs = Date.now() - birthday.getTime();
@@ -88,8 +81,8 @@ export class MatchingPage {
         return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
 
-  goToMissionSelection() {
-    this.nav.push(RecruitersMissionSelectionPage);
-  }
+    goToMissionSelection() {
+        this.nav.push(RecruitersMissionSelectionPage);
+    }
 
 }

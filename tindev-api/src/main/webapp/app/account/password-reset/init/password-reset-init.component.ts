@@ -13,12 +13,10 @@ export class PasswordResetInitComponent implements OnInit, AfterViewInit {
     resetAccount: any;
     success: string;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private passwordResetInit: PasswordResetInit,
         private elementRef: ElementRef,
-        private renderer: Renderer
-    ) {
+        private renderer: Renderer) {
         this.jhiLanguageService.setLocations(['reset']);
     }
 

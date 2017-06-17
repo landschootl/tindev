@@ -9,7 +9,8 @@ export class ExperienceService {
 
     private resourceUrl = 'api/experiences';
 
-    constructor(private http: Http, private dateUtils: DateUtils) { }
+    constructor(private http: Http, private dateUtils: DateUtils) {
+    }
 
     create(experience: Experience): Observable<Experience> {
         const copy: Experience = Object.assign({}, experience);
@@ -48,7 +49,7 @@ export class ExperienceService {
         const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
-        ;
+            ;
     }
 
     delete(id: number): Observable<Response> {

@@ -30,7 +30,7 @@
             </column>
             <column name="image_url" type="varchar(256)"/>
             <column name="activated" type="boolean" valueBoolean="false">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="lang_key" type="varchar(5)"/>
             <column name="activation_key" type="varchar(20)"/>
@@ -48,14 +48,14 @@
             <column name="last_modified_date" type="timestamp"/>
         </createTable>
         <createIndex indexName="idx_user_login"
-            tableName="jhi_user"
-            unique="true">
+                     tableName="jhi_user"
+                     unique="true">
             <column name="login" type="varchar(50)"/>
         </createIndex>
 
         <createIndex indexName="idx_user_email"
-            tableName="jhi_user"
-            unique="true">
+                     tableName="jhi_user"
+                     unique="true">
             <column name="email" type="varchar(100)"/>
         </createIndex>
         <createTable tableName="jhi_authority">
@@ -109,7 +109,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="principal" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="event_date" type="timestamp"/>
             <column name="event_type" type="varchar(255)"/>

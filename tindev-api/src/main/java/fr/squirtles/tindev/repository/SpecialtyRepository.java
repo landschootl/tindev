@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Spring Data JPA repository for the Specialty entity.
  */
 @SuppressWarnings("unused")
-public interface SpecialtyRepository extends JpaRepository<Specialty,Long> {
+public interface SpecialtyRepository extends JpaRepository<Specialty, Long> {
 
 }

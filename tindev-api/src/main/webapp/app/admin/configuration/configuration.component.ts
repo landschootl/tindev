@@ -15,10 +15,8 @@ export class JhiConfigurationComponent implements OnInit {
     orderProp: string;
     reverse: boolean;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
-        private configurationService: JhiConfigurationService
-    ) {
+    constructor(private jhiLanguageService: JhiLanguageService,
+        private configurationService: JhiConfigurationService) {
         this.jhiLanguageService.setLocations(['configuration']);
         this.configKeys = [];
         this.filter = '';

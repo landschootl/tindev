@@ -18,13 +18,12 @@ export class UserMgmtDialogComponent implements OnInit {
     authorities: any[];
     isSaving: Boolean;
 
-    constructor(
-        public activeModal: NgbActiveModal,
+    constructor(public activeModal: NgbActiveModal,
         private languageHelper: JhiLanguageHelper,
         private jhiLanguageService: JhiLanguageService,
         private userService: UserService,
-        private eventManager: EventManager
-    ) {}
+        private eventManager: EventManager) {
+    }
 
     ngOnInit() {
         this.isSaving = false;
@@ -68,14 +67,13 @@ export class UserDialogComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private userModalService: UserModalService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private userModalService: UserModalService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['login'] ) {
+            if (params['login']) {
                 this.modalRef = this.userModalService.open(UserMgmtDialogComponent, params['login']);
             } else {
                 this.modalRef = this.userModalService.open(UserMgmtDialogComponent);

@@ -2,8 +2,7 @@ import { Discussion } from '../discussion';
 import { Recruiter } from '../recruiter';
 import { Matching } from '../matching';
 export class Mission {
-    constructor(
-        public id?: number,
+    constructor(public id?: number,
         public title?: string,
         public description?: string,
         public minSalary?: number,
@@ -12,7 +11,6 @@ export class Mission {
         public endDate?: any,
         public discussions?: Discussion,
         public recruiter?: Recruiter,
-        public matchings?: Matching,
-    ) {
+        public matchings?: Matching,) {
     }
 }

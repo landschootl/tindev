@@ -1,9 +1,10 @@
 <div class="container">
     <h2>
         <span jhiTranslate="tindevApp.message.home.title">Messages</span>
-        <button class="btn btn-primary float-right create-message" [routerLink]="['/', { outlets: { popup: ['message-new'] } }]">
+        <button class="btn btn-primary float-right create-message"
+                [routerLink]="['/', { outlets: { popup: ['message-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span  jhiTranslate="tindevApp.message.home.createLabel">
+            <span jhiTranslate="tindevApp.message.home.createLabel">
             Create new Message
             </span>
         </button>
@@ -16,11 +17,11 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="tindevApp.message.textMessage">Text Message</span></th>
-            <th><span jhiTranslate="tindevApp.message.postingDate">Posting Date</span></th>
-            <th><span jhiTranslate="tindevApp.message.discussion">Discussion</span></th>
-            <th></th>
+                <th><span jhiTranslate="global.field.id">ID</span></th>
+                <th><span jhiTranslate="tindevApp.message.textMessage">Text Message</span></th>
+                <th><span jhiTranslate="tindevApp.message.postingDate">Posting Date</span></th>
+                <th><span jhiTranslate="tindevApp.message.discussion">Discussion</span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -30,7 +31,7 @@
                 <td>{{message.postingDate | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="message.discussion">
-                        <a [routerLink]="['../discussion', message.discussion?.id ]" >{{message.discussion?.id}}</a>
+                        <a [routerLink]="['../discussion', message.discussion?.id ]">{{message.discussion?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

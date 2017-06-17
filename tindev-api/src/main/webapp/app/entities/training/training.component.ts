@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './training.component.html'
 })
 export class TrainingComponent implements OnInit, OnDestroy {
-trainings: Training[];
+    trainings: Training[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private trainingService: TrainingService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['training']);
     }
 
@@ -34,6 +32,7 @@ trainings: Training[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -49,6 +48,7 @@ trainings: Training[];
     trackId(index: number, item: Training) {
         return item.id;
     }
+
     registerChangeInTrainings() {
         this.eventSubscriber = this.eventManager.subscribe('trainingListModification', (response) => this.loadAll());
     }

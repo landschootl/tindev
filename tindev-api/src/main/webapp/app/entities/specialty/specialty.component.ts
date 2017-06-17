@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './specialty.component.html'
 })
 export class SpecialtyComponent implements OnInit, OnDestroy {
-specialties: Specialty[];
+    specialties: Specialty[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private specialtyService: SpecialtyService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['specialty']);
     }
 
@@ -34,6 +32,7 @@ specialties: Specialty[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -49,6 +48,7 @@ specialties: Specialty[];
     trackId(index: number, item: Specialty) {
         return item.id;
     }
+
     registerChangeInSpecialties() {
         this.eventSubscriber = this.eventManager.subscribe('specialtyListModification', (response) => this.loadAll());
     }

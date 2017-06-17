@@ -7,14 +7,14 @@ import { AuthServerProvider } from '../auth/auth-jwt.service';
 @Injectable()
 export class LoginService {
 
-    constructor(
-        private languageService: JhiLanguageService,
+    constructor(private languageService: JhiLanguageService,
         private principal: Principal,
-        private authServerProvider: AuthServerProvider
-    ) {}
+        private authServerProvider: AuthServerProvider) {
+    }
 
     login(credentials, callback?) {
-        const cb = callback || function() {};
+        const cb = callback || function() {
+            };
 
         return new Promise((resolve, reject) => {
             this.authServerProvider.login(credentials).subscribe((data) => {
@@ -34,6 +34,7 @@ export class LoginService {
             });
         });
     }
+
     loginWithToken(jwt, rememberMe) {
         return this.authServerProvider.loginWithToken(jwt, rememberMe);
     }

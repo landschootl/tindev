@@ -23,15 +23,15 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="freelance_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="mission_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
 </databaseChangeLog>

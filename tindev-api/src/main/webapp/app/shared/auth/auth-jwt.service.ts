@@ -5,14 +5,14 @@ import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 
 @Injectable()
 export class AuthServerProvider {
-    constructor(
-        private http: Http,
+    constructor(private http: Http,
         private $localStorage: LocalStorageService,
-        private $sessionStorage: SessionStorageService
-    ) {}
+        private $sessionStorage: SessionStorageService) {
+    }
 
     getToken() {
-        return this.$localStorage.retrieve('authenticationToken') || this.$sessionStorage.retrieve('authenticationToken');
+        return this.$localStorage.retrieve('authenticationToken') ||
+               this.$sessionStorage.retrieve('authenticationToken');
     }
 
     login(credentials): Observable<any> {

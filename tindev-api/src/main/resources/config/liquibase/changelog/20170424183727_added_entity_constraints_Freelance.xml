@@ -7,7 +7,7 @@
         Added the constraints for entity Freelance.
     -->
     <changeSet id="20170424183727-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="specialty_id"
                                  baseTableName="freelance"
                                  constraintName="fk_freelance_specialty_id"

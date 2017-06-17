@@ -41,25 +41,32 @@
     <div class="form-group">
         <label class="form-control-label" for="field_birthdate">Date de naissance</label>
         <div class="input-group">
-            <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker #birthdateDp="ngbDatepicker" [(ngModel)]="freelanceProfile.birthdate"
+            <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker
+                   #birthdateDp="ngbDatepicker" [(ngModel)]="freelanceProfile.birthdate"
             />
             <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="birthdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default" (click)="birthdateDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
                 </span>
         </div>
     </div>
     <div class="form-group">
         <label for="field_specialty">Spécialité</label>
-        <select class="form-control" id="field_specialty" name="specialty" [(ngModel)]="freelanceProfile.specialty" >
+        <select class="form-control" id="field_specialty" name="specialty" [(ngModel)]="freelanceProfile.specialty">
             <option [ngValue]="null"></option>
-            <option [ngValue]="specialtyOption.id === freelanceProfile.specialty?.id ? freelanceProfile.specialty : specialtyOption" *ngFor="let specialtyOption of specialties; trackBy: trackSpecialtyById">{{specialtyOption.name}}</option>
+            <option
+                [ngValue]="specialtyOption.id === freelanceProfile.specialty?.id ? freelanceProfile.specialty : specialtyOption"
+                *ngFor="let specialtyOption of specialties; trackBy: trackSpecialtyById">{{specialtyOption.name}}
+            </option>
         </select>
     </div>
     <div class="form-group">
         <label for="field_domain">Domaine</label>
-        <select class="form-control" id="field_domain" name="domain" [(ngModel)]="freelanceProfile.domain" >
+        <select class="form-control" id="field_domain" name="domain" [(ngModel)]="freelanceProfile.domain">
             <option [ngValue]="null"></option>
-            <option [ngValue]="domainOption.id === freelanceProfile.domain?.id ? freelanceProfile.domain : domainOption" *ngFor="let domainOption of domains; trackBy: trackDomainById">{{domainOption.name}}</option>
+            <option [ngValue]="domainOption.id === freelanceProfile.domain?.id ? freelanceProfile.domain : domainOption"
+                    *ngFor="let domainOption of domains; trackBy: trackDomainById">{{domainOption.name}}
+            </option>
         </select>
     </div>
 </div>

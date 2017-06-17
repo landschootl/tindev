@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './mission.component.html'
 })
 export class MissionComponent implements OnInit, OnDestroy {
-missions: Mission[];
+    missions: Mission[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private missionService: MissionService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['mission']);
     }
 
@@ -34,6 +32,7 @@ missions: Mission[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -46,7 +45,7 @@ missions: Mission[];
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId (index: number, item: Mission) {
+    trackId(index: number, item: Mission) {
         return item.id;
     }
 
@@ -54,7 +53,7 @@ missions: Mission[];
         this.eventSubscriber = this.eventManager.subscribe('missionListModification', (response) => this.loadAll());
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 }

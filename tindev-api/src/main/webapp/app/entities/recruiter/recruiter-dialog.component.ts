@@ -18,13 +18,12 @@ export class RecruiterDialogComponent implements OnInit {
     recruiter: Recruiter;
     authorities: any[];
     isSaving: boolean;
-    constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private recruiterService: RecruiterService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['recruiter']);
     }
 
@@ -32,6 +31,7 @@ export class RecruiterDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -50,7 +50,7 @@ export class RecruiterDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Recruiter) {
-        this.eventManager.broadcast({ name: 'recruiterListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'recruiterListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -79,14 +79,13 @@ export class RecruiterPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private recruiterPopupService: RecruiterPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private recruiterPopupService: RecruiterPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.recruiterPopupService
                     .open(RecruiterDialogComponent, params['id']);
             } else {

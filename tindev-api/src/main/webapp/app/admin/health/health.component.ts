@@ -13,11 +13,9 @@ export class JhiHealthCheckComponent implements OnInit {
     healthData: any;
     updatingHealth: boolean;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private modalService: NgbModal,
-        private healthService: JhiHealthService
-    ) {
+        private healthService: JhiHealthService) {
         this.jhiLanguageService.setLocations(['health']);
 
     }
@@ -53,7 +51,7 @@ export class JhiHealthCheckComponent implements OnInit {
     }
 
     showHealth(health: any) {
-        const modalRef  = this.modalService.open(JhiHealthModalComponent);
+        const modalRef = this.modalService.open(JhiHealthModalComponent);
         modalRef.componentInstance.currentHealth = health;
         modalRef.result.then((result) => {
             // Left blank intentionally, nothing to do here

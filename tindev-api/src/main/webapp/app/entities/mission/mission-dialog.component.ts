@@ -27,16 +27,15 @@ export class MissionDialogComponent implements OnInit {
     recruiters: Recruiter[];
 
     matchings: Matching[];
-    constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private missionService: MissionService,
         private discussionService: DiscussionService,
         private recruiterService: RecruiterService,
         private matchingService: MatchingService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['mission']);
     }
 
@@ -44,17 +43,24 @@ export class MissionDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.discussionService.query().subscribe(
-            (res: Response) => { this.discussions = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.discussions = res.json();
+            }, (res: Response) => this.onError(res.json()));
         this.recruiterService.query().subscribe(
-            (res: Response) => { this.recruiters = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.recruiters = res.json();
+            }, (res: Response) => this.onError(res.json()));
         this.matchingService.query().subscribe(
-            (res: Response) => { this.matchings = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.matchings = res.json();
+            }, (res: Response) => this.onError(res.json()));
     }
-    clear () {
+
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    save () {
+    save() {
         this.isSaving = true;
         if (this.mission.id !== undefined) {
             this.missionService.update(this.mission)
@@ -67,18 +73,18 @@ export class MissionDialogComponent implements OnInit {
         }
     }
 
-    private onSaveSuccess (result: Mission) {
-        this.eventManager.broadcast({ name: 'missionListModification', content: 'OK'});
+    private onSaveSuccess(result: Mission) {
+        this.eventManager.broadcast({ name: 'missionListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError (error) {
+    private onSaveError(error) {
         this.isSaving = false;
         this.onError(error);
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 
@@ -104,14 +110,13 @@ export class MissionPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
-        private route: ActivatedRoute,
-        private missionPopupService: MissionPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private missionPopupService: MissionPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.missionPopupService
                     .open(MissionDialogComponent, params['id']);
             } else {

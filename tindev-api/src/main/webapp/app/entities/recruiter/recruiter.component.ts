@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './recruiter.component.html'
 })
 export class RecruiterComponent implements OnInit, OnDestroy {
-recruiters: Recruiter[];
+    recruiters: Recruiter[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private recruiterService: RecruiterService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['recruiter']);
     }
 
@@ -34,6 +32,7 @@ recruiters: Recruiter[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -49,6 +48,7 @@ recruiters: Recruiter[];
     trackId(index: number, item: Recruiter) {
         return item.id;
     }
+
     registerChangeInRecruiters() {
         this.eventSubscriber = this.eventManager.subscribe('recruiterListModification', (response) => this.loadAll());
     }

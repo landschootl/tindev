@@ -23,27 +23,27 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="daily_price" type="integer">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="birthdate" type="date">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="id_user" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
 
             <column name="specialty_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="domain_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
 </databaseChangeLog>

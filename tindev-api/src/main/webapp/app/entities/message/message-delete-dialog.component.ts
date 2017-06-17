@@ -16,12 +16,10 @@ export class MessageDeleteDialogComponent {
 
     message: Message;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private messageService: MessageService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['message']);
     }
 
@@ -49,10 +47,9 @@ export class MessageDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private messagePopupService: MessagePopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private messagePopupService: MessagePopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

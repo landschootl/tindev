@@ -9,7 +9,8 @@ export class FreelanceService {
 
     private resourceUrl = 'api/freelances';
 
-    constructor(private http: Http, private dateUtils: DateUtils) { }
+    constructor(private http: Http, private dateUtils: DateUtils) {
+    }
 
     create(freelance: Freelance): Observable<Freelance> {
         let copy: Freelance = Object.assign({}, freelance);
@@ -42,7 +43,7 @@ export class FreelanceService {
         let options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
-        ;
+            ;
     }
 
     delete(id: number): Observable<Response> {

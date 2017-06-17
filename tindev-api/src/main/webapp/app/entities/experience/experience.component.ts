@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './experience.component.html'
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
-experiences: Experience[];
+    experiences: Experience[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private experienceService: ExperienceService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['experience']);
     }
 
@@ -34,6 +32,7 @@ experiences: Experience[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -49,6 +48,7 @@ experiences: Experience[];
     trackId(index: number, item: Experience) {
         return item.id;
     }
+
     registerChangeInExperiences() {
         this.eventSubscriber = this.eventManager.subscribe('experienceListModification', (response) => this.loadAll());
     }

@@ -1,9 +1,10 @@
 <div class="container">
     <h2>
         <span jhiTranslate="tindevApp.userProfile.home.title">User Profiles</span>
-        <button class="btn btn-primary float-right create-user-profile" [routerLink]="['/', { outlets: { popup: ['user-profile-new'] } }]">
+        <button class="btn btn-primary float-right create-user-profile"
+                [routerLink]="['/', { outlets: { popup: ['user-profile-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span  jhiTranslate="tindevApp.userProfile.home.createLabel">
+            <span jhiTranslate="tindevApp.userProfile.home.createLabel">
             Create new User Profile
             </span>
         </button>
@@ -16,13 +17,13 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="tindevApp.userProfile.firstname">Firstname</span></th>
-            <th><span jhiTranslate="tindevApp.userProfile.lastname">Lastname</span></th>
-            <th><span jhiTranslate="tindevApp.userProfile.description">Description</span></th>
-            <th><span jhiTranslate="tindevApp.userProfile.photoUrl">Photo Url</span></th>
-            <th><span jhiTranslate="tindevApp.userProfile.city">City</span></th>
-            <th></th>
+                <th><span jhiTranslate="global.field.id">ID</span></th>
+                <th><span jhiTranslate="tindevApp.userProfile.firstname">Firstname</span></th>
+                <th><span jhiTranslate="tindevApp.userProfile.lastname">Lastname</span></th>
+                <th><span jhiTranslate="tindevApp.userProfile.description">Description</span></th>
+                <th><span jhiTranslate="tindevApp.userProfile.photoUrl">Photo Url</span></th>
+                <th><span jhiTranslate="tindevApp.userProfile.city">City</span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

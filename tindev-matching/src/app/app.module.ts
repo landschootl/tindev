@@ -1,5 +1,5 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MatchingPage } from '../pages/matching/matching';
@@ -17,7 +17,7 @@ import { ConversationService } from '../providers/conversation-service';
 import { UserService } from '../providers/user-service';
 import { MissionService } from '../providers/mission-service';
 import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-selection/recruiters-mission-selection';
-import {MatchingService} from "../providers/matching-service";
+import { MatchingService } from '../providers/matching-service';
 
 @NgModule({
     declarations: [

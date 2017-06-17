@@ -24,15 +24,13 @@ export class NavbarComponent implements OnInit {
     modalRef: NgbModalRef;
     version: string;
 
-    constructor(
-        private loginService: LoginService,
+    constructor(private loginService: LoginService,
         private languageHelper: JhiLanguageHelper,
         private languageService: JhiLanguageService,
         private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
-        private router: Router
-    ) {
+        private router: Router) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
         this.languageService.addLocation('home');
@@ -50,7 +48,7 @@ export class NavbarComponent implements OnInit {
     }
 
     changeLanguage(languageKey: string) {
-      this.languageService.changeLanguage(languageKey);
+        this.languageService.changeLanguage(languageKey);
     }
 
     collapseNavbar() {

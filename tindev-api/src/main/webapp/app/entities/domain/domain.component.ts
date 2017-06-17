@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './domain.component.html'
 })
 export class DomainComponent implements OnInit, OnDestroy {
-domains: Domain[];
+    domains: Domain[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private domainService: DomainService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['domain']);
     }
 
@@ -34,6 +32,7 @@ domains: Domain[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -49,6 +48,7 @@ domains: Domain[];
     trackId(index: number, item: Domain) {
         return item.id;
     }
+
     registerChangeInDomains() {
         this.eventSubscriber = this.eventManager.subscribe('domainListModification', (response) => this.loadAll());
     }

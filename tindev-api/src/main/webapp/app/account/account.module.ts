@@ -50,4 +50,5 @@ import { UpdateMissionComponent } from './profile-recruiter/update-mission-dialo
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevAccountModule {}
+export class TindevAccountModule {
+}

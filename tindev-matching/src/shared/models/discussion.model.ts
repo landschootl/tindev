@@ -3,11 +3,9 @@ import { Mission } from './mission.model';
 import { Message } from './message.model';
 
 export class Discussion {
-    constructor(
-        public id?: number,
+    constructor(public id?: number,
         public freelance?: Freelance,
         public mission?: Mission,
-        public messages?: Message,
-    ) {
+        public messages?: Message,) {
     }
 }

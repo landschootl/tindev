@@ -35,4 +35,5 @@ import { TindevMatchingModule } from './matching/matching.module';
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevEntityModule {}
+export class TindevEntityModule {
+}

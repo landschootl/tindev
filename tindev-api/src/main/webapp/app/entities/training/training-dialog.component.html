@@ -1,55 +1,66 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myTrainingLabel" jhiTranslate="tindevApp.training.home.createOrEditLabel">Create or edit a Training</h4>
+        <h4 class="modal-title" id="myTrainingLabel" jhiTranslate="tindevApp.training.home.createOrEditLabel">Create or
+            edit a Training</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;</button>
+                (click)="clear()">&times;
+        </button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!training.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="training.id" readonly />
+                   [(ngModel)]="training.id" readonly/>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.training.startDate" for="field_startDate">Start Date</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.training.startDate" for="field_startDate">Start
+                Date</label>
             <div class="input-group">
-                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="training.startDate"
+                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker
+                       #startDateDp="ngbDatepicker" [(ngModel)]="training.startDate"
                 />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default" (click)="startDateDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.training.endDate" for="field_endDate">End Date</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.training.endDate" for="field_endDate">End
+                Date</label>
             <div class="input-group">
-                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="training.endDate"
+                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker
+                       #endDateDp="ngbDatepicker" [(ngModel)]="training.endDate"
                 />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.training.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
-                [(ngModel)]="training.name"
-             />
+                   [(ngModel)]="training.name"
+            />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.training.location" for="field_location">Location</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.training.location"
+                   for="field_location">Location</label>
             <input type="text" class="form-control" name="location" id="field_location"
-                [(ngModel)]="training.location"
-             />
+                   [(ngModel)]="training.location"
+            />
         </div>
 
         <div class="form-group">
             <label jhiTranslate="tindevApp.training.freelance" for="field_freelance">Freelance</label>
-            <select class="form-control" id="field_freelance" name="freelance" [(ngModel)]="training.freelance" >
+            <select class="form-control" id="field_freelance" name="freelance" [(ngModel)]="training.freelance">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="freelanceOption.id === training.freelance?.id ? training.freelance : freelanceOption" *ngFor="let freelanceOption of freelances; trackBy: trackFreelanceById">{{freelanceOption.id}}</option>
+                <option [ngValue]="freelanceOption.id === training.freelance?.id ? training.freelance : freelanceOption"
+                        *ngFor="let freelanceOption of freelances; trackBy: trackFreelanceById">{{freelanceOption.id}}
+                </option>
             </select>
         </div>
     </div>

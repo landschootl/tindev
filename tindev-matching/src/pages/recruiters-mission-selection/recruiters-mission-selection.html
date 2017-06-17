@@ -1,35 +1,35 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title text-center>
-      Tindev Matching
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="options"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-	<ion-searchbar
-	  [(ngModel)]="searchinput"
-	  (ionInput)="onSearchInput($event)"
-	  placeholder="Titre ou description de la mission">
-	</ion-searchbar>
-	<div *ngIf="this.showSearchLoader" class="loading">
-		<ion-spinner style="text-align: center" name="dots"></ion-spinner>
-	</div>
+    <ion-navbar color="primary">
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title text-center>
+            Tindev Matching
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only>
+                <ion-icon name="options"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-searchbar
+        [(ngModel)]="searchinput"
+        (ionInput)="onSearchInput($event)"
+        placeholder="Titre ou description de la mission">
+    </ion-searchbar>
+    <div *ngIf="this.showSearchLoader" class="loading">
+        <ion-spinner style="text-align: center" name="dots"></ion-spinner>
+    </div>
 </ion-header>
 <ion-content padding>
-	<ion-list>
-		<ion-item (click)="openMatchingPage(item)" *ngFor="let item of searchMatchingData" detail-push>
-			<div>
-				<span style="font-weight:bold" color="text-primary">{{ item.title }}</span> 
-				<br/>
-				<br/>
-				<span color="text-light">{{ item.description}}</span>
-			</div>
-		</ion-item>
-	</ion-list>
+    <ion-list>
+        <ion-item (click)="openMatchingPage(item)" *ngFor="let item of searchMatchingData" detail-push>
+            <div>
+                <span style="font-weight:bold" color="text-primary">{{ item.title }}</span>
+                <br/>
+                <br/>
+                <span color="text-light">{{ item.description}}</span>
+            </div>
+        </ion-item>
+    </ion-list>
 </ion-content>

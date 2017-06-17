@@ -16,12 +16,10 @@ export class DomainDeleteDialogComponent {
 
     domain: Domain;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private domainService: DomainService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['domain']);
     }
 
@@ -49,10 +47,9 @@ export class DomainDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private domainPopupService: DomainPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private domainPopupService: DomainPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

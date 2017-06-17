@@ -13,6 +13,6 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface MatchingRepository extends JpaRepository<Matching,Long> {
+public interface MatchingRepository extends JpaRepository<Matching, Long> {
     List<Matching> findByFreelance(Freelance freelance);
 }

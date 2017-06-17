@@ -16,8 +16,8 @@ import {
 } from './';
 
 const ENTITY_STATES = [
-    ...recruiterRoute,
-    ...recruiterPopupRoute,
+    ... recruiterRoute,
+    ... recruiterPopupRoute,
 ];
 
 @NgModule({
@@ -46,4 +46,5 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevRecruiterModule {}
+export class TindevRecruiterModule {
+}

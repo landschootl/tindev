@@ -13,11 +13,9 @@ export class UserMgmtDetailComponent implements OnInit, OnDestroy {
     user: User;
     private subscription: any;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private userService: UserService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['user-management']);
     }
 

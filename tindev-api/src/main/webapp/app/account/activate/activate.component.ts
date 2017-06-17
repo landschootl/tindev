@@ -15,12 +15,10 @@ export class ActivateComponent implements OnInit {
     success: string;
     modalRef: NgbModalRef;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private activate: Activate,
         private loginModalService: LoginModalService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['activate']);
     }
 

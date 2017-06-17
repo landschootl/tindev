@@ -8,7 +8,8 @@ export class SkillService {
 
     private resourceUrl = 'api/skills';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+    }
 
     create(skill: Skill): Observable<Skill> {
         const copy: Skill = Object.assign({}, skill);
@@ -33,12 +34,13 @@ export class SkillService {
     query(req?: any): Observable<Response> {
         const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
-        ;
+            ;
     }
 
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
+
     private createRequestOption(req?: any): BaseRequestOptions {
         const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {

@@ -51,12 +51,14 @@ export class JhiAlertErrorComponent implements OnDestroy {
                         const fieldErrors = httpResponse.json().fieldErrors;
                         for (i = 0; i < fieldErrors.length; i++) {
                             const fieldError = fieldErrors[i];
-                            // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
+                            // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be
+                            // written to it
                             const convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
                             const fieldName = translateService.instant('tindevApp.' +
-                                fieldError.objectName + '.' + convertedField);
+                                                                       fieldError.objectName + '.' + convertedField);
                             this.addErrorAlert(
-                                'Field ' + fieldName + ' cannot be empty', 'error.' + fieldError.message, { fieldName });
+                                'Field ' + fieldName + ' cannot be empty', 'error.' +
+                                                                           fieldError.message, { fieldName });
                         }
                     } else if (httpResponse.text() !== '' && httpResponse.json() && httpResponse.json().message) {
                         this.addErrorAlert(httpResponse.json().message, httpResponse.json().message, httpResponse.json().params);

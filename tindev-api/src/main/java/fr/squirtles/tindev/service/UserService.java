@@ -62,19 +62,19 @@ public class UserService {
     }
 
     public Optional<User> completePasswordReset(String newPassword, String key) {
-       log.debug("Reset user password for reset key {}", key);
+        log.debug("Reset user password for reset key {}", key);
 
-       return userRepository.findOneByResetKey(key)
+        return userRepository.findOneByResetKey(key)
             .filter(user -> {
                 ZonedDateTime oneDayAgo = ZonedDateTime.now().minusHours(24);
                 return user.getResetDate().isAfter(oneDayAgo);
-           })
-           .map(user -> {
+            })
+            .map(user -> {
                 user.setPassword(passwordEncoder.encode(newPassword));
                 user.setResetKey(null);
                 user.setResetDate(null);
                 return user;
-           });
+            });
     }
 
     public Optional<User> requestPasswordReset(String mail) {
@@ -88,7 +88,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String imageUrl, String langKey, Set<String> auths) {
+                           String imageUrl, String langKey, Set<String> auths) {
 
         User newUser = new User();
 
@@ -109,7 +109,7 @@ public class UserService {
 
         String freelanceOrRecruiter = "";
 
-        for (String auth: auths) {
+        for (String auth : auths) {
             if (!auth.equals(AuthoritiesConstants.ADMIN)) {
                 freelanceOrRecruiter = auth;
                 Authority authority = new Authority();
@@ -126,11 +126,11 @@ public class UserService {
         userProfile.setId(idUser);
         userProfileRepository.save(userProfile);
 
-        if(freelanceOrRecruiter.equals(AuthoritiesConstants.FREELANCE)){
+        if (freelanceOrRecruiter.equals(AuthoritiesConstants.FREELANCE)) {
             Freelance freelance = new Freelance();
             freelance.setIdUser(idUser);
             freelanceRepository.save(freelance);
-        } else if(freelanceOrRecruiter.equals(AuthoritiesConstants.RECRUITER)){
+        } else if (freelanceOrRecruiter.equals(AuthoritiesConstants.RECRUITER)) {
             Recruiter recruiter = new Recruiter();
             recruiter.setIdUser(idUser);
             recruiterRepository.save(recruiter);
@@ -173,10 +173,10 @@ public class UserService {
      * Update basic information (first name, last name, email, language) for the current user.
      *
      * @param firstName first name of user
-     * @param lastName last name of user
-     * @param email email id of user
-     * @param langKey language key
-     * @param imageUrl image URL of user
+     * @param lastName  last name of user
+     * @param email     email id of user
+     * @param langKey   language key
+     * @param imageUrl  image URL of user
      */
     public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {

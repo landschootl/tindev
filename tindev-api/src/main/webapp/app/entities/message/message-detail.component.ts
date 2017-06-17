@@ -16,12 +16,10 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
     private subscription: any;
     private eventSubscriber: Subscription;
 
-    constructor(
-        private eventManager: EventManager,
+    constructor(private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private messageService: MessageService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['message']);
     }
 
@@ -37,6 +35,7 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
             this.message = message;
         });
     }
+
     previousState() {
         window.history.back();
     }

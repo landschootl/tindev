@@ -16,12 +16,10 @@ export class TrainingDeleteDialogComponent {
 
     training: Training;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private trainingService: TrainingService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['training']);
     }
 
@@ -49,10 +47,9 @@ export class TrainingDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private trainingPopupService: TrainingPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private trainingPopupService: TrainingPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

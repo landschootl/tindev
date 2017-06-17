@@ -16,12 +16,10 @@ export class SkillDeleteDialogComponent {
 
     skill: Skill;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private skillService: SkillService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['skill']);
     }
 
@@ -49,10 +47,9 @@ export class SkillDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private skillPopupService: SkillPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private skillPopupService: SkillPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Spring Data JPA repository for the Experience entity.
  */
 @SuppressWarnings("unused")
-public interface ExperienceRepository extends JpaRepository<Experience,Long> {
+public interface ExperienceRepository extends JpaRepository<Experience, Long> {
 
 }

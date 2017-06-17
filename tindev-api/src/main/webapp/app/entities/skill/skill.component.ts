@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './skill.component.html'
 })
 export class SkillComponent implements OnInit, OnDestroy {
-skills: Skill[];
+    skills: Skill[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private skillService: SkillService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['skill']);
     }
 
@@ -34,6 +32,7 @@ skills: Skill[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -49,6 +48,7 @@ skills: Skill[];
     trackId(index: number, item: Skill) {
         return item.id;
     }
+
     registerChangeInSkills() {
         this.eventSubscriber = this.eventManager.subscribe('skillListModification', (response) => this.loadAll());
     }

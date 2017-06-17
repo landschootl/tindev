@@ -2,8 +2,7 @@ import { Mission } from './mission.model';
 import { Freelance } from './freelance.model';
 
 export class Matching {
-    constructor(
-        public id?: number,
+    constructor(public id?: number,
         public score?: number,
         public fLikedDate?: any,
         public rLikedDate?: any,
@@ -12,8 +11,7 @@ export class Matching {
         public freelanceVoted?: boolean,
         public recruiterVoted?: boolean,
         public mission?: Mission,
-        public freelance?: Freelance,
-    ) {
+        public freelance?: Freelance,) {
         this.freelanceLiked = false;
         this.recruiterLiked = false;
         this.freelanceVoted = false;

@@ -27,7 +27,7 @@ import {
     imports: [
         BrowserModule,
         LayoutRoutingModule,
-        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
+        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         TindevSharedModule,
         TindevHomeModule,
         TindevAdminModule,
@@ -48,6 +48,7 @@ import {
         PaginationConfig,
         UserRouteAccessService
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [JhiMainComponent]
 })
-export class TindevAppModule {}
+export class TindevAppModule {
+}

@@ -23,23 +23,23 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="start_year" type="date">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="end_year" type="date">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="location" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="freelance_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
 </databaseChangeLog>

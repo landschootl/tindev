@@ -22,14 +22,12 @@ export class SettingsComponent implements OnInit {
     profileUrl = 'http://www.iconsfind.com/wp-content/uploads/2016/10/20161014_58006bf6e7079.png';
     coverUrl = 'http://dsi.u-clermont1.fr/wp-content/uploads/2015/08/WiFi.jpg';
 
-    constructor(
-        private account: AccountService,
+    constructor(private account: AccountService,
         private principal: Principal,
         private languageService: JhiLanguageService,
         private userProfileService: UserProfileService,
         private languageHelper: JhiLanguageHelper,
-        private config: NgbTabsetConfig
-    ) {
+        private config: NgbTabsetConfig) {
         this.languageService.setLocations(['settings']);
     }
 

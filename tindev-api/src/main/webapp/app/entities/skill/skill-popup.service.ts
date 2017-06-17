@@ -6,12 +6,11 @@ import { SkillService } from './skill.service';
 @Injectable()
 export class SkillPopupService {
     private isOpen = false;
-    constructor(
-        private modalService: NgbModal,
-        private router: Router,
-        private skillService: SkillService
 
-    ) {}
+    constructor(private modalService: NgbModal,
+        private router: Router,
+        private skillService: SkillService) {
+    }
 
     open(component: Component, id?: number | any): NgbModalRef {
         if (this.isOpen) {
@@ -29,13 +28,13 @@ export class SkillPopupService {
     }
 
     skillModalRef(component: Component, skill: Skill): NgbModalRef {
-        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static' });
         modalRef.componentInstance.skill = skill;
         modalRef.result.then((result) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
             this.isOpen = false;
         }, (reason) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
             this.isOpen = false;
         });
         return modalRef;

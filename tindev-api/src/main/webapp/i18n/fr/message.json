@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "message" : {
+        "message": {
             "home": {
                 "title": "Messages",
                 "createLabel": "Créer un nouveau Message",

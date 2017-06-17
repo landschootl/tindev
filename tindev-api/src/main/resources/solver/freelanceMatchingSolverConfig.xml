@@ -5,7 +5,8 @@
 
     <!-- Score configuration -->
     <scoreDirectorFactory>
-        <easyScoreCalculatorClass>fr.squirtles.tindev.service.matching.solver.FreelanceMatchingEasyScoreCalculator</easyScoreCalculatorClass>
+        <easyScoreCalculatorClass>fr.squirtles.tindev.service.matching.solver.FreelanceMatchingEasyScoreCalculator
+        </easyScoreCalculatorClass>
         <!--<scoreDrl>fr/squirtles/tindev/service/matching/solver/freelanceMatchingScoreRules.drl</scoreDrl>-->
     </scoreDirectorFactory>
 

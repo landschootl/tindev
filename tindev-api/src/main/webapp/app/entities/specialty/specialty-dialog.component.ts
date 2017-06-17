@@ -18,13 +18,12 @@ export class SpecialtyDialogComponent implements OnInit {
     specialty: Specialty;
     authorities: any[];
     isSaving: boolean;
-    constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private specialtyService: SpecialtyService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['specialty']);
     }
 
@@ -32,6 +31,7 @@ export class SpecialtyDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -50,7 +50,7 @@ export class SpecialtyDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Specialty) {
-        this.eventManager.broadcast({ name: 'specialtyListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'specialtyListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -79,14 +79,13 @@ export class SpecialtyPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private specialtyPopupService: SpecialtyPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private specialtyPopupService: SpecialtyPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.specialtyPopupService
                     .open(SpecialtyDialogComponent, params['id']);
             } else {

@@ -16,12 +16,10 @@ export class MatchingDeleteDialogComponent {
 
     matching: Matching;
 
-    constructor(
-        private matchingService: MatchingService,
+    constructor(private matchingService: MatchingService,
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
     }
 
     clear() {
@@ -36,7 +34,7 @@ export class MatchingDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('tindevApp.matching.deleted', { param : id }, null);
+        this.alertService.success('tindevApp.matching.deleted', { param: id }, null);
     }
 }
 
@@ -49,10 +47,9 @@ export class MatchingDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private matchingPopupService: MatchingPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private matchingPopupService: MatchingPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

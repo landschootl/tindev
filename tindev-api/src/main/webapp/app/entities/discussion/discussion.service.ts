@@ -8,7 +8,8 @@ export class DiscussionService {
 
     private resourceUrl = 'api/discussions';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+    }
 
     create(discussion: Discussion): Observable<Discussion> {
         const copy: Discussion = Object.assign({}, discussion);
@@ -33,12 +34,13 @@ export class DiscussionService {
     query(req?: any): Observable<Response> {
         const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
-        ;
+            ;
     }
 
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
+
     private createRequestOption(req?: any): BaseRequestOptions {
         const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {

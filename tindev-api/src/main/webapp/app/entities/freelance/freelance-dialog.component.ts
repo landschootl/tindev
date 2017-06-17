@@ -39,8 +39,8 @@ export class FreelanceDialogComponent implements OnInit {
     discussions: Discussion[];
 
     matchings: Matching[];
-    constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private freelanceService: FreelanceService,
@@ -51,8 +51,7 @@ export class FreelanceDialogComponent implements OnInit {
         private experienceService: ExperienceService,
         private discussionService: DiscussionService,
         private matchingService: MatchingService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['freelance']);
     }
 
@@ -60,25 +59,40 @@ export class FreelanceDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.specialtyService.query().subscribe(
-            (res: Response) => { this.specialties = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.specialties = res.json();
+            }, (res: Response) => this.onError(res.json()));
         this.domainService.query().subscribe(
-            (res: Response) => { this.domains = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.domains = res.json();
+            }, (res: Response) => this.onError(res.json()));
         this.trainingService.query().subscribe(
-            (res: Response) => { this.trainings = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.trainings = res.json();
+            }, (res: Response) => this.onError(res.json()));
         this.skillService.query().subscribe(
-            (res: Response) => { this.skills = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.skills = res.json();
+            }, (res: Response) => this.onError(res.json()));
         this.experienceService.query().subscribe(
-            (res: Response) => { this.experiences = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.experiences = res.json();
+            }, (res: Response) => this.onError(res.json()));
         this.discussionService.query().subscribe(
-            (res: Response) => { this.discussions = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.discussions = res.json();
+            }, (res: Response) => this.onError(res.json()));
         this.matchingService.query().subscribe(
-            (res: Response) => { this.matchings = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.matchings = res.json();
+            }, (res: Response) => this.onError(res.json()));
     }
-    clear () {
+
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    save () {
+    save() {
         this.isSaving = true;
         if (this.freelance.id !== undefined) {
             this.freelanceService.update(this.freelance)
@@ -91,18 +105,18 @@ export class FreelanceDialogComponent implements OnInit {
         }
     }
 
-    private onSaveSuccess (result: Freelance) {
-        this.eventManager.broadcast({ name: 'freelanceListModification', content: 'OK'});
+    private onSaveSuccess(result: Freelance) {
+        this.eventManager.broadcast({ name: 'freelanceListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError (error) {
+    private onSaveError(error) {
         this.isSaving = false;
         this.onError(error);
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 
@@ -144,14 +158,13 @@ export class FreelancePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
-        private route: ActivatedRoute,
-        private freelancePopupService: FreelancePopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private freelancePopupService: FreelancePopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.freelancePopupService
                     .open(FreelanceDialogComponent, params['id']);
             } else {

@@ -8,54 +8,54 @@ import { DomainPopupComponent } from './domain-dialog.component';
 import { DomainDeletePopupComponent } from './domain-delete-dialog.component';
 
 export const domainRoute: Routes = [
-  {
-    path: 'domain',
-    component: DomainComponent,
-    data: {
-        authorities: ['ROLE_USER'],
-        pageTitle: 'tindevApp.domain.home.title'
-    },
-    canActivate: [UserRouteAccessService]
-  }, {
-    path: 'domain/:id',
-    component: DomainDetailComponent,
-    data: {
-        authorities: ['ROLE_USER'],
-        pageTitle: 'tindevApp.domain.home.title'
-    },
-    canActivate: [UserRouteAccessService]
-  }
+    {
+        path: 'domain',
+        component: DomainComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'tindevApp.domain.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    }, {
+        path: 'domain/:id',
+        component: DomainDetailComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'tindevApp.domain.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    }
 ];
 
 export const domainPopupRoute: Routes = [
-  {
-    path: 'domain-new',
-    component: DomainPopupComponent,
-    data: {
-        authorities: ['ROLE_USER'],
-        pageTitle: 'tindevApp.domain.home.title'
+    {
+        path: 'domain-new',
+        component: DomainPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'tindevApp.domain.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
     },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
-  },
-  {
-    path: 'domain/:id/edit',
-    component: DomainPopupComponent,
-    data: {
-        authorities: ['ROLE_USER'],
-        pageTitle: 'tindevApp.domain.home.title'
+    {
+        path: 'domain/:id/edit',
+        component: DomainPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'tindevApp.domain.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
     },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
-  },
-  {
-    path: 'domain/:id/delete',
-    component: DomainDeletePopupComponent,
-    data: {
-        authorities: ['ROLE_USER'],
-        pageTitle: 'tindevApp.domain.home.title'
-    },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
-  }
+    {
+        path: 'domain/:id/delete',
+        component: DomainDeletePopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'tindevApp.domain.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    }
 ];

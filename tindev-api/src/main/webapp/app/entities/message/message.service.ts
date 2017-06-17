@@ -9,7 +9,8 @@ export class MessageService {
 
     private resourceUrl = 'api/messages';
 
-    constructor(private http: Http, private dateUtils: DateUtils) { }
+    constructor(private http: Http, private dateUtils: DateUtils) {
+    }
 
     create(message: Message): Observable<Message> {
         const copy: Message = Object.assign({}, message);
@@ -42,7 +43,7 @@ export class MessageService {
         const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
-        ;
+            ;
     }
 
     delete(id: number): Observable<Response> {

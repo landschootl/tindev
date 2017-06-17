@@ -16,12 +16,10 @@ export class SkillDetailComponent implements OnInit, OnDestroy {
     private subscription: any;
     private eventSubscriber: Subscription;
 
-    constructor(
-        private eventManager: EventManager,
+    constructor(private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private skillService: SkillService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['skill']);
     }
 
@@ -37,6 +35,7 @@ export class SkillDetailComponent implements OnInit, OnDestroy {
             this.skill = skill;
         });
     }
+
     previousState() {
         window.history.back();
     }

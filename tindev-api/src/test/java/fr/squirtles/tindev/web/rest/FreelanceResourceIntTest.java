@@ -79,7 +79,7 @@ public class FreelanceResourceIntTest {
 
     /**
      * Create an entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */

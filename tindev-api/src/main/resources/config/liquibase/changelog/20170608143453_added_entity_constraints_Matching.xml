@@ -7,7 +7,7 @@
         Added the constraints for entity Matching.
     -->
     <changeSet id="20170608143453-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="mission_id"
                                  baseTableName="matching"
                                  constraintName="fk_matching_mission_id"

@@ -26,11 +26,11 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
     newMission: Mission;
 
     constructor(private jhiLanguageService: JhiLanguageService,
-                private recruiterService: RecruiterService,
-                private userProfileService: UserProfileService,
-                private missionService: MissionService,
-                private eventManager: EventManager,
-                private route: ActivatedRoute) {
+        private recruiterService: RecruiterService,
+        private userProfileService: UserProfileService,
+        private missionService: MissionService,
+        private eventManager: EventManager,
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['userProfile']);
     }
 

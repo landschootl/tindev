@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "matching" : {
+        "matching": {
             "home": {
                 "title": "Matchings",
                 "createLabel": "Créer un nouveau Matching",

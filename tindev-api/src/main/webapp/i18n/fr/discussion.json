@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "discussion" : {
+        "discussion": {
             "home": {
                 "title": "Discussions",
                 "createLabel": "Créer un nouveau Discussion",

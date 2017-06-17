@@ -21,14 +21,13 @@ export class MessageDialogComponent implements OnInit {
     isSaving: boolean;
 
     discussions: Discussion[];
-        constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private messageService: MessageService,
         private discussionService: DiscussionService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['message']);
     }
 
@@ -36,8 +35,11 @@ export class MessageDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.discussionService.query().subscribe(
-            (res: Response) => { this.discussions = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.discussions = res.json();
+            }, (res: Response) => this.onError(res.json()));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -56,7 +58,7 @@ export class MessageDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Message) {
-        this.eventManager.broadcast({ name: 'messageListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'messageListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -89,14 +91,13 @@ export class MessagePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private messagePopupService: MessagePopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private messagePopupService: MessagePopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.messagePopupService
                     .open(MessageDialogComponent, params['id']);
             } else {

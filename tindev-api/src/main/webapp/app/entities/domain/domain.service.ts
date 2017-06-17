@@ -8,7 +8,8 @@ export class DomainService {
 
     private resourceUrl = 'api/domains';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+    }
 
     create(domain: Domain): Observable<Domain> {
         const copy: Domain = Object.assign({}, domain);
@@ -33,12 +34,13 @@ export class DomainService {
     query(req?: any): Observable<Response> {
         const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
-        ;
+            ;
     }
 
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
+
     private createRequestOption(req?: any): BaseRequestOptions {
         const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {

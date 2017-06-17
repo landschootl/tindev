@@ -16,11 +16,9 @@ export class PasswordComponent implements OnInit {
     password: string;
     confirmPassword: string;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private passwordService: Password,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['password']);
     }
 

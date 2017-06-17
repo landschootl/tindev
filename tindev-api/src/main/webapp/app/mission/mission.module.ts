@@ -4,7 +4,7 @@ import { EditMissionComponent } from './mission.edit.component';
 import { manageMissionRoute } from './mission.route';
 import { TindevSharedModule } from '../shared';
 const ENTITY_STATES = [
-    ...manageMissionRoute
+    ... manageMissionRoute
 ];
 
 @NgModule({
@@ -21,4 +21,5 @@ const ENTITY_STATES = [
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class MissionModule {}
+export class MissionModule {
+}

@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "training" : {
+        "training": {
             "home": {
                 "title": "Trainings",
                 "createLabel": "Créer un nouveau Training",

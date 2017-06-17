@@ -19,7 +19,7 @@ const ADMIN_ROUTES = [
     docsRoute,
     healthRoute,
     logsRoute,
-    ...userMgmtRoute,
+    ... userMgmtRoute,
     metricsRoute
 ];
 
@@ -31,5 +31,5 @@ export const adminState: Routes = [{
     canActivate: [UserRouteAccessService],
     children: ADMIN_ROUTES
 },
-    ...userDialogRoute
+    ... userDialogRoute
 ];

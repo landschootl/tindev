@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './discussion.component.html'
 })
 export class DiscussionComponent implements OnInit, OnDestroy {
-discussions: Discussion[];
+    discussions: Discussion[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private discussionService: DiscussionService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['discussion']);
     }
 
@@ -34,6 +32,7 @@ discussions: Discussion[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -49,6 +48,7 @@ discussions: Discussion[];
     trackId(index: number, item: Discussion) {
         return item.id;
     }
+
     registerChangeInDiscussions() {
         this.eventSubscriber = this.eventManager.subscribe('discussionListModification', (response) => this.loadAll());
     }

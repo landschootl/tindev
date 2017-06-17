@@ -16,20 +16,18 @@ export class UserProfileDeleteDialogComponent {
 
     userProfile: UserProfile;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private userProfileService: UserProfileService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['userProfile']);
     }
 
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
+    confirmDelete(id: number) {
         this.userProfileService.delete(id).subscribe(response => {
             this.eventManager.broadcast({
                 name: 'userProfileListModification',
@@ -49,10 +47,9 @@ export class UserProfileDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
-        private route: ActivatedRoute,
-        private userProfilePopupService: UserProfilePopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private userProfilePopupService: UserProfilePopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {

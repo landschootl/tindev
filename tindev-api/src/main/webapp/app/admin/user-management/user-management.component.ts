@@ -26,8 +26,7 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     previousPage: any;
     reverse: any;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private userService: UserService,
         private parseLinks: ParseLinks,
         private alertService: AlertService,
@@ -36,8 +35,7 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
         private paginationUtil: PaginationUtil,
         private paginationConfig: PaginationConfig,
         private activatedRoute: ActivatedRoute,
-        private router: Router
-    ) {
+        private router: Router) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data['pagingParams'].page;
@@ -84,7 +82,8 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
         this.userService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
+            sort: this.sort()
+        }).subscribe(
             (res: Response) => this.onSuccess(res.json(), res.headers),
             (res: Response) => this.onError(res.json())
         );
@@ -110,11 +109,11 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     }
 
     transition() {
-        this.router.navigate(['/user-management'], { queryParams:
-                {
-                    page: this.page,
-                    sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-                }
+        this.router.navigate(['/user-management'], {
+            queryParams: {
+                page: this.page,
+                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+            }
         });
         this.loadAll();
     }

@@ -13,11 +13,9 @@ export class MissionDetailComponent implements OnInit, OnDestroy {
     mission: Mission;
     private subscription: any;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private missionService: MissionService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['mission']);
     }
 
@@ -27,11 +25,12 @@ export class MissionDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    load (id) {
+    load(id) {
         this.missionService.find(id).subscribe(mission => {
             this.mission = mission;
         });
     }
+
     previousState() {
         window.history.back();
     }

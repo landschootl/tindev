@@ -16,12 +16,10 @@ export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['home']);
     }
 

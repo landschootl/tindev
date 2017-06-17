@@ -27,12 +27,13 @@ describe('Component Tests', () => {
                     },
                     {
                         provide: ActivatedRoute,
-                        useValue: new MockActivatedRoute({'key': 'XYZPDQ'})
+                        useValue: new MockActivatedRoute({ 'key': 'XYZPDQ' })
                     },
                     {
                         provide: Renderer,
                         useValue: {
-                            invokeElementMethod(renderElement: any, methodName: string, args?: any[]) {}
+                            invokeElementMethod(renderElement: any, methodName: string, args?: any[]) {
+                            }
                         }
                     },
                     {
@@ -48,7 +49,7 @@ describe('Component Tests', () => {
             comp = fixture.componentInstance;
         });
 
-        it('should define its initial state', function () {
+        it('should define its initial state', function() {
             comp.ngOnInit();
 
             expect(comp.keyMissing).toBeFalsy();
@@ -60,7 +61,8 @@ describe('Component Tests', () => {
             inject([ElementRef], (elementRef: ElementRef) => {
                 let element = fixture.nativeElement;
                 let node = {
-                    focus() {}
+                    focus() {
+                    }
                 };
 
                 elementRef.nativeElement = element;

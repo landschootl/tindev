@@ -16,7 +16,8 @@
 
 <ion-content padding>
     <div *ngIf="auth.getUserInfo().completedProfile">
-        <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
+        <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)"
+             (throwoutright)="voteUp(true)" id="card-stack">
 
             <!-- Affichage dans le cas d'un freelance -->
             <ion-card #cards swing-card *ngFor="let m of matchings">
@@ -49,19 +50,20 @@
                     <img id="un-card-image" src="assets/images/uncompleted-profile-placeholder.jpg">
                     <h1 id="un-card-title">Trouvez votre futur associé</h1>
                 </ion-item>
-                <p id="un-card-subtitle" padding color="danger">Vous devez d'abord compléter votre profil sur l'application Tindev Board.</p>
+                <p id="un-card-subtitle" padding color="danger">Vous devez d'abord compléter votre profil sur
+                    l'application Tindev Board.</p>
             </ion-card>
         </div>
     </div>
     <div id="another-mission" *ngIf="this.auth.currentUser.recruiter">
         <button ion-button (click)="goToMissionSelection()">
-    <ion-icon class="margin-right" name="arrow-dropleft"></ion-icon>
-    <p>Match with another mission</p>
-  </button>
+            <ion-icon class="margin-right" name="arrow-dropleft"></ion-icon>
+            <p>Match with another mission</p>
+        </button>
     </div>
     <!--
   <div *ngIf="!this.auth.getUserInfo().completedProfile">
-   
+
   </div>
   -->
 </ion-content>

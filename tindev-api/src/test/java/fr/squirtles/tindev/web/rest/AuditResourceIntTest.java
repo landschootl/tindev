@@ -112,11 +112,11 @@ public class AuditResourceIntTest {
         auditEventRepository.save(auditEvent);
 
         // Generate dates for selecting audits by date, making sure the period will contain the audit
-        String fromDate  = SAMPLE_TIMESTAMP.minusDays(1).format(FORMATTER);
+        String fromDate = SAMPLE_TIMESTAMP.minusDays(1).format(FORMATTER);
         String toDate = SAMPLE_TIMESTAMP.plusDays(1).format(FORMATTER);
 
         // Get the audit
-        restAuditMockMvc.perform(get("/management/audits?fromDate="+fromDate+"&toDate="+toDate))
+        restAuditMockMvc.perform(get("/management/audits?fromDate=" + fromDate + "&toDate=" + toDate))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].principal").value(hasItem(SAMPLE_PRINCIPAL)));
@@ -128,7 +128,7 @@ public class AuditResourceIntTest {
         auditEventRepository.save(auditEvent);
 
         // Generate dates for selecting audits by date, making sure the period will not contain the sample audit
-        String fromDate  = SAMPLE_TIMESTAMP.minusDays(2).format(FORMATTER);
+        String fromDate = SAMPLE_TIMESTAMP.minusDays(2).format(FORMATTER);
         String toDate = SAMPLE_TIMESTAMP.minusDays(1).format(FORMATTER);
 
         // Query audits but expect no results

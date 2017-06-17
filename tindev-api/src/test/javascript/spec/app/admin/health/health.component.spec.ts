@@ -15,22 +15,22 @@ describe('Component Tests', () => {
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
-                imports: [TindevTestModule],
-                declarations: [JhiHealthCheckComponent],
-                providers: [
-                    JhiHealthService,
-                    {
-                        provide: NgbModal,
-                        useValue: null
+                    imports: [TindevTestModule],
+                    declarations: [JhiHealthCheckComponent],
+                    providers: [
+                        JhiHealthService,
+                        {
+                            provide: NgbModal,
+                            useValue: null
+                        }
+                    ]
+                })
+                .overrideComponent(JhiHealthCheckComponent, {
+                    set: {
+                        template: ''
                     }
-                ]
-            })
-            .overrideComponent(JhiHealthCheckComponent, {
-                set: {
-                    template: ''
-                }
-            })
-            .compileComponents();
+                })
+                .compileComponents();
         }));
 
         beforeEach(() => {

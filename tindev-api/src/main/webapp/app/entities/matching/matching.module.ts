@@ -17,8 +17,8 @@ import {
 } from './';
 
 const ENTITY_STATES = [
-    ...matchingRoute,
-    ...matchingPopupRoute,
+    ... matchingRoute,
+    ... matchingPopupRoute,
 ];
 
 @NgModule({
@@ -48,4 +48,5 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevMatchingModule {}
+export class TindevMatchingModule {
+}

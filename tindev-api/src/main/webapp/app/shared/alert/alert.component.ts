@@ -13,7 +13,8 @@ import { AlertService } from 'ng-jhipster';
 export class JhiAlertComponent implements OnInit, OnDestroy {
     alerts: any[];
 
-    constructor(private alertService: AlertService) { }
+    constructor(private alertService: AlertService) {
+    }
 
     ngOnInit() {
         this.alerts = this.alertService.get();

@@ -18,13 +18,12 @@ export class DomainDialogComponent implements OnInit {
     domain: Domain;
     authorities: any[];
     isSaving: boolean;
-    constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private domainService: DomainService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['domain']);
     }
 
@@ -32,6 +31,7 @@ export class DomainDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -50,7 +50,7 @@ export class DomainDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Domain) {
-        this.eventManager.broadcast({ name: 'domainListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'domainListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -79,14 +79,13 @@ export class DomainPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private domainPopupService: DomainPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private domainPopupService: DomainPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.domainPopupService
                     .open(DomainDialogComponent, params['id']);
             } else {

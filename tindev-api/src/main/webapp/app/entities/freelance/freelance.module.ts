@@ -17,8 +17,8 @@ import {
 } from './';
 
 let ENTITY_STATES = [
-    ...freelanceRoute,
-    ...freelancePopupRoute,
+    ... freelanceRoute,
+    ... freelancePopupRoute,
 ];
 
 @NgModule({
@@ -47,4 +47,5 @@ let ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevFreelanceModule {}
+export class TindevFreelanceModule {
+}

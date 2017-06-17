@@ -7,26 +7,26 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{ this.fullConversation.project_name }}</ion-title>
-  </ion-navbar>
-  <div class="conversation-header">
-	  <div class="title-name">
-		{{ this.fullConversation.interlocutor_name }}
-	</div>
-	  <div class="user-profile-picture-container">
-	  <img class="user-profile-picture" src="{{ this.placeholderpicture }}"/>
-	  </div>
-  </div>
+    <ion-navbar>
+        <ion-title>{{ this.fullConversation.project_name }}</ion-title>
+    </ion-navbar>
+    <div class="conversation-header">
+        <div class="title-name">
+            {{ this.fullConversation.interlocutor_name }}
+        </div>
+        <div class="user-profile-picture-container">
+            <img class="user-profile-picture" src="{{ this.placeholderpicture }}"/>
+        </div>
+    </div>
 </ion-header>
 
 <ion-content padding>
-	<ion-list>
-		<ion-item *ngFor="let message of this.fullConversation.messages">
-			<div class="message {{isUsersMessage(message)}}">
-				<span class="message_name" color="text-primary">{{ message.sender_name }}</span> <br/>
-				<span class="message_content">{{ message.content }}</span>
-			</div>
-		</ion-item>
-	</ion-list>
+    <ion-list>
+        <ion-item *ngFor="let message of this.fullConversation.messages">
+            <div class="message {{isUsersMessage(message)}}">
+                <span class="message_name" color="text-primary">{{ message.sender_name }}</span> <br/>
+                <span class="message_content">{{ message.content }}</span>
+            </div>
+        </ion-item>
+    </ion-list>
 </ion-content>

@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './message.component.html'
 })
 export class MessageComponent implements OnInit, OnDestroy {
-messages: Message[];
+    messages: Message[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private messageService: MessageService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['message']);
     }
 
@@ -34,6 +32,7 @@ messages: Message[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -49,6 +48,7 @@ messages: Message[];
     trackId(index: number, item: Message) {
         return item.id;
     }
+
     registerChangeInMessages() {
         this.eventSubscriber = this.eventManager.subscribe('messageListModification', (response) => this.loadAll());
     }

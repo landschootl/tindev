@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Spring Data JPA repository for the UserProfile entity.
  */
 @SuppressWarnings("unused")
-public interface UserProfileRepository extends JpaRepository<UserProfile,Long> {
+public interface UserProfileRepository extends JpaRepository<UserProfile, Long> {
 
 }

@@ -20,13 +20,11 @@ export class PasswordResetFinishComponent implements OnInit, AfterViewInit {
     modalRef: NgbModalRef;
     key: string;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private passwordResetFinish: PasswordResetFinish,
         private loginModalService: LoginModalService,
         private route: ActivatedRoute,
-        private elementRef: ElementRef, private renderer: Renderer
-    ) {
+        private elementRef: ElementRef, private renderer: Renderer) {
         this.jhiLanguageService.setLocations(['reset']);
     }
 
@@ -40,7 +38,7 @@ export class PasswordResetFinishComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         if (this.elementRef.nativeElement.querySelector('#password') != null) {
-          this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#password'), 'focus', []);
+            this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#password'), 'focus', []);
         }
     }
 
@@ -50,7 +48,7 @@ export class PasswordResetFinishComponent implements OnInit, AfterViewInit {
         if (this.resetAccount.password !== this.confirmPassword) {
             this.doNotMatch = 'ERROR';
         } else {
-            this.passwordResetFinish.save({key: this.key, newPassword: this.resetAccount.password}).subscribe(() => {
+            this.passwordResetFinish.save({ key: this.key, newPassword: this.resetAccount.password }).subscribe(() => {
                 this.success = 'OK';
             }, () => {
                 this.success = null;

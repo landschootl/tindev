@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './freelance.component.html'
 })
 export class FreelanceComponent implements OnInit, OnDestroy {
-freelances: Freelance[];
+    freelances: Freelance[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private freelanceService: FreelanceService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['freelance']);
     }
 
@@ -34,6 +32,7 @@ freelances: Freelance[];
             (res: Response) => this.onError(res.json())
         );
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -46,7 +45,7 @@ freelances: Freelance[];
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId (index: number, item: Freelance) {
+    trackId(index: number, item: Freelance) {
         return item.id;
     }
 
@@ -54,7 +53,7 @@ freelances: Freelance[];
         this.eventSubscriber = this.eventManager.subscribe('freelanceListModification', (response) => this.loadAll());
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 }

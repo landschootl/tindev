@@ -8,15 +8,14 @@ import { HOME_ROUTE, HomeComponent } from './';
 @NgModule({
     imports: [
         TindevSharedModule,
-        RouterModule.forRoot([ HOME_ROUTE ], { useHash: true })
+        RouterModule.forRoot([HOME_ROUTE], { useHash: true })
     ],
     declarations: [
         HomeComponent,
     ],
-    entryComponents: [
-    ],
-    providers: [
-    ],
+    entryComponents: [],
+    providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevHomeModule {}
+export class TindevHomeModule {
+}

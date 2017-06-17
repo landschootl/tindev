@@ -9,7 +9,8 @@ export class TrainingService {
 
     private resourceUrl = 'api/trainings';
 
-    constructor(private http: Http, private dateUtils: DateUtils) { }
+    constructor(private http: Http, private dateUtils: DateUtils) {
+    }
 
     create(training: Training): Observable<Training> {
         const copy: Training = Object.assign({}, training);
@@ -48,7 +49,7 @@ export class TrainingService {
         const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
-        ;
+            ;
     }
 
     delete(id: number): Observable<Response> {

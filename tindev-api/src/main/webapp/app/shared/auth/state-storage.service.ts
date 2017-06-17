@@ -3,9 +3,8 @@ import { SessionStorageService } from 'ng2-webstorage';
 
 @Injectable()
 export class StateStorageService {
-    constructor(
-        private $sessionStorage: SessionStorageService
-    ) {}
+    constructor(private $sessionStorage: SessionStorageService) {
+    }
 
     getPreviousState() {
         return this.$sessionStorage.retrieve('previousState');
@@ -41,7 +40,7 @@ export class StateStorageService {
             'params': destinationStateParams,
             'from': {
                 'name': fromState.name,
-             }
+            }
         };
         this.$sessionStorage.store('destinationState', destinationInfo);
     }

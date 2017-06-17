@@ -16,12 +16,10 @@ export class RecruiterDetailComponent implements OnInit, OnDestroy {
     private subscription: any;
     private eventSubscriber: Subscription;
 
-    constructor(
-        private eventManager: EventManager,
+    constructor(private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private recruiterService: RecruiterService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['recruiter']);
     }
 
@@ -37,6 +35,7 @@ export class RecruiterDetailComponent implements OnInit, OnDestroy {
             this.recruiter = recruiter;
         });
     }
+
     previousState() {
         window.history.back();
     }

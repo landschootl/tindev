@@ -16,12 +16,10 @@ export class ExperienceDetailComponent implements OnInit, OnDestroy {
     private subscription: any;
     private eventSubscriber: Subscription;
 
-    constructor(
-        private eventManager: EventManager,
+    constructor(private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private experienceService: ExperienceService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['experience']);
     }
 
@@ -37,6 +35,7 @@ export class ExperienceDetailComponent implements OnInit, OnDestroy {
             this.experience = experience;
         });
     }
+
     previousState() {
         window.history.back();
     }

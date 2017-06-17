@@ -1,32 +1,32 @@
 page-matching {
-  #card-stack ion-card {
-    border-radius: 5px;
-    text-align: center;
-    height: 90%;
-  }
+    #card-stack ion-card {
+        border-radius: 5px;
+        text-align: center;
+        height: 90%;
+    }
 
-  .card-image {
-    pointer-events: none;
-  }
+    .card-image {
+        pointer-events: none;
+    }
 
-  .card-title {
-    padding-top: 10px;
-    font-weight: 400;
-  }
+    .card-title {
+        padding-top: 10px;
+        font-weight: 400;
+    }
 
-  .card-subtitle {
-    color: grey;
-  }
+    .card-subtitle {
+        color: grey;
+    }
 
-  .infos-like {
-    padding-top: 10px;
-    font-size: 16px;
-  }
-  .margin-right {
-    margin-right:10vw;
-  }
+    .infos-like {
+        padding-top: 10px;
+        font-size: 16px;
+    }
+    .margin-right {
+        margin-right: 10vw;
+    }
 
-  #another-mission {
-    text-align:center;
-  }
+    #another-mission {
+        text-align: center;
+    }
 }

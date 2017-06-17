@@ -16,12 +16,10 @@ export class DiscussionDetailComponent implements OnInit, OnDestroy {
     private subscription: any;
     private eventSubscriber: Subscription;
 
-    constructor(
-        private eventManager: EventManager,
+    constructor(private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private discussionService: DiscussionService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['discussion']);
     }
 
@@ -37,6 +35,7 @@ export class DiscussionDetailComponent implements OnInit, OnDestroy {
             this.discussion = discussion;
         });
     }
+
     previousState() {
         window.history.back();
     }

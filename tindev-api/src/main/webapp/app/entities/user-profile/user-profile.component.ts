@@ -12,17 +12,15 @@ import { Principal } from '../../shared';
     templateUrl: './user-profile.component.html'
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-userProfiles: UserProfile[];
+    userProfiles: UserProfile[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private userProfileService: UserProfileService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal
-    ) {
+        private principal: Principal) {
         this.jhiLanguageService.setLocations(['userProfile']);
     }
 
@@ -47,7 +45,7 @@ userProfiles: UserProfile[];
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId (index: number, item: UserProfile) {
+    trackId(index: number, item: UserProfile) {
         return item.id;
     }
 
@@ -55,7 +53,7 @@ userProfiles: UserProfile[];
         this.eventSubscriber = this.eventManager.subscribe('userProfileListModification', (response) => this.loadAll());
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 }

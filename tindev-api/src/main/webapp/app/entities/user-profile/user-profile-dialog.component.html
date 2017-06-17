@@ -1,46 +1,49 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myUserProfileLabel" jhiTranslate="tindevApp.userProfile.home.createOrEditLabel">Create or edit a User Profile</h4>
+        <h4 class="modal-title" id="myUserProfileLabel" jhiTranslate="tindevApp.userProfile.home.createOrEditLabel">
+            Create or edit a User Profile</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;</button>
+                (click)="clear()">&times;
+        </button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!userProfile.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="userProfile.id" readonly />
+                   [(ngModel)]="userProfile.id" readonly/>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.userProfile.firstname" for="field_firstname">Firstname</label>
             <input type="text" class="form-control" name="firstname" id="field_firstname"
-                [(ngModel)]="userProfile.firstname"
-             />
+                   [(ngModel)]="userProfile.firstname"
+            />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.userProfile.lastname" for="field_lastname">Lastname</label>
             <input type="text" class="form-control" name="lastname" id="field_lastname"
-                [(ngModel)]="userProfile.lastname"
-             />
+                   [(ngModel)]="userProfile.lastname"
+            />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.userProfile.description" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
-                [(ngModel)]="userProfile.description"
-             />
+                   [(ngModel)]="userProfile.description"
+            />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.userProfile.photoUrl" for="field_photoUrl">Photo Url</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.userProfile.photoUrl" for="field_photoUrl">Photo
+                Url</label>
             <input type="text" class="form-control" name="photoUrl" id="field_photoUrl"
-                [(ngModel)]="userProfile.photoUrl"
-             />
+                   [(ngModel)]="userProfile.photoUrl"
+            />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.userProfile.city" for="field_city">City</label>
             <input type="text" class="form-control" name="city" id="field_city"
-                [(ngModel)]="userProfile.city"
-             />
+                   [(ngModel)]="userProfile.city"
+            />
         </div>
 
     </div>

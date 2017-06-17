@@ -8,7 +8,8 @@ export class UserProfileService {
 
     private resourceUrl = 'api/user-profiles';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+    }
 
     create(userProfile: UserProfile): Observable<UserProfile> {
         let copy: UserProfile = Object.assign({}, userProfile);
@@ -33,7 +34,7 @@ export class UserProfileService {
     query(req?: any): Observable<Response> {
         let options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
-        ;
+            ;
     }
 
     delete(id: number): Observable<Response> {

@@ -33,20 +33,24 @@
         <div class="form-group">
             <label class="form-control-label" for="field_startDate">Date de début</label>
             <div class="input-group">
-                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="mission.startDate"
+                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker
+                       #startDateDp="ngbDatepicker" [(ngModel)]="mission.startDate"
                 />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default" (click)="startDateDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_endDate">Date de fin</label>
             <div class="input-group">
-                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="mission.endDate"
+                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker
+                       #endDateDp="ngbDatepicker" [(ngModel)]="mission.endDate"
                 />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>

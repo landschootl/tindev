@@ -28,7 +28,7 @@ public class CustomAuditEventRepository implements AuditEventRepository {
     private final AuditEventConverter auditEventConverter;
 
     public CustomAuditEventRepository(PersistenceAuditEventRepository persistenceAuditEventRepository,
-            AuditEventConverter auditEventConverter) {
+                                      AuditEventConverter auditEventConverter) {
 
         this.persistenceAuditEventRepository = persistenceAuditEventRepository;
         this.auditEventConverter = auditEventConverter;

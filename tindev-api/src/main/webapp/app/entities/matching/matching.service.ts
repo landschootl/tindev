@@ -9,7 +9,8 @@ export class MatchingService {
 
     private resourceUrl = 'api/matchings';
 
-    constructor(private http: Http, private dateUtils: DateUtils) { }
+    constructor(private http: Http, private dateUtils: DateUtils) {
+    }
 
     create(matching: Matching): Observable<Matching> {
         let copy: Matching = Object.assign({}, matching);
@@ -48,7 +49,7 @@ export class MatchingService {
         let options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
-        ;
+            ;
     }
 
     delete(id: number): Observable<Response> {

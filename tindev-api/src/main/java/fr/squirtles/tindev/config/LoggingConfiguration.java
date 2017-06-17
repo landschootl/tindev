@@ -27,7 +27,7 @@ public class LoggingConfiguration {
     private final JHipsterProperties jHipsterProperties;
 
     public LoggingConfiguration(@Value("${spring.application.name}") String appName, @Value("${server.port}") String serverPort,
-         JHipsterProperties jHipsterProperties) {
+                                JHipsterProperties jHipsterProperties) {
         this.appName = appName;
         this.serverPort = serverPort;
         this.jHipsterProperties = jHipsterProperties;

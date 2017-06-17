@@ -21,16 +21,14 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     success: boolean;
     modalRef: NgbModalRef;
 
-    constructor(
-        private languageService: JhiLanguageService,
+    constructor(private languageService: JhiLanguageService,
         private loginModalService: LoginModalService,
         private eventManager: EventManager,
         private loginService: LoginService,
         private router: Router,
         private registerService: Register,
         private elementRef: ElementRef,
-        private renderer: Renderer
-    ) {
+        private renderer: Renderer) {
         this.languageService.setLocations(['register']);
     }
 

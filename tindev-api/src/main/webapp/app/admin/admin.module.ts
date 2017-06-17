@@ -68,4 +68,5 @@ import {
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevAdminModule {}
+export class TindevAdminModule {
+}

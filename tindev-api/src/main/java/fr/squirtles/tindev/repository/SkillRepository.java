@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Spring Data JPA repository for the Skill entity.
  */
 @SuppressWarnings("unused")
-public interface SkillRepository extends JpaRepository<Skill,Long> {
+public interface SkillRepository extends JpaRepository<Skill, Long> {
 
 }

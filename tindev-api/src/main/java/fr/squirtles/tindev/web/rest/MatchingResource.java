@@ -170,13 +170,13 @@ public class MatchingResource {
 
     @GetMapping("/matchings/best")
     public List<Matching> getMatchings() {
-        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
             Freelance freelance = freelanceRepository.findByIdUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
             List<Mission> missions = missionRepository.findAll();
             List<Matching> matchings = new ArrayList<>();
 
             this.matchingRepository.findByFreelance(freelance).forEach(matching -> {
-                if(!matching.isFreelanceVoted()) {
+                if (!matching.isFreelanceVoted()) {
                     matchings.add(matching);
                 } else {
                     missions.remove(matching.getMission());
@@ -191,7 +191,7 @@ public class MatchingResource {
             });
 
             return matchings;
-        } else if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.RECRUITER)) {
+        } else if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.RECRUITER)) {
             return null;
         }
 

@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Spring Data JPA repository for the Domain entity.
  */
 @SuppressWarnings("unused")
-public interface DomainRepository extends JpaRepository<Domain,Long> {
+public interface DomainRepository extends JpaRepository<Domain, Long> {
 
 }

@@ -3,16 +3,16 @@ import { Http, RequestOptions } from '@angular/http';
 import { ApiUtils } from '../shared/utils/api';
 import { AuthService } from './auth-service';
 import 'rxjs/add/operator/toPromise';
-import {ToastController} from "ionic-angular";
+import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class MatchingService {
 
-    constructor(
-        private http: Http,
+    constructor(private http: Http,
         private apic: ApiUtils,
         private auth: AuthService,
-        private toastCtrl: ToastController) { }
+        private toastCtrl: ToastController) {
+    }
 
     // public vote(Matching matching) {
     //     return this.http.put(this.apic.base_url + 'matching/save', matching);
@@ -21,7 +21,7 @@ export class MatchingService {
     public getAll() {
         let headers = this.apic.getHeadersWithToken(this.auth.token);
         let options = new RequestOptions({ headers: headers });
-        return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function (data) {
+        return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
             return data.json();
         });
     }
@@ -29,7 +29,7 @@ export class MatchingService {
     public getBestMatching() {
         let headers = this.apic.getHeadersWithToken(this.auth.token);
         let options = new RequestOptions({ headers: headers });
-        return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function (data) {
+        return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
         });
     }
 
@@ -43,8 +43,7 @@ export class MatchingService {
         }
         let headers = this.apic.getHeadersWithToken(this.auth.token);
         let options = new RequestOptions({ headers: headers });
-        var self = this;
-        return this.http.put(this.apic.base_url + 'matchings', matching, options).toPromise().then(function (data) {
+        return this.http.put(this.apic.base_url + 'matchings', matching, options).toPromise().then(function(data) {
             console.log(matching);
         });
     }

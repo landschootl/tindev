@@ -6,8 +6,7 @@ import { Experience } from '../experience';
 import { Discussion } from '../discussion';
 import { Matching } from '../matching';
 export class Freelance {
-    constructor(
-        public id?: number,
+    constructor(public id?: number,
         public dailyPrice?: number,
         public birthdate?: any,
         public idUser?: number,
@@ -17,7 +16,6 @@ export class Freelance {
         public skills?: Skill,
         public experiences?: Experience,
         public discussions?: Discussion,
-        public matchings?: Matching,
-    ) {
+        public matchings?: Matching,) {
     }
 }

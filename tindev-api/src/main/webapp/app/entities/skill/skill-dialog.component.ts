@@ -21,14 +21,13 @@ export class SkillDialogComponent implements OnInit {
     isSaving: boolean;
 
     freelances: Freelance[];
-    constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private skillService: SkillService,
         private freelanceService: FreelanceService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['skill']);
     }
 
@@ -36,8 +35,11 @@ export class SkillDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.freelanceService.query().subscribe(
-            (res: Response) => { this.freelances = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.freelances = res.json();
+            }, (res: Response) => this.onError(res.json()));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -56,7 +58,7 @@ export class SkillDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Skill) {
-        this.eventManager.broadcast({ name: 'skillListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'skillListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -89,14 +91,13 @@ export class SkillPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private skillPopupService: SkillPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private skillPopupService: SkillPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.skillPopupService
                     .open(SkillDialogComponent, params['id']);
             } else {

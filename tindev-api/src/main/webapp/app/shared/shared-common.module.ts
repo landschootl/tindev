@@ -41,4 +41,5 @@ export function alertServiceProvider(sanitizer: Sanitizer, translateService: Tra
         JhiAlertErrorComponent
     ]
 })
-export class TindevSharedCommonModule {}
+export class TindevSharedCommonModule {
+}

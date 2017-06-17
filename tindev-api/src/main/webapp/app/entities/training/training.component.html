@@ -1,9 +1,10 @@
 <div class="container">
     <h2>
         <span jhiTranslate="tindevApp.training.home.title">Trainings</span>
-        <button class="btn btn-primary float-right create-training" [routerLink]="['/', { outlets: { popup: ['training-new'] } }]">
+        <button class="btn btn-primary float-right create-training"
+                [routerLink]="['/', { outlets: { popup: ['training-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span  jhiTranslate="tindevApp.training.home.createLabel">
+            <span jhiTranslate="tindevApp.training.home.createLabel">
             Create new Training
             </span>
         </button>
@@ -16,13 +17,13 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="tindevApp.training.startDate">Start Date</span></th>
-            <th><span jhiTranslate="tindevApp.training.endDate">End Date</span></th>
-            <th><span jhiTranslate="tindevApp.training.name">Name</span></th>
-            <th><span jhiTranslate="tindevApp.training.location">Location</span></th>
-            <th><span jhiTranslate="tindevApp.training.freelance">Freelance</span></th>
-            <th></th>
+                <th><span jhiTranslate="global.field.id">ID</span></th>
+                <th><span jhiTranslate="tindevApp.training.startDate">Start Date</span></th>
+                <th><span jhiTranslate="tindevApp.training.endDate">End Date</span></th>
+                <th><span jhiTranslate="tindevApp.training.name">Name</span></th>
+                <th><span jhiTranslate="tindevApp.training.location">Location</span></th>
+                <th><span jhiTranslate="tindevApp.training.freelance">Freelance</span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -34,7 +35,7 @@
                 <td>{{training.location}}</td>
                 <td>
                     <div *ngIf="training.freelance">
-                        <a [routerLink]="['../freelance', training.freelance?.id ]" >{{training.freelance?.id}}</a>
+                        <a [routerLink]="['../freelance', training.freelance?.id ]">{{training.freelance?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

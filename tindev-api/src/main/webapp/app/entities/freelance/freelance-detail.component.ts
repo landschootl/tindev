@@ -13,11 +13,9 @@ export class FreelanceDetailComponent implements OnInit, OnDestroy {
     freelance: Freelance;
     private subscription: any;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private freelanceService: FreelanceService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['freelance']);
     }
 
@@ -27,11 +25,12 @@ export class FreelanceDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    load (id) {
+    load(id) {
         this.freelanceService.find(id).subscribe(freelance => {
             this.freelance = freelance;
         });
     }
+
     previousState() {
         window.history.back();
     }

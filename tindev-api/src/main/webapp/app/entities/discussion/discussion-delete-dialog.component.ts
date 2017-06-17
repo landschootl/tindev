@@ -16,12 +16,10 @@ export class DiscussionDeleteDialogComponent {
 
     discussion: Discussion;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private discussionService: DiscussionService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['discussion']);
     }
 
@@ -49,10 +47,9 @@ export class DiscussionDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private discussionPopupService: DiscussionPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private discussionPopupService: DiscussionPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

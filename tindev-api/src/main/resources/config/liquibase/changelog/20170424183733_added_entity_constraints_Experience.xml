@@ -7,7 +7,7 @@
         Added the constraints for entity Experience.
     -->
     <changeSet id="20170424183733-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="freelance_id"
                                  baseTableName="experience"
                                  constraintName="fk_experience_freelance_id"

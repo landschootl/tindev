@@ -28,24 +28,27 @@ export class MatchingDialogComponent implements OnInit {
     fLikedDateDp: any;
     rLikedDateDp: any;
 
-    constructor(
-        public activeModal: NgbActiveModal,
+    constructor(public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private matchingService: MatchingService,
         private missionService: MissionService,
         private freelanceService: FreelanceService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.missionService.query()
-            .subscribe((res: ResponseWrapper) => { this.missions = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+            .subscribe((res: ResponseWrapper) => {
+                this.missions = res.json;
+            }, (res: ResponseWrapper) => this.onError(res.json));
         this.freelanceService.query()
-            .subscribe((res: ResponseWrapper) => { this.freelances = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+            .subscribe((res: ResponseWrapper) => {
+                this.freelances = res.json;
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -69,10 +72,10 @@ export class MatchingDialogComponent implements OnInit {
     private onSaveSuccess(result: Matching, isCreated: boolean) {
         this.alertService.success(
             isCreated ? 'tindevApp.matching.created'
-            : 'tindevApp.matching.updated',
-            { param : result.id }, null);
+                : 'tindevApp.matching.updated',
+            { param: result.id }, null);
 
-        this.eventManager.broadcast({ name: 'matchingListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'matchingListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -109,14 +112,13 @@ export class MatchingPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private matchingPopupService: MatchingPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private matchingPopupService: MatchingPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.matchingPopupService
                     .open(MatchingDialogComponent, params['id']);
             } else {

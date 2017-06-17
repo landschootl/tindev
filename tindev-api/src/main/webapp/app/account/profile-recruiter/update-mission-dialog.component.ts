@@ -15,10 +15,11 @@ export class UpdateMissionComponent {
     closeResult: string;
     modalRef: NgbModalRef;
 
-    constructor(private modalService: NgbModal, private missionService: MissionService, private eventManager: EventManager) {}
+    constructor(private modalService: NgbModal, private missionService: MissionService, private eventManager: EventManager) {
+    }
 
     open(content) {
-        this.modalRef = this.modalService.open(content, {size: 'lg'});
+        this.modalRef = this.modalService.open(content, { size: 'lg' });
         this.modalRef.result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
         }, (reason) => {
@@ -32,7 +33,7 @@ export class UpdateMissionComponent {
         } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
             return 'by clicking on a backdrop';
         } else {
-            return  `with: ${reason}`;
+            return `with: ${reason}`;
         }
     }
 
@@ -40,7 +41,7 @@ export class UpdateMissionComponent {
         this.missionService.update(this.mission).subscribe(
             (res: Response) => {
                 this.mission = new Mission();
-                this.eventManager.broadcast({ name: 'missionListModification', content: 'OK'});
+                this.eventManager.broadcast({ name: 'missionListModification', content: 'OK' });
                 this.modalRef.close();
             });
     }

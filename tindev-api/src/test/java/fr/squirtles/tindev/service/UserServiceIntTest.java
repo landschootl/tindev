@@ -5,7 +5,9 @@ import fr.squirtles.tindev.domain.User;
 import fr.squirtles.tindev.config.Constants;
 import fr.squirtles.tindev.repository.UserRepository;
 import fr.squirtles.tindev.service.dto.UserDTO;
+
 import java.time.ZonedDateTime;
+
 import fr.squirtles.tindev.service.util.RandomUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+
 import java.util.Optional;
 import java.util.List;
 

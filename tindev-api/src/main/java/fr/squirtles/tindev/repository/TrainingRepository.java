@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Spring Data JPA repository for the Training entity.
  */
 @SuppressWarnings("unused")
-public interface TrainingRepository extends JpaRepository<Training,Long> {
+public interface TrainingRepository extends JpaRepository<Training, Long> {
 
 }

@@ -16,8 +16,8 @@ import {
 } from './';
 
 const ENTITY_STATES = [
-    ...discussionRoute,
-    ...discussionPopupRoute,
+    ... discussionRoute,
+    ... discussionPopupRoute,
 ];
 
 @NgModule({
@@ -46,4 +46,5 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevDiscussionModule {}
+export class TindevDiscussionModule {
+}

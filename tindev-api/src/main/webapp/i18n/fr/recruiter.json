@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "recruiter" : {
+        "recruiter": {
             "home": {
                 "title": "Recruiters",
                 "createLabel": "Créer un nouveau Recruiter",

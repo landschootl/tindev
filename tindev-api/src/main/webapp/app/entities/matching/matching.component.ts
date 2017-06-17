@@ -14,7 +14,7 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 })
 export class MatchingComponent implements OnInit, OnDestroy {
 
-currentAccount: any;
+    currentAccount: any;
     matchings: Matching[];
     error: any;
     success: any;
@@ -29,8 +29,7 @@ currentAccount: any;
     previousPage: any;
     reverse: any;
 
-    constructor(
-        private matchingService: MatchingService,
+    constructor(private matchingService: MatchingService,
         private parseLinks: ParseLinks,
         private alertService: AlertService,
         private principal: Principal,
@@ -38,8 +37,7 @@ currentAccount: any;
         private router: Router,
         private eventManager: EventManager,
         private paginationUtil: PaginationUtil,
-        private paginationConfig: PaginationConfig
-    ) {
+        private paginationConfig: PaginationConfig) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data['pagingParams'].page;
@@ -53,20 +51,23 @@ currentAccount: any;
         this.matchingService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
+            sort: this.sort()
+        }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
         );
     }
+
     loadPage(page: number) {
         if (page !== this.previousPage) {
             this.previousPage = page;
             this.transition();
         }
     }
+
     transition() {
-        this.router.navigate(['/matching'], {queryParams:
-            {
+        this.router.navigate(['/matching'], {
+            queryParams: {
                 page: this.page,
                 size: this.itemsPerPage,
                 sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
@@ -83,6 +84,7 @@ currentAccount: any;
         }]);
         this.loadAll();
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -98,6 +100,7 @@ currentAccount: any;
     trackId(index: number, item: Matching) {
         return item.id;
     }
+
     registerChangeInMatchings() {
         this.eventSubscriber = this.eventManager.subscribe('matchingListModification', (response) => this.loadAll());
     }
@@ -117,6 +120,7 @@ currentAccount: any;
         // this.page = pagingParams.page;
         this.matchings = data;
     }
+
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }

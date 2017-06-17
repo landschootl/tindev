@@ -16,12 +16,10 @@ export class SpecialtyDeleteDialogComponent {
 
     specialty: Specialty;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private specialtyService: SpecialtyService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['specialty']);
     }
 
@@ -49,10 +47,9 @@ export class SpecialtyDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private specialtyPopupService: SpecialtyPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private specialtyPopupService: SpecialtyPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

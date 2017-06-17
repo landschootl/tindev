@@ -13,11 +13,9 @@ export class UserProfileDetailComponent implements OnInit, OnDestroy {
     userProfile: UserProfile;
     private subscription: any;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private userProfileService: UserProfileService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['userProfile']);
     }
 
@@ -27,7 +25,7 @@ export class UserProfileDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    load (id) {
+    load(id) {
         this.userProfileService.find(id).subscribe(userProfile => {
             this.userProfile = userProfile;
         });

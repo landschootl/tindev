@@ -24,15 +24,14 @@ export class DiscussionDialogComponent implements OnInit {
     freelances: Freelance[];
 
     missions: Mission[];
-    constructor(
-        public activeModal: NgbActiveModal,
+
+    constructor(public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private discussionService: DiscussionService,
         private freelanceService: FreelanceService,
         private missionService: MissionService,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['discussion']);
     }
 
@@ -40,10 +39,15 @@ export class DiscussionDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.freelanceService.query().subscribe(
-            (res: Response) => { this.freelances = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.freelances = res.json();
+            }, (res: Response) => this.onError(res.json()));
         this.missionService.query().subscribe(
-            (res: Response) => { this.missions = res.json(); }, (res: Response) => this.onError(res.json()));
+            (res: Response) => {
+                this.missions = res.json();
+            }, (res: Response) => this.onError(res.json()));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -62,7 +66,7 @@ export class DiscussionDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Discussion) {
-        this.eventManager.broadcast({ name: 'discussionListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'discussionListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -99,14 +103,13 @@ export class DiscussionPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private discussionPopupService: DiscussionPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private discussionPopupService: DiscussionPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.discussionPopupService
                     .open(DiscussionDialogComponent, params['id']);
             } else {

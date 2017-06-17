@@ -16,12 +16,10 @@ export class RecruiterDeleteDialogComponent {
 
     recruiter: Recruiter;
 
-    constructor(
-        private jhiLanguageService: JhiLanguageService,
+    constructor(private jhiLanguageService: JhiLanguageService,
         private recruiterService: RecruiterService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager
-    ) {
+        private eventManager: EventManager) {
         this.jhiLanguageService.setLocations(['recruiter']);
     }
 
@@ -49,10 +47,9 @@ export class RecruiterDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private recruiterPopupService: RecruiterPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+        private recruiterPopupService: RecruiterPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
