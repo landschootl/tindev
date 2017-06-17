@@ -178,9 +178,8 @@ public class MatchingResource {
             this.matchingRepository.findByFreelance(freelance).forEach(matching -> {
                 if (matching.isFreelanceVoted() == null || !matching.isFreelanceVoted()) {
                     matchings.add(matching);
-                } else {
-                    missions.remove(matching.getMission());
                 }
+                missions.remove(matching.getMission());
             });
 
             missions.stream().forEach(mission -> {
@@ -199,9 +198,8 @@ public class MatchingResource {
             this.matchingRepository.findByMission(mission).forEach(matching -> {
                 if (matching.isRecruiterVoted() == null || !matching.isRecruiterVoted()) {
                     matchings.add(matching);
-                } else {
-                    freelances.remove(matching.getFreelance());
                 }
+                freelances.remove(matching.getFreelance());
             });
 
             freelances.stream().forEach(freelance-> {

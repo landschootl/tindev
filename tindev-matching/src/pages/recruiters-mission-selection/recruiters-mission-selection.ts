@@ -85,7 +85,6 @@ export class RecruitersMissionSelectionPage {
     }
 
     openMatchingPage(m: Mission) {
-        //this.navCtrl.push(MatchingPage, {mission : m});
         this.matchingService.currentMatchingUser = m;
         this.navCtrl.setRoot(MatchingPage);
     }

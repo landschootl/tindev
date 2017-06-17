@@ -15,7 +15,6 @@ export class UserService {
     }
 
     public getRecruitersIdForUser(id: number, token: any) {
-
         let headers = this.apic.getHeadersWithToken(token);
         let options = new RequestOptions({ headers: headers });
         return this.http.get(this.apic.base_url + 'users/' + id + '/recruiters', options)
