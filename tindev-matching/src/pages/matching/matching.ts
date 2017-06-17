@@ -68,15 +68,54 @@ export class MatchingPage {
         }
     }
 
-    private calculateAge(b: any) {
-        let birthday = new Date(b.replace(' ', 'T'));
-        let ageDifMs = Date.now() - birthday.getTime();
-        let ageDate = new Date(ageDifMs);
-        return Math.abs(ageDate.getUTCFullYear() - 1970);
-    }
+    // private calculateAge(b: any) {
+    //     let birthday = new Date(b.replace(' ', 'T'));
+    //     let ageDifMs = Date.now() - birthday.getTime();
+    //     let ageDate = new Date(ageDifMs);
+    //     return Math.abs(ageDate.getUTCFullYear() - 1970);
+    // }
 
     goToMissionSelection() {
         this.nav.push(RecruitersMissionSelectionPage);
+    }
+
+    hasImage() {
+        // TODO : Implémenter les image des utilisateur
+        if (this.auth.currentUser.recruiter) {
+            // Return freelance image
+        } else {
+            // return this.currentCard.mission.imageUrl;
+
+        }
+        return false;
+    }
+
+    getCurrentUserImage() {
+        // TODO : Implémenter les image des utilisateur
+        if (this.auth.currentUser.recruiter) {
+            
+        } else {
+
+        }
+    }
+
+    getCurrentUserName(): string {
+        if (this.auth.currentUser.recruiter) {
+            // TODO: Renvoyer le nom du freelance
+            return '' + this.currentCard.freelance.id;
+        } else {
+            return this.currentCard.mission.title;
+        }
+    }
+
+    getCurrentUserDescription(): string {
+        if (this.auth.currentUser.recruiter) {
+            // TODO: Renvoyer la description du freezlance
+            return '' + this.currentCard.freelance.idUser;
+        } else {
+            return this.currentCard.mission.description;
+
+        }
     }
 
 }
