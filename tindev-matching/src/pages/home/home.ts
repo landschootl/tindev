@@ -13,6 +13,7 @@ import { AuthService } from '../../providers/auth-service';
 import { MatchingPage } from '../../pages/matching/matching';
 import { RegisterPage } from '../../pages/register/register';
 import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
+import { MatchingService } from "../../providers/matching-service";
 
 @Component({
     selector: 'home',
@@ -26,7 +27,7 @@ export class HomePage {
     constructor(public nav: NavController, public navParams: NavParams,
         public tindevSession: TindevSession, private auth: AuthService,
         private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-        private menu: MenuController, private toastCtrl: ToastController) {
+        private menu: MenuController, private toastCtrl: ToastController, private matchingService: MatchingService) {
         this.tindevSession = tindevSession;
         this.menu.enable(false);
     }
@@ -52,10 +53,10 @@ export class HomePage {
                         });
                         toast.present(toast);
                         this.menu.enable(true);
-                        if (user.recruiter === true) {
-                            this.loading.dismiss();
+                        if (user.recruiter) {
                             this.nav.push(RecruitersMissionSelectionPage);
                         } else {
+                            this.matchingService.currentMatchingUser = user;
                             this.nav.setRoot(MatchingPage);
                         }
                     });

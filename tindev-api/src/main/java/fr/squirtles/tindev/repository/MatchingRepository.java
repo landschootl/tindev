@@ -2,6 +2,7 @@ package fr.squirtles.tindev.repository;
 
 import fr.squirtles.tindev.domain.Freelance;
 import fr.squirtles.tindev.domain.Matching;
+import fr.squirtles.tindev.domain.Mission;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,5 @@ import java.util.List;
 @Repository
 public interface MatchingRepository extends JpaRepository<Matching, Long> {
     List<Matching> findByFreelance(Freelance freelance);
+    List<Matching> findByMission(Mission mission);
 }

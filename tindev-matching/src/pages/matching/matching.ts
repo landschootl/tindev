@@ -38,14 +38,8 @@ export class MatchingPage {
         //         return 800;
         //     }
         // };
-        console.log(navParams.data.mission);
-        if (navParams.data.mission != undefined) {
-            this.matchingProfile = navParams.data.mission;
-        } else {
-            this.matchingProfile = auth.currentUser;
-        }
         console.log("matching profile is : ");
-        console.log(this.matchingProfile);
+        console.log(this.matchingService.currentMatchingUser);
     }
 
     ngAfterViewInit() {

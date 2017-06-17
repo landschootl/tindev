@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import { ApiUtils } from '../shared/utils/api';
 import { AuthService } from './auth-service';
 import 'rxjs/add/operator/toPromise';
@@ -7,6 +7,8 @@ import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class MatchingService {
+
+    currentMatchingUser: any;
 
     constructor(private http: Http,
         private apic: ApiUtils,
@@ -20,10 +22,20 @@ export class MatchingService {
 
     public getAll() {
         let headers = this.apic.getHeadersWithToken(this.auth.token);
-        let options = new RequestOptions({ headers: headers });
-        return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
-            return data.json();
-        });
+        let params = new URLSearchParams();
+        params.set('id', this.currentMatchingUser.id);
+        let options = new RequestOptions({ headers: headers, search: params });
+        debugger;
+        if (this.auth.currentUser.recruiter) {
+            return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
+                return data.json();
+            });
+        } else {
+            return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
+                return data.json();
+            });
+
+        }
     }
 
     public getBestMatching() {

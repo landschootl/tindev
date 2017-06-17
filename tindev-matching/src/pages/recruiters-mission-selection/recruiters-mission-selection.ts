@@ -4,6 +4,7 @@ import { MissionService } from '../../providers/mission-service';
 import { Mission } from '../../shared/models/mission';
 import { AuthService } from '../../providers/auth-service';
 import { MatchingPage } from '../../pages/matching/matching';
+import { MatchingService } from "../../providers/matching-service";
 
 
 @Component({
@@ -19,15 +20,16 @@ export class RecruitersMissionSelectionPage {
     interval: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController,
-        private toastCtrl: ToastController, private mission: MissionService, private auth: AuthService) {
+        private toastCtrl: ToastController, private mission: MissionService, private auth: AuthService, private matchingService: MatchingService) {
+            debugger;
     }
 
-    ionViewDidLoad() {
-        this.interval = setInterval(() => {
+    ionViewDidEnter() {
+        // this.interval = setInterval(() => {
             if (this.auth.currentUser.specId != undefined) {
                 this.initializeItems();
             }
-        }, 500);
+        // }, 500);
     }
 
     initializeItems() {
@@ -35,12 +37,13 @@ export class RecruitersMissionSelectionPage {
         this.mission.apiGetMissionsForRecruiter().subscribe(data => {
                 this.data = data;
                 this.searchMatchingData = data;
+                // this.loading.dismiss();
             },
             error => {
-                this.loading.dismiss();
+                // this.loading.dismiss();
                 this.showToast("Impossible de récupérer vos missions");
             });
-        clearInterval(this.interval);
+        // clearInterval(this.interval);
     }
 
     public showToast(text) {
@@ -51,9 +54,9 @@ export class RecruitersMissionSelectionPage {
             showCloseButton: true,
             closeButtonText: "Réessayer"
         });
-        toast.onDidDismiss(() => {
-            this.initializeItems();
-        });
+        // toast.onDidDismiss(() => {
+        //     // this.initializeItems();
+        // });
         toast.present(toast);
     }
 
@@ -83,6 +86,7 @@ export class RecruitersMissionSelectionPage {
 
     openMatchingPage(m: Mission) {
         //this.navCtrl.push(MatchingPage, {mission : m});
-        this.navCtrl.setRoot(MatchingPage, { mission: m });
+        this.matchingService.currentMatchingUser = m;
+        this.navCtrl.setRoot(MatchingPage);
     }
 }

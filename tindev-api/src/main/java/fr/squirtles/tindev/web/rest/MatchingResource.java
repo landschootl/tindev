@@ -169,14 +169,14 @@ public class MatchingResource {
     }*/
 
     @GetMapping("/matchings/best")
-    public List<Matching> getMatchings() {
+    public List<Matching> getMatchings(@RequestParam("id") Long id) {
         if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
             Freelance freelance = freelanceRepository.findByIdUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
             List<Mission> missions = missionRepository.findAll();
             List<Matching> matchings = new ArrayList<>();
 
             this.matchingRepository.findByFreelance(freelance).forEach(matching -> {
-                if (!matching.isFreelanceVoted()) {
+                if (matching.isFreelanceVoted() == null || !matching.isFreelanceVoted()) {
                     matchings.add(matching);
                 } else {
                     missions.remove(matching.getMission());
@@ -192,7 +192,26 @@ public class MatchingResource {
 
             return matchings;
         } else if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.RECRUITER)) {
-            return null;
+            Mission mission = missionRepository.findOne(id);
+            List<Freelance> freelances = freelanceRepository.findAll();
+            List<Matching> matchings = new ArrayList<>();
+
+            this.matchingRepository.findByMission(mission).forEach(matching -> {
+                if (matching.isRecruiterVoted() == null || !matching.isRecruiterVoted()) {
+                    matchings.add(matching);
+                } else {
+                    freelances.remove(matching.getFreelance());
+                }
+            });
+
+            freelances.stream().forEach(freelance-> {
+                Matching matching = new Matching();
+                matching.setFreelance(freelance);
+                matching.setMission(mission);
+                matchings.add(matching);
+            });
+
+            return matchings;
         }
 
         return null;

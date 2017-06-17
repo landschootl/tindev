@@ -22,21 +22,21 @@ export class MissionService {
 
 
 ///api/recruiters/{id}/missions
-    public apiGetMissionsForRecruiter(): Observable<any> {
+    public apiGetMissionsForRecruiter() {
         //Get recruiters id
         let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
         let options = new RequestOptions({ headers: headers });
-        return this.http.get(this.apic.base_url + 'recruiters/' + this.auth.currentUser.specId + '/missions', options)
-            .map((response: Response) => {
-                var data: Array<Mission>;
-                data = [];
-                let json = response.json();
-                for (let jsonobject of json) {
-                    var m = new Mission(jsonobject.id, jsonobject.description, jsonobject.startDate, jsonobject.maxSalary, jsonobject.minSalary, this.auth.currentUser, jsonobject.endDate, jsonobject.title);
-                    data.push(m);
-                }
-                return data;
-            });
+        return this.http.get(this.apic.base_url + 'recruiters/' + this.auth.currentUser.specId + '/missions', options).map(function(response) {
+            return response.json() as Mission[];
+            // var data: Array<Mission>;
+            // data = [];
+            // let json = response.json();
+            // for (let jsonobject of json) {
+            //     var m = new Mission(jsonobject.id, jsonobject.description, jsonobject.startDate, jsonobject.maxSalary, jsonobject.minSalary, this.auth.currentUser, jsonobject.endDate, jsonobject.title);
+            //     data.push(m);
+            // }
+            // return data;
+        });
 
         /*
          //Get missionlist
