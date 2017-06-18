@@ -224,6 +224,7 @@ public class MatchingResource {
         dto.setFreelanceLiked(matching.isFreelanceLiked());
         dto.setrLikedDate(matching.getrLikedDate());
         dto.setFreelanceVoted(matching.isFreelanceVoted());
+        dto.setRecruiterLiked(matching.isRecruiterLiked());
         dto.setRecruiterVoted(matching.isRecruiterVoted());
         dto.setMission(matching.getMission());
         dto.setFreelance(matching.getFreelance());

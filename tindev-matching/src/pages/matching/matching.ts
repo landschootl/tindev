@@ -55,6 +55,7 @@ export class MatchingPage {
 
     voteUp(liked: boolean) {
         let self = this;
+        debugger;
         this.matchingService.save(this.currentCard, liked).then(function() {
             if(self.currentCard.freelanceVoted && self.currentCard.recruiterVoted && self.currentCard.freelanceLiked && self.currentCard.recruiterLiked) {
                 let alert = self.alertCtrl.create({
