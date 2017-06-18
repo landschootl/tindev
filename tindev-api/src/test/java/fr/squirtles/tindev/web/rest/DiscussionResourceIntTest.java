@@ -3,7 +3,7 @@ package fr.squirtles.tindev.web.rest;
 import fr.squirtles.tindev.TindevApp;
 
 import fr.squirtles.tindev.domain.Discussion;
-import fr.squirtles.tindev.repository.DiscussionRepository;
+import fr.squirtles.tindev.repository.*;
 import fr.squirtles.tindev.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -55,11 +55,21 @@ public class DiscussionResourceIntTest {
     private MockMvc restDiscussionMockMvc;
 
     private Discussion discussion;
+    @Autowired
+    private FreelanceRepository freelanceRepository;
+    @Autowired
+    private MissionRepository missionRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private RecruiterRepository recruiterRepository;
+    @Autowired
+    private UserProfileRepository userProfileRepository;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        DiscussionResource discussionResource = new DiscussionResource(discussionRepository);
+        DiscussionResource discussionResource = new DiscussionResource(discussionRepository, freelanceRepository, userRepository, missionRepository, recruiterRepository, userProfileRepository);
         this.restDiscussionMockMvc = MockMvcBuilders.standaloneSetup(discussionResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -3,6 +3,8 @@ import { Loading, LoadingController, NavController, NavParams, ToastController }
 import { Conversation } from '../../shared/models/conversation';
 import { ConversationService } from '../../providers/conversation-service';
 import { ConversationPage } from '../../pages/conversation/conversation';
+import {Discussion} from "../../shared/models/discussion.model";
+import {AuthService} from "../../providers/auth-service";
 /*
  Generated class for the MatchesList page.
 
@@ -16,52 +18,26 @@ import { ConversationPage } from '../../pages/conversation/conversation';
 export class MatchesListPage {
     loading: Loading;
     data: Array<Conversation>;
-    searchMatchingData: Array<Conversation>;
+    searchMatchingData: Array<Discussion>;
     searchinput: string = '';
     showSearchLoader: boolean = false;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public conv: ConversationService, private loadingCtrl: LoadingController, private toastCtrl: ToastController) {
-        /*
-         Waited json :
-         {"Conversations" : [{
-         "project_name" : "Chef de projet Big Data",
-         "interlocutor_name" : "Ali Connors",
-         "last_message" : {
-         "date_sent" : "18/05/2017 13:58:23",
-         "content" : "Hello Mr. I'm sending you this message in order to have a meeting with you because I think your profile is exactly what we need for our project"
-         },
-         "project_name" : "Développeur mobile",
-         "interlocutor_name" : "Trevor Hansen",
-         "last_message" : {
-         "date_sent" : "18/05/2017 13:57:23",
-         "content" : "Hello Mr. I'm sending you this message in order to have a meeting with you because I think your profile is exactly what we need for our project"
-         },
-         "project_name" : "Développeur fullstack",
-         "interlocutor_name" : "Sandra Adams",
-         "last_message" : {
-         "date_sent" : "18/05/2017 13:57:22",
-         "content" : "Hello Mr. I'm interested in your profile. Please contact my associate Mr Trevor Jensen"
-         }
-         }]}
-         */
+    constructor(public navCtrl: NavController, public navParams: NavParams, public conv: ConversationService, private loadingCtrl: LoadingController, private toastCtrl: ToastController, private auth: AuthService) {
+    }
+    ionViewDidEnter() {
+        console.log('ionViewDidLoad MatchesListPage');
         this.initializeItems();
     }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad MatchesListPage');
-    }
+
 
     initializeItems() {
         this.showLoading();
-        this.conv.apiGetConversations().subscribe(data => {
-                console.log(data);
-                this.data = data;
-                this.searchMatchingData = data;
-            },
-            error => {
-                this.loading.dismiss();
-                this.showToast("We were unable to get your conversations");
-            });
+        let self = this;
+        this.conv.getAll().catch(function () {
+            self.loading.dismiss();
+            self.showToast("We were unable to get your conversations");
+        });
     }
 
     public showToast(text) {
@@ -102,7 +78,38 @@ export class MatchesListPage {
         this.showSearchLoader = false;
     }
 
-    openConversationPage(c: Conversation) {
-        this.navCtrl.push(ConversationPage, { conversation: c });
+    openConversationPage(discussion: Discussion) {
+        this.conv.currentDiscussion = discussion;
+        this.navCtrl.push(ConversationPage);
+    }
+
+    getTitle(discussion: Discussion) {
+        return discussion.mission.title;
+        // if (this.auth.currentUser.recruiter) {
+        //     // TODO: Renvoyer le nom du freelance
+        //     let freelance = discussion.freelanceProfile;
+        //     return (freelance.firstname + ' ' + freelance.lastname) || discussion.freelanceUser.login;
+        //
+        // } else {
+        //
+        // }
+    }
+
+    getUserName(discussion: Discussion) {
+        if (this.auth.currentUser.recruiter) {
+            // TODO: Renvoyer le nom du freelance
+            let freelance = discussion.freelanceProfile;
+            let text = freelance.firstname + freelance.lastname ? freelance.firstname + ' ' + freelance.lastname : discussion.freelanceUser.login;
+            return text;
+
+        } else {
+            let recruiter = discussion.missionProfile;
+            let text = recruiter.firstname + recruiter.lastname ? recruiter.firstname + ' ' + recruiter.lastname : discussion.missionUser.login;
+            return text;
+        }
+    }
+
+    getLastMessageContent(discussion: Discussion) {
+        return '';
     }
 }

@@ -1,17 +1,24 @@
 package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import fr.squirtles.tindev.domain.Discussion;
-import fr.squirtles.tindev.repository.DiscussionRepository;
+import fr.squirtles.tindev.domain.*;
+import fr.squirtles.tindev.repository.*;
+import fr.squirtles.tindev.security.AuthoritiesConstants;
+import fr.squirtles.tindev.security.SecurityUtils;
+import fr.squirtles.tindev.service.dto.DiscussionDTO;
+import fr.squirtles.tindev.service.dto.MatchingDTO;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import sun.swing.BakedArrayList;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +27,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@Transactional
 public class DiscussionResource {
 
     private final Logger log = LoggerFactory.getLogger(DiscussionResource.class);
@@ -27,9 +35,19 @@ public class DiscussionResource {
     private static final String ENTITY_NAME = "discussion";
 
     private final DiscussionRepository discussionRepository;
+    private FreelanceRepository freelanceRepository;
+    private UserRepository userRepository;
+    private MissionRepository missionRepository;
+    private RecruiterRepository recruiterRepository;
+    private UserProfileRepository userProfileRepository;
 
-    public DiscussionResource(DiscussionRepository discussionRepository) {
+    public DiscussionResource(DiscussionRepository discussionRepository, FreelanceRepository freelanceRepository, UserRepository userRepository, MissionRepository missionRepository, RecruiterRepository recruiterRepository, UserProfileRepository userProfileRepository) {
         this.discussionRepository = discussionRepository;
+        this.freelanceRepository = freelanceRepository;
+        this.userRepository = userRepository;
+        this.missionRepository = missionRepository;
+        this.recruiterRepository = recruiterRepository;
+        this.userProfileRepository = userProfileRepository;
     }
 
     /**
@@ -115,4 +133,49 @@ public class DiscussionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    @GetMapping("/discussions2")
+    @Timed
+    public List<DiscussionDTO> getByUser() {
+        List<Discussion> discussions = null;
+        List<DiscussionDTO> dtos = new ArrayList<>();
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
+            Freelance freelance = freelanceRepository.findByIdUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
+            discussions = discussionRepository.findByFreelance(freelance);
+
+        } else if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.RECRUITER)) {
+            Recruiter recruiter = recruiterRepository.findByIdUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
+            discussions = discussionRepository.findByRecruiter(recruiter);
+        }
+        if(discussions != null) {
+            discussions.stream().forEach(discussion ->{
+                dtos.add(toDTO(discussion));
+            });
+        }
+        return dtos;
+    }
+
+    private DiscussionDTO toDTO(Discussion discussion) {
+        DiscussionDTO dto = new DiscussionDTO();
+        dto.setId(discussion.getId());
+        dto.setMessages(discussion.getMessages());
+        dto.setMission(discussion.getMission());
+        dto.setFreelance(discussion.getFreelance());
+        User freelanceUser = userRepository.findOne(discussion.getFreelance().getIdUser());
+        User recruiterUser = userRepository.getOne(discussion.getMission().getRecruiter().getIdUser());
+        UserProfile freelanceUserProfile = userProfileRepository.getOne(discussion.getFreelance().getIdUser());
+        UserProfile recruiterUserProfile = userProfileRepository.getOne(discussion.getMission().getRecruiter().getIdUser());
+        //Freelance
+        freelanceUserProfile.setFirstname(freelanceUser.getFirstName());
+        freelanceUserProfile.setLastname(freelanceUser.getLastName());
+
+        //Recruiter
+        recruiterUserProfile.setFirstname(recruiterUser.getFirstName());
+        recruiterUserProfile.setLastname(recruiterUser.getLastName());
+
+        dto.setFreelanceProfile(freelanceUserProfile);
+        dto.setMissionProfile(recruiterUserProfile);
+        dto.setFreelanceUser(freelanceUser);
+        dto.setMissionUser(recruiterUser);
+        return dto;
+    }
 }

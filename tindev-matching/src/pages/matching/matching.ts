@@ -8,6 +8,8 @@ import {AuthService} from '../../providers/auth-service';
 import {MatchingService} from '../../providers/matching-service';
 import {Matching} from '../../shared/models/matching.model';
 import {RecruitersMissionSelectionPage} from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
+import {ConversationService} from "../../providers/conversation-service";
+import {ConversationPage} from "../conversation/conversation";
 
 @Component({
     selector: 'page-matching',
@@ -28,9 +30,10 @@ export class MatchingPage {
                 private capitalizePipe: CapitalizePipe,
                 private auth: AuthService,
                 public navParams: NavParams,
-                public nav: NavController,
                 private matchingService: MatchingService,
-                private alertCtrl: AlertController) {
+                private alertCtrl: AlertController,
+                private discussionService: ConversationService,
+                private nav: NavController) {
         this.stackConfig = {
             throwOutConfidence: (offsetX, element) => {
                 return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
@@ -72,7 +75,11 @@ export class MatchingPage {
                         {
                             text: 'Oui',
                             handler: () => {
-                                console.log('Buy clicked');
+                                self.discussionService.createDiscussion(self.currentCard.freelance, self.currentCard.mission).subscribe(function(discussion) {
+                                    console.log(this);
+                                    self.discussionService.currentDiscussion = discussion;
+                                    self.nav.push(ConversationPage);
+                                });
                             }
                         }
                     ]
@@ -113,7 +120,7 @@ export class MatchingPage {
     getCurrentUserName(): string {
         if (this.auth.currentUser.recruiter) {
             // TODO: Renvoyer le nom du freelance
-            let freelance = this.currentCard.freelanceProfile
+            let freelance = this.currentCard.freelanceProfile;
             return (freelance.firstname + ' ' + freelance.lastname) || this.currentCard.freelanceUser.login;
 
         } else {

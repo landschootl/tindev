@@ -8,21 +8,21 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>{{ this.fullConversation.project_name }}</ion-title>
+        <ion-title>{{ this.getTitle() }}</ion-title>
     </ion-navbar>
     <div class="conversation-header">
         <div class="title-name">
-            {{ this.fullConversation.interlocutor_name }}
+            {{ this.getUserName() }}
         </div>
-        <div class="user-profile-picture-container">
-            <img class="user-profile-picture" src="{{ this.placeholderpicture }}"/>
+        <div class="user-profile-picture-container" *ngIf="this.getUserImage()">
+            <img class="user-profile-picture" src="{{ this.getUserImage() }}"/>
         </div>
     </div>
 </ion-header>
 
 <ion-content padding>
     <ion-list>
-        <ion-item *ngFor="let message of this.fullConversation.messages">
+        <ion-item *ngFor="let message of this.discussionService.currentDiscussion.messages">
             <div class="message {{isUsersMessage(message)}}">
                 <span class="message_name" color="text-primary">{{ message.sender_name }}</span> <br/>
                 <span class="message_content">{{ message.content }}</span>

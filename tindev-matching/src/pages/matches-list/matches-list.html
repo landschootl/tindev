@@ -23,13 +23,13 @@
 </ion-header>
 <ion-content padding>
     <ion-list>
-        <ion-item (click)="openConversationPage(item)" *ngFor="let item of searchMatchingData" detail-push>
+        <ion-item (click)="openConversationPage(item)" *ngFor="let item of conv.discussions" detail-push>
             <div>
-                <span class="title" color="text-primary">{{ item.project_name }} | <span class="interlocutor-name"
-                                                                                         color="text-light"> {{item.interlocutor_name}}</span></span>
+                <span class="title" color="text-primary">{{ getTitle(item) }} | <span class="interlocutor-name"
+                                                                                         color="text-light"> {{getUserName(item)}}</span></span>
                 <br/>
                 <br/>
-                <span class="message_content" color="text-light">{{ item.last_message.content}}</span>
+                <span class="message_content" color="text-light">{{ getLastMessageContent(item)}}</span>
             </div>
         </ion-item>
     </ion-list>

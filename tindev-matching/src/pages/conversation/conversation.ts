@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ConversationService } from '../../providers/conversation-service';
 import { Conversation } from '../../shared/models/conversation';
 import { AuthService } from '../../providers/auth-service';
-import { Message } from '../../shared/models/message';
+import { Message } from '../../shared/models/message.model';
 
 /*
  Generated class for the Conversation page.
@@ -19,10 +19,7 @@ export class ConversationPage {
     fullConversation: Conversation;
     placeholderpicture = 'assets/images/user-picture-placeholder.jpg';
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, conv: ConversationService, public auth: AuthService) {
-        this.fullConversation = conv.apiGetFullConversation(navParams.data.conversation);
-        //console.log(this.auth);
-        console.log(this.fullConversation);
+    constructor(public navCtrl: NavController, public navParams: NavParams, private discussionService: ConversationService, public auth: AuthService) {
     }
 
     ionViewDidLoad() {
@@ -30,8 +27,35 @@ export class ConversationPage {
     }
 
     isUsersMessage(message: Message) {
-        if (message.email_sender == this.auth.getUserInfo().email) {
-            return 'users_message';
+        // if (message.email_sender == this.auth.getUserInfo().email) {
+        //     return 'users_message';
+        // }
+    }
+
+    getTitle() {
+        return this.discussionService.currentDiscussion.mission.title;
+    }
+
+    getUserImage() {
+        if(this.auth.currentUser.recruiter) {
+            return this.discussionService.currentDiscussion.freelanceProfile.photoUrl;
+        } else {
+            return this.discussionService.currentDiscussion.missionProfile.photoUrl;
+        }
+    }
+
+    getUserName() {
+        let discussion = this.discussionService.currentDiscussion;
+        if (this.auth.currentUser.recruiter) {
+            // TODO: Renvoyer le nom du freelance
+            let freelance = discussion.freelanceProfile;
+            let text = freelance.firstname + freelance.lastname ? freelance.firstname + ' ' + freelance.lastname : discussion.freelanceUser.login;
+            return text;
+
+        } else {
+            let recruiter = discussion.missionProfile;
+            let text = recruiter.firstname + recruiter.lastname ? recruiter.firstname + ' ' + recruiter.lastname : discussion.missionUser.login;
+            return text;
         }
     }
 
