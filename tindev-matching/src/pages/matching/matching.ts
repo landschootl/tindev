@@ -2,7 +2,7 @@ import {Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {StackConfig, SwingCardComponent, SwingStackComponent, ThrowEvent} from 'angular2-swing';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {NavController, NavParams, ToastController} from 'ionic-angular';
+import {NavController, NavParams, ToastController, AlertController} from 'ionic-angular';
 import {CapitalizePipe} from '../../shared/pipes/capitalize.pipe';
 import {AuthService} from '../../providers/auth-service';
 import {MatchingService} from '../../providers/matching-service';
@@ -29,15 +29,16 @@ export class MatchingPage {
                 private auth: AuthService,
                 public navParams: NavParams,
                 public nav: NavController,
-                private matchingService: MatchingService) {
-        // this.stackConfig = {
-        //     throwOutConfidence: (offsetX, offsetY, element) => {
-        //         return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
-        //     },
-        //     throwOutDistance: (d) => {
-        //         return 800;
-        //     }
-        // };
+                private matchingService: MatchingService,
+                private alertCtrl: AlertController) {
+        this.stackConfig = {
+            throwOutConfidence: (offsetX, element) => {
+                return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
+            },
+            throwOutDistance: (d) => {
+                return 800;
+            }
+        };
         console.log("matching profile is : ");
         console.log(this.matchingService.currentMatchingUser);
     }
@@ -53,8 +54,35 @@ export class MatchingPage {
     }
 
     voteUp(liked: boolean) {
-        this.matchingService.save(this.currentCard, liked);
-        this.nextCard();
+        let self = this;
+        this.matchingService.save(this.currentCard, liked).then(function() {
+            if(self.currentCard.freelanceVoted && self.currentCard.recruiterVoted && self.currentCard.freelanceLiked && self.currentCard.recruiterLiked) {
+                let alert = self.alertCtrl.create({
+                    title: 'It\'s a match !!',
+                    message: 'Voulez vous commencer à parler ?',
+                    buttons: [
+                        {
+                            text: 'Non',
+                            role: 'cancel',
+                            handler: () => {
+                                self.nextCard();
+                            }
+                        },
+                        {
+                            text: 'Oui',
+                            handler: () => {
+                                console.log('Buy clicked');
+                            }
+                        }
+                    ]
+                });
+                alert.present();
+            } else {
+                self.nextCard();
+            }
+
+        });
+
     }
 
     nextCard() {

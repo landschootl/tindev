@@ -55,7 +55,7 @@ export class MatchingService {
         let headers = this.apic.getHeadersWithToken(this.auth.token);
         let options = new RequestOptions({ headers: headers });
         return this.http.put(this.apic.base_url + 'matchings', matching, options).toPromise().then(function(data) {
-            console.log(matching);
+
         });
     }
 }

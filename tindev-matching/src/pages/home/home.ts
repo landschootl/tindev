@@ -22,7 +22,7 @@ import { MatchingService } from "../../providers/matching-service";
 export class HomePage {
 
     loading: Loading;
-    registerCredentials = { username: 'user', password: 'user' };
+    registerCredentials = { username: 'freelance', password: 'freelance' };
 
     constructor(public nav: NavController, public navParams: NavParams,
         public tindevSession: TindevSession, private auth: AuthService,
