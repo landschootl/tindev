@@ -3,10 +3,7 @@ package fr.squirtles.tindev.web.rest;
 import fr.squirtles.tindev.TindevApp;
 
 import fr.squirtles.tindev.domain.Matching;
-import fr.squirtles.tindev.repository.FreelanceRepository;
-import fr.squirtles.tindev.repository.MatchingRepository;
-import fr.squirtles.tindev.repository.MissionRepository;
-import fr.squirtles.tindev.repository.UserRepository;
+import fr.squirtles.tindev.repository.*;
 import fr.squirtles.tindev.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -84,6 +81,8 @@ public class MatchingResourceIntTest {
 
     @Autowired
     private MissionRepository missionRepository;
+    @Autowired
+    private UserProfileRepository userProfileRepository;
 
     @Before
     public void setup() {

@@ -12,6 +12,6 @@ export class Mission {
         public endDate?: any,
         public discussions?: Discussion,
         public recruiter?: Recruiter,
-        public matchings?: Matching,) {
+        public matchings?: Matching) {
     }
 }

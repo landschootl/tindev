@@ -2,6 +2,7 @@ package fr.squirtles.tindev.service.dto;
 
 import fr.squirtles.tindev.domain.Freelance;
 import fr.squirtles.tindev.domain.Mission;
+import fr.squirtles.tindev.domain.User;
 import fr.squirtles.tindev.domain.UserProfile;
 
 import javax.persistence.*;
@@ -34,6 +35,9 @@ public class MatchingDTO {
     private UserProfile freelanceProfile;
 
     private UserProfile missionProfile;
+
+    private User freelanceUser;
+    private User missionUser;
 
     public Long getId() {
         return id;
@@ -129,5 +133,21 @@ public class MatchingDTO {
 
     public void setMissionProfile(UserProfile missionProfile) {
         this.missionProfile = missionProfile;
+    }
+
+    public void setFreelanceUser(User freelanceUser) {
+        this.freelanceUser = freelanceUser;
+    }
+
+    public User getFreelanceUser() {
+        return freelanceUser;
+    }
+
+    public void setMissionUser(User missionUser) {
+        this.missionUser = missionUser;
+    }
+
+    public User getMissionUser() {
+        return missionUser;
     }
 }

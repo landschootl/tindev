@@ -1,9 +1,7 @@
 package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import fr.squirtles.tindev.domain.Freelance;
-import fr.squirtles.tindev.domain.Matching;
-import fr.squirtles.tindev.domain.Mission;
+import fr.squirtles.tindev.domain.*;
 import fr.squirtles.tindev.repository.*;
 import fr.squirtles.tindev.security.AuthoritiesConstants;
 import fr.squirtles.tindev.security.SecurityUtils;
@@ -21,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -34,6 +33,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@Transactional
 public class MatchingResource {
 
     private final Logger log = LoggerFactory.getLogger(MatchingResource.class);
@@ -169,6 +169,7 @@ public class MatchingResource {
     }*/
 
     @GetMapping("/matchings/best")
+    @Timed
     public List<MatchingDTO> getMatchings(@RequestParam("id") Long id) {
         if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
             Freelance freelance = freelanceRepository.findByIdUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
@@ -226,8 +227,22 @@ public class MatchingResource {
         dto.setRecruiterVoted(matching.isRecruiterVoted());
         dto.setMission(matching.getMission());
         dto.setFreelance(matching.getFreelance());
-        dto.setFreelanceProfile(userProfileRepository.getOne(matching.getFreelance().getIdUser()));
-        dto.setMissionProfile(userProfileRepository.getOne(matching.getMission().getRecruiter().getIdUser()));
+        User freelanceUser = userRepository.findOne(matching.getFreelance().getIdUser());
+        User recruiterUser = userRepository.getOne(matching.getMission().getRecruiter().getIdUser());
+        UserProfile freelanceUserProfile = userProfileRepository.getOne(matching.getFreelance().getIdUser());
+        UserProfile recruiterUserProfile = userProfileRepository.getOne(matching.getMission().getRecruiter().getIdUser());
+        //Freelance
+        freelanceUserProfile.setFirstname(freelanceUser.getFirstName());
+        freelanceUserProfile.setLastname(freelanceUser.getLastName());
+
+        //Recruiter
+        recruiterUserProfile.setFirstname(recruiterUser.getFirstName());
+        recruiterUserProfile.setLastname(recruiterUser.getLastName());
+
+        dto.setFreelanceProfile(freelanceUserProfile);
+        dto.setMissionProfile(recruiterUserProfile);
+        dto.setFreelanceUser(freelanceUser);
+        dto.setMissionUser(recruiterUser);
         return dto;
     }
 
