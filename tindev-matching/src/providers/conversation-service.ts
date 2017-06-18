@@ -64,9 +64,10 @@ export class ConversationService {
         let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this.apic.base_url + "messages", message, options).map((m) => {
+            let mess = m.json() as Message;
             this.currentDiscussion.messages = this.currentDiscussion.messages || [];
-            this.currentDiscussion.messages.push(m);
-            return m;
+            this.currentDiscussion.messages.push(mess);
+            return mess;
         });
 
 
