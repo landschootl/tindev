@@ -79,30 +79,21 @@ export class MatchingPage {
         this.nav.push(RecruitersMissionSelectionPage);
     }
 
-    hasImage() {
-        // TODO : Implémenter les image des utilisateur
-        if (this.auth.currentUser.recruiter) {
-            // Return freelance image
-        } else {
-            // return this.currentCard.mission.imageUrl;
-
-        }
-        return false;
-    }
-
     getCurrentUserImage() {
         // TODO : Implémenter les image des utilisateur
         if (this.auth.currentUser.recruiter) {
-
+            this.currentCard.freelanceProfile.photoUrl;
         } else {
-
+            this.currentCard.missionProfile.photoUrl;
         }
     }
 
     getCurrentUserName(): string {
         if (this.auth.currentUser.recruiter) {
             // TODO: Renvoyer le nom du freelance
-            return '' + this.currentCard.freelance.id;
+            let freelance = this.currentCard.freelanceProfile
+            return (freelance.firstname + ' ' + freelance.lastname) || this.currentCard.freelanceUser.login;
+
         } else {
             return this.currentCard.mission.title;
         }
@@ -111,7 +102,7 @@ export class MatchingPage {
     getCurrentUserDescription(): string {
         if (this.auth.currentUser.recruiter) {
             // TODO: Renvoyer la description du freezlance
-            return '' + this.currentCard.freelance.idUser;
+            return this.currentCard.freelanceProfile.description;
         } else {
             return this.currentCard.mission.description;
 

@@ -21,7 +21,7 @@
             <!-- Affichage dans le cas d'un freelance -->
             <ion-card #cards swing-card *ngIf="currentCard">
                 <ion-item>
-                    <img class="card-image" *ngIf="hasImage()" [src]="getCurrentUserImage()">
+                    <img class="card-image" *ngIf="getCurrentUserImage()" [src]="getCurrentUserImage()">
                     <h1 class="card-title">{{ getCurrentUserName() | capitalize }}</h1>
                     <h2 class="card-subtitle">{{ getCurrentUserDescription() | capitalize }}</h2>
                 </ion-item>
