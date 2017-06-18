@@ -42,7 +42,6 @@ export class ConversationPage {
     }
 
     getUserImage() {
-        debugger;
         if(this.auth.currentUser.recruiter) {
             return this.discussionService.currentDiscussion.freelanceProfile.photoUrl;
         } else {

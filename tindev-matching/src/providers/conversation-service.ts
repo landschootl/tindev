@@ -37,7 +37,6 @@ export class ConversationService {
         let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this.apic.base_url + "discussions", discussion, options).map((d) => {
-            debugger;
             let disc = d.json() as Discussion;
             this.discussions.push(disc);
             return disc;
@@ -50,7 +49,6 @@ export class ConversationService {
         params.set('id', this.matchingService.currentMatchingUser.id);
         let options = new RequestOptions({ headers: headers, search: params });
         return this.http.get(this.apic.base_url + 'discussions/byuser', options).toPromise().then((discussions) => {
-            debugger;
             this.discussions = discussions.json() as Discussion[];
         });
 
