@@ -15,7 +15,6 @@ export class EditMissionComponent implements OnInit {
         private alertService: AlertService,
         private eventManager: EventManager,
         private principal: Principal) {
-        debugger;
         this.jhiLanguageService.setLocations(['editmission']);
     }
 

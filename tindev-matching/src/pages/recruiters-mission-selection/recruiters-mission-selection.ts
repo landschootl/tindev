@@ -21,7 +21,6 @@ export class RecruitersMissionSelectionPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController,
         private toastCtrl: ToastController, private mission: MissionService, private auth: AuthService, private matchingService: MatchingService) {
-            debugger;
     }
 
     ionViewDidEnter() {

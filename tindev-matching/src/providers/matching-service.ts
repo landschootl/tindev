@@ -25,7 +25,6 @@ export class MatchingService {
         let params = new URLSearchParams();
         params.set('id', this.currentMatchingUser.id);
         let options = new RequestOptions({ headers: headers, search: params });
-        debugger;
         if (this.auth.currentUser.recruiter) {
             return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
                 return data.json();

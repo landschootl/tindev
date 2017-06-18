@@ -1,13 +1,13 @@
-import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { StackConfig, SwingCardComponent, SwingStackComponent, ThrowEvent } from 'angular2-swing';
-import { Http } from '@angular/http';
+import {Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {StackConfig, SwingCardComponent, SwingStackComponent, ThrowEvent} from 'angular2-swing';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
-import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
-import { AuthService } from '../../providers/auth-service';
-import { MatchingService } from '../../providers/matching-service';
-import { Matching } from '../../shared/models/matching.model';
-import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
+import {CapitalizePipe} from '../../shared/pipes/capitalize.pipe';
+import {AuthService} from '../../providers/auth-service';
+import {MatchingService} from '../../providers/matching-service';
+import {Matching} from '../../shared/models/matching.model';
+import {RecruitersMissionSelectionPage} from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
 
 @Component({
     selector: 'page-matching',
@@ -21,15 +21,15 @@ export class MatchingPage {
     matchingProfile: any; //Could be user or mission
     matchings: Array<Matching> = [];
     stackConfig: StackConfig;
-    currentCard: Matching;
+    currentCard: Matching; // TODO : should be in matching service
 
     constructor(private http: Http,
-        private toastCtrl: ToastController,
-        private capitalizePipe: CapitalizePipe,
-        private auth: AuthService,
-        public navParams: NavParams,
-        public nav: NavController,
-        private matchingService: MatchingService) {
+                private toastCtrl: ToastController,
+                private capitalizePipe: CapitalizePipe,
+                private auth: AuthService,
+                public navParams: NavParams,
+                public nav: NavController,
+                private matchingService: MatchingService) {
         // this.stackConfig = {
         //     throwOutConfidence: (offsetX, offsetY, element) => {
         //         return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
@@ -68,13 +68,6 @@ export class MatchingPage {
         }
     }
 
-    // private calculateAge(b: any) {
-    //     let birthday = new Date(b.replace(' ', 'T'));
-    //     let ageDifMs = Date.now() - birthday.getTime();
-    //     let ageDate = new Date(ageDifMs);
-    //     return Math.abs(ageDate.getUTCFullYear() - 1970);
-    // }
-
     goToMissionSelection() {
         this.nav.push(RecruitersMissionSelectionPage);
     }
@@ -82,9 +75,9 @@ export class MatchingPage {
     getCurrentUserImage() {
         // TODO : Implémenter les image des utilisateur
         if (this.auth.currentUser.recruiter) {
-            this.currentCard.freelanceProfile.photoUrl;
+            return this.currentCard.freelanceProfile.photoUrl;
         } else {
-            this.currentCard.missionProfile.photoUrl;
+            return this.currentCard.missionProfile.photoUrl;
         }
     }
 
