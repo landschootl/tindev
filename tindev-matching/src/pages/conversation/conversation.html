@@ -20,13 +20,24 @@
     </div>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="block scrollable">
     <ion-list>
         <ion-item *ngFor="let message of this.discussionService.currentDiscussion.messages">
             <div class="message {{isUsersMessage(message)}}">
-                <span class="message_name" color="text-primary">{{ message.sender_name }}</span> <br/>
-                <span class="message_content">{{ message.content }}</span>
+                <span class="message_name" color="text-primary">{{ message.id }}</span> <br/>
+                <span class="message_content">{{ message.textMessage }}</span>
             </div>
         </ion-item>
     </ion-list>
 </ion-content>
+
+<ion-footer class="conversation-footer block dbg">
+    <ion-item id="send_message">
+        <ion-input type="text" placeholder="Your message" [(ngModel)]="currentMessage">
+        </ion-input>
+    </ion-item>
+    <button id="send_button" (click)="send()" ion-button>
+        Send
+    </button>
+</ion-footer>
+

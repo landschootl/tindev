@@ -21,6 +21,6 @@ export class UserService {
             .map((response: Response) => {
                 let recruiterid = response.json().id;
                 return recruiterid;
-            })
+            });
     }
 }

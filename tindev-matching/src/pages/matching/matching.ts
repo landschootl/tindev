@@ -44,6 +44,7 @@ export class MatchingPage {
         };
         console.log("matching profile is : ");
         console.log(this.matchingService.currentMatchingUser);
+        this.discussionService.getAll();
     }
 
     ngAfterViewInit() {
@@ -78,6 +79,7 @@ export class MatchingPage {
                                 self.discussionService.createDiscussion(self.currentCard.freelance, self.currentCard.mission).subscribe(function(discussion) {
                                     console.log(this);
                                     self.discussionService.currentDiscussion = discussion;
+                                    self.nextCard();
                                     self.nav.push(ConversationPage);
                                 });
                             }
@@ -120,7 +122,7 @@ export class MatchingPage {
     getCurrentUserName(): string {
         if (this.auth.currentUser.recruiter) {
             // TODO: Renvoyer le nom du freelance
-            let freelance = this.currentCard.freelanceProfile;
+            let freelance = this.currentCard.freelanceProfile
             return (freelance.firstname + ' ' + freelance.lastname) || this.currentCard.freelanceUser.login;
 
         } else {

@@ -3,7 +3,7 @@ import {Http, RequestOptions, URLSearchParams} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ApiUtils } from '../shared/utils/api';
 import { Conversation } from '../shared/models/conversation';
-import { Message } from '../shared/models/message';
+import { Message } from '../shared/models/message.model';
 import { User } from '../shared/models/user';
 
 import 'rxjs/add/operator/map';
@@ -11,6 +11,7 @@ import {Mission} from "../shared/models/mission.model";
 import {Freelance} from "../shared/models/freelance.model";
 import {Discussion} from "../shared/models/discussion.model";
 import {AuthService} from "./auth-service";
+import {MatchingService} from "./matching-service";
 
 /*
  Generated class for the ConversationService provider.
@@ -24,7 +25,7 @@ export class ConversationService {
     discussions: Array<Discussion> = [];
     currentDiscussion: Discussion;
 
-    constructor(public http: Http, private apic: ApiUtils, private auth: AuthService) {
+    constructor(public http: Http, private apic: ApiUtils, private auth: AuthService, private matchingService : MatchingService) {
         console.log('Hello ConversationService Provider');
     }
 
@@ -32,24 +33,42 @@ export class ConversationService {
         let discussion: Discussion = {
             freelance: freelance,
             mission: mission
-        }
+        };
         let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
         let options = new RequestOptions({ headers: headers });
-        let self = this;
-        return this.http.post(this.apic.base_url + "discussions", discussion, options).map(function() {
-            self.discussions.push(discussion);
-            return discussion;
+        return this.http.post(this.apic.base_url + "discussions", discussion, options).map((d) => {
+            debugger;
+            let disc = d.json() as Discussion;
+            this.discussions.push(disc);
+            return disc;
         });
     }
 
     public getAll() {
         let headers = this.apic.getHeadersWithToken(this.auth.token);
-        let options = new RequestOptions({ headers: headers});
-        let self = this;
-        return this.http.get(this.apic.base_url + 'discussions2', options).toPromise().then(function(discussions) {
+        let params = new URLSearchParams();
+        params.set('id', this.matchingService.currentMatchingUser.id);
+        let options = new RequestOptions({ headers: headers, search: params });
+        return this.http.get(this.apic.base_url + 'discussions/byuser', options).toPromise().then((discussions) => {
             debugger;
-            self.discussions = discussions.json() as Discussion[];
+            this.discussions = discussions.json() as Discussion[];
         });
+
     }
 
+    saveMessage(currentMessage: string) {
+        let message: Message = {
+            textMessage: currentMessage,
+            discussion: this.currentDiscussion
+        };
+        let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this.apic.base_url + "messages", message, options).map((m) => {
+            this.currentDiscussion.messages = this.currentDiscussion.messages || [];
+            this.currentDiscussion.messages.push(m);
+            return m;
+        });
+
+
+    }
 }

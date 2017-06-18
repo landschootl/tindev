@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Content, NavController, NavParams} from 'ionic-angular';
 import { ConversationService } from '../../providers/conversation-service';
 import { Conversation } from '../../shared/models/conversation';
 import { AuthService } from '../../providers/auth-service';
@@ -16,20 +16,25 @@ import { Message } from '../../shared/models/message.model';
     templateUrl: 'conversation.html'
 })
 export class ConversationPage {
+    @ViewChild(Content) content : Content;
     fullConversation: Conversation;
     placeholderpicture = 'assets/images/user-picture-placeholder.jpg';
+    private currentMessage: string;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private discussionService: ConversationService, public auth: AuthService) {
     }
 
-    ionViewDidLoad() {
+    ionViewDidEnter() {
         console.log('conversation did load');
+        this.scrollBottom();
     }
 
     isUsersMessage(message: Message) {
         // if (message.email_sender == this.auth.getUserInfo().email) {
         //     return 'users_message';
         // }
+
+        return true;
     }
 
     getTitle() {
@@ -37,6 +42,7 @@ export class ConversationPage {
     }
 
     getUserImage() {
+        debugger;
         if(this.auth.currentUser.recruiter) {
             return this.discussionService.currentDiscussion.freelanceProfile.photoUrl;
         } else {
@@ -57,6 +63,27 @@ export class ConversationPage {
             let text = recruiter.firstname + recruiter.lastname ? recruiter.firstname + ' ' + recruiter.lastname : discussion.missionUser.login;
             return text;
         }
+    }
+
+    public send() {
+        //console.log("sending : " + this.currentMessage);
+        //api add message
+        if(!this.currentMessage) {
+            return;
+        }
+        this.discussionService.saveMessage(this.currentMessage).subscribe(()=> {
+            this.currentMessage = '';
+            var that = this;
+            setTimeout(function () {
+                that.scrollBottom();
+            }, 50);
+        });
+
+    }
+
+    public scrollBottom() {
+        // let dimensions = this.content.getContentDimensions();
+        this.content.scrollToBottom();
     }
 
 }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Loading, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Loading, LoadingController, NavController, NavParams, ToastController, Content } from 'ionic-angular';
 import { Conversation } from '../../shared/models/conversation';
 import { ConversationService } from '../../providers/conversation-service';
 import { ConversationPage } from '../../pages/conversation/conversation';
@@ -34,7 +34,7 @@ export class MatchesListPage {
     initializeItems() {
         this.showLoading();
         let self = this;
-        this.conv.getAll().catch(function () {
+        return this.conv.getAll().catch(function () {
             self.loading.dismiss();
             self.showToast("We were unable to get your conversations");
         });
@@ -112,4 +112,7 @@ export class MatchesListPage {
     getLastMessageContent(discussion: Discussion) {
         return '';
     }
+
+
+
 }

@@ -59,12 +59,12 @@ public class DiscussionResource {
      */
     @PostMapping("/discussions")
     @Timed
-    public ResponseEntity<Discussion> createDiscussion(@RequestBody Discussion discussion) throws URISyntaxException {
+    public ResponseEntity<DiscussionDTO> createDiscussion(@RequestBody Discussion discussion) throws URISyntaxException {
         log.debug("REST request to save Discussion : {}", discussion);
         if (discussion.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new discussion cannot already have an ID")).body(null);
         }
-        Discussion result = discussionRepository.save(discussion);
+        DiscussionDTO result = toDTO(discussionRepository.save(discussion));
         return ResponseEntity.created(new URI("/api/discussions/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -81,12 +81,12 @@ public class DiscussionResource {
      */
     @PutMapping("/discussions")
     @Timed
-    public ResponseEntity<Discussion> updateDiscussion(@RequestBody Discussion discussion) throws URISyntaxException {
+    public ResponseEntity<DiscussionDTO> updateDiscussion(@RequestBody Discussion discussion) throws URISyntaxException {
         log.debug("REST request to update Discussion : {}", discussion);
         if (discussion.getId() == null) {
             return createDiscussion(discussion);
         }
-        Discussion result = discussionRepository.save(discussion);
+        DiscussionDTO result = toDTO(discussionRepository.save(discussion));
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, discussion.getId().toString()))
             .body(result);
@@ -133,9 +133,9 @@ public class DiscussionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/discussions2")
+    @GetMapping("/discussions/byuser")
     @Timed
-    public List<DiscussionDTO> getByUser() {
+    public List<DiscussionDTO> getByUser(@RequestParam("id") Long id) {
         List<Discussion> discussions = null;
         List<DiscussionDTO> dtos = new ArrayList<>();
         if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
@@ -143,8 +143,8 @@ public class DiscussionResource {
             discussions = discussionRepository.findByFreelance(freelance);
 
         } else if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.RECRUITER)) {
-            Recruiter recruiter = recruiterRepository.findByIdUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
-            discussions = discussionRepository.findByRecruiter(recruiter);
+            Mission mission = missionRepository.getOne(id);
+            discussions = discussionRepository.findByMission(mission);
         }
         if(discussions != null) {
             discussions.stream().forEach(discussion ->{
@@ -157,6 +157,7 @@ public class DiscussionResource {
     private DiscussionDTO toDTO(Discussion discussion) {
         DiscussionDTO dto = new DiscussionDTO();
         dto.setId(discussion.getId());
+        discussion.getMessages().size();
         dto.setMessages(discussion.getMessages());
         dto.setMission(discussion.getMission());
         dto.setFreelance(discussion.getFreelance());
