@@ -93,7 +93,7 @@ export class MatchingPage {
     getCurrentUserImage() {
         // TODO : Implémenter les image des utilisateur
         if (this.auth.currentUser.recruiter) {
-            
+
         } else {
 
         }
