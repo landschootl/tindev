@@ -4,12 +4,10 @@ import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Freelance;
 import fr.squirtles.tindev.domain.Matching;
 import fr.squirtles.tindev.domain.Mission;
-import fr.squirtles.tindev.repository.FreelanceRepository;
-import fr.squirtles.tindev.repository.MatchingRepository;
-import fr.squirtles.tindev.repository.MissionRepository;
-import fr.squirtles.tindev.repository.UserRepository;
+import fr.squirtles.tindev.repository.*;
 import fr.squirtles.tindev.security.AuthoritiesConstants;
 import fr.squirtles.tindev.security.SecurityUtils;
+import fr.squirtles.tindev.service.dto.MatchingDTO;
 import fr.squirtles.tindev.service.matching.FreelanceMatching;
 import fr.squirtles.tindev.service.matching.FreelanceMatchingSolution;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
@@ -46,12 +44,14 @@ public class MatchingResource {
     private final UserRepository userRepository;
     private final FreelanceRepository freelanceRepository;
     private MissionRepository missionRepository;
+    private UserProfileRepository userProfileRepository;
 
-    public MatchingResource(MatchingRepository matchingRepository, UserRepository userRepository, FreelanceRepository freelanceRepository, MissionRepository missionRepository) {
+    public MatchingResource(MatchingRepository matchingRepository, UserRepository userRepository, FreelanceRepository freelanceRepository, MissionRepository missionRepository, UserProfileRepository userProfileRepository) {
         this.matchingRepository = matchingRepository;
         this.userRepository = userRepository;
         this.freelanceRepository = freelanceRepository;
         this.missionRepository = missionRepository;
+        this.userProfileRepository = userProfileRepository;
     }
 
     /**
@@ -169,15 +169,15 @@ public class MatchingResource {
     }*/
 
     @GetMapping("/matchings/best")
-    public List<Matching> getMatchings(@RequestParam("id") Long id) {
+    public List<MatchingDTO> getMatchings(@RequestParam("id") Long id) {
         if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.FREELANCE)) {
             Freelance freelance = freelanceRepository.findByIdUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId());
             List<Mission> missions = missionRepository.findAll();
-            List<Matching> matchings = new ArrayList<>();
+            List<MatchingDTO> matchings = new ArrayList<>();
 
             this.matchingRepository.findByFreelance(freelance).forEach(matching -> {
                 if (matching.isFreelanceVoted() == null || !matching.isFreelanceVoted()) {
-                    matchings.add(matching);
+                    matchings.add(toDTO(matching));
                 }
                 missions.remove(matching.getMission());
             });
@@ -186,18 +186,18 @@ public class MatchingResource {
                 Matching matching = new Matching();
                 matching.setFreelance(freelance);
                 matching.setMission(mission);
-                matchings.add(matching);
+                matchings.add(toDTO(matching));
             });
 
             return matchings;
         } else if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.RECRUITER)) {
             Mission mission = missionRepository.findOne(id);
             List<Freelance> freelances = freelanceRepository.findAll();
-            List<Matching> matchings = new ArrayList<>();
+            List<MatchingDTO> matchings = new ArrayList<>();
 
             this.matchingRepository.findByMission(mission).forEach(matching -> {
                 if (matching.isRecruiterVoted() == null || !matching.isRecruiterVoted()) {
-                    matchings.add(matching);
+                    matchings.add(toDTO(matching));
                 }
                 freelances.remove(matching.getFreelance());
             });
@@ -206,13 +206,29 @@ public class MatchingResource {
                 Matching matching = new Matching();
                 matching.setFreelance(freelance);
                 matching.setMission(mission);
-                matchings.add(matching);
+                matchings.add(toDTO(matching));
             });
 
             return matchings;
         }
 
         return null;
+    }
+
+    private MatchingDTO toDTO(Matching matching) {
+        MatchingDTO dto = new MatchingDTO();
+        dto.setId(matching.getId());
+        dto.setScore(matching.getScore());
+        dto.setfLikedDate(matching.getfLikedDate());
+        dto.setFreelanceLiked(matching.isFreelanceLiked());
+        dto.setrLikedDate(matching.getrLikedDate());
+        dto.setFreelanceVoted(matching.isFreelanceVoted());
+        dto.setRecruiterVoted(matching.isRecruiterVoted());
+        dto.setMission(matching.getMission());
+        dto.setFreelance(matching.getFreelance());
+        dto.setFreelanceProfile(userProfileRepository.getOne(matching.getFreelance().getIdUser()));
+        dto.setMissionProfile(userProfileRepository.getOne(matching.getMission().getRecruiter().getIdUser()));
+        return dto;
     }
 
     private List<Matching> convertMatchingSolutionToMatchings(FreelanceMatchingSolution foundMatching) {
