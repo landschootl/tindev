@@ -4,6 +4,7 @@ import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boo
 import { Mission } from '../../entities/mission/mission.model';
 import { MissionService } from '../../entities/mission/mission.service';
 import { EventManager } from 'ng-jhipster';
+import {ToasterService, ToasterConfig} from "angular2-toaster/angular2-toaster";
 
 @Component({
     selector: 'update-mission-dialog',
@@ -15,7 +16,11 @@ export class UpdateMissionComponent {
     closeResult: string;
     modalRef: NgbModalRef;
 
-    constructor(private modalService: NgbModal, private missionService: MissionService, private eventManager: EventManager) {
+    public configToaster : ToasterConfig = new ToasterConfig({
+        positionClass: 'toast-top-right'
+    });
+
+    constructor(private modalService: NgbModal, private missionService: MissionService, private eventManager: EventManager, private toasterService: ToasterService) {
     }
 
     open(content) {
@@ -43,6 +48,9 @@ export class UpdateMissionComponent {
                 this.mission = new Mission();
                 this.eventManager.broadcast({ name: 'missionListModification', content: 'OK' });
                 this.modalRef.close();
+                this.toasterService.pop('success', 'Mission', 'sauvegardés avec succès');
+            }, (error) => {
+                this.toasterService.pop('error', 'Mission', error);
             });
     }
 }

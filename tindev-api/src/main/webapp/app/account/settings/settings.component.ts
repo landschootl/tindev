@@ -4,6 +4,7 @@ import { AccountService, JhiLanguageHelper, Principal } from '../../shared';
 import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfile } from '../../entities/user-profile/user-profile.model';
 import { UserProfileService } from '../../entities/user-profile/user-profile.service';
+import {ToasterService, ToasterConfig} from "angular2-toaster/angular2-toaster";
 
 @Component({
     selector: 'jhi-settings',
@@ -22,12 +23,17 @@ export class SettingsComponent implements OnInit {
     profileUrl = 'http://www.iconsfind.com/wp-content/uploads/2016/10/20161014_58006bf6e7079.png';
     coverUrl = 'http://dsi.u-clermont1.fr/wp-content/uploads/2015/08/WiFi.jpg';
 
+    public configToaster : ToasterConfig = new ToasterConfig({
+        positionClass: 'toast-top-right'
+    });
+
     constructor(private account: AccountService,
         private principal: Principal,
         private languageService: JhiLanguageService,
         private userProfileService: UserProfileService,
         private languageHelper: JhiLanguageHelper,
-        private config: NgbTabsetConfig) {
+        private config: NgbTabsetConfig,
+        private toasterService: ToasterService) {
         this.languageService.setLocations(['settings']);
     }
 
@@ -51,6 +57,7 @@ export class SettingsComponent implements OnInit {
         this.account.save(this.settingsAccount).subscribe(() => {
             this.error = null;
             this.success = 'OK';
+            this.toasterService.pop('success', 'Informations du compte', 'sauvegardés avec succès');
             this.principal.identity(true).then((account) => {
                 this.settingsAccount = this.copyAccount(account);
             });
@@ -62,6 +69,7 @@ export class SettingsComponent implements OnInit {
         }, () => {
             this.success = null;
             this.error = 'ERROR';
+            this.toasterService.pop('error', 'Informations du compte', 'problème lors de la savegarde');
         });
     }
 

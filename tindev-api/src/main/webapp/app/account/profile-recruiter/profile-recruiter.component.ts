@@ -30,17 +30,14 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
         positionClass: 'toast-top-right'
     });
 
-    private toasterService: ToasterService;
-
     constructor(private jhiLanguageService: JhiLanguageService,
         private recruiterService: RecruiterService,
         private userProfileService: UserProfileService,
         private missionService: MissionService,
         private eventManager: EventManager,
-        toasterService: ToasterService,
+        private toasterService: ToasterService,
         private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['userProfile']);
-        this.toasterService = toasterService;
     }
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
@@ -77,10 +74,10 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
         this.userProfileService.update(this.userProfile)
             .subscribe(
                 (res: UserProfile) => {
-                    this.toasterService.pop('success', 'Information utilisateur', 'Les informations utilisateurs sont bien sauvegardé');
+                    this.toasterService.pop('success', 'Informations utilisateur', 'sauvegardés avec succès');
                 },
                 (res: Response) => {
-                    console.log('error => ', res);
+                    this.toasterService.pop('error', 'Informations utilisateur', res.text());
                 });
     }
 
@@ -89,9 +86,10 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
             .subscribe(
                 (res: Recruiter) => {
                     this.recruiterProfile = res;
+                    this.toasterService.pop('success', 'Informations métier', 'sauvegardés avec succès');
                 },
                 (res: Response) => {
-                    console.log('error => ', res);
+                    this.toasterService.pop('error', 'Informations métier', res.text());
                 });
     }
 
