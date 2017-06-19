@@ -4,21 +4,14 @@
             <div class="cover-picture">
                 <img class="cover-image-lg" src="{{coverUrl}}" alt="Profile image example"/>
                 <img class="cover-image-profile thumbnail"
-                     src="{{userProfile?.photoUrl===''?profileUrl:userProfile?.photoUrl}}"
+                     src="{{((userProfile?.photoUrl==='')||(!userProfile?.photoUrl))?profileUrl:userProfile?.photoUrl}}"
                      alt="Profile image example"/>
-                <div class="cover-profile-text">
-                    <h4 *ngIf="settingsAccount">
-                        <b>{{settingsAccount.firstName===""?"«nom»":settingsAccount.firstName}}</b>
-                        {{settingsAccount.lastName===""?"«prenom»":settingsAccount.lastName}}</h4>
-                </div>
             </div>
-            <br>
-            <br>
             <br>
             <jhi-alert-error></jhi-alert-error>
             <ngb-tabset>
                 <ngb-tab title="Informations personnelles">
-                    <template ngbTabContent>
+                    <ng-template ngbTabContent>
                         <br>
                         <div *ngIf="settingsAccount">
                             <div *ngIf="settingsAccount.authorities.includes('ROLE_FREELANCE')">
@@ -30,10 +23,10 @@
                                                        [userProfile]="userProfile"></jhi-profile-recruiter>
                             </div>
                         </div>
-                    </template>
+                    </ng-template>
                 </ngb-tab>
                 <ngb-tab title="Informations du compte">
-                    <template ngbTabContent>
+                    <ng-template ngbTabContent>
                         <br>
                         <form name="form" role="form" #settingsForm="ngForm" *ngIf="settingsAccount" novalidate>
                             <div class="form-group">
@@ -116,7 +109,7 @@
                                 </div>
                             </div>
                         </form>
-                    </template>
+                    </ng-template>
                 </ngb-tab>
             </ngb-tabset>
         </div>
