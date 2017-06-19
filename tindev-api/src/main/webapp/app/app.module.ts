@@ -22,10 +22,12 @@ import {
     PageRibbonComponent,
     ProfileService
 } from './layouts';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         TindevSharedModule,

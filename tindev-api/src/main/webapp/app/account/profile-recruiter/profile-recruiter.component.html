@@ -1,4 +1,5 @@
 <div *ngIf="userProfile && recruiterProfile">
+    <toaster-container [toasterconfig]="configToaster"></toaster-container>
     <div class="row">
         <p class="profile-sous-title col-md-8">MES INFORMATIONS UTILISATEUR</p>
         <button (click)="saveUserProfile()" type="button" class="edit-button btn btn-sm col-md-4">

@@ -9,6 +9,7 @@ import { UserProfile } from '../../entities/user-profile/user-profile.model';
 import { Mission } from '../../entities/mission/mission.model';
 import { MissionService } from '../../entities/mission/mission.service';
 import { Subscription } from 'rxjs/Subscription';
+import {ToasterService, ToasterConfig} from 'angular2-toaster';
 
 @Component({
     selector: 'jhi-profile-recruiter',
@@ -25,13 +26,21 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
     missions: Mission[];
     newMission: Mission;
 
+    public configToaster : ToasterConfig = new ToasterConfig({
+        positionClass: 'toast-top-right'
+    });
+
+    private toasterService: ToasterService;
+
     constructor(private jhiLanguageService: JhiLanguageService,
         private recruiterService: RecruiterService,
         private userProfileService: UserProfileService,
         private missionService: MissionService,
         private eventManager: EventManager,
+        toasterService: ToasterService,
         private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['userProfile']);
+        this.toasterService = toasterService;
     }
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
@@ -68,7 +77,7 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
         this.userProfileService.update(this.userProfile)
             .subscribe(
                 (res: UserProfile) => {
-
+                    this.toasterService.pop('success', 'Information utilisateur', 'Les informations utilisateurs sont bien sauvegardé');
                 },
                 (res: Response) => {
                     console.log('error => ', res);
