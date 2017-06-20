@@ -139,4 +139,18 @@ export class MatchingPage {
         }
     }
 
+    getCompletedProfile(): boolean {
+        if (this.auth.currentUser) {
+            return this.auth.getUserInfo().completedProfile;
+        }
+        return false;
+    }
+
+    isRecruiter(): boolean {
+        if (this.auth.currentUser) {
+            return this.auth.currentUser.recruiter;
+        }
+        return false;
+    }
+
 }

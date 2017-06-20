@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content padding>
-    <div *ngIf="auth.getUserInfo().completedProfile">
+    <div *ngIf="getCompletedProfile()">
         <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
 
             <!-- Affichage dans le cas d'un freelance -->
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <div *ngIf="!auth.getUserInfo().completedProfile">
+    <div *ngIf="!getCompletedProfile()">
         <div>
             <ion-card>
                 <ion-item>
@@ -53,7 +53,7 @@
             </ion-card>
         </div>
     </div>
-    <div id="another-mission" *ngIf="this.auth.currentUser.recruiter">
+    <div id="another-mission" *ngIf="isRecruiter()">
         <button ion-button (click)="goToMissionSelection()">
             <ion-icon class="margin-right" name="arrow-dropleft"></ion-icon>
             <p>Match with another mission</p>

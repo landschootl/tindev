@@ -10,6 +10,7 @@ import {
 } from 'ionic-angular';
 import { TindevSession } from '../../providers/tindev-session';
 import { AuthService } from '../../providers/auth-service';
+import { Storage } from '@ionic/storage';
 import { MatchingPage } from '../../pages/matching/matching';
 import { RegisterPage } from '../../pages/register/register';
 import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
@@ -24,7 +25,7 @@ export class HomePage {
     loading: Loading;
     registerCredentials = { username: 'freelance', password: 'freelance' };
 
-    constructor(public nav: NavController, public navParams: NavParams,
+    constructor(public nav: NavController, public navParams: NavParams, private storage: Storage,
         public tindevSession: TindevSession, private auth: AuthService,
         private alertCtrl: AlertController, private loadingCtrl: LoadingController,
         private menu: MenuController, private toastCtrl: ToastController, private matchingService: MatchingService) {
@@ -33,6 +34,11 @@ export class HomePage {
     }
 
     ionViewDidLoad() {
+        this.storage.get('currentUser').then((data: any) => {
+            if (data) {
+                this.login();
+            }
+        });
     }
 
     public createAccount() {

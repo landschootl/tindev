@@ -6,17 +6,21 @@ import { Http, RequestOptions, Response } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { UserService } from './user-service';
 import 'rxjs/add/operator/map';
-//Sauf erreur de ma part, ca ne devrait pas être ici je suppose
 
 @Injectable()
 export class AuthService {
     public currentUser: User;
     public token: string;
 
-    constructor(private http: Http, private storage: Storage, private apic: ApiUtils, private user: UserService) {
-        this.storage.get('currentUser').then((user: any) => {
-            let currentUser = JSON.parse(user);
-            this.token = currentUser && currentUser.token;
+    constructor(private http: Http,
+        private storage: Storage,
+        private apic: ApiUtils,
+        private user: UserService) {
+        this.storage.get('currentUser').then((data: any) => {
+            if (data) {
+                this.currentUser = JSON.parse(data).user;
+                this.token = this.currentUser && this.currentUser.token;
+            }
         });
     }
 
@@ -73,11 +77,7 @@ export class AuthService {
     }
 
     public logout() {
-        return Observable.create(observer => {
-            this.currentUser = null;
-            this.storage.remove('currentUser');
-            observer.next(true);
-            observer.complete();
-        });
+        this.currentUser = null;
+        this.storage.remove('currentUser');
     }
 }
