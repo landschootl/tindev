@@ -9,6 +9,7 @@ import { Specialty } from '../../entities/specialty/specialty.model';
 import { Domain } from '../../entities/domain/domain.model';
 import { SpecialtyService } from '../../entities/specialty/specialty.service';
 import { DomainService } from '../../entities/domain/domain.service';
+import {ToasterService, ToasterConfig} from "angular2-toaster";
 
 @Component({
     selector: 'jhi-profile-freelance',
@@ -25,11 +26,16 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     specialties: Specialty[];
     domains: Domain[];
 
+    public configToaster : ToasterConfig = new ToasterConfig({
+        positionClass: 'toast-top-right'
+    });
+
     constructor(private jhiLanguageService: JhiLanguageService,
         private freelanceService: FreelanceService,
         private userProfileService: UserProfileService,
         private specialtyService: SpecialtyService,
         private domainService: DomainService,
+        private toasterService: ToasterService,
         private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['userProfile']);
     }
@@ -69,10 +75,10 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.userProfileService.update(this.userProfile)
             .subscribe(
                 (res: UserProfile) => {
-
+                    this.toasterService.pop('success', 'Informations utilisateur', 'sauvegardés avec succès');
                 },
                 (res: Response) => {
-                    console.log('error => ', res);
+                    this.toasterService.pop('error', 'Informations utilisateur', res.statusText);
                 });
     }
 
@@ -81,9 +87,10 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
             .subscribe(
                 (res: Freelance) => {
                     this.freelanceProfile = res;
+                    this.toasterService.pop('success', 'Informations métier', 'sauvegardés avec succès');
                 },
                 (res: Response) => {
-                    console.log('error => ', res);
+                    this.toasterService.pop('error', 'Informations métier', res.statusText);
                 });
     }
 
