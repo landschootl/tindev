@@ -94,23 +94,6 @@ public class DiscussionResourceIntTest {
 
     @Test
     @Transactional
-    public void createDiscussion() throws Exception {
-        int databaseSizeBeforeCreate = discussionRepository.findAll().size();
-
-        // Create the Discussion
-        restDiscussionMockMvc.perform(post("/api/discussions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(discussion)))
-            .andExpect(status().isCreated());
-
-        // Validate the Discussion in the database
-        List<Discussion> discussionList = discussionRepository.findAll();
-        assertThat(discussionList).hasSize(databaseSizeBeforeCreate + 1);
-        Discussion testDiscussion = discussionList.get(discussionList.size() - 1);
-    }
-
-    @Test
-    @Transactional
     public void createDiscussionWithExistingId() throws Exception {
         int databaseSizeBeforeCreate = discussionRepository.findAll().size();
 
@@ -160,45 +143,6 @@ public class DiscussionResourceIntTest {
         // Get the discussion
         restDiscussionMockMvc.perform(get("/api/discussions/{id}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
-    }
-
-    @Test
-    @Transactional
-    public void updateDiscussion() throws Exception {
-        // Initialize the database
-        discussionRepository.saveAndFlush(discussion);
-        int databaseSizeBeforeUpdate = discussionRepository.findAll().size();
-
-        // Update the discussion
-        Discussion updatedDiscussion = discussionRepository.findOne(discussion.getId());
-
-        restDiscussionMockMvc.perform(put("/api/discussions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedDiscussion)))
-            .andExpect(status().isOk());
-
-        // Validate the Discussion in the database
-        List<Discussion> discussionList = discussionRepository.findAll();
-        assertThat(discussionList).hasSize(databaseSizeBeforeUpdate);
-        Discussion testDiscussion = discussionList.get(discussionList.size() - 1);
-    }
-
-    @Test
-    @Transactional
-    public void updateNonExistingDiscussion() throws Exception {
-        int databaseSizeBeforeUpdate = discussionRepository.findAll().size();
-
-        // Create the Discussion
-
-        // If the entity doesn't have an ID, it will be created instead of just being updated
-        restDiscussionMockMvc.perform(put("/api/discussions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(discussion)))
-            .andExpect(status().isCreated());
-
-        // Validate the Discussion in the database
-        List<Discussion> discussionList = discussionRepository.findAll();
-        assertThat(discussionList).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
     @Test
