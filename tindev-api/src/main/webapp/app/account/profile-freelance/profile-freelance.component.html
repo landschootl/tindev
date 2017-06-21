@@ -134,8 +134,8 @@
         <tbody>
         <tr *ngIf="trainings && trainings.length===0">Aucune formation</tr>
         <tr *ngFor="let training of trainings">
-            <td>{{training.startYear}}</td>
-            <td>{{training.endYear}}</td>
+            <td>{{training.startDate}}</td>
+            <td>{{training.endDate}}</td>
             <td>{{training.name}}</td>
             <td>{{training.location}}</td>
             <td>

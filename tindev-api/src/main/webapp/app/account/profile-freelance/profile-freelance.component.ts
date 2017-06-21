@@ -73,6 +73,8 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.newSkill = new Skill();
+        this.newExperience = new Skill();
+        this.newTraining = new Skill();
         this.registerChangeInSkills();
         this.registerChangeInExperiences();
         this.registerChangeInTrainings();
@@ -125,7 +127,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     }
 
     registerChangeInExperiences() {
-        this.eventSubscriberExperiences = this.eventManager.subscribe('experienceListExperience', (response) => this.loadExperiences(this.freelanceProfile.id));
+        this.eventSubscriberExperiences = this.eventManager.subscribe('experienceListModification', (response) => this.loadExperiences(this.freelanceProfile.id));
     }
 
     loadTrainings(idFreelance) {
@@ -136,7 +138,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     }
 
     registerChangeInTrainings() {
-        this.eventSubscriberTrainings = this.eventManager.subscribe('trainingListExperience', (response) => this.loadTrainings(this.freelanceProfile.id));
+        this.eventSubscriberTrainings = this.eventManager.subscribe('trainingListModification', (response) => this.loadTrainings(this.freelanceProfile.id));
     }
 
     saveUserProfile() {

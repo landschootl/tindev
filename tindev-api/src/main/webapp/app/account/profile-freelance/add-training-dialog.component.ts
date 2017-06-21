@@ -52,7 +52,7 @@ export class AddTrainingComponent {
                 let freelance: Freelance = Object.assign(new Freelance(), this.newTraining.freelance);
                 this.newTraining = new Training();
                 this.newTraining.freelance = freelance;
-                this.eventManager.broadcast({ name: 'TrainingListModification', content: 'OK' });
+                this.eventManager.broadcast({ name: 'trainingListModification', content: 'OK' });
                 this.modalRef.close();
                 this.toasterService.pop('success', 'Training', 'sauvegardés avec succès');
             },

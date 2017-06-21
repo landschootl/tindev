@@ -55,7 +55,7 @@ export class AddExperienceComponent {
                 let freelance: Freelance = Object.assign(new Freelance(), this.newExperience.freelance);
                 this.newExperience = new Experience();
                 this.newExperience.freelance = freelance;
-                this.eventManager.broadcast({ name: 'ExperienceListModification', content: 'OK' });
+                this.eventManager.broadcast({ name: 'experienceListModification', content: 'OK' });
                 this.modalRef.close();
                 this.toasterService.pop('success', 'Experience', 'sauvegardés avec succès');
             },
