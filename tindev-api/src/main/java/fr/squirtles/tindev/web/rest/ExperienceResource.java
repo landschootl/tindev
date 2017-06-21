@@ -2,6 +2,7 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Experience;
+import fr.squirtles.tindev.domain.Skill;
 import fr.squirtles.tindev.repository.ExperienceRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -50,6 +51,14 @@ public class ExperienceResource {
         return ResponseEntity.created(new URI("/api/experiences/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
+    }
+
+    @GetMapping("/freelances/{idFreelance}/experiences")
+    @Timed
+    public List<Experience> getSkillsByFreelance(@PathVariable Long idFreelance) {
+        log.debug("REST request to get Experience : {}", idFreelance);
+        List<Experience> experiences = this.experienceRepository.findByFreelance(idFreelance);
+        return experiences;
     }
 
     /**
