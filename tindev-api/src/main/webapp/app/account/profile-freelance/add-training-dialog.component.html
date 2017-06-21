@@ -1,0 +1,59 @@
+<toaster-container [toasterconfig]="configToaster"></toaster-container>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Ajouter une formation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="form-control-label" for="field_startDate">Start
+                Date</label>
+            <div class="input-group">
+                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker
+                       #startDateDp="ngbDatepicker" [(ngModel)]="newTraining.startDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="startDateDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_endDate">End
+                Date</label>
+            <div class="input-group">
+                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker
+                       #endDateDp="ngbDatepicker" [(ngModel)]="newTraining.endDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                   [(ngModel)]="newTraining.name"
+            />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label"
+                   for="field_location">Location</label>
+            <input type="text" class="form-control" name="location" id="field_location"
+                   [(ngModel)]="newTraining.location"
+            />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createTraining()">Créer</button>
+    </div>
+</ng-template>
+
+<button type="button" class="edit-button btn btn-sm col-md-12" (click)="open(content)">
+    <span class="button-text">Ajouter une formation</span>
+</button>

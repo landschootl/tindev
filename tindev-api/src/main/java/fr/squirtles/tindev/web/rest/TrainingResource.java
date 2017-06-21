@@ -1,6 +1,7 @@
 package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import fr.squirtles.tindev.domain.Experience;
 import fr.squirtles.tindev.domain.Training;
 import fr.squirtles.tindev.repository.TrainingRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
@@ -50,6 +51,14 @@ public class TrainingResource {
         return ResponseEntity.created(new URI("/api/trainings/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
+    }
+
+    @GetMapping("/freelances/{idFreelance}/trainings")
+    @Timed
+    public List<Training> getSkillsByFreelance(@PathVariable Long idFreelance) {
+        log.debug("REST request to get Training : {}", idFreelance);
+        List<Training> trainings = this.trainingRepository.findByFreelance(idFreelance);
+        return trainings;
     }
 
     /**

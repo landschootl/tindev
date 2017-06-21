@@ -1,0 +1,53 @@
+<toaster-container [toasterconfig]="configToaster"></toaster-container>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Ajouter une expérience</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="form-control-label" for="field_startYear">Start
+                Year</label>
+            <div class="input-group">
+                <input id="field_startYear" type="text" class="form-control" name="startYear" ngbDatepicker
+                       #startYearDp="ngbDatepicker" [(ngModel)]="newExperience.startYear"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="startYearDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_endYear">End
+                Year</label>
+            <div class="input-group">
+                <input id="field_endYear" type="text" class="form-control" name="endYear" ngbDatepicker
+                       #endYearDp="ngbDatepicker" [(ngModel)]="newExperience.endYear"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="endYearDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label"
+                   for="field_location">Location</label>
+            <input type="text" class="form-control" name="location" id="field_location"
+                   [(ngModel)]="newExperience.location"
+            />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createExperience()">Créer</button>
+    </div>
+</ng-template>
+
+<button type="button" class="edit-button btn btn-sm col-md-12" (click)="open(content)">
+    <span class="button-text">Ajouter une expérience</span>
+</button>
