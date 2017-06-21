@@ -13,6 +13,9 @@ import {ToasterService, ToasterConfig} from "angular2-toaster";
 import {Skill} from "../../entities/skill/skill.model";
 import {SkillService} from "../../entities/skill/skill.service";
 import {Subscription} from "rxjs/Subscription";
+import {Experience} from "../../entities/experience/experience.model";
+import {Training} from "../../entities/training/training.model";
+import {ExperienceService} from "../../entities/experience/experience.service";
 
 @Component({
     selector: 'jhi-profile-freelance',
@@ -22,18 +25,25 @@ import {Subscription} from "rxjs/Subscription";
     ]
 })
 export class ProfileFreelanceComponent implements OnInit, OnChanges {
-    eventSubscriber: Subscription;
+    eventSubscriberSkills: Subscription;
+    eventSubscriberExperiences: Subscription;
 
     @Input() settingsAccount: any;
 
     @Input() userProfile: UserProfile;
     freelanceProfile: Freelance;
+
     specialties: Specialty[];
-
     domains: Domain[];
-    skills: Skill[];
 
+    skills: Skill[];
     newSkill: Skill;
+
+    experiences: Experience[];
+    newExperience: Experience;
+
+    training: Training[];
+    newTraining: Training;
 
     public configToaster : ToasterConfig = new ToasterConfig({
         positionClass: 'toast-top-right'
@@ -46,6 +56,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         private skillService: SkillService,
         private domainService: DomainService,
         private toasterService: ToasterService,
+        private experienceService: ExperienceService,
         private eventManager: EventManager,
         private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['userProfile']);
@@ -60,6 +71,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     ngOnInit(): void {
         this.newSkill = new Skill();
         this.registerChangeInSkills();
+        this.registerChangeInExperiences();
         this.specialtyService.query()
             .subscribe(
                 (res) => this.specialties = res.json()
@@ -83,6 +95,8 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
             this.freelanceProfile = freelanceProfile;
             this.loadSkills(freelanceProfile.id);
             this.newSkill.freelance = freelanceProfile;
+            this.loadExperiences(freelanceProfile.id);
+            this.newExperience.freelance = freelanceProfile;
         });
     }
 
@@ -94,7 +108,18 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     }
 
     registerChangeInSkills() {
-        this.eventSubscriber = this.eventManager.subscribe('skillListModification', (response) => this.loadSkills(this.freelanceProfile.id));
+        this.eventSubscriberSkills = this.eventManager.subscribe('skillListModification', (response) => this.loadSkills(this.freelanceProfile.id));
+    }
+
+    loadExperiences(idFreelance) {
+        this.experienceService.findByFreelance(idFreelance).subscribe(
+            (res) => {
+                this.experiences = res.json();
+            });
+    }
+
+    registerChangeInExperiences() {
+        this.eventSubscriberExperiences = this.eventManager.subscribe('experienceListExperience', (response) => this.loadExperiences(this.freelanceProfile.id));
     }
 
     saveUserProfile() {

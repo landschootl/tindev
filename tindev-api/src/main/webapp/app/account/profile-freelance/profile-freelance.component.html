@@ -27,6 +27,8 @@
     </div>
 
 
+
+
     <hr>
     <div class="row">
         <p class="profile-sous-title col-md-8">MES INFORMATIONS METIER</p>
@@ -71,6 +73,45 @@
             </option>
         </select>
     </div>
+
+
+
+
+
+    <hr>
+    <div class="row">
+        <p class="profile-sous-title col-md-8">MES EXPÉRIENCES</p>
+        <add-experience-dialog [newExperience]="newExperience"  class="col-md-4"></add-experience-dialog>
+    </div>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Lieu</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="experiences && experiences.length===0">Aucune experience</tr>
+        <tr *ngFor="let experience of experiences">
+            <td>{{experience.startYear}}</td>
+            <td>{{experience.endYear}}</td>
+            <td>{{experience.location}}</td>
+            <td>
+                <button type="submit"
+                        [routerLink]="['/', { outlets: { popup: 'experience/'+ experience.id + '/delete'} }]"
+                        replaceUrl="true"
+                        class="btn btn-danger btn-sm">
+                    <span class="fa fa-remove"></span>
+                    <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 
 
 

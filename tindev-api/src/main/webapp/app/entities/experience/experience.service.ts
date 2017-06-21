@@ -83,4 +83,9 @@ export class ExperienceService {
         }
         return options;
     }
+
+    findByFreelance(idFreelance: any) : Observable<Response> {
+        return this.http.get(`api/freelances/${idFreelance}/experiences`)
+            .map((res: any) => res);
+    }
 }
