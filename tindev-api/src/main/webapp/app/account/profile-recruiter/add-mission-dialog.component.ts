@@ -5,6 +5,8 @@ import { Mission } from '../../entities/mission/mission.model';
 import { MissionService } from '../../entities/mission/mission.service';
 import { EventManager } from 'ng-jhipster';
 import {ToasterService, ToasterConfig} from "angular2-toaster/angular2-toaster";
+import {Recruiter} from "../../entities/recruiter/recruiter.model";
+import {UserProfile} from "../../entities/user-profile/user-profile.model";
 
 @Component({
     selector: 'add-mission-dialog',
@@ -48,7 +50,9 @@ export class AddMissionComponent {
     createMission() {
         this.missionService.create(this.newMission).subscribe(
             (res: Response) => {
+                let recruiter: Recruiter = Object.assign(new Recruiter(), this.newMission.recruiter);
                 this.newMission = new Mission();
+                this.newMission.recruiter = recruiter;
                 this.eventManager.broadcast({ name: 'missionListModification', content: 'OK' });
                 this.modalRef.close();
                 this.toasterService.pop('success', 'Mission', 'sauvegardés avec succès');
