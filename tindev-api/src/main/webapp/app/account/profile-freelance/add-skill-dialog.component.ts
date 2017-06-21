@@ -16,7 +16,7 @@ import {SkillService} from "../../entities/skill/skill.service";
     }`]
 })
 export class AddSkillComponent {
-    @Input() newSkill: Mission;
+    @Input() newSkill: Skill;
     closeResult: string;
     modalRef: NgbModalRef;
 
@@ -49,7 +49,7 @@ export class AddSkillComponent {
     createSkill() {
         this.skillService.create(this.newSkill).subscribe(
             (res: Response) => {
-                this.newSkill = new Skill();
+                this.newSkill.name = "";
                 this.eventManager.broadcast({ name: 'skillListModification', content: 'OK' });
                 this.modalRef.close();
                 this.toasterService.pop('success', 'Compétence', 'sauvegardés avec succès');

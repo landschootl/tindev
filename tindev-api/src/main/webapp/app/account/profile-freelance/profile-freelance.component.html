@@ -77,7 +77,7 @@
     <hr>
     <div class="row">
         <p class="profile-sous-title col-md-8">MES COMPÉTENCES</p>
-        <!--<add-mission-dialog [newMission]="newMission" class="col-md-4"></add-mission-dialog>-->
+        <add-skill-dialog [newSkill]="newSkill"  class="col-md-4"></add-skill-dialog>
     </div>
     <br>
     <table class="table table-hover">
@@ -88,6 +88,7 @@
         </tr>
         </thead>
         <tbody>
+        <tr *ngIf="skills && skills.length===0">Aucune compétence</tr>
         <tr *ngFor="let skill of skills">
             <td>{{skill.name}}</td>
             <td>

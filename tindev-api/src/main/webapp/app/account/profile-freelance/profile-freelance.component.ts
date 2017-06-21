@@ -82,7 +82,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.freelanceService.findByIdUser(id).subscribe(freelanceProfile => {
             this.freelanceProfile = freelanceProfile;
             this.loadSkills(freelanceProfile.id);
-            this.newSkill.freelance = freelanceProfile.id;
+            this.newSkill.freelance = freelanceProfile;
         });
     }
 

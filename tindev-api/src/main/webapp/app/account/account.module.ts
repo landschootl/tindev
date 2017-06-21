@@ -23,6 +23,7 @@ import {
 import { AddMissionComponent } from './profile-recruiter/add-mission-dialog.component';
 import { UpdateMissionComponent } from './profile-recruiter/update-mission-dialog.component';
 import {ToasterModule} from "angular2-toaster/angular2-toaster";
+import {AddSkillComponent} from "./profile-freelance/add-skill-dialog.component";
 
 @NgModule({
     imports: [
@@ -41,7 +42,8 @@ import {ToasterModule} from "angular2-toaster/angular2-toaster";
         ProfileFreelanceComponent,
         ProfileRecruiterComponent,
         AddMissionComponent,
-        UpdateMissionComponent
+        UpdateMissionComponent,
+        AddSkillComponent
     ],
     providers: [
         Register,

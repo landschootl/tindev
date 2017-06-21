@@ -60,6 +60,7 @@
         </tr>
         </thead>
         <tbody>
+        <tr *ngIf="missions && missions.length===0">Aucune mission</tr>
         <tr *ngFor="let mission of missions">
             <td>{{mission.title}}</td>
             <td>{{mission.description}}</td>
