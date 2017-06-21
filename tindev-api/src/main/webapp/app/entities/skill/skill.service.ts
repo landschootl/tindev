@@ -59,6 +59,6 @@ export class SkillService {
 
     findByFreelance(idFreelance: any) : Observable<Response> {
         return this.http.get(`api/freelances/${idFreelance}/skills`)
-            .map((res: any) => res.json());
+            .map((res: any) => res);
     }
 }

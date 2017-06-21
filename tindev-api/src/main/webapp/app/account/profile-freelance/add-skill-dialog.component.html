@@ -1,0 +1,26 @@
+<toaster-container [toasterconfig]="configToaster"></toaster-container>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Ajouter une compétence</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Nom</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                   [(ngModel)]="newSkill.name"
+            />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createSkill()">Créer</button>
+    </div>
+</ng-template>
+
+<button type="button" class="edit-button btn btn-sm col-md-12" (click)="open(content)">
+    <span class="button-text">Ajouter une compétence</span>
+</button>

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
 import { UserProfile } from '../../entities/user-profile/user-profile.model';
-import { JhiLanguageService } from 'ng-jhipster';
+import {EventManager, JhiLanguageService} from 'ng-jhipster';
 import { UserProfileService } from '../../entities/user-profile/user-profile.service';
 import { ActivatedRoute } from '@angular/router';
 import { FreelanceService } from '../../entities/freelance/freelance.service';
@@ -12,6 +12,7 @@ import { DomainService } from '../../entities/domain/domain.service';
 import {ToasterService, ToasterConfig} from "angular2-toaster";
 import {Skill} from "../../entities/skill/skill.model";
 import {SkillService} from "../../entities/skill/skill.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
     selector: 'jhi-profile-freelance',
@@ -21,14 +22,17 @@ import {SkillService} from "../../entities/skill/skill.service";
     ]
 })
 export class ProfileFreelanceComponent implements OnInit, OnChanges {
-    @Input() settingsAccount: any;
-    @Input() userProfile: UserProfile;
+    eventSubscriber: Subscription;
 
+    @Input() settingsAccount: any;
+
+    @Input() userProfile: UserProfile;
     freelanceProfile: Freelance;
     specialties: Specialty[];
-    domains: Domain[];
 
+    domains: Domain[];
     skills: Skill[];
+
     newSkill: Skill;
 
     public configToaster : ToasterConfig = new ToasterConfig({
@@ -42,6 +46,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         private skillService: SkillService,
         private domainService: DomainService,
         private toasterService: ToasterService,
+        private eventManager: EventManager,
         private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['userProfile']);
     }
@@ -54,6 +59,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.newSkill = new Skill();
+        this.registerChangeInSkills();
         this.specialtyService.query()
             .subscribe(
                 (res) => this.specialties = res.json()
@@ -85,6 +91,10 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
             (res) => {
                 this.skills = res.json();
             });
+    }
+
+    registerChangeInSkills() {
+        this.eventSubscriber = this.eventManager.subscribe('skillListModification', (response) => this.loadSkills(this.freelanceProfile.id));
     }
 
     saveUserProfile() {
