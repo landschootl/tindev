@@ -83,4 +83,9 @@ export class TrainingService {
         }
         return options;
     }
+
+    findByFreelance(idFreelance: any) : Observable<Response> {
+        return this.http.get(`api/freelances/${idFreelance}/trainings`)
+            .map((res: any) => res);
+    }
 }

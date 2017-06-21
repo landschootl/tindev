@@ -49,9 +49,9 @@ export class AddTrainingComponent {
     createTraining() {
         this.trainingService.create(this.newTraining).subscribe(
             (res: Response) => {
-                let recruiter: Freelance = Object.assign(new Freelance(), this.newTraining.freelance);
+                let freelance: Freelance = Object.assign(new Freelance(), this.newTraining.freelance);
                 this.newTraining = new Training();
-                this.newTraining.freelance = recruiter;
+                this.newTraining.freelance = freelance;
                 this.eventManager.broadcast({ name: 'TrainingListModification', content: 'OK' });
                 this.modalRef.close();
                 this.toasterService.pop('success', 'Training', 'sauvegardés avec succès');

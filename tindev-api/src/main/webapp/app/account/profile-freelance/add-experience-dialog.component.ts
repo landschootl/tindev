@@ -52,9 +52,9 @@ export class AddExperienceComponent {
     createExperience() {
         this.experienceService.create(this.newExperience).subscribe(
             (res: Response) => {
-                let recruiter: Freelance = Object.assign(new Freelance(), this.newExperience.freelance);
+                let freelance: Freelance = Object.assign(new Freelance(), this.newExperience.freelance);
                 this.newExperience = new Experience();
-                this.newExperience.freelance = recruiter;
+                this.newExperience.freelance = freelance;
                 this.eventManager.broadcast({ name: 'ExperienceListModification', content: 'OK' });
                 this.modalRef.close();
                 this.toasterService.pop('success', 'Experience', 'sauvegardés avec succès');

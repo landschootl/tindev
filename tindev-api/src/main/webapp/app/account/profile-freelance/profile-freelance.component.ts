@@ -16,6 +16,7 @@ import {Subscription} from "rxjs/Subscription";
 import {Experience} from "../../entities/experience/experience.model";
 import {Training} from "../../entities/training/training.model";
 import {ExperienceService} from "../../entities/experience/experience.service";
+import {TrainingService} from "../../entities/training/training.service";
 
 @Component({
     selector: 'jhi-profile-freelance',
@@ -27,6 +28,7 @@ import {ExperienceService} from "../../entities/experience/experience.service";
 export class ProfileFreelanceComponent implements OnInit, OnChanges {
     eventSubscriberSkills: Subscription;
     eventSubscriberExperiences: Subscription;
+    eventSubscriberTrainings: Subscription;
 
     @Input() settingsAccount: any;
 
@@ -42,7 +44,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     experiences: Experience[];
     newExperience: Experience;
 
-    training: Training[];
+    trainings: Training[];
     newTraining: Training;
 
     public configToaster : ToasterConfig = new ToasterConfig({
@@ -57,6 +59,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         private domainService: DomainService,
         private toasterService: ToasterService,
         private experienceService: ExperienceService,
+        private trainingService: TrainingService,
         private eventManager: EventManager,
         private route: ActivatedRoute) {
         this.jhiLanguageService.setLocations(['userProfile']);
@@ -72,6 +75,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.newSkill = new Skill();
         this.registerChangeInSkills();
         this.registerChangeInExperiences();
+        this.registerChangeInTrainings();
         this.specialtyService.query()
             .subscribe(
                 (res) => this.specialties = res.json()
@@ -96,6 +100,8 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
             this.loadSkills(freelanceProfile.id);
             this.newSkill.freelance = freelanceProfile;
             this.loadExperiences(freelanceProfile.id);
+            this.newTraining.freelance = freelanceProfile;
+            this.loadTrainings(freelanceProfile.id);
             this.newExperience.freelance = freelanceProfile;
         });
     }
@@ -120,6 +126,17 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
 
     registerChangeInExperiences() {
         this.eventSubscriberExperiences = this.eventManager.subscribe('experienceListExperience', (response) => this.loadExperiences(this.freelanceProfile.id));
+    }
+
+    loadTrainings(idFreelance) {
+        this.trainingService.findByFreelance(idFreelance).subscribe(
+            (res) => {
+                this.trainings = res.json();
+            });
+    }
+
+    registerChangeInTrainings() {
+        this.eventSubscriberTrainings = this.eventManager.subscribe('trainingListExperience', (response) => this.loadTrainings(this.freelanceProfile.id));
     }
 
     saveUserProfile() {

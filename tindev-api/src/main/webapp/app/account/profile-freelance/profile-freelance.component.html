@@ -117,6 +117,45 @@
 
     <hr>
     <div class="row">
+        <p class="profile-sous-title col-md-8">MES FORMATIONS</p>
+        <add-training-dialog [newTraining]="newTraining"  class="col-md-4"></add-training-dialog>
+    </div>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Nom</th>
+            <th>Lieu</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="trainings && trainings.length===0">Aucune formation</tr>
+        <tr *ngFor="let training of trainings">
+            <td>{{training.startYear}}</td>
+            <td>{{training.endYear}}</td>
+            <td>{{training.name}}</td>
+            <td>{{training.location}}</td>
+            <td>
+                <button type="submit"
+                        [routerLink]="['/', { outlets: { popup: 'training/'+ training.id + '/delete'} }]"
+                        replaceUrl="true"
+                        class="btn btn-danger btn-sm">
+                    <span class="fa fa-remove"></span>
+                    <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <hr>
+    <div class="row">
         <p class="profile-sous-title col-md-8">MES COMPÉTENCES</p>
         <add-skill-dialog [newSkill]="newSkill"  class="col-md-4"></add-skill-dialog>
     </div>
