@@ -1,0 +1,11 @@
+id;title;description;min_salary;max_salary;start_date;end_date;recruiter_id
+1;Développeur H/F;400;600;null;null;7
+2;Architecte H/F;600;800;null;null;7
+3;Designer H/F;300;400;null;null;7
+4;Chef de projet AMOA H/F;600;800;null;null;7
+5;Chef de projet junior H/F;400;500;null;null;8
+6;Développeur PHP H/F;400;500;null;null;8
+7;Développeur Front H/F;400;700;null;null;8
+7;Expert technique Back H/F;600;900;null;null;8
+7;Chef de projet H/F;700;900;null;null;8
+7;Coach agile H/F;600;800;null;null;8
