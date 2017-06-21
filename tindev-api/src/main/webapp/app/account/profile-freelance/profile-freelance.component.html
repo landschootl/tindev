@@ -71,4 +71,35 @@
             </option>
         </select>
     </div>
+
+
+
+    <hr>
+    <div class="row">
+        <p class="profile-sous-title col-md-8">MES COMPÉTENCES</p>
+        <!--<add-mission-dialog [newMission]="newMission" class="col-md-4"></add-mission-dialog>-->
+    </div>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let skill of skills">
+            <td>{{skill.name}}</td>
+            <td>
+                <button type="submit"
+                        [routerLink]="['/', { outlets: { popup: 'skill/'+ skill.id + '/delete'} }]"
+                        replaceUrl="true"
+                        class="btn btn-danger btn-sm">
+                    <span class="fa fa-remove"></span>
+                    <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>

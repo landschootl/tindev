@@ -52,6 +52,14 @@ public class SkillResource {
             .body(result);
     }
 
+    @GetMapping("/freelances/{idFreelance}/skills")
+    @Timed
+    public List<Skill> getSkillsByFreelance(@PathVariable Long idFreelance) {
+        log.debug("REST request to get Missions : {}", idFreelance);
+        List<Skill> skills = this.skillRepository.findByFreelance(idFreelance);
+        return skills;
+    }
+
     /**
      * PUT  /skills : Updates an existing skill.
      *

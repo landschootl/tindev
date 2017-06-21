@@ -10,6 +10,8 @@ import { Domain } from '../../entities/domain/domain.model';
 import { SpecialtyService } from '../../entities/specialty/specialty.service';
 import { DomainService } from '../../entities/domain/domain.service';
 import {ToasterService, ToasterConfig} from "angular2-toaster";
+import {Skill} from "../../entities/skill/skill.model";
+import {SkillService} from "../../entities/skill/skill.service";
 
 @Component({
     selector: 'jhi-profile-freelance',
@@ -26,6 +28,9 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     specialties: Specialty[];
     domains: Domain[];
 
+    skills: Skill[];
+    newSkill: Skill;
+
     public configToaster : ToasterConfig = new ToasterConfig({
         positionClass: 'toast-top-right'
     });
@@ -34,6 +39,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         private freelanceService: FreelanceService,
         private userProfileService: UserProfileService,
         private specialtyService: SpecialtyService,
+        private skillService: SkillService,
         private domainService: DomainService,
         private toasterService: ToasterService,
         private route: ActivatedRoute) {
@@ -47,6 +53,7 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
+        this.newSkill = new Skill();
         this.specialtyService.query()
             .subscribe(
                 (res) => this.specialties = res.json()
@@ -68,7 +75,16 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
     load(id) {
         this.freelanceService.findByIdUser(id).subscribe(freelanceProfile => {
             this.freelanceProfile = freelanceProfile;
+            this.loadSkills(freelanceProfile.id);
+            this.newSkill.freelance = freelanceProfile.id;
         });
+    }
+
+    loadSkills(idFreelance) {
+        this.skillService.findByFreelance(idFreelance).subscribe(
+            (res) => {
+                this.skills = res.json();
+            });
     }
 
     saveUserProfile() {
