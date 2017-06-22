@@ -24,7 +24,7 @@
 <ion-content padding>
     <ion-list>
         <ion-item (click)="openConversationPage(item)" *ngFor="let item of conv.discussions" detail-push>
-            <div>
+            <div *ngIf="shouldShow(item)">
                 <span class="title" color="text-primary">{{ getTitle(item) }} | <span class="interlocutor-name"
                                                                                          color="text-light"> {{getUserName(item)}}</span></span>
                 <br/>

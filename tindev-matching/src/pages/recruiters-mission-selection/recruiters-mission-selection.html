@@ -24,7 +24,7 @@
 <ion-content padding>
     <ion-list>
         <ion-item (click)="openMatchingPage(item)" *ngFor="let item of searchMatchingData" detail-push>
-            <div>
+            <div *ngIf="shouldShow(item)">
                 <span style="font-weight:bold" color="text-primary">{{ item.title }}</span>
                 <br/>
                 <br/>

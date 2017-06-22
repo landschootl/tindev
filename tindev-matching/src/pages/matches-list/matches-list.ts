@@ -64,18 +64,11 @@ export class MatchesListPage {
 
     onSearchInput(event) {
         this.showSearchLoader = true;
-        this.actualizeItems(this.searchinput);
     }
 
-    actualizeItems(input: string) {
-        this.searchMatchingData = [];
-        for (let d of this.data) {
-            if (d.project_name.toLowerCase().includes(input.toLowerCase())
-                || d.interlocutor_name.toLowerCase().includes(input.toLowerCase())) {
-                this.searchMatchingData.push(d);
-            }
-        }
-        this.showSearchLoader = false;
+    shouldShow(d: Discussion) {
+        return d.mission.title.toLowerCase().includes(this.searchinput.toLowerCase())
+            || this.getUserName(d).toLowerCase().includes(this.searchinput.toLowerCase())
     }
 
     openConversationPage(discussion: Discussion) {

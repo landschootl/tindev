@@ -69,22 +69,15 @@ export class RecruitersMissionSelectionPage {
 
     onSearchInput(event) {
         this.showSearchLoader = true;
-        this.actualizeItems(this.searchinput);
-    }
-
-    actualizeItems(input: string) {
-        this.searchMatchingData = [];
-        for (let d of this.data) {
-            if (d.title.toLowerCase().includes(input.toLowerCase())
-                || d.description.toLowerCase().includes(input.toLowerCase())) {
-                this.searchMatchingData.push(d);
-            }
-        }
-        this.showSearchLoader = false;
     }
 
     openMatchingPage(m: Mission) {
         this.matchingService.currentMatchingUser = m;
         this.navCtrl.setRoot(MatchingPage);
+    }
+
+    shouldShow(mission: Mission) {
+        return mission.title.toLowerCase().includes(this.searchinput.toLowerCase())
+            || mission.description.toLowerCase().includes(this.searchinput.toLowerCase());
     }
 }
