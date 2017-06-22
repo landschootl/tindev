@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager  } from 'ng-jhipster';
 
 import { Domain } from './domain.model';
 import { DomainService } from './domain.service';
@@ -13,14 +13,14 @@ import { DomainService } from './domain.service';
 export class DomainDetailComponent implements OnInit, OnDestroy {
 
     domain: Domain;
-    private subscription: any;
+    private subscription: Subscription;
     private eventSubscriber: Subscription;
 
-    constructor(private eventManager: EventManager,
-        private jhiLanguageService: JhiLanguageService,
+    constructor(
+        private eventManager: EventManager,
         private domainService: DomainService,
-        private route: ActivatedRoute) {
-        this.jhiLanguageService.setLocations(['domain']);
+        private route: ActivatedRoute
+    ) {
     }
 
     ngOnInit() {
@@ -35,7 +35,6 @@ export class DomainDetailComponent implements OnInit, OnDestroy {
             this.domain = domain;
         });
     }
-
     previousState() {
         window.history.back();
     }
@@ -46,6 +45,9 @@ export class DomainDetailComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInDomains() {
-        this.eventSubscriber = this.eventManager.subscribe('domainListModification', (response) => this.load(this.domain.id));
+        this.eventSubscriber = this.eventManager.subscribe(
+            'domainListModification',
+            (response) => this.load(this.domain.id)
+        );
     }
 }

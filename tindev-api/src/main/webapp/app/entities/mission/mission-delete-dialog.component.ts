@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { AlertService, EventManager } from 'ng-jhipster';
 
 import { Mission } from './mission.model';
 import { MissionPopupService } from './mission-popup.service';
@@ -16,11 +16,12 @@ export class MissionDeleteDialogComponent {
 
     mission: Mission;
 
-    constructor(private jhiLanguageService: JhiLanguageService,
+    constructor(
         private missionService: MissionService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager) {
-        this.jhiLanguageService.setLocations(['mission']);
+        private alertService: AlertService,
+        private eventManager: EventManager
+    ) {
     }
 
     clear() {
@@ -28,13 +29,14 @@ export class MissionDeleteDialogComponent {
     }
 
     confirmDelete(id: number) {
-        this.missionService.delete(id).subscribe(response => {
+        this.missionService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'missionListModification',
                 content: 'Deleted an mission'
             });
             this.activeModal.dismiss(true);
         });
+        this.alertService.success('tindevApp.mission.deleted', { param : id }, null);
     }
 }
 
@@ -47,12 +49,13 @@ export class MissionDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(private route: ActivatedRoute,
-        private missionPopupService: MissionPopupService) {
-    }
+    constructor(
+        private route: ActivatedRoute,
+        private missionPopupService: MissionPopupService
+    ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.missionPopupService
                 .open(MissionDeleteDialogComponent, params['id']);
         });

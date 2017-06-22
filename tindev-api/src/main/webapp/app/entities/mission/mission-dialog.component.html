@@ -1,79 +1,81 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myMissionLabel" jhiTranslate="tindevApp.mission.home.createOrEditLabel">Create or
-            edit a Mission</h4>
+        <h4 class="modal-title" id="myMissionLabel" jhiTranslate="tindevApp.mission.home.createOrEditLabel">Create or edit a Mission</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;
-        </button>
+                (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!mission.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="mission.id" readonly/>
+                   [(ngModel)]="mission.id" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.mission.title" for="field_title">Title</label>
             <input type="text" class="form-control" name="title" id="field_title"
-                   [(ngModel)]="mission.title"
-            />
+                [(ngModel)]="mission.title"
+             />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.mission.description" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
-                   [(ngModel)]="mission.description"
-            />
+                [(ngModel)]="mission.description"
+             />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.mission.minSalary" for="field_minSalary">Min
-                Salary</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.mission.minSalary" for="field_minSalary">Min Salary</label>
             <input type="number" class="form-control" name="minSalary" id="field_minSalary"
-                   [(ngModel)]="mission.minSalary"
-            />
+                [(ngModel)]="mission.minSalary"
+             />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.mission.maxSalary" for="field_maxSalary">Max
-                Salary</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.mission.maxSalary" for="field_maxSalary">Max Salary</label>
             <input type="number" class="form-control" name="maxSalary" id="field_maxSalary"
-                   [(ngModel)]="mission.maxSalary"
-            />
+                [(ngModel)]="mission.maxSalary"
+             />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.mission.startDate" for="field_startDate">Start
-                Date</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.mission.startDate" for="field_startDate">Start Date</label>
             <div class="input-group">
-                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker
-                       #startDateDp="ngbDatepicker" [(ngModel)]="mission.startDate"
+                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="mission.startDate"
                 />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="startDateDp.toggle()"><i
-                        class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="tindevApp.mission.endDate" for="field_endDate">End
-                Date</label>
+            <label class="form-control-label" jhiTranslate="tindevApp.mission.endDate" for="field_endDate">End Date</label>
             <div class="input-group">
-                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker
-                       #endDateDp="ngbDatepicker" [(ngModel)]="mission.endDate"
+                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="mission.endDate"
                 />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i
-                        class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>
 
         <div class="form-group">
             <label jhiTranslate="tindevApp.mission.recruiter" for="field_recruiter">Recruiter</label>
-            <select class="form-control" id="field_recruiter" name="recruiter" [(ngModel)]="mission.recruiter">
+            <select class="form-control" id="field_recruiter" name="recruiter" [(ngModel)]="mission.recruiter" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="recruiterOption.id === mission.recruiter?.id ? mission.recruiter : recruiterOption"
-                        *ngFor="let recruiterOption of recruiters; trackBy: trackRecruiterById">{{recruiterOption.id}}
-                </option>
+                <option [ngValue]="recruiterOption.id === mission.recruiter?.id ? mission.recruiter : recruiterOption" *ngFor="let recruiterOption of recruiters; trackBy: trackRecruiterById">{{recruiterOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="tindevApp.mission.specialty" for="field_specialty">Specialty</label>
+            <select class="form-control" id="field_specialty" name="specialty" [(ngModel)]="mission.specialty" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="specialtyOption.id === mission.specialty?.id ? mission.specialty : specialtyOption" *ngFor="let specialtyOption of specialties; trackBy: trackSpecialtyById">{{specialtyOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="tindevApp.mission.domain" for="field_domain">Domain</label>
+            <select class="form-control" id="field_domain" name="domain" [(ngModel)]="mission.domain" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="domainOption.id === mission.domain?.id ? mission.domain : domainOption" *ngFor="let domainOption of domains; trackBy: trackDomainById">{{domainOption.id}}</option>
             </select>
         </div>
     </div>

@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { AlertService, EventManager } from 'ng-jhipster';
 
 import { Specialty } from './specialty.model';
 import { SpecialtyPopupService } from './specialty-popup.service';
@@ -16,11 +16,12 @@ export class SpecialtyDeleteDialogComponent {
 
     specialty: Specialty;
 
-    constructor(private jhiLanguageService: JhiLanguageService,
+    constructor(
         private specialtyService: SpecialtyService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager) {
-        this.jhiLanguageService.setLocations(['specialty']);
+        private alertService: AlertService,
+        private eventManager: EventManager
+    ) {
     }
 
     clear() {
@@ -35,6 +36,7 @@ export class SpecialtyDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+        this.alertService.success('tindevApp.specialty.deleted', { param : id }, null);
     }
 }
 
@@ -47,9 +49,10 @@ export class SpecialtyDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(private route: ActivatedRoute,
-        private specialtyPopupService: SpecialtyPopupService) {
-    }
+    constructor(
+        private route: ActivatedRoute,
+        private specialtyPopupService: SpecialtyPopupService
+    ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

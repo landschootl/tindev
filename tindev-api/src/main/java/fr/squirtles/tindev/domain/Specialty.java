@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModel;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
 
 /**
  * <p>Cette classe repr&eacute;sente une sp&eacute;cialit&eacute; d&#39;un freelance.</p><p>Exemple&nbsp;: front (d&eacute;veloppeur front)</p>
@@ -32,6 +32,10 @@ public class Specialty implements Serializable {
     @OneToMany(mappedBy = "specialty")
     @JsonIgnore
     private Set<Freelance> freelances = new HashSet<>();
+
+    @OneToMany(mappedBy = "specialty")
+    @JsonIgnore
+    private Set<Mission> missions = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -92,6 +96,31 @@ public class Specialty implements Serializable {
         this.freelances = freelances;
     }
 
+    public Set<Mission> getMissions() {
+        return missions;
+    }
+
+    public Specialty missions(Set<Mission> missions) {
+        this.missions = missions;
+        return this;
+    }
+
+    public Specialty addMissions(Mission mission) {
+        this.missions.add(mission);
+        mission.setSpecialty(this);
+        return this;
+    }
+
+    public Specialty removeMissions(Mission mission) {
+        this.missions.remove(mission);
+        mission.setSpecialty(null);
+        return this;
+    }
+
+    public void setMissions(Set<Mission> missions) {
+        this.missions = missions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -101,23 +130,23 @@ public class Specialty implements Serializable {
             return false;
         }
         Specialty specialty = (Specialty) o;
-        if (specialty.id == null || id == null) {
+        if (specialty.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, specialty.id);
+        return Objects.equals(getId(), specialty.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Specialty{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", code='" + code + "'" +
-            '}';
+            "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", code='" + getCode() + "'" +
+            "}";
     }
 }

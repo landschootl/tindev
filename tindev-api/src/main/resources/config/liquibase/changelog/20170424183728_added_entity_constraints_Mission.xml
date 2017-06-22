@@ -7,12 +7,24 @@
         Added the constraints for entity Mission.
     -->
     <changeSet id="20170424183728-2" author="jhipster">
-
+        
         <addForeignKeyConstraint baseColumnNames="recruiter_id"
                                  baseTableName="mission"
                                  constraintName="fk_mission_recruiter_id"
                                  referencedColumnNames="id"
                                  referencedTableName="recruiter"/>
+
+        <addForeignKeyConstraint baseColumnNames="specialty_id"
+                                 baseTableName="mission"
+                                 constraintName="fk_mission_specialty_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="specialty"/>
+
+        <addForeignKeyConstraint baseColumnNames="domain_id"
+                                 baseTableName="mission"
+                                 constraintName="fk_mission_domain_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="domain"/>
 
     </changeSet>
 </databaseChangeLog>

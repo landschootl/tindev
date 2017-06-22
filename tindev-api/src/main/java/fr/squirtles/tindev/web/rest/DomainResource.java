@@ -2,6 +2,7 @@ package fr.squirtles.tindev.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.squirtles.tindev.domain.Domain;
+
 import fr.squirtles.tindev.repository.DomainRepository;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -83,8 +85,7 @@ public class DomainResource {
     @Timed
     public List<Domain> getAllDomains() {
         log.debug("REST request to get all Domains");
-        List<Domain> domains = domainRepository.findAll();
-        return domains;
+        return domainRepository.findAll();
     }
 
     /**
@@ -114,5 +115,4 @@ public class DomainResource {
         domainRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
 }

@@ -1,13 +1,10 @@
 import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
-import { MockBackend } from '@angular/http/testing';
-import { Http, BaseRequestOptions } from '@angular/http';
 import { OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { DateUtils, DataUtils } from 'ng-jhipster';
-import { JhiLanguageService } from 'ng-jhipster';
-import { MockLanguageService } from '../../../helpers/mock-language.service';
+import { DateUtils, DataUtils, EventManager } from 'ng-jhipster';
+import { TindevTestModule } from '../../../test.module';
 import { MockActivatedRoute } from '../../../helpers/mock-route.service';
 import { MissionDetailComponent } from '../../../../../../main/webapp/app/entities/mission/mission-detail.component';
 import { MissionService } from '../../../../../../main/webapp/app/entities/mission/mission.service';
@@ -22,35 +19,21 @@ describe('Component Tests', () => {
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
+                imports: [TindevTestModule],
                 declarations: [MissionDetailComponent],
                 providers: [
-                    MockBackend,
-                    BaseRequestOptions,
                     DateUtils,
                     DataUtils,
                     DatePipe,
                     {
                         provide: ActivatedRoute,
-                        useValue: new MockActivatedRoute({ id: 123 })
+                        useValue: new MockActivatedRoute({id: 123})
                     },
-                    {
-                        provide: Http,
-                        useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
-                            return new Http(backendInstance, defaultOptions);
-                        },
-                        deps: [MockBackend, BaseRequestOptions]
-                    },
-                    {
-                        provide: JhiLanguageService,
-                        useClass: MockLanguageService
-                    },
-                    MissionService
+                    MissionService,
+                    EventManager
                 ]
-            }).overrideComponent(MissionDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
+            }).overrideTemplate(MissionDetailComponent, '')
+            .compileComponents();
         }));
 
         beforeEach(() => {
@@ -62,16 +45,16 @@ describe('Component Tests', () => {
 
         describe('OnInit', () => {
             it('Should call load all on init', () => {
-                // GIVEN
+            // GIVEN
 
-                spyOn(service, 'find').and.returnValue(Observable.of(new Mission(10)));
+            spyOn(service, 'find').and.returnValue(Observable.of(new Mission(10)));
 
-                // WHEN
-                comp.ngOnInit();
+            // WHEN
+            comp.ngOnInit();
 
-                // THEN
-                expect(service.find).toHaveBeenCalledWith(123);
-                expect(comp.mission).toEqual(jasmine.objectContaining({ id: 10 }));
+            // THEN
+            expect(service.find).toHaveBeenCalledWith(123);
+            expect(comp.mission).toEqual(jasmine.objectContaining({id:10}));
             });
         });
     });

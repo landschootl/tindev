@@ -1,23 +1,23 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
 import {
+    DomainService,
+    DomainPopupService,
     DomainComponent,
-    DomainDeleteDialogComponent,
-    DomainDeletePopupComponent,
     DomainDetailComponent,
     DomainDialogComponent,
     DomainPopupComponent,
-    domainPopupRoute,
-    DomainPopupService,
+    DomainDeletePopupComponent,
+    DomainDeleteDialogComponent,
     domainRoute,
-    DomainService
+    domainPopupRoute,
 } from './';
 
 const ENTITY_STATES = [
-    ... domainRoute,
-    ... domainPopupRoute,
+    ...domainRoute,
+    ...domainPopupRoute,
 ];
 
 @NgModule({
@@ -46,5 +46,4 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevDomainModule {
-}
+export class TindevDomainModule {}

@@ -23,40 +23,43 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="title" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="description" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="min_salary" type="integer">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="max_salary" type="integer">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="start_date" type="date">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="end_date" type="date">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
             </column>
 
             <column name="recruiter_id" type="bigint">
-                <constraints nullable="true"/>
+                <constraints nullable="true" />
+            </column>
+
+            <column name="specialty_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="domain_id" type="bigint">
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
-        <loadData encoding="UTF-8"
-                  file="config/liquibase/missions.csv"
-                  separator=";"
-                  tableName="mission"/>
-
+        
     </changeSet>
 </databaseChangeLog>

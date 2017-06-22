@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModel;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
 
 /**
  * <p>Cette classe repr&eacute;sente le domaine d&#39;activit&eacute; d&#39;un freelance.</p><p>Exemple : D&eacute;veloppeur.</p>
@@ -32,6 +32,10 @@ public class Domain implements Serializable {
     @OneToMany(mappedBy = "domain")
     @JsonIgnore
     private Set<Freelance> freelances = new HashSet<>();
+
+    @OneToMany(mappedBy = "domain")
+    @JsonIgnore
+    private Set<Mission> missions = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -92,6 +96,31 @@ public class Domain implements Serializable {
         this.freelances = freelances;
     }
 
+    public Set<Mission> getMissions() {
+        return missions;
+    }
+
+    public Domain missions(Set<Mission> missions) {
+        this.missions = missions;
+        return this;
+    }
+
+    public Domain addMissions(Mission mission) {
+        this.missions.add(mission);
+        mission.setDomain(this);
+        return this;
+    }
+
+    public Domain removeMissions(Mission mission) {
+        this.missions.remove(mission);
+        mission.setDomain(null);
+        return this;
+    }
+
+    public void setMissions(Set<Mission> missions) {
+        this.missions = missions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -101,23 +130,23 @@ public class Domain implements Serializable {
             return false;
         }
         Domain domain = (Domain) o;
-        if (domain.id == null || id == null) {
+        if (domain.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, domain.id);
+        return Objects.equals(getId(), domain.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Domain{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", code='" + code + "'" +
-            '}';
+            "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", code='" + getCode() + "'" +
+            "}";
     }
 }

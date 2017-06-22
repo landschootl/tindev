@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { AlertService, EventManager } from 'ng-jhipster';
 
 import { Domain } from './domain.model';
 import { DomainPopupService } from './domain-popup.service';
@@ -16,11 +16,12 @@ export class DomainDeleteDialogComponent {
 
     domain: Domain;
 
-    constructor(private jhiLanguageService: JhiLanguageService,
+    constructor(
         private domainService: DomainService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager) {
-        this.jhiLanguageService.setLocations(['domain']);
+        private alertService: AlertService,
+        private eventManager: EventManager
+    ) {
     }
 
     clear() {
@@ -35,6 +36,7 @@ export class DomainDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+        this.alertService.success('tindevApp.domain.deleted', { param : id }, null);
     }
 }
 
@@ -47,9 +49,10 @@ export class DomainDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(private route: ActivatedRoute,
-        private domainPopupService: DomainPopupService) {
-    }
+    constructor(
+        private route: ActivatedRoute,
+        private domainPopupService: DomainPopupService
+    ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

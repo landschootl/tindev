@@ -1,3 +1,4 @@
+
 <div *ngIf="mission">
     <h2><span jhiTranslate="tindevApp.mission.detail.title">Mission</span> {{mission.id}}</h2>
     <hr>
@@ -31,6 +32,18 @@
         <dd>
             <div *ngIf="mission.recruiter">
                 <a [routerLink]="['/recruiter', mission.recruiter?.id]">{{mission.recruiter?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.mission.specialty">Specialty</span></dt>
+        <dd>
+            <div *ngIf="mission.specialty">
+                <a [routerLink]="['/specialty', mission.specialty?.id]">{{mission.specialty?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="tindevApp.mission.domain">Domain</span></dt>
+        <dd>
+            <div *ngIf="mission.domain">
+                <a [routerLink]="['/domain', mission.domain?.id]">{{mission.domain?.id}}</a>
             </div>
         </dd>
     </dl>

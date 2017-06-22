@@ -1,16 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
+import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService } from 'ng-jhipster';
 
 import { Mission } from './mission.model';
 import { MissionPopupService } from './mission-popup.service';
 import { MissionService } from './mission.service';
-import { Discussion, DiscussionService } from '../discussion';
 import { Recruiter, RecruiterService } from '../recruiter';
-import { Matching, MatchingService } from '../matching';
+import { Specialty, SpecialtyService } from '../specialty';
+import { Domain, DomainService } from '../domain';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-mission-dialog',
@@ -22,40 +24,35 @@ export class MissionDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
-    discussions: Discussion[];
-
     recruiters: Recruiter[];
 
-    matchings: Matching[];
+    specialties: Specialty[];
 
-    constructor(public activeModal: NgbActiveModal,
-        private jhiLanguageService: JhiLanguageService,
+    domains: Domain[];
+    startDateDp: any;
+    endDateDp: any;
+
+    constructor(
+        public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private missionService: MissionService,
-        private discussionService: DiscussionService,
         private recruiterService: RecruiterService,
-        private matchingService: MatchingService,
-        private eventManager: EventManager) {
-        this.jhiLanguageService.setLocations(['mission']);
+        private specialtyService: SpecialtyService,
+        private domainService: DomainService,
+        private eventManager: EventManager
+    ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.discussionService.query().subscribe(
-            (res: Response) => {
-                this.discussions = res.json();
-            }, (res: Response) => this.onError(res.json()));
-        this.recruiterService.query().subscribe(
-            (res: Response) => {
-                this.recruiters = res.json();
-            }, (res: Response) => this.onError(res.json()));
-        this.matchingService.query().subscribe(
-            (res: Response) => {
-                this.matchings = res.json();
-            }, (res: Response) => this.onError(res.json()));
+        this.recruiterService.query()
+            .subscribe((res: ResponseWrapper) => { this.recruiters = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.specialtyService.query()
+            .subscribe((res: ResponseWrapper) => { this.specialties = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.domainService.query()
+            .subscribe((res: ResponseWrapper) => { this.domains = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
-
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -63,23 +60,36 @@ export class MissionDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.mission.id !== undefined) {
-            this.missionService.update(this.mission)
-                .subscribe((res: Mission) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+            this.subscribeToSaveResponse(
+                this.missionService.update(this.mission), false);
         } else {
-            this.missionService.create(this.mission)
-                .subscribe((res: Mission) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+            this.subscribeToSaveResponse(
+                this.missionService.create(this.mission), true);
         }
     }
 
-    private onSaveSuccess(result: Mission) {
-        this.eventManager.broadcast({ name: 'missionListModification', content: 'OK' });
+    private subscribeToSaveResponse(result: Observable<Mission>, isCreated: boolean) {
+        result.subscribe((res: Mission) =>
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Mission, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'tindevApp.mission.created'
+            : 'tindevApp.mission.updated',
+            { param : result.id }, null);
+
+        this.eventManager.broadcast({ name: 'missionListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
     private onSaveError(error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
         this.isSaving = false;
         this.onError(error);
     }
@@ -88,15 +98,15 @@ export class MissionDialogComponent implements OnInit {
         this.alertService.error(error.message, null, null);
     }
 
-    trackDiscussionById(index: number, item: Discussion) {
-        return item.id;
-    }
-
     trackRecruiterById(index: number, item: Recruiter) {
         return item.id;
     }
 
-    trackMatchingById(index: number, item: Matching) {
+    trackSpecialtyById(index: number, item: Specialty) {
+        return item.id;
+    }
+
+    trackDomainById(index: number, item: Domain) {
         return item.id;
     }
 }
@@ -110,20 +120,20 @@ export class MissionPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(private route: ActivatedRoute,
-        private missionPopupService: MissionPopupService) {
-    }
+    constructor(
+        private route: ActivatedRoute,
+        private missionPopupService: MissionPopupService
+    ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
-            if (params['id']) {
+        this.routeSub = this.route.params.subscribe((params) => {
+            if ( params['id'] ) {
                 this.modalRef = this.missionPopupService
                     .open(MissionDialogComponent, params['id']);
             } else {
                 this.modalRef = this.missionPopupService
                     .open(MissionDialogComponent);
             }
-
         });
     }
 

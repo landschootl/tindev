@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager  } from 'ng-jhipster';
 
 import { Specialty } from './specialty.model';
 import { SpecialtyService } from './specialty.service';
@@ -13,14 +13,14 @@ import { SpecialtyService } from './specialty.service';
 export class SpecialtyDetailComponent implements OnInit, OnDestroy {
 
     specialty: Specialty;
-    private subscription: any;
+    private subscription: Subscription;
     private eventSubscriber: Subscription;
 
-    constructor(private eventManager: EventManager,
-        private jhiLanguageService: JhiLanguageService,
+    constructor(
+        private eventManager: EventManager,
         private specialtyService: SpecialtyService,
-        private route: ActivatedRoute) {
-        this.jhiLanguageService.setLocations(['specialty']);
+        private route: ActivatedRoute
+    ) {
     }
 
     ngOnInit() {
@@ -35,7 +35,6 @@ export class SpecialtyDetailComponent implements OnInit, OnDestroy {
             this.specialty = specialty;
         });
     }
-
     previousState() {
         window.history.back();
     }
@@ -46,6 +45,9 @@ export class SpecialtyDetailComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInSpecialties() {
-        this.eventSubscriber = this.eventManager.subscribe('specialtyListModification', (response) => this.load(this.specialty.id));
+        this.eventSubscriber = this.eventManager.subscribe(
+            'specialtyListModification',
+            (response) => this.load(this.specialty.id)
+        );
     }
 }

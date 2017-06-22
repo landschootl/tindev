@@ -1,38 +1,38 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Response } from '@angular/http';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService } from 'ng-jhipster';
 
 import { Mission } from './mission.model';
 import { MissionService } from './mission.service';
-import { Principal } from '../../shared';
+import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
+import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-mission',
     templateUrl: './mission.component.html'
 })
 export class MissionComponent implements OnInit, OnDestroy {
-    missions: Mission[];
+missions: Mission[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(private jhiLanguageService: JhiLanguageService,
+    constructor(
         private missionService: MissionService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal) {
-        this.jhiLanguageService.setLocations(['mission']);
+        private principal: Principal
+    ) {
     }
 
     loadAll() {
         this.missionService.query().subscribe(
-            (res: Response) => {
-                this.missions = res.json();
+            (res: ResponseWrapper) => {
+                this.missions = res.json;
             },
-            (res: Response) => this.onError(res.json())
+            (res: ResponseWrapper) => this.onError(res.json)
         );
     }
-
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -48,7 +48,6 @@ export class MissionComponent implements OnInit, OnDestroy {
     trackId(index: number, item: Mission) {
         return item.id;
     }
-
     registerChangeInMissions() {
         this.eventSubscriber = this.eventManager.subscribe('missionListModification', (response) => this.loadAll());
     }

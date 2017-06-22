@@ -1,12 +1,16 @@
 package fr.squirtles.tindev.repository;
 
 import fr.squirtles.tindev.domain.Specialty;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import org.springframework.data.jpa.repository.*;
+
 
 /**
  * Spring Data JPA repository for the Specialty entity.
  */
 @SuppressWarnings("unused")
-public interface SpecialtyRepository extends JpaRepository<Specialty, Long> {
+@Repository
+public interface SpecialtyRepository extends JpaRepository<Specialty,Long> {
 
 }

@@ -74,7 +74,7 @@ public class SpecialtyResourceIntTest {
 
     /**
      * Create an entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -231,5 +231,14 @@ public class SpecialtyResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Specialty.class);
+        Specialty specialty1 = new Specialty();
+        specialty1.setId(1L);
+        Specialty specialty2 = new Specialty();
+        specialty2.setId(specialty1.getId());
+        assertThat(specialty1).isEqualTo(specialty2);
+        specialty2.setId(2L);
+        assertThat(specialty1).isNotEqualTo(specialty2);
+        specialty1.setId(null);
+        assertThat(specialty1).isNotEqualTo(specialty2);
     }
 }

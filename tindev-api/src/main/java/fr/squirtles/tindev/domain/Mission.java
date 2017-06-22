@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
 
 /**
  * <p>Cette classe repr&eacute;sente une mission cr&eacute;&eacute;e par un recruteur.</p>
@@ -52,6 +52,12 @@ public class Mission implements Serializable {
     @OneToMany(mappedBy = "mission")
     @JsonIgnore
     private Set<Matching> matchings = new HashSet<>();
+
+    @ManyToOne
+    private Specialty specialty;
+
+    @ManyToOne
+    private Domain domain;
 
     public Long getId() {
         return id;
@@ -202,6 +208,32 @@ public class Mission implements Serializable {
         this.matchings = matchings;
     }
 
+    public Specialty getSpecialty() {
+        return specialty;
+    }
+
+    public Mission specialty(Specialty specialty) {
+        this.specialty = specialty;
+        return this;
+    }
+
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
+    }
+
+    public Domain getDomain() {
+        return domain;
+    }
+
+    public Mission domain(Domain domain) {
+        this.domain = domain;
+        return this;
+    }
+
+    public void setDomain(Domain domain) {
+        this.domain = domain;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -211,27 +243,27 @@ public class Mission implements Serializable {
             return false;
         }
         Mission mission = (Mission) o;
-        if (mission.id == null || id == null) {
+        if (mission.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, mission.id);
+        return Objects.equals(getId(), mission.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Mission{" +
-            "id=" + id +
-            ", title='" + title + "'" +
-            ", description='" + description + "'" +
-            ", minSalary='" + minSalary + "'" +
-            ", maxSalary='" + maxSalary + "'" +
-            ", startDate='" + startDate + "'" +
-            ", endDate='" + endDate + "'" +
-            '}';
+            "id=" + getId() +
+            ", title='" + getTitle() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", minSalary='" + getMinSalary() + "'" +
+            ", maxSalary='" + getMaxSalary() + "'" +
+            ", startDate='" + getStartDate() + "'" +
+            ", endDate='" + getEndDate() + "'" +
+            "}";
     }
 }

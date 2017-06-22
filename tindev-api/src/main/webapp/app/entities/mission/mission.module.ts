@@ -1,24 +1,23 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
-
 import {
+    MissionService,
+    MissionPopupService,
     MissionComponent,
-    MissionDeleteDialogComponent,
-    MissionDeletePopupComponent,
     MissionDetailComponent,
     MissionDialogComponent,
     MissionPopupComponent,
-    missionPopupRoute,
-    MissionPopupService,
+    MissionDeletePopupComponent,
+    MissionDeleteDialogComponent,
     missionRoute,
-    MissionService
+    missionPopupRoute,
 } from './';
 
-let ENTITY_STATES = [
-    ... missionRoute,
-    ... missionPopupRoute,
+const ENTITY_STATES = [
+    ...missionRoute,
+    ...missionPopupRoute,
 ];
 
 @NgModule({
@@ -47,5 +46,4 @@ let ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevMissionModule {
-}
+export class TindevMissionModule {}

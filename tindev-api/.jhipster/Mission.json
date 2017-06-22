@@ -18,6 +18,18 @@
             "otherEntityName": "matching",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "mission"
+        },
+        {
+            "relationshipName": "specialty",
+            "otherEntityName": "specialty",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "domain",
+            "otherEntityName": "domain",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

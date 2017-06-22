@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "mission": {
+        "mission" : {
             "home": {
                 "title": "Missions",
                 "createLabel": "Créer un nouveau Mission",
@@ -23,7 +23,9 @@
             "endDate": "End Date",
             "discussions": "Discussions",
             "recruiter": "Recruiter",
-            "matchings": "Matchings"
+            "matchings": "Matchings",
+            "specialty": "Specialty",
+            "domain": "Domain"
         }
     }
 }

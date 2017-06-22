@@ -27,16 +27,13 @@ describe('Component Tests', () => {
                     DatePipe,
                     {
                         provide: ActivatedRoute,
-                        useValue: new MockActivatedRoute({ id: 123 })
+                        useValue: new MockActivatedRoute({id: 123})
                     },
                     DomainService,
                     EventManager
                 ]
-            }).overrideComponent(DomainDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
+            }).overrideTemplate(DomainDetailComponent, '')
+            .compileComponents();
         }));
 
         beforeEach(() => {
@@ -48,16 +45,16 @@ describe('Component Tests', () => {
 
         describe('OnInit', () => {
             it('Should call load all on init', () => {
-                // GIVEN
+            // GIVEN
 
-                spyOn(service, 'find').and.returnValue(Observable.of(new Domain(10)));
+            spyOn(service, 'find').and.returnValue(Observable.of(new Domain(10)));
 
-                // WHEN
-                comp.ngOnInit();
+            // WHEN
+            comp.ngOnInit();
 
-                // THEN
-                expect(service.find).toHaveBeenCalledWith(123);
-                expect(comp.domain).toEqual(jasmine.objectContaining({ id: 10 }));
+            // THEN
+            expect(service.find).toHaveBeenCalledWith(123);
+            expect(comp.domain).toEqual(jasmine.objectContaining({id:10}));
             });
         });
     });

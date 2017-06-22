@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "domain": {
+        "domain" : {
             "home": {
                 "title": "Domains",
                 "createLabel": "Créer un nouveau Domain",
@@ -17,7 +17,8 @@
             },
             "name": "Name",
             "code": "Code",
-            "freelances": "Freelances"
+            "freelances": "Freelances",
+            "missions": "Missions"
         }
     }
 }

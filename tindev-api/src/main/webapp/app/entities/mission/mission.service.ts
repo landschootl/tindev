@@ -1,87 +1,76 @@
 import { Injectable } from '@angular/core';
-import { BaseRequestOptions, Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Mission } from './mission.model';
 import { DateUtils } from 'ng-jhipster';
+
+import { Mission } from './mission.model';
+import { ResponseWrapper, createRequestOption } from '../../shared';
 
 @Injectable()
 export class MissionService {
 
     private resourceUrl = 'api/missions';
 
-    constructor(private http: Http, private dateUtils: DateUtils) {
-    }
+    constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(mission: Mission): Observable<Mission> {
-        let copy: Mission = Object.assign({}, mission);
-        copy.startDate = this.dateUtils
-            .convertLocalDateToServer(mission.startDate);
-        copy.endDate = this.dateUtils
-            .convertLocalDateToServer(mission.endDate);
+        const copy = this.convert(mission);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            this.convertItemFromServer(jsonResponse);
+            return jsonResponse;
         });
     }
 
     update(mission: Mission): Observable<Mission> {
-        let copy: Mission = Object.assign({}, mission);
-        copy.startDate = this.dateUtils
-            .convertLocalDateToServer(mission.startDate);
-        copy.endDate = this.dateUtils
-            .convertLocalDateToServer(mission.endDate);
+        const copy = this.convert(mission);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            this.convertItemFromServer(jsonResponse);
+            return jsonResponse;
         });
     }
 
     find(id: number): Observable<Mission> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            let jsonResponse = res.json();
-            jsonResponse.startDate = this.dateUtils
-                .convertLocalDateFromServer(jsonResponse.startDate);
-            jsonResponse.endDate = this.dateUtils
-                .convertLocalDateFromServer(jsonResponse.endDate);
+            const jsonResponse = res.json();
+            this.convertItemFromServer(jsonResponse);
             return jsonResponse;
         });
     }
 
-    query(req?: any): Observable<Response> {
-        let options = this.createRequestOption(req);
+    query(req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
-            .map((res: any) => this.convertResponse(res))
-            ;
+            .map((res: Response) => this.convertResponse(res));
     }
 
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
-    private convertResponse(res: any): any {
-        let jsonResponse = res.json();
+    private convertResponse(res: Response): ResponseWrapper {
+        const jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
-            jsonResponse[i].startDate = this.dateUtils
-                .convertLocalDateFromServer(jsonResponse[i].startDate);
-            jsonResponse[i].endDate = this.dateUtils
-                .convertLocalDateFromServer(jsonResponse[i].endDate);
+            this.convertItemFromServer(jsonResponse[i]);
         }
-        res._body = jsonResponse;
-        return res;
+        return new ResponseWrapper(res.headers, jsonResponse, res.status);
     }
 
-    private createRequestOption(req?: any): BaseRequestOptions {
-        let options: BaseRequestOptions = new BaseRequestOptions();
-        if (req) {
-            let params: URLSearchParams = new URLSearchParams();
-            params.set('page', req.page);
-            params.set('size', req.size);
-            if (req.sort) {
-                params.paramsMap.set('sort', req.sort);
-            }
-            params.set('query', req.query);
+    private convertItemFromServer(entity: any) {
+        entity.startDate = this.dateUtils
+            .convertLocalDateFromServer(entity.startDate);
+        entity.endDate = this.dateUtils
+            .convertLocalDateFromServer(entity.endDate);
+    }
 
-            options.search = params;
-        }
-        return options;
+    private convert(mission: Mission): Mission {
+        const copy: Mission = Object.assign({}, mission);
+        copy.startDate = this.dateUtils
+            .convertLocalDateToServer(mission.startDate);
+        copy.endDate = this.dateUtils
+            .convertLocalDateToServer(mission.endDate);
+        return copy;
     }
 
     findByRecruiter(idRecruiter: any): Observable<Response> {

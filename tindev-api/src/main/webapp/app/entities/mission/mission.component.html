@@ -1,10 +1,9 @@
-<div class="container">
+<div>
     <h2>
         <span jhiTranslate="tindevApp.mission.home.title">Missions</span>
-        <button class="btn btn-primary float-right create-mission"
-                [routerLink]="['/', { outlets: { popup: ['mission-new'] } }]">
+        <button class="btn btn-primary float-right create-mission" [routerLink]="['/', { outlets: { popup: ['mission-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span jhiTranslate="tindevApp.mission.home.createLabel">
+            <span  jhiTranslate="tindevApp.mission.home.createLabel">
             Create new Mission
             </span>
         </button>
@@ -17,15 +16,17 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th><span jhiTranslate="global.field.id">ID</span></th>
-                <th><span jhiTranslate="tindevApp.mission.title">Title</span></th>
-                <th><span jhiTranslate="tindevApp.mission.description">Description</span></th>
-                <th><span jhiTranslate="tindevApp.mission.minSalary">Min Salary</span></th>
-                <th><span jhiTranslate="tindevApp.mission.maxSalary">Max Salary</span></th>
-                <th><span jhiTranslate="tindevApp.mission.startDate">Start Date</span></th>
-                <th><span jhiTranslate="tindevApp.mission.endDate">End Date</span></th>
-                <th><span jhiTranslate="tindevApp.mission.recruiter">Recruiter</span></th>
-                <th></th>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="tindevApp.mission.title">Title</span></th>
+            <th><span jhiTranslate="tindevApp.mission.description">Description</span></th>
+            <th><span jhiTranslate="tindevApp.mission.minSalary">Min Salary</span></th>
+            <th><span jhiTranslate="tindevApp.mission.maxSalary">Max Salary</span></th>
+            <th><span jhiTranslate="tindevApp.mission.startDate">Start Date</span></th>
+            <th><span jhiTranslate="tindevApp.mission.endDate">End Date</span></th>
+            <th><span jhiTranslate="tindevApp.mission.recruiter">Recruiter</span></th>
+            <th><span jhiTranslate="tindevApp.mission.specialty">Specialty</span></th>
+            <th><span jhiTranslate="tindevApp.mission.domain">Domain</span></th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
@@ -39,7 +40,17 @@
                 <td>{{mission.endDate | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="mission.recruiter">
-                        <a [routerLink]="['../recruiter', mission.recruiter?.id ]">{{mission.recruiter?.id}}</a>
+                        <a [routerLink]="['../recruiter', mission.recruiter?.id ]" >{{mission.recruiter?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="mission.specialty">
+                        <a [routerLink]="['../specialty', mission.specialty?.id ]" >{{mission.specialty?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="mission.domain">
+                        <a [routerLink]="['../domain', mission.domain?.id ]" >{{mission.domain?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager  } from 'ng-jhipster';
+
 import { Mission } from './mission.model';
 import { MissionService } from './mission.service';
 
@@ -11,32 +13,41 @@ import { MissionService } from './mission.service';
 export class MissionDetailComponent implements OnInit, OnDestroy {
 
     mission: Mission;
-    private subscription: any;
+    private subscription: Subscription;
+    private eventSubscriber: Subscription;
 
-    constructor(private jhiLanguageService: JhiLanguageService,
+    constructor(
+        private eventManager: EventManager,
         private missionService: MissionService,
-        private route: ActivatedRoute) {
-        this.jhiLanguageService.setLocations(['mission']);
+        private route: ActivatedRoute
+    ) {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
+        this.registerChangeInMissions();
     }
 
     load(id) {
-        this.missionService.find(id).subscribe(mission => {
+        this.missionService.find(id).subscribe((mission) => {
             this.mission = mission;
         });
     }
-
     previousState() {
         window.history.back();
     }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
     }
 
+    registerChangeInMissions() {
+        this.eventSubscriber = this.eventManager.subscribe(
+            'missionListModification',
+            (response) => this.load(this.mission.id)
+        );
+    }
 }

@@ -1,38 +1,38 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Response } from '@angular/http';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService } from 'ng-jhipster';
 
 import { Domain } from './domain.model';
 import { DomainService } from './domain.service';
-import { Principal } from '../../shared';
+import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
+import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-domain',
     templateUrl: './domain.component.html'
 })
 export class DomainComponent implements OnInit, OnDestroy {
-    domains: Domain[];
+domains: Domain[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
-    constructor(private jhiLanguageService: JhiLanguageService,
+    constructor(
         private domainService: DomainService,
         private alertService: AlertService,
         private eventManager: EventManager,
-        private principal: Principal) {
-        this.jhiLanguageService.setLocations(['domain']);
+        private principal: Principal
+    ) {
     }
 
     loadAll() {
         this.domainService.query().subscribe(
-            (res: Response) => {
-                this.domains = res.json();
+            (res: ResponseWrapper) => {
+                this.domains = res.json;
             },
-            (res: Response) => this.onError(res.json())
+            (res: ResponseWrapper) => this.onError(res.json)
         );
     }
-
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -48,7 +48,6 @@ export class DomainComponent implements OnInit, OnDestroy {
     trackId(index: number, item: Domain) {
         return item.id;
     }
-
     registerChangeInDomains() {
         this.eventSubscriber = this.eventManager.subscribe('domainListModification', (response) => this.loadAll());
     }
