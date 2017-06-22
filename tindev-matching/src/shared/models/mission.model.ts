@@ -10,6 +10,7 @@ export class Mission {
         public maxSalary?: number,
         public startDate?: any,
         public endDate?: any,
+        public photoUrl?: string,
         public discussions?: Discussion,
         public recruiter?: Recruiter,
         public matchings?: Matching) {

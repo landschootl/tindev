@@ -57,6 +57,9 @@ public class MissionResourceIntTest {
     private static final LocalDate DEFAULT_END_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_END_DATE = LocalDate.now(ZoneId.systemDefault());
 
+    private static final String DEFAULT_PHOTO_URL = "AAAAAAAAAA";
+    private static final String UPDATED_PHOTO_URL = "BBBBBBBBBB";
+
     @Autowired
     private MissionRepository missionRepository;
 
@@ -99,7 +102,8 @@ public class MissionResourceIntTest {
             .minSalary(DEFAULT_MIN_SALARY)
             .maxSalary(DEFAULT_MAX_SALARY)
             .startDate(DEFAULT_START_DATE)
-            .endDate(DEFAULT_END_DATE);
+            .endDate(DEFAULT_END_DATE)
+            .photoUrl(DEFAULT_PHOTO_URL);
         return mission;
     }
 
@@ -129,6 +133,7 @@ public class MissionResourceIntTest {
         assertThat(testMission.getMaxSalary()).isEqualTo(DEFAULT_MAX_SALARY);
         assertThat(testMission.getStartDate()).isEqualTo(DEFAULT_START_DATE);
         assertThat(testMission.getEndDate()).isEqualTo(DEFAULT_END_DATE);
+        assertThat(testMission.getPhotoUrl()).isEqualTo(DEFAULT_PHOTO_URL);
     }
 
     @Test
@@ -166,7 +171,8 @@ public class MissionResourceIntTest {
             .andExpect(jsonPath("$.[*].minSalary").value(hasItem(DEFAULT_MIN_SALARY)))
             .andExpect(jsonPath("$.[*].maxSalary").value(hasItem(DEFAULT_MAX_SALARY)))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
-            .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())));
+            .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
+            .andExpect(jsonPath("$.[*].photoUrl").value(hasItem(DEFAULT_PHOTO_URL.toString())));
     }
 
     @Test
@@ -185,7 +191,8 @@ public class MissionResourceIntTest {
             .andExpect(jsonPath("$.minSalary").value(DEFAULT_MIN_SALARY))
             .andExpect(jsonPath("$.maxSalary").value(DEFAULT_MAX_SALARY))
             .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
-            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()));
+            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
+            .andExpect(jsonPath("$.photoUrl").value(DEFAULT_PHOTO_URL.toString()));
     }
 
     @Test
@@ -211,7 +218,8 @@ public class MissionResourceIntTest {
             .minSalary(UPDATED_MIN_SALARY)
             .maxSalary(UPDATED_MAX_SALARY)
             .startDate(UPDATED_START_DATE)
-            .endDate(UPDATED_END_DATE);
+            .endDate(UPDATED_END_DATE)
+            .photoUrl(UPDATED_PHOTO_URL);
 
         restMissionMockMvc.perform(put("/api/missions")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -228,6 +236,7 @@ public class MissionResourceIntTest {
         assertThat(testMission.getMaxSalary()).isEqualTo(UPDATED_MAX_SALARY);
         assertThat(testMission.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testMission.getEndDate()).isEqualTo(UPDATED_END_DATE);
+        assertThat(testMission.getPhotoUrl()).isEqualTo(UPDATED_PHOTO_URL);
     }
 
     @Test

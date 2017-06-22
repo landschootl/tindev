@@ -21,6 +21,7 @@
             "maxSalary": "Max Salary",
             "startDate": "Start Date",
             "endDate": "End Date",
+            "photoUrl": "Photo Url",
             "discussions": "Discussions",
             "recruiter": "Recruiter",
             "matchings": "Matchings",

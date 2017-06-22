@@ -28,6 +28,10 @@
         <dd>
             <span>{{mission.endDate | date:'mediumDate'}}</span>
         </dd>
+        <dt><span jhiTranslate="tindevApp.mission.photoUrl">Photo Url</span></dt>
+        <dd>
+            <span>{{mission.photoUrl}}</span>
+        </dd>
         <dt><span jhiTranslate="tindevApp.mission.recruiter">Recruiter</span></dt>
         <dd>
             <div *ngIf="mission.recruiter">

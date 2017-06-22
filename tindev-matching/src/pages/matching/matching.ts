@@ -112,7 +112,7 @@ export class MatchingPage {
         if (this.auth.currentUser.recruiter) {
             return this.currentCard.freelanceProfile.photoUrl;
         } else {
-            return this.currentCard.missionProfile.photoUrl;
+            return this.currentCard.mission.photoUrl;
         }
     }
 

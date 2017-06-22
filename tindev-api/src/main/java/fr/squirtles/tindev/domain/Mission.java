@@ -42,6 +42,9 @@ public class Mission implements Serializable {
     @Column(name = "end_date")
     private LocalDate endDate;
 
+    @Column(name = "photo_url")
+    private String photoUrl;
+
     @OneToMany(mappedBy = "mission")
     @JsonIgnore
     private Set<Discussion> discussions = new HashSet<>();
@@ -143,6 +146,19 @@ public class Mission implements Serializable {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public Mission photoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+        return this;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public Set<Discussion> getDiscussions() {
@@ -264,6 +280,7 @@ public class Mission implements Serializable {
             ", maxSalary='" + getMaxSalary() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
+            ", photoUrl='" + getPhotoUrl() + "'" +
             "}";
     }
 }

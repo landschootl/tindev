@@ -62,6 +62,10 @@
             "fieldName": "endDate",
             "comment": "<p>Date de fin de la mission</p>",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "photoUrl",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170424183728",
