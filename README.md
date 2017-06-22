@@ -12,9 +12,9 @@ Projet de PAI en M1MIAGEFA - Application de rencontre entre recruteurs et freela
 - tindev-matching # Application mobile hybride pour le matching (Ionic 2)
 ```
 
-liens :
-* [Readme - tindev-board](https://gitlab.com/squirtles/tindev/blob/develop/tindev-api/README.md)
-* [Readme - tindev-matching](https://gitlab.com/squirtles/tindev/blob/develop/tindev-matching/README.md)
+## Documents d'installation
+* [README - tindev-board](https://gitlab.com/squirtles/tindev/blob/develop/tindev-api/README.md)
+* [README - tindev-matching](https://gitlab.com/squirtles/tindev/blob/develop/tindev-matching/README.md)
 
 ## Contributeurs
 * [Mustapha NEZZARI](http://github.com/MawsFr)
