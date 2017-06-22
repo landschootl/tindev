@@ -1,5 +1,5 @@
-import {Component, ViewChild} from '@angular/core';
-import {Content, NavController, NavParams} from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Content, NavController, NavParams } from 'ionic-angular';
 import { ConversationService } from '../../providers/conversation-service';
 import { Conversation } from '../../shared/models/conversation';
 import { AuthService } from '../../providers/auth-service';

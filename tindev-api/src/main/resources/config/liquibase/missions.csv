@@ -1,11 +1,11 @@
 id;title;description;min_salary;max_salary;start_date;end_date;recruiter_id
-1;Développeur H/F;400;600;null;null;7
-2;Architecte H/F;600;800;null;null;7
-3;Designer H/F;300;400;null;null;7
-4;Chef de projet AMOA H/F;600;800;null;null;7
-5;Chef de projet junior H/F;400;500;null;null;8
-6;Développeur PHP H/F;400;500;null;null;8
-7;Développeur Front H/F;400;700;null;null;8
-7;Expert technique Back H/F;600;900;null;null;8
-7;Chef de projet H/F;700;900;null;null;8
-7;Coach agile H/F;600;800;null;null;8
+1;Développeur H/F;Developpement Front;400;600;null;null;1
+2;Architecte H/F;Architecture logicielle;600;800;null;null;1
+3;Designer H/F;Du design à 100% !;300;400;null;null;1
+4;Chef de projet AMOA H/F;Management à fond !;600;800;null;null;1
+5;Chef de projet junior H/F;Nous cherchons un petit leader !;400;500;null;null;2
+6;Développeur PHP H/F;Developpement serveur PHP;400;500;null;null;2
+7;Développeur Front H/F;Developpement Front AngularJS + TypeScript;400;700;null;null;2
+8;Expert technique Back H/F;Expertise Spring;600;900;null;null;2
+9;Chef de projet H/F;Cherche pilote de projet 3 années d'expérience;700;900;null;null;2
+10;Coach agile H/F;Cherche coach agile / SCRUM;600;800;null;null;2

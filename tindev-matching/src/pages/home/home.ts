@@ -14,7 +14,7 @@ import { Storage } from '@ionic/storage';
 import { MatchingPage } from '../../pages/matching/matching';
 import { RegisterPage } from '../../pages/register/register';
 import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
-import { MatchingService } from "../../providers/matching-service";
+import { MatchingService } from '../../providers/matching-service';
 
 @Component({
     selector: 'home',

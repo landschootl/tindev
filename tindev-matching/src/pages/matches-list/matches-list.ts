@@ -1,10 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
-import { Loading, LoadingController, NavController, NavParams, ToastController, Content } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { Loading, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Conversation } from '../../shared/models/conversation';
 import { ConversationService } from '../../providers/conversation-service';
 import { ConversationPage } from '../../pages/conversation/conversation';
-import {Discussion} from "../../shared/models/discussion.model";
-import {AuthService} from "../../providers/auth-service";
+import { Discussion } from '../../shared/models/discussion.model';
+import { AuthService } from '../../providers/auth-service';
 /*
  Generated class for the MatchesList page.
 

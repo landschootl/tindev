@@ -1,7 +1,7 @@
 import { Mission } from './mission.model';
 import { Freelance } from './freelance.model';
-import {UserProfile} from "./user-profile.model";
-import {User} from "./user";
+import { UserProfile } from './user-profile.model';
+import { User } from './user';
 
 export class Matching {
     constructor(public id?: number,

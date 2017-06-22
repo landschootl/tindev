@@ -1,15 +1,15 @@
-import {Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {StackConfig, SwingCardComponent, SwingStackComponent, ThrowEvent} from 'angular2-swing';
-import {Http} from '@angular/http';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { StackConfig, SwingCardComponent, SwingStackComponent, ThrowEvent } from 'angular2-swing';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {NavController, NavParams, ToastController, AlertController} from 'ionic-angular';
-import {CapitalizePipe} from '../../shared/pipes/capitalize.pipe';
-import {AuthService} from '../../providers/auth-service';
-import {MatchingService} from '../../providers/matching-service';
-import {Matching} from '../../shared/models/matching.model';
-import {RecruitersMissionSelectionPage} from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
-import {ConversationService} from "../../providers/conversation-service";
-import {ConversationPage} from "../conversation/conversation";
+import { AlertController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
+import { AuthService } from '../../providers/auth-service';
+import { MatchingService } from '../../providers/matching-service';
+import { Matching } from '../../shared/models/matching.model';
+import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
+import { ConversationService } from '../../providers/conversation-service';
+import { ConversationPage } from '../conversation/conversation';
 
 @Component({
     selector: 'page-matching',

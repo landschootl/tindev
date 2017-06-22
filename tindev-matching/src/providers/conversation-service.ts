@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
-import {Http, RequestOptions, URLSearchParams} from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import { ApiUtils } from '../shared/utils/api';
-import { Conversation } from '../shared/models/conversation';
 import { Message } from '../shared/models/message.model';
-import { User } from '../shared/models/user';
 
 import 'rxjs/add/operator/map';
-import {Mission} from "../shared/models/mission.model";
-import {Freelance} from "../shared/models/freelance.model";
-import {Discussion} from "../shared/models/discussion.model";
-import {AuthService} from "./auth-service";
-import {MatchingService} from "./matching-service";
+import { Mission } from '../shared/models/mission.model';
+import { Freelance } from '../shared/models/freelance.model';
+import { Discussion } from '../shared/models/discussion.model';
+import { AuthService } from './auth-service';
+import { MatchingService } from './matching-service';
 
 /*
  Generated class for the ConversationService provider.

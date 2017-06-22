@@ -4,7 +4,7 @@ import { MissionService } from '../../providers/mission-service';
 import { Mission } from '../../shared/models/mission';
 import { AuthService } from '../../providers/auth-service';
 import { MatchingPage } from '../../pages/matching/matching';
-import { MatchingService } from "../../providers/matching-service";
+import { MatchingService } from '../../providers/matching-service';
 
 
 @Component({
