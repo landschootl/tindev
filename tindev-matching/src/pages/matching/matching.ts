@@ -25,6 +25,7 @@ export class MatchingPage {
     matchings: Array<Matching> = [];
     stackConfig: StackConfig;
     currentCard: Matching; // TODO : should be in matching service
+    i: number = 0;
 
     constructor(private http: Http,
                 private toastCtrl: ToastController,
@@ -51,11 +52,8 @@ export class MatchingPage {
 
     ngAfterViewInit() {
         if (this.auth.getUserInfo().completedProfile) {
-            this.swingStack.throwin.subscribe((event: ThrowEvent) => {
+            this.swingStack && this.swingStack.throwin.subscribe((event: ThrowEvent) => {
                 event.target.style.background = '#ffffff';
-            });
-            this.swingStack.throwoutend.subscribe((event: ThrowEvent) => {
-                debugger;
             });
             this.matchings = [];
             this.nextCard();
@@ -64,7 +62,7 @@ export class MatchingPage {
 
     voteUp(liked: boolean) {
         let self = this;
-        this.matchingService.save(this.currentCard, liked).then(function() {
+        this.matchingService.save(this.currentCard, liked).then(() => {
             if(self.currentCard.freelanceVoted && self.currentCard.recruiterVoted && self.currentCard.freelanceLiked && self.currentCard.recruiterLiked) {
                 let alert = self.alertCtrl.create({
                     title: 'It\'s a match !!',
@@ -75,6 +73,7 @@ export class MatchingPage {
                             role: 'cancel',
                             handler: () => {
                                 self.nextCard();
+
                             }
                         },
                         {
@@ -99,12 +98,13 @@ export class MatchingPage {
 
     nextCard() {
         if (!this.matchings.length) {
+            this.i = 0;
             this.matchingService.getAll().then((data) => {
                 this.matchings = data;
-                this.currentCard = this.matchings.length ? this.matchings.shift() : null;
+                this.currentCard = this.matchings.length ? this.matchings[this.i++] : null;
             });
         } else {
-            this.currentCard = this.matchings.length ? this.matchings.shift() : null;
+            this.currentCard = this.matchings.length ? this.matchings[this.i++] : null;
         }
     }
 
@@ -113,31 +113,31 @@ export class MatchingPage {
         this.nav.push(RecruitersMissionSelectionPage);
     }
 
-    getCurrentUserImage() {
+    getCurrentUserImage(m: Matching) {
         // TODO : Implémenter les image des utilisateur
         if (this.auth.currentUser.recruiter) {
-            return this.currentCard.freelanceProfile.photoUrl;
+            return m.freelanceProfile.photoUrl;
         } else {
-            return this.currentCard.mission.photoUrl;
+            return m.mission.photoUrl;
         }
     }
 
-    getCurrentUserName(): string {
+    getCurrentUserName(m: Matching): string {
         if (this.auth.currentUser.recruiter) {
             // TODO: Renvoyer le nom du freelance
-            let freelance = this.currentCard.freelanceProfile;
-            return (freelance.firstname + ' ' + freelance.lastname) || this.currentCard.freelanceUser.login;
+            let freelance = m.freelanceProfile;
+            return (freelance.firstname + ' ' + freelance.lastname) || m.freelanceUser.login;
         } else {
-            return this.currentCard.mission.title;
+            return m.mission.title;
         }
     }
 
-    getCurrentUserDescription(): string {
+    getCurrentUserDescription(m: Matching): string {
         if (this.auth.currentUser.recruiter) {
             // TODO: Renvoyer la description du freelance
-            return this.currentCard.freelanceProfile.description;
+            return m.freelanceProfile.description;
         } else {
-            return this.currentCard.mission.description;
+            return m.mission.description;
 
         }
     }

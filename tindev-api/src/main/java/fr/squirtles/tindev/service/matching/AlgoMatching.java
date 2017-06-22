@@ -24,11 +24,11 @@ public class AlgoMatching implements Comparator<MatchingDTO>{
 //
 //        }
 
-        if(f.getDomain().equals(m.getDomain())) {
+        if(f.getDomain() != null && m.getDomain() != null && f.getDomain().equals(m.getDomain())) {
             score += 100;
         }
 
-        if(f.getSpecialty().equals(m.getSpecialty())) {
+        if(f.getSpecialty() != null && m.getSpecialty() != null && f.getSpecialty().equals(m.getSpecialty())) {
             score += 100;
         }
         matching.setScore(score);

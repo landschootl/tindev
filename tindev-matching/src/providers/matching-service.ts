@@ -4,6 +4,7 @@ import { ApiUtils } from '../shared/utils/api';
 import { AuthService } from './auth-service';
 import 'rxjs/add/operator/toPromise';
 import { ToastController } from 'ionic-angular';
+import {Matching} from "../shared/models/matching.model";
 
 @Injectable()
 export class MatchingService {
@@ -26,11 +27,13 @@ export class MatchingService {
         params.set('id', this.currentMatchingUser.id);
         let options = new RequestOptions({ headers: headers, search: params });
         if (this.auth.currentUser.recruiter) {
+            debugger;
             return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
                 return data.json();
             });
         } else {
             return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
+                debugger;
                 return data.json();
             });
 
@@ -44,7 +47,7 @@ export class MatchingService {
         });
     }
 
-    public save(matching: any, liked: boolean) {
+    public save(matching: Matching, liked: boolean) {
         if (this.auth.currentUser.recruiter) {
             matching.recruiterLiked = liked;
             matching.recruiterVoted = true;
@@ -55,7 +58,6 @@ export class MatchingService {
         let headers = this.apic.getHeadersWithToken(this.auth.token);
         let options = new RequestOptions({ headers: headers });
         return this.http.put(this.apic.base_url + 'matchings', matching, options).toPromise().then(function(data) {
-
         });
     }
 }

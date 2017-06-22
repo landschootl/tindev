@@ -5,7 +5,7 @@ import { User } from './user';
 
 export class Matching {
     constructor(public id?: number,
-        public score?: number,
+        public score?: any,
         public fLikedDate?: any,
         public rLikedDate?: any,
         public freelanceLiked?: boolean,
