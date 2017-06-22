@@ -80,11 +80,11 @@ export class ProfileFreelanceComponent implements OnInit, OnChanges {
         this.registerChangeInTrainings();
         this.specialtyService.query()
             .subscribe(
-                (res) => this.specialties = res.json()
+                (res) => this.specialties = res.json
             );
         this.domainService.query()
             .subscribe(
-                (res) => this.domains = res.json()
+                (res) => this.domains = res.json
             );
     }
 
