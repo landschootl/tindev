@@ -1,14 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
+import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService } from 'ng-jhipster';
 
 import { Message } from './message.model';
 import { MessagePopupService } from './message-popup.service';
 import { MessageService } from './message.service';
 import { Discussion, DiscussionService } from '../discussion';
+import { UserProfile, UserProfileService } from '../user-profile';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-message-dialog',
@@ -22,24 +25,27 @@ export class MessageDialogComponent implements OnInit {
 
     discussions: Discussion[];
 
-    constructor(public activeModal: NgbActiveModal,
-        private jhiLanguageService: JhiLanguageService,
+    userprofiles: UserProfile[];
+    postingDateDp: any;
+
+    constructor(
+        public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private messageService: MessageService,
         private discussionService: DiscussionService,
-        private eventManager: EventManager) {
-        this.jhiLanguageService.setLocations(['message']);
+        private userProfileService: UserProfileService,
+        private eventManager: EventManager
+    ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.discussionService.query().subscribe(
-            (res: Response) => {
-                this.discussions = res.json();
-            }, (res: Response) => this.onError(res.json()));
+        this.discussionService.query()
+            .subscribe((res: ResponseWrapper) => { this.discussions = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userProfileService.query()
+            .subscribe((res: ResponseWrapper) => { this.userprofiles = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
-
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -47,18 +53,26 @@ export class MessageDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.message.id !== undefined) {
-            this.messageService.update(this.message)
-                .subscribe((res: Message) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.messageService.update(this.message), false);
         } else {
-            this.messageService.create(this.message)
-                .subscribe((res: Message) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.messageService.create(this.message), true);
         }
     }
 
-    private onSaveSuccess(result: Message) {
-        this.eventManager.broadcast({ name: 'messageListModification', content: 'OK' });
+    private subscribeToSaveResponse(result: Observable<Message>, isCreated: boolean) {
+        result.subscribe((res: Message) =>
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Message, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'tindevApp.message.created'
+            : 'tindevApp.message.updated',
+            { param : result.id }, null);
+
+        this.eventManager.broadcast({ name: 'messageListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -80,6 +94,10 @@ export class MessageDialogComponent implements OnInit {
     trackDiscussionById(index: number, item: Discussion) {
         return item.id;
     }
+
+    trackUserProfileById(index: number, item: UserProfile) {
+        return item.id;
+    }
 }
 
 @Component({
@@ -91,13 +109,14 @@ export class MessagePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(private route: ActivatedRoute,
-        private messagePopupService: MessagePopupService) {
-    }
+    constructor(
+        private route: ActivatedRoute,
+        private messagePopupService: MessagePopupService
+    ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if (params['id']) {
+            if ( params['id'] ) {
                 this.modalRef = this.messagePopupService
                     .open(MessageDialogComponent, params['id']);
             } else {

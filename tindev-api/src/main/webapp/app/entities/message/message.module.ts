@@ -1,23 +1,23 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { TindevSharedModule } from '../../shared';
 import {
+    MessageService,
+    MessagePopupService,
     MessageComponent,
-    MessageDeleteDialogComponent,
-    MessageDeletePopupComponent,
     MessageDetailComponent,
     MessageDialogComponent,
     MessagePopupComponent,
-    messagePopupRoute,
-    MessagePopupService,
+    MessageDeletePopupComponent,
+    MessageDeleteDialogComponent,
     messageRoute,
-    MessageService
+    messagePopupRoute,
 } from './';
 
 const ENTITY_STATES = [
-    ... messageRoute,
-    ... messagePopupRoute,
+    ...messageRoute,
+    ...messagePopupRoute,
 ];
 
 @NgModule({
@@ -46,5 +46,4 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TindevMessageModule {
-}
+export class TindevMessageModule {}

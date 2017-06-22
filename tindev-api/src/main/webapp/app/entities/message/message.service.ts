@@ -1,78 +1,71 @@
 import { Injectable } from '@angular/core';
-import { BaseRequestOptions, Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { DateUtils } from 'ng-jhipster';
 
 import { Message } from './message.model';
-import { DateUtils } from 'ng-jhipster';
+import { ResponseWrapper, createRequestOption } from '../../shared';
+
 @Injectable()
 export class MessageService {
 
     private resourceUrl = 'api/messages';
 
-    constructor(private http: Http, private dateUtils: DateUtils) {
-    }
+    constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(message: Message): Observable<Message> {
-        const copy: Message = Object.assign({}, message);
-        copy.postingDate = this.dateUtils
-            .convertLocalDateToServer(message.postingDate);
+        const copy = this.convert(message);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            this.convertItemFromServer(jsonResponse);
+            return jsonResponse;
         });
     }
 
     update(message: Message): Observable<Message> {
-        const copy: Message = Object.assign({}, message);
-        copy.postingDate = this.dateUtils
-            .convertLocalDateToServer(message.postingDate);
+        const copy = this.convert(message);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            this.convertItemFromServer(jsonResponse);
+            return jsonResponse;
         });
     }
 
     find(id: number): Observable<Message> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             const jsonResponse = res.json();
-            jsonResponse.postingDate = this.dateUtils
-                .convertLocalDateFromServer(jsonResponse.postingDate);
+            this.convertItemFromServer(jsonResponse);
             return jsonResponse;
         });
     }
 
-    query(req?: any): Observable<Response> {
-        const options = this.createRequestOption(req);
+    query(req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
-            .map((res: any) => this.convertResponse(res))
-            ;
+            .map((res: Response) => this.convertResponse(res));
     }
 
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
-    private convertResponse(res: any): any {
+    private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
-            jsonResponse[i].postingDate = this.dateUtils
-                .convertLocalDateFromServer(jsonResponse[i].postingDate);
+            this.convertItemFromServer(jsonResponse[i]);
         }
-        res._body = jsonResponse;
-        return res;
+        return new ResponseWrapper(res.headers, jsonResponse, res.status);
     }
 
-    private createRequestOption(req?: any): BaseRequestOptions {
-        const options: BaseRequestOptions = new BaseRequestOptions();
-        if (req) {
-            const params: URLSearchParams = new URLSearchParams();
-            params.set('page', req.page);
-            params.set('size', req.size);
-            if (req.sort) {
-                params.paramsMap.set('sort', req.sort);
-            }
-            params.set('query', req.query);
+    private convertItemFromServer(entity: any) {
+        entity.postingDate = this.dateUtils
+            .convertLocalDateFromServer(entity.postingDate);
+    }
 
-            options.search = params;
-        }
-        return options;
+    private convert(message: Message): Message {
+        const copy: Message = Object.assign({}, message);
+        copy.postingDate = this.dateUtils
+            .convertLocalDateToServer(message.postingDate);
+        return copy;
     }
 }

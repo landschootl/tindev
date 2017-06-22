@@ -54,11 +54,15 @@ export class ConversationService {
     saveMessage(currentMessage: string) {
         let message: Message = {
             textMessage: currentMessage,
-            discussion: this.currentDiscussion
+            discussion: this.currentDiscussion,
+            sender : {
+                id: this.auth.currentUser.id
+            }
         };
         let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this.apic.base_url + "messages", message, options).map((m) => {
+            debugger;
             let mess = m.json() as Message;
             this.currentDiscussion.messages = this.currentDiscussion.messages || [];
             this.currentDiscussion.messages.push(mess);

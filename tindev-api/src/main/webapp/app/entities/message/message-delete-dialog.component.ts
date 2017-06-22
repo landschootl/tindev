@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { AlertService, EventManager } from 'ng-jhipster';
 
 import { Message } from './message.model';
 import { MessagePopupService } from './message-popup.service';
@@ -16,11 +16,12 @@ export class MessageDeleteDialogComponent {
 
     message: Message;
 
-    constructor(private jhiLanguageService: JhiLanguageService,
+    constructor(
         private messageService: MessageService,
         public activeModal: NgbActiveModal,
-        private eventManager: EventManager) {
-        this.jhiLanguageService.setLocations(['message']);
+        private alertService: AlertService,
+        private eventManager: EventManager
+    ) {
     }
 
     clear() {
@@ -35,6 +36,7 @@ export class MessageDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+        this.alertService.success('tindevApp.message.deleted', { param : id }, null);
     }
 }
 
@@ -47,9 +49,10 @@ export class MessageDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(private route: ActivatedRoute,
-        private messagePopupService: MessagePopupService) {
-    }
+    constructor(
+        private route: ActivatedRoute,
+        private messagePopupService: MessagePopupService
+    ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

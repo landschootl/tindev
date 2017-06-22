@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager  } from 'ng-jhipster';
 
 import { Message } from './message.model';
 import { MessageService } from './message.service';
@@ -13,14 +13,14 @@ import { MessageService } from './message.service';
 export class MessageDetailComponent implements OnInit, OnDestroy {
 
     message: Message;
-    private subscription: any;
+    private subscription: Subscription;
     private eventSubscriber: Subscription;
 
-    constructor(private eventManager: EventManager,
-        private jhiLanguageService: JhiLanguageService,
+    constructor(
+        private eventManager: EventManager,
         private messageService: MessageService,
-        private route: ActivatedRoute) {
-        this.jhiLanguageService.setLocations(['message']);
+        private route: ActivatedRoute
+    ) {
     }
 
     ngOnInit() {
@@ -35,7 +35,6 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
             this.message = message;
         });
     }
-
     previousState() {
         window.history.back();
     }
@@ -46,6 +45,9 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInMessages() {
-        this.eventSubscriber = this.eventManager.subscribe('messageListModification', (response) => this.load(this.message.id));
+        this.eventSubscriber = this.eventManager.subscribe(
+            'messageListModification',
+            (response) => this.load(this.message.id)
+        );
     }
 }

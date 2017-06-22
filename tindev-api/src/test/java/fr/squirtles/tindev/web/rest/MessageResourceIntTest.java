@@ -76,7 +76,7 @@ public class MessageResourceIntTest {
 
     /**
      * Create an entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -233,5 +233,14 @@ public class MessageResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Message.class);
+        Message message1 = new Message();
+        message1.setId(1L);
+        Message message2 = new Message();
+        message2.setId(message1.getId());
+        assertThat(message1).isEqualTo(message2);
+        message2.setId(2L);
+        assertThat(message1).isNotEqualTo(message2);
+        message1.setId(null);
+        assertThat(message1).isNotEqualTo(message2);
     }
 }

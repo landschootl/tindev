@@ -1,6 +1,6 @@
 {
     "tindevApp": {
-        "message": {
+        "message" : {
             "home": {
                 "title": "Messages",
                 "createLabel": "Créer un nouveau Message",
@@ -17,7 +17,8 @@
             },
             "textMessage": "Text Message",
             "postingDate": "Posting Date",
-            "discussion": "Discussion"
+            "discussion": "Discussion",
+            "sender": "Sender"
         }
     }
 }

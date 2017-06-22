@@ -33,6 +33,7 @@
     <include file="classpath:config/liquibase/changelog/20170424183728_added_entity_Mission.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170424183730_added_entity_Domain.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170424183731_added_entity_Specialty.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170424183735_added_entity_Message.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170424183727_added_entity_constraints_Freelance.xml"
              relativeToChangelogFile="false"/>
@@ -51,5 +52,6 @@
     <include file="classpath:config/liquibase/changelog/20170608143453_added_entity_constraints_Matching.xml"
              relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170424183728_added_entity_constraints_Mission.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170424183735_added_entity_constraints_Message.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

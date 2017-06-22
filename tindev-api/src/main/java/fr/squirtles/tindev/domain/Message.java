@@ -30,6 +30,9 @@ public class Message implements Serializable {
     @ManyToOne
     private Discussion discussion;
 
+    @ManyToOne
+    private UserProfile sender;
+
     public Long getId() {
         return id;
     }
@@ -77,6 +80,19 @@ public class Message implements Serializable {
         this.discussion = discussion;
     }
 
+    public UserProfile getSender() {
+        return sender;
+    }
+
+    public Message sender(UserProfile userProfile) {
+        this.sender = userProfile;
+        return this;
+    }
+
+    public void setSender(UserProfile userProfile) {
+        this.sender = userProfile;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -86,23 +102,23 @@ public class Message implements Serializable {
             return false;
         }
         Message message = (Message) o;
-        if (message.id == null || id == null) {
+        if (message.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, message.id);
+        return Objects.equals(getId(), message.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Message{" +
-            "id=" + id +
-            ", textMessage='" + textMessage + "'" +
-            ", postingDate='" + postingDate + "'" +
-            '}';
+            "id=" + getId() +
+            ", textMessage='" + getTextMessage() + "'" +
+            ", postingDate='" + getPostingDate() + "'" +
+            "}";
     }
 }
