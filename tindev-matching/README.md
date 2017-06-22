@@ -8,4 +8,4 @@ Application mobile hybride de l'application Tindev.
 * Lancer `ionic serve` pour lancer l'application sur [http://localhost:8100](http://localhost:8100)  
 
 ## Déploiement
-Pour déployer l'application, suivre la documentation officielle [ici](https://ionicframework.com/docs/v2/setup/deploying/).
+Pour déployer l'application, suivre la documentation officielle [ici](https://ionicframework.com/docs/intro/deploying/).
