@@ -33,7 +33,7 @@
 
 <ion-footer class="conversation-footer block dbg">
     <ion-item id="send_message">
-        <ion-input type="text" placeholder="Votre message" [(ngModel)]="currentMessage">
+        <ion-input (keyup.enter)="send()" type="text" placeholder="Votre message" [(ngModel)]="currentMessage">
         </ion-input>
     </ion-item>
     <button id="send_button" (click)="send()" ion-button>
