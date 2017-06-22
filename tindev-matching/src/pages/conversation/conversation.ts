@@ -84,14 +84,4 @@ export class ConversationPage {
         // let dimensions = this.content.getContentDimensions();
         this.content.scrollToBottom();
     }
-
-    getSenderName(message: Message) {
-        if(message.sender.id === this.auth.currentUser.id) {
-            return 'Vous';
-        } else {
-            return message.sender.firstname + ' ' + message.sender.lastname;
-        }
-
-    }
-
 }

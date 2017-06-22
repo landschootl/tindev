@@ -24,7 +24,7 @@
     <ion-list>
         <ion-item *ngFor="let message of this.discussionService.currentDiscussion.messages">
             <div class="message {{isUsersMessage(message)}}">
-                <span class="message_name">{{ getSenderName(message) }}</span> <br/>
+                <span class="message_name">{{ this.discussionService.getSenderName(message) }}</span> <br/>
                 <span class="message_content">{{ message.textMessage }}</span>
             </div>
         </ion-item>

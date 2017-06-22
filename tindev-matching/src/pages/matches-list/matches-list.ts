@@ -4,6 +4,7 @@ import { Conversation } from '../../shared/models/conversation';
 import { ConversationService } from '../../providers/conversation-service';
 import { ConversationPage } from '../../pages/conversation/conversation';
 import { Discussion } from '../../shared/models/discussion.model';
+import { Message } from '../../shared/models/message.model';
 import { AuthService } from '../../providers/auth-service';
 import { NavigationService } from '../../providers/navigation-service';
 import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
@@ -117,7 +118,8 @@ export class MatchesListPage {
     }
 
     getLastMessageContent(discussion: Discussion) {
-        return '';
+        var m : Message = discussion.messages[discussion.messages.length-1];
+        return this.conv.getSenderName(m) + ' : '  + m.textMessage;
     }
 
 

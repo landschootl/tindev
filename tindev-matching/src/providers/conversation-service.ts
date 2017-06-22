@@ -67,7 +67,13 @@ export class ConversationService {
             this.currentDiscussion.messages.push(mess);
             return mess;
         });
+    }
 
-
+    getSenderName(message: Message) {
+        if(message.sender.id === this.auth.currentUser.id) {
+            return 'Vous';
+        } else {
+            return message.sender.firstname + ' ' + message.sender.lastname;
+        }
     }
 }
