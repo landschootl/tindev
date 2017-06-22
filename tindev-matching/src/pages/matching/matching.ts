@@ -25,7 +25,6 @@ export class MatchingPage {
     matchings: Array<Matching> = [];
     stackConfig: StackConfig;
     currentCard: Matching; // TODO : should be in matching service
-    i: number = 0;
 
     constructor(private http: Http,
                 private toastCtrl: ToastController,
@@ -52,8 +51,17 @@ export class MatchingPage {
 
     ngAfterViewInit() {
         if (this.auth.getUserInfo().completedProfile) {
-            this.swingStack && this.swingStack.throwin.subscribe((event: ThrowEvent) => {
+            this.swingStack.throwin.subscribe((event: ThrowEvent) => {
                 event.target.style.background = '#ffffff';
+            });
+            this.swingStack.throwoutend.subscribe((event: ThrowEvent) => {
+                debugger;
+                let card = this.swingStack.cards[0];
+                if(this.cards.first) {
+                    this.cards.first.getCard().destroy();
+                    this.swingStack.addCard(card, true);
+                    event.target.style['transform'] = `translate3d(0, 0, 0) translate(0px, 0px) rotate(0deg)`;
+                }
             });
             this.matchings = [];
             this.nextCard();
@@ -62,7 +70,7 @@ export class MatchingPage {
 
     voteUp(liked: boolean) {
         let self = this;
-        this.matchingService.save(this.currentCard, liked).then(() => {
+        this.matchingService.save(this.currentCard, liked).then(function() {
             if(self.currentCard.freelanceVoted && self.currentCard.recruiterVoted && self.currentCard.freelanceLiked && self.currentCard.recruiterLiked) {
                 let alert = self.alertCtrl.create({
                     title: 'It\'s a match !!',
@@ -73,7 +81,6 @@ export class MatchingPage {
                             role: 'cancel',
                             handler: () => {
                                 self.nextCard();
-
                             }
                         },
                         {
@@ -98,13 +105,12 @@ export class MatchingPage {
 
     nextCard() {
         if (!this.matchings.length) {
-            this.i = 0;
             this.matchingService.getAll().then((data) => {
                 this.matchings = data;
-                this.currentCard = this.matchings.length ? this.matchings[this.i++] : null;
+                this.currentCard = this.matchings.length ? this.matchings.shift() : null;
             });
         } else {
-            this.currentCard = this.matchings.length ? this.matchings[this.i++] : null;
+            this.currentCard = this.matchings.length ? this.matchings.shift() : null;
         }
     }
 
@@ -113,31 +119,31 @@ export class MatchingPage {
         this.nav.push(RecruitersMissionSelectionPage);
     }
 
-    getCurrentUserImage(m: Matching) {
+    getCurrentUserImage() {
         // TODO : Implémenter les image des utilisateur
         if (this.auth.currentUser.recruiter) {
-            return m.freelanceProfile.photoUrl;
+            return this.currentCard.freelanceProfile.photoUrl;
         } else {
-            return m.mission.photoUrl;
+            return this.currentCard.mission.photoUrl;
         }
     }
 
-    getCurrentUserName(m: Matching): string {
+    getCurrentUserName(): string {
         if (this.auth.currentUser.recruiter) {
             // TODO: Renvoyer le nom du freelance
-            let freelance = m.freelanceProfile;
-            return (freelance.firstname + ' ' + freelance.lastname) || m.freelanceUser.login;
+            let freelance = this.currentCard.freelanceProfile;
+            return (freelance.firstname + ' ' + freelance.lastname) || this.currentCard.freelanceUser.login;
         } else {
-            return m.mission.title;
+            return this.currentCard.mission.title;
         }
     }
 
-    getCurrentUserDescription(m: Matching): string {
+    getCurrentUserDescription(): string {
         if (this.auth.currentUser.recruiter) {
             // TODO: Renvoyer la description du freelance
-            return m.freelanceProfile.description;
+            return this.currentCard.freelanceProfile.description;
         } else {
-            return m.mission.description;
+            return this.currentCard.mission.description;
 
         }
     }
