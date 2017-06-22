@@ -39,14 +39,12 @@
                     </ion-col>
                 </ion-row>
             </ion-card>
-            <ion-card *ngIf="!currentCard" id="card-empty-match">
-                <ion-item>
-                    <img id="un-card-image" src="assets/images/alert-empty-match.png">
-                    <h1 id="un-card-title">Oups...</h1>
-                    <h2> Actuellement, aucun résultat n'est disponible !</h2>
-                </ion-item>
-                <p id="un-card-subtitle" padding color="danger">Réessayez dans un petit instant</p>
-            </ion-card>
+            <div id="card-empty-match" *ngIf="!currentCard">
+                <img src="assets/images/alert-empty-match.png">
+                <h1>Oups...</h1>
+                <h3>Actuellement, aucun résultat n'est disponible !</h3>
+                <p color="danger">Réessayez dans un petit instant</p>
+            </div>
         </div>
     </div>
 
