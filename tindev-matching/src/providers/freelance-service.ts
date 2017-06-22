@@ -14,24 +14,36 @@ import {Observable} from "rxjs/Observable";
  for more info on providers and Angular 2 DI.
  */
 @Injectable()
-export class MissionService {
+export class FreelanceService {
 
     constructor(public http: Http, private apic: ApiUtils, private auth: AuthService) {
         console.log('Hello FreelanceService Provider');
     }
 
-    findExepriencesByFreelance(idFreelance: any) {
-        return this.http.get(`api/freelances/${idFreelance}/experiences`)
-            .map((res: any) => res);
+    public findExperiencesByFreelance(idFreelance: any) {
+        let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.apic.base_url + 'freelances/' + idFreelance + '/experiences', options)
+            .map(function(response) {
+            return response.json();
+        });
     }
 
-    findTrainingsByFreelance(idFreelance: any) {
-        return this.http.get(`api/freelances/${idFreelance}/trainings`)
-            .map((res: any) => res);
+    public findTrainingsByFreelance(idFreelance: any) {
+        let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.apic.base_url + 'freelances/' + idFreelance + '/trainings', options)
+            .map(function(response) {
+            return response.json();
+        });
     }
 
-    findSkillsByFreelance(idFreelance: any) {
-        return this.http.get(`api/freelances/${idFreelance}/skills`)
-            .map((res: any) => res);
+    public findSkillsByFreelance(idFreelance: any) {
+        let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.apic.base_url + 'freelances/' + idFreelance + '/skills', options)
+            .map(function(response) {
+            return response.json();
+        });
     }
 }

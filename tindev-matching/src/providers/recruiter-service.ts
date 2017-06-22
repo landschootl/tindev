@@ -14,14 +14,18 @@ import {Observable} from "rxjs/Observable";
  for more info on providers and Angular 2 DI.
  */
 @Injectable()
-export class MissionService {
+export class RecruiterService {
 
     constructor(public http: Http, private apic: ApiUtils, private auth: AuthService) {
         console.log('Hello FreelanceService Provider');
     }
 
     findMissionsByRecruiter(idRecruiter: any) {
-        return this.http.get(`api/freelances/${idRecruiter}/missions`)
-            .map((res: any) => res);
+        let headers = this.apic.getHeadersWithToken(this.auth.currentUser.token);
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.apic.base_url + 'recruiters/' + idRecruiter + '/missions', options)
+            .map(function(response) {
+            return response.json();
+        });
     }
 }

@@ -20,6 +20,8 @@ import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-sele
 import { MatchingService } from '../providers/matching-service';
 import { NavigationService } from '../providers/navigation-service';
 import {ProfileDetailsPage} from "../pages/profile-details/profile-details";
+import {FreelanceService} from "../providers/freelance-service";
+import {RecruiterService} from "../providers/recruiter-service";
 
 @NgModule({
     declarations: [
@@ -62,7 +64,9 @@ import {ProfileDetailsPage} from "../pages/profile-details/profile-details";
         ConversationService,
         UserService,
         NavigationService,
-        MissionService
+        MissionService,
+        FreelanceService,
+        RecruiterService
     ]
 })
 export class AppModule {

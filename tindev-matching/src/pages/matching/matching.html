@@ -6,11 +6,6 @@
         <ion-title text-center>
             Tindev Matching
         </ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only>
-                <ion-icon name="options"></ion-icon>
-            </button>
-        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
@@ -28,12 +23,12 @@
 
                 <ion-row>
                     <ion-col>
-                        <button ion-button color="danger" round outline large (click)="voteUp(false)">
+                        <button ion-button color="danger" round outline large (click)="$event.stopPropagation();voteUp(false)">
                             <ion-icon name="thumbs-down"></ion-icon>
                         </button>
                     </ion-col>
                     <ion-col>
-                        <button ion-button color="safe" round outline large (click)="voteUp(true)">
+                        <button ion-button color="safe" round outline large (click)="$event.stopPropagation();voteUp(true)">
                             <ion-icon name="thumbs-up"></ion-icon>
                         </button>
                     </ion-col>
