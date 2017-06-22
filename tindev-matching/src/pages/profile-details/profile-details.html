@@ -1,0 +1,59 @@
+<!--
+  Generated template for the ProfileDetailsPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{ this.getTitle() }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div>
+      <div class="user-profile-picture-container" *ngIf="this.userProfile.photoUrl">
+          <img class="user-profile-picture" src="{{ this.userProfile.photoUrl }}"/>
+      </div>
+        <div class="user-profile-picture-container">
+          <h1> {{ this.userProfile.firstname + ' ' + this.userProfile.lastname }}, {{ this.userProfile.city }}</h1>
+        </div>
+        <div>
+          <h2 class="user-profile-description"> {{ this.userProfile.description }}</h2>
+        </div>
+        <div *ngIf="this.auth.currentUser.recruiter" class="profile-details">
+        <h4>Domaine & spécialité</h4> 
+              <h5>{{ this.matching.freelance.domain.name + ' ' + this.matching.freelance.specialty.name }}</h5>
+          <h4>Expériences</h4> 
+            <div class="info-list" *ngFor="let e of this.spec_data.experiences">
+              <b>{{ e.startYear }} - {{ e.endYear }}</b> à <b>{{ e.location }}</b>
+            </div>
+          <h4>Compétences</h4>
+            <b *ngIf="this.spec_data.skills">{{ this.renderFreelanceSkills() }}</b>
+          <h4>Formations</h4>
+            <div class="info-list" *ngFor="let t of this.spec_data.trainings">
+              <b>{{ t.startDate }} - {{ t.endDate }}</b>, <b>{{t.name}}</b> à <b>{{ t.location }}</b>
+            </div>
+          <h4>TJM : {{ this.matching.freelance.dailyPrice }} €</h4>
+
+        </div>
+        
+        <div *ngIf="!this.auth.currentUser.recruiter" class="profile-details">
+        <h4>Entreprise</h4> 
+          <h5>{{ this.matching.mission.recruiter.company}}</h5>
+          <h4>Domaine & spécialité recherchés</h4> 
+              <h5>{{ this.matching.mission.domain.name + ' ' + this.matching.mission.specialty.name }}</h5>
+          <h4>Durée de la mission</h4> 
+              De <b>{{ this.matching.mission.startDate }} au  {{ this.matching.mission.endDate }}</b> à <b>{{ this.matching.missionProfile.city }}</b>
+          <h4>TJM proposé : de {{ this.matching.mission.minSalary }} € à {{ this.matching.mission.maxSalary }} €</h4>
+          <h4>Autres missions de {{ this.userProfile.firstname + ' ' + this.userProfile.lastname }}</h4>
+            <div class="info-list" *ngFor="let m of this.spec_data.missions">
+              <h5> {{ m.title }}</h5>
+              <p> {{ m.description }}</p>
+            </div>
+        </div>
+    </div>
+</ion-content>

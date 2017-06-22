@@ -6,11 +6,6 @@
         <ion-title text-center>
             Tindev Matching
         </ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only>
-                <ion-icon name="options"></ion-icon>
-            </button>
-        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
@@ -19,7 +14,7 @@
         <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
 
             <!-- Affichage dans le cas d'un freelance -->
-            <ion-card #cards swing-card *ngIf="currentCard">
+            <ion-card #cards swing-card *ngIf="currentCard" (click)="showDetailsPage()">
                 <ion-item>
                     <img class="card-image" *ngIf="getCurrentUserImage()" [src]="getCurrentUserImage()">
                     <h1 class="card-title">{{ getCurrentUserName() | capitalize }}</h1>
@@ -28,12 +23,12 @@
 
                 <ion-row>
                     <ion-col>
-                        <button ion-button color="danger" round outline large (click)="voteUp(false)">
+                        <button ion-button color="danger" round outline large (click)="$event.stopPropagation();voteUp(false)">
                             <ion-icon name="thumbs-down"></ion-icon>
                         </button>
                     </ion-col>
                     <ion-col>
-                        <button ion-button color="safe" round outline large (click)="voteUp(true)">
+                        <button ion-button color="safe" round outline large (click)="$event.stopPropagation();voteUp(true)">
                             <ion-icon name="thumbs-up"></ion-icon>
                         </button>
                     </ion-col>
@@ -66,10 +61,9 @@
 
 
      <div>
-      <ion-card>
-        <ion-item>
+      <ion-camatching     <ion-item>
           <img id="un-card-image" [src]="assets/images/uncompleted-profile-placeholder.jpg">
-          <h1 id="un-card-title">Find your next associate</h1>
+          <h1 id="un-card-title">Fimatching next associate</h1>
           <h2 id="un-card-subtitle">You need to complete your profile in the desktop app before</h2>
         </ion-item>
       </ion-card>

@@ -1,0 +1,23 @@
+page-profile-details {
+	.info-list {
+		border-top : 1px solid #BBB;
+		padding : 1vh;
+	}
+
+	h4 {
+		color : #2DB9D7;
+	}
+
+	.user-profile-picture-container {
+		text-align:center;
+		color : #2DB9D7;
+	}
+	.user-profile-picture {
+		width : 20vh;
+		border-radius:50%;
+	}
+
+	.user-profile-description {
+		color: #BBB;
+	}
+}
