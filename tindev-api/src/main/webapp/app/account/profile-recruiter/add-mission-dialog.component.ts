@@ -7,6 +7,11 @@ import { EventManager } from 'ng-jhipster';
 import {ToasterService, ToasterConfig} from "angular2-toaster/angular2-toaster";
 import {Recruiter} from "../../entities/recruiter/recruiter.model";
 import {UserProfile} from "../../entities/user-profile/user-profile.model";
+import {DomainService} from "../../entities/domain/domain.service";
+import {SpecialtyService} from "../../entities/specialty/specialty.service";
+import {Specialty} from "../../entities/specialty/specialty.model";
+import {Response} from "@angular/http";
+import {Domain} from "../../entities/domain/domain.model";
 
 @Component({
     selector: 'add-mission-dialog',
@@ -24,8 +29,18 @@ export class AddMissionComponent {
     public configToaster : ToasterConfig = new ToasterConfig({
         positionClass: 'toast-top-right'
     });
+    private specialties: Specialty[];
+    private domains: Domain[];
 
-    constructor(private modalService: NgbModal, private missionService: MissionService, private eventManager: EventManager, private toasterService: ToasterService) {
+    constructor(private modalService: NgbModal, private missionService: MissionService, private eventManager: EventManager, private toasterService: ToasterService, private domainService: DomainService, private specialtyService: SpecialtyService) {
+        this.specialtyService.query().subscribe(
+            (res: Response) => {
+                this.specialties = res.json();
+            });
+        this.domainService.query().subscribe(
+            (res: Response) => {
+                this.domains = res.json();
+            });
     }
 
     open(content) {
