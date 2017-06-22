@@ -33,14 +33,19 @@ export class AddMissionComponent {
     private domains: Domain[];
 
     constructor(private modalService: NgbModal, private missionService: MissionService, private eventManager: EventManager, private toasterService: ToasterService, private domainService: DomainService, private specialtyService: SpecialtyService) {
-        this.specialtyService.query().subscribe(
-            (res: Response) => {
-                this.specialties = res.json();
-            });
-        this.domainService.query().subscribe(
-            (res: Response) => {
-                this.domains = res.json();
-            });
+    }
+
+    ngOnInit(): void {
+        debugger;
+        this.specialtyService.query()
+            .subscribe(
+                (res) => this.specialties = res.json
+            );
+        this.domainService.query()
+            .subscribe(
+                (res) => this.domains = res.json
+            );
+
     }
 
     open(content) {
