@@ -19,6 +19,7 @@ import { MissionService } from '../providers/mission-service';
 import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-selection/recruiters-mission-selection';
 import { MatchingService } from '../providers/matching-service';
 import { NavigationService } from '../providers/navigation-service';
+import {ProfileDetailsPage} from "../pages/profile-details/profile-details";
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { NavigationService } from '../providers/navigation-service';
         MatchesListPage,
         ConversationPage,
         CapitalizePipe,
-        RecruitersMissionSelectionPage
+        RecruitersMissionSelectionPage,
+        ProfileDetailsPage
     ],
     imports: [
         IonicModule.forRoot(MyApp),
@@ -44,7 +46,8 @@ import { NavigationService } from '../providers/navigation-service';
         ConversationPage,
         MatchesListPage,
         RegisterPage,
-        RecruitersMissionSelectionPage
+        RecruitersMissionSelectionPage,
+        ProfileDetailsPage
     ],
     providers: [
         {

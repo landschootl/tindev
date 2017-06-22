@@ -11,6 +11,7 @@ import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-s
 import { ConversationService } from '../../providers/conversation-service';
 import { NavigationService } from '../../providers/navigation-service';
 import { ConversationPage } from '../conversation/conversation';
+import {ProfileDetailsPage} from "../profile-details/profile-details";
 
 @Component({
     selector: 'page-matching',
@@ -44,7 +45,7 @@ export class MatchingPage {
                 return 800;
             }
         };
-        console.log("matching profile is : ");
+        console.log("matching matching is : ");
         console.log(this.matchingService.currentMatchingUser);
         this.discussionService.getAll();
     }
@@ -151,5 +152,10 @@ export class MatchingPage {
             return this.auth.currentUser.recruiter;
         }
         return false;
+    }
+
+    showDetailsPage() {
+        this.navService.concernedProfile = this.currentCard;
+        this.nav.push(ProfileDetailsPage);
     }
 }
