@@ -13,7 +13,7 @@ Projet de PAI en M1MIAGEFA - Application de rencontre entre recruteurs et freela
 ```
 
 ## Documents d'installation
-* [README - tindev-board](https://gitlab.com/squirtles/tindev/blob/develop/tindev-api/README.md)
+* [README - tindev-api](https://gitlab.com/squirtles/tindev/blob/develop/tindev-api/README.md)
 * [README - tindev-matching](https://gitlab.com/squirtles/tindev/blob/develop/tindev-matching/README.md)
 
 ## Contributeurs
