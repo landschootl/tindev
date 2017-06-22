@@ -63,7 +63,11 @@ export class MatchesListPage {
     }
 
     onSearchInput(event) {
-        this.showSearchLoader = true;
+        if(this.searchinput.length) {
+            this.showSearchLoader = true;
+        } else {
+            this.showSearchLoader = false;
+        }
     }
 
     shouldShow(d: Discussion) {

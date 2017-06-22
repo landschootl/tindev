@@ -24,11 +24,9 @@ export class RecruitersMissionSelectionPage {
     }
 
     ionViewDidEnter() {
-        // this.interval = setInterval(() => {
-            if (this.auth.currentUser.specId != undefined) {
-                this.initializeItems();
-            }
-        // }, 500);
+        if (this.auth.currentUser.specId != undefined) {
+            this.initializeItems();
+        }
     }
 
     initializeItems() {
@@ -42,7 +40,6 @@ export class RecruitersMissionSelectionPage {
                 // this.loading.dismiss();
                 this.showToast("Impossible de récupérer vos missions");
             });
-        // clearInterval(this.interval);
     }
 
     public showToast(text) {
@@ -68,7 +65,11 @@ export class RecruitersMissionSelectionPage {
     }
 
     onSearchInput(event) {
-        this.showSearchLoader = true;
+        if(this.searchinput.length) {
+            this.showSearchLoader = true;
+        } else {
+            this.showSearchLoader = false;
+        }
     }
 
     openMatchingPage(m: Mission) {
