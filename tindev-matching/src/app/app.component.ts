@@ -25,7 +25,6 @@ export class MyApp {
 
             this.pages = [
                 { title: 'Accueil', component: MatchingPage, icon: 'home' },
-                { title: 'Profil', component: HomePage, icon: 'briefcase' },
                 { title: 'Conversations', component: MatchesListPage, icon: 'chatboxes' }
             ];
         });
