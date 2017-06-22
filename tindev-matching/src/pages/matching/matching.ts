@@ -54,6 +54,9 @@ export class MatchingPage {
             this.swingStack.throwin.subscribe((event: ThrowEvent) => {
                 event.target.style.background = '#ffffff';
             });
+            this.swingStack.throwoutend.subscribe((event: ThrowEvent) => {
+                debugger;
+            });
             this.matchings = [];
             this.nextCard();
         }

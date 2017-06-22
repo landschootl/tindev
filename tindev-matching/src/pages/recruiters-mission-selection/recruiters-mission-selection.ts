@@ -81,6 +81,9 @@ export class RecruitersMissionSelectionPage {
     }
 
     shouldShow(mission: Mission) {
+        if(!mission.title || !mission.description) {
+            return false;
+        }
         return mission.title.toLowerCase().includes(this.searchinput.toLowerCase())
             || mission.description.toLowerCase().includes(this.searchinput.toLowerCase());
     }

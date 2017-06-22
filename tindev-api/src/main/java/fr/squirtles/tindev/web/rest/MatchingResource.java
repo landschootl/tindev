@@ -6,6 +6,7 @@ import fr.squirtles.tindev.repository.*;
 import fr.squirtles.tindev.security.AuthoritiesConstants;
 import fr.squirtles.tindev.security.SecurityUtils;
 import fr.squirtles.tindev.service.dto.MatchingDTO;
+import fr.squirtles.tindev.service.matching.AlgoMatching;
 import fr.squirtles.tindev.service.matching.FreelanceMatching;
 import fr.squirtles.tindev.service.matching.FreelanceMatchingSolution;
 import fr.squirtles.tindev.web.rest.util.HeaderUtil;
@@ -25,8 +26,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Matching.
@@ -187,10 +190,12 @@ public class MatchingResource {
                 Matching matching = new Matching();
                 matching.setFreelance(freelance);
                 matching.setMission(mission);
+                AlgoMatching.calculateScore(matching);
                 matchings.add(toDTO(matching));
             });
 
-            return matchings;
+            Collections.sort(matchings, new AlgoMatching());
+            return truncate(matchings);
         } else if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.RECRUITER)) {
             Mission mission = missionRepository.findOne(id);
             List<Freelance> freelances = freelanceRepository.findAll();
@@ -207,13 +212,20 @@ public class MatchingResource {
                 Matching matching = new Matching();
                 matching.setFreelance(freelance);
                 matching.setMission(mission);
+                AlgoMatching.calculateScore(matching);
                 matchings.add(toDTO(matching));
             });
-
-            return matchings;
+            Collections.sort(matchings, new AlgoMatching());
+            return truncate(matchings);
         }
 
         return null;
+    }
+
+    private List<MatchingDTO> truncate(List<MatchingDTO> matchings) {
+    return  matchings.stream()
+            .limit(5)
+            .collect(Collectors.toList());
     }
 
     private MatchingDTO toDTO(Matching matching) {

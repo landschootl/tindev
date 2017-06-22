@@ -82,6 +82,9 @@ export class MatchesListPage {
     }
 
     shouldShow(d: Discussion) {
+        if(!d.mission.title || !d.freelanceProfile || !d.freelanceProfile.firstname || !d.freelanceProfile.lastname ) {
+            return true;
+        }
         return d.mission.title.toLowerCase().includes(this.searchinput.toLowerCase())
             || this.getUserName(d).toLowerCase().includes(this.searchinput.toLowerCase())
     }
