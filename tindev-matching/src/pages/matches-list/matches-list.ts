@@ -5,6 +5,9 @@ import { ConversationService } from '../../providers/conversation-service';
 import { ConversationPage } from '../../pages/conversation/conversation';
 import { Discussion } from '../../shared/models/discussion.model';
 import { AuthService } from '../../providers/auth-service';
+import { NavigationService } from '../../providers/navigation-service';
+import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
+
 /*
  Generated class for the MatchesList page.
 
@@ -22,10 +25,17 @@ export class MatchesListPage {
     searchinput: string = '';
     showSearchLoader: boolean = false;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public conv: ConversationService, private loadingCtrl: LoadingController, private toastCtrl: ToastController, private auth: AuthService) {
+    constructor(public navService : NavigationService, public navCtrl: NavController, public navParams: NavParams, public conv: ConversationService, private loadingCtrl: LoadingController, private toastCtrl: ToastController, private auth: AuthService) {
     }
     ionViewDidEnter() {
         console.log('ionViewDidLoad MatchesListPage');
+        if(this.navService.bypass == true) {
+            this.navService.bypass = false;
+        } else if (this.auth.currentUser.recruiter) {
+            this.navService.currentTarget = MatchesListPage;
+            this.navService.bypass = true;
+            this.navCtrl.push(RecruitersMissionSelectionPage);
+        }
         this.initializeItems();
     }
 
@@ -36,7 +46,7 @@ export class MatchesListPage {
         let self = this;
         return this.conv.getAll().catch(function () {
             self.loading.dismiss();
-            self.showToast("We were unable to get your conversations");
+            self.showToast("Nous n'avons pas réussi à retrouver vos conversations.");
         });
     }
 

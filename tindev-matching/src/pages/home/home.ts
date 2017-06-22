@@ -15,6 +15,7 @@ import { MatchingPage } from '../../pages/matching/matching';
 import { RegisterPage } from '../../pages/register/register';
 import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
 import { MatchingService } from '../../providers/matching-service';
+import { NavigationService } from '../../providers/navigation-service';
 
 @Component({
     selector: 'home',
@@ -23,12 +24,12 @@ import { MatchingService } from '../../providers/matching-service';
 export class HomePage {
 
     loading: Loading;
-    registerCredentials = { username: 'freelance', password: 'freelance' };
+    registerCredentials = { username: 'mathieu', password: 'user' };
 
     constructor(public nav: NavController, public navParams: NavParams, private storage: Storage,
         public tindevSession: TindevSession, private auth: AuthService,
         private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-        private menu: MenuController, private toastCtrl: ToastController, private matchingService: MatchingService) {
+        private menu: MenuController, private toastCtrl: ToastController, private matchingService: MatchingService, private navService: NavigationService) {
         this.tindevSession = tindevSession;
         this.menu.enable(false);
     }
@@ -60,6 +61,7 @@ export class HomePage {
                         toast.present(toast);
                         this.menu.enable(true);
                         if (user.recruiter) {
+                            this.navService.currentTarget = MatchingPage
                             this.nav.push(RecruitersMissionSelectionPage);
                         } else {
                             this.matchingService.currentMatchingUser = user;

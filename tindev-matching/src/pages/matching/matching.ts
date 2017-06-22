@@ -9,6 +9,7 @@ import { MatchingService } from '../../providers/matching-service';
 import { Matching } from '../../shared/models/matching.model';
 import { RecruitersMissionSelectionPage } from '../../pages/recruiters-mission-selection/recruiters-mission-selection';
 import { ConversationService } from '../../providers/conversation-service';
+import { NavigationService } from '../../providers/navigation-service';
 import { ConversationPage } from '../conversation/conversation';
 
 @Component({
@@ -33,7 +34,8 @@ export class MatchingPage {
                 private matchingService: MatchingService,
                 private alertCtrl: AlertController,
                 private discussionService: ConversationService,
-                private nav: NavController) {
+                private nav: NavController,
+                private navService : NavigationService) {
         this.stackConfig = {
             throwOutConfidence: (offsetX, offsetY, element) => {
                 return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
@@ -106,6 +108,7 @@ export class MatchingPage {
     }
 
     goToMissionSelection() {
+        this.navService.currentTarget = MatchingPage;
         this.nav.push(RecruitersMissionSelectionPage);
     }
 

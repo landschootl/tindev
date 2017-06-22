@@ -5,6 +5,7 @@ import { Mission } from '../../shared/models/mission';
 import { AuthService } from '../../providers/auth-service';
 import { MatchingPage } from '../../pages/matching/matching';
 import { MatchingService } from '../../providers/matching-service';
+import { NavigationService } from '../../providers/navigation-service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class RecruitersMissionSelectionPage {
     interval: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController,
-        private toastCtrl: ToastController, private mission: MissionService, private auth: AuthService, private matchingService: MatchingService) {
+        private toastCtrl: ToastController, private mission: MissionService, private auth: AuthService, private matchingService: MatchingService, private navService : NavigationService) {
     }
 
     ionViewDidEnter() {
@@ -74,7 +75,9 @@ export class RecruitersMissionSelectionPage {
 
     openMatchingPage(m: Mission) {
         this.matchingService.currentMatchingUser = m;
-        this.navCtrl.setRoot(MatchingPage);
+        var target = this.navService.currentTarget;
+        this.navService.currentTarget = undefined;
+        this.navCtrl.setRoot(target);
     }
 
     shouldShow(mission: Mission) {

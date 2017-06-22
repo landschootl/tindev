@@ -18,6 +18,7 @@ import { UserService } from '../providers/user-service';
 import { MissionService } from '../providers/mission-service';
 import { RecruitersMissionSelectionPage } from '../pages/recruiters-mission-selection/recruiters-mission-selection';
 import { MatchingService } from '../providers/matching-service';
+import { NavigationService } from '../providers/navigation-service';
 
 @NgModule({
     declarations: [
@@ -57,6 +58,7 @@ import { MatchingService } from '../providers/matching-service';
         ApiUtils,
         ConversationService,
         UserService,
+        NavigationService,
         MissionService
     ]
 })
