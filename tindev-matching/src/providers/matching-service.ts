@@ -27,13 +27,11 @@ export class MatchingService {
         params.set('id', this.currentMatchingUser.id);
         let options = new RequestOptions({ headers: headers, search: params });
         if (this.auth.currentUser.recruiter) {
-            debugger;
             return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
                 return data.json();
             });
         } else {
             return this.http.get(this.apic.base_url + 'matchings/best', options).toPromise().then(function(data) {
-                debugger;
                 return data.json();
             });
 

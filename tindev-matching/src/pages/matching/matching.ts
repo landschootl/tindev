@@ -56,7 +56,6 @@ export class MatchingPage {
                 event.target.style.background = '#ffffff';
             });
             this.swingStack.throwoutend.subscribe((event: ThrowEvent) => {
-                debugger;
                 let card = this.swingStack.cards[0];
                 if(this.cards.first) {
                     this.cards.first.getCard().destroy();
