@@ -107,7 +107,7 @@ export class MatchesListPage {
     }
 
     getUserName(discussion: Discussion) {
-        if (this.auth.currentUser.recruiter) {
+        if (this.auth.currentUser && this.auth.currentUser.recruiter) {
             // TODO: Renvoyer le nom du freelance
             let freelance = discussion.freelanceProfile;
             let text = freelance.firstname + freelance.lastname ? freelance.firstname + ' ' + freelance.lastname : discussion.freelanceUser.login;

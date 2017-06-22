@@ -70,6 +70,7 @@ export class ConversationService {
     }
 
     getSenderName(message: Message) {
+        if(!message || !message.sender) '';
         if(message.sender.id === this.auth.currentUser.id) {
             return 'Vous';
         } else {
