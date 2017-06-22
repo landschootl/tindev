@@ -91,9 +91,7 @@ export class MatchingPage {
             } else {
                 self.nextCard();
             }
-
         });
-
     }
 
     nextCard() {
@@ -117,16 +115,15 @@ export class MatchingPage {
         if (this.auth.currentUser.recruiter) {
             return this.currentCard.freelanceProfile.photoUrl;
         } else {
-            return this.currentCard.missionProfile.photoUrl;
+            return this.currentCard.mission.photoUrl;
         }
     }
 
     getCurrentUserName(): string {
         if (this.auth.currentUser.recruiter) {
             // TODO: Renvoyer le nom du freelance
-            let freelance = this.currentCard.freelanceProfile
+            let freelance = this.currentCard.freelanceProfile;
             return (freelance.firstname + ' ' + freelance.lastname) || this.currentCard.freelanceUser.login;
-
         } else {
             return this.currentCard.mission.title;
         }
@@ -134,7 +131,7 @@ export class MatchingPage {
 
     getCurrentUserDescription(): string {
         if (this.auth.currentUser.recruiter) {
-            // TODO: Renvoyer la description du freezlance
+            // TODO: Renvoyer la description du freelance
             return this.currentCard.freelanceProfile.description;
         } else {
             return this.currentCard.mission.description;
@@ -155,5 +152,4 @@ export class MatchingPage {
         }
         return false;
     }
-
 }

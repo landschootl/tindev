@@ -15,26 +15,22 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.mission.title" for="field_title">Title</label>
             <input type="text" class="form-control" name="title" id="field_title"
-                [(ngModel)]="mission.title"
-             />
+                [(ngModel)]="mission.title"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.mission.description" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
-                [(ngModel)]="mission.description"
-             />
+                [(ngModel)]="mission.description"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.mission.minSalary" for="field_minSalary">Min Salary</label>
             <input type="number" class="form-control" name="minSalary" id="field_minSalary"
-                [(ngModel)]="mission.minSalary"
-             />
+                [(ngModel)]="mission.minSalary"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.mission.maxSalary" for="field_maxSalary">Max Salary</label>
             <input type="number" class="form-control" name="maxSalary" id="field_maxSalary"
-                [(ngModel)]="mission.maxSalary"
-             />
+                [(ngModel)]="mission.maxSalary"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="tindevApp.mission.startDate" for="field_startDate">Start Date</label>
@@ -55,6 +51,11 @@
                     <button type="button" class="btn btn-default" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="tindevApp.mission.photoUrl" for="field_photoUrl">Photo Url</label>
+            <input type="text" class="form-control" name="photoUrl" id="field_photoUrl"
+                [(ngModel)]="mission.photoUrl"  />
         </div>
 
         <div class="form-group">

@@ -53,6 +53,7 @@ export class MissionDialogComponent implements OnInit {
         this.domainService.query()
             .subscribe((res: ResponseWrapper) => { this.domains = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }

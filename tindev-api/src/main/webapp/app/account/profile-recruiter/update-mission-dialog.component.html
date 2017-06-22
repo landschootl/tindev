@@ -56,6 +56,25 @@
                 </span>
             </div>
         </div>
+        <div class="form-group">
+            <label for="field_domain">Domaine</label>
+            <select class="form-control" id="field_domain" name="domain" [(ngModel)]="mission.domain">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="domainOption.id === mission.domain?.id ? mission.domain : domainOption"
+                        *ngFor="let domainOption of domains; trackBy: trackDomainById">{{domainOption.name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_specialty">Spécialité</label>
+            <select class="form-control" id="field_specialty" name="specialty" [(ngModel)]="mission.specialty">
+                <option [ngValue]="null"></option>
+                <option
+                    [ngValue]="specialtyOption.id === mission.specialty?.id ? mission.specialty : specialtyOption"
+                    *ngFor="let specialtyOption of specialties; trackBy: trackSpecialtyById">{{specialtyOption.name}}
+                </option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
