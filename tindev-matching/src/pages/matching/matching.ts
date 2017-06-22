@@ -35,7 +35,7 @@ export class MatchingPage {
                 private discussionService: ConversationService,
                 private nav: NavController) {
         this.stackConfig = {
-            throwOutConfidence: (offsetX, element) => {
+            throwOutConfidence: (offsetX, offsetY, element) => {
                 return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
             },
             throwOutDistance: (d) => {
