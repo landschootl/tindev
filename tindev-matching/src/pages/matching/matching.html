@@ -39,15 +39,11 @@
                     </ion-col>
                 </ion-row>
             </ion-card>
-        </div>
-    </div>
-
-    <div *ngIf="!getCompletedProfile()">
-        <div>
-            <ion-card>
+            <ion-card *ngIf="!currentCard" id="card-empty-match">
                 <ion-item>
-                    <img id="un-card-image" src="assets/images/uncompleted-profile-placeholder.jpg">
-                    <h1 id="un-card-title">Oups.. Actuellement, aucun résultat n'est disponible !</h1>
+                    <img id="un-card-image" src="assets/images/alert-empty-match.png">
+                    <h1 id="un-card-title">Oups...</h1>
+                    <h2> Actuellement, aucun résultat n'est disponible !</h2>
                 </ion-item>
                 <p id="un-card-subtitle" padding color="danger">Réessayez dans un petit instant</p>
             </ion-card>
