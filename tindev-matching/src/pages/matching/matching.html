@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content padding>
-    <div *ngIf="getCompletedProfile() && currentCard">
+    <div *ngIf="getCompletedProfile()">
         <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
 
             <!-- Affichage dans le cas d'un freelance -->
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <div *ngIf="!currentCard">
+    <div *ngIf="!getCompletedProfile()">
         <div>
             <ion-card>
                 <ion-item>
