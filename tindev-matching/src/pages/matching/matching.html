@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content padding>
-    <div *ngIf="getCompletedProfile()">
+    <div *ngIf="getCompletedProfile() && currentCard">
         <div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
 
             <!-- Affichage dans le cas d'un freelance -->
@@ -42,17 +42,18 @@
         </div>
     </div>
 
-    <div *ngIf="!getCompletedProfile()">
+    <div *ngIf="!currentCard">
         <div>
             <ion-card>
                 <ion-item>
                     <img id="un-card-image" src="assets/images/uncompleted-profile-placeholder.jpg">
-                    <h1 id="un-card-title">Trouvez votre futur associé</h1>
+                    <h1 id="un-card-title">Oups.. Actuellement, aucun résultat n'est disponible !</h1>
                 </ion-item>
-                <p id="un-card-subtitle" padding color="danger">Vous devez d'abord compléter votre profil sur l'application Tindev Board.</p>
+                <p id="un-card-subtitle" padding color="danger">Réessayez dans un petit instant</p>
             </ion-card>
         </div>
     </div>
+
     <div id="another-mission" *ngIf="isRecruiter()">
         <button ion-button (click)="goToMissionSelection()">
             <ion-icon class="margin-right" name="arrow-dropleft"></ion-icon>
