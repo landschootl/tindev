@@ -59,10 +59,8 @@ export class ProfileRecruiterComponent implements OnInit, OnChanges {
     }
 
     loadMissions(idRecruiter) {
-        debugger;
         this.missionService.findByRecruiter(idRecruiter).subscribe(
             (res: Response) => {
-                debugger;
                 this.missions = res.json() as Mission[];
             });
     }

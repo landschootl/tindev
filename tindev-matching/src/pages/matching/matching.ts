@@ -163,7 +163,6 @@ export class MatchingPage {
     }
 
     showDetailsPage() {
-        debugger;
         this.navService.concernedProfile = this.currentCard;
         this.nav.push(ProfileDetailsPage);
     }

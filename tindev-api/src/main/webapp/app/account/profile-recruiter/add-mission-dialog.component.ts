@@ -36,7 +36,6 @@ export class AddMissionComponent {
     }
 
     ngOnInit(): void {
-        debugger;
         this.specialtyService.query()
             .subscribe(
                 (res) => this.specialties = res.json

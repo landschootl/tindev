@@ -72,7 +72,6 @@ findExperiencesByFreelance(idFreelance: any) {
     }
 
     renderFreelanceSkills() {
-      debugger;
       var result : string = '';
       var i = 0;
       for(let s of this.spec_data.skills) {
