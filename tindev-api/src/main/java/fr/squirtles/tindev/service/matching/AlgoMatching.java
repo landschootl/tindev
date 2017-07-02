@@ -36,6 +36,6 @@ public class AlgoMatching implements Comparator<MatchingDTO>{
 
     @Override
     public int compare(MatchingDTO o1, MatchingDTO o2) {
-        return o1.getScore().compareTo(o2.getScore());
+        return o2.getScore().compareTo(o1.getScore());
     }
 }

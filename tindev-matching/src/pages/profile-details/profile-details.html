@@ -26,7 +26,7 @@
         </div>
         <div *ngIf="this.auth.currentUser.recruiter" class="profile-details">
         <h4>Domaine & spécialité</h4> 
-              <h5>{{ this.matching.freelance.domain && this.matching.freelance.domain.name + this.matching.freelance.specialty && ' ' + this.matching.freelance.specialty.name }}</h5>
+              <h5>{{ (this.matching.freelance.domain ? this.matching.freelance.domain.name : '') + (this.matching.freelance.specialty ? ' ' + this.matching.freelance.specialty.name : '') }}</h5>
           <h4>Expériences</h4> 
             <div class="info-list" *ngFor="let e of this.spec_data.experiences">
               <b>{{ e.startYear }} - {{ e.endYear }}</b> à <b>{{ e.location }}</b>
@@ -45,7 +45,7 @@
         <h4>Entreprise</h4> 
           <h5>{{ this.matching.mission.recruiter.company}}</h5>
           <h4>Domaine & spécialité recherchés</h4> 
-              <h5>{{ this.matching.mission.domain && this.matching.mission.domain.name + this.matching.mission.specialty && ' ' + this.matching.mission.specialty.name }}</h5>
+              <h5>{{ (this.matching.mission.domain ? this.matching.mission.domain.name : '') + (this.matching.mission.specialty ? ' ' + this.matching.mission.specialty.name : '') }}</h5>
           <h4>Durée de la mission</h4> 
               De <b>{{ this.matching.mission.startDate }} au  {{ this.matching.mission.endDate }}</b> à <b>{{ this.matching.missionProfile.city }}</b>
           <h4>TJM proposé : de {{ this.matching.mission.minSalary }} € à {{ this.matching.mission.maxSalary }} €</h4>
