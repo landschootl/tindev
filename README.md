@@ -20,4 +20,4 @@ Projet de PAI en M1MIAGEFA - Application de rencontre entre recruteurs et freela
 * [Mustapha NEZZARI](http://github.com/MawsFr)
 * [Mathieu SAAB](http://github.com/ExSoldat)
 * [Laurent THIEBAULT](http://github.com/lauthieb)
-* [Ludovic LANDSCHOOT](http://github.com/landschoot)
+* [Ludovic LANDSCHOOT](http://github.com/landschootl)
